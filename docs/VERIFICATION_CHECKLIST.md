@@ -1,5 +1,7 @@
 # Verification checklist and open questions
 
+Latest H1–H5 status and committed reproducers: [HANDOFF_RESULTS.md](review/HANDOFF_RESULTS.md). H4 is teammate-owned; the other four handoff items have implementations and measurements, with limitations recorded there.
+
 These are the parts we are least sure about, ordered by risk. Each item says what to check and where. When you settle one, record the finding (file:line, evidence, fix) in the "Log" section at the bottom.
 
 ## A. Reproduce

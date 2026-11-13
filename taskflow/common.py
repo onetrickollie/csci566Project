@@ -74,7 +74,9 @@ def baseline_policies(llm=None) -> dict:
     from taskflow.coordinators.oracle import Oracle
 
     out = {"always_global": AlwaysGlobal(), "always_global_det": AlwaysGlobalDeterministic(),
-           "static_rules": StaticRules(), "oracle": Oracle()}
+           "static_rules": StaticRules()}
+    if llm is None:
+        out["oracle"] = Oracle()
     if llm is not None:
         from taskflow.coordinators.llm_coordinator import LLMCoordinator
 

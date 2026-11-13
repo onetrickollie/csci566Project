@@ -106,6 +106,9 @@ def recovery(policy, eps, Q, needs: dict) -> dict:
 
 
 def error_by_step(policy, eps, Q) -> dict:
+    if LLM is not None:
+        # Deterministic counterfactual labels are not expert labels for live transitions.
+        return {"by_step": {}, "by_turn": {}}
     expert = Oracle()
     by_step, by_turn = defaultdict(list), defaultdict(list)
     for i, ep in enumerate(eps):
@@ -187,7 +190,8 @@ def main():
 
     for name, pol in baseline_policies(LLM).items():
         u0 = _snapshot()
-        res = [run_episode(e, Q[e.qid], pol, seed=i, llm=LLM, call_cap=CALL_CAP) for i, e in enumerate(eps)]
+        res = [run_episode(e, Q[e.qid], pol, seed=i, llm=LLM, call_cap=CALL_CAP, score_edits=True)
+               for i, e in enumerate(eps)]
         usage = _usage_delta(u0)
         out["systems"][name] = {
             "summary": {k: {"mean": v, "std": 0.0} for k, v in summarize(res).items()
@@ -203,7 +207,7 @@ def main():
         for s in a.seeds:
             pol = learned_policy(name + a.model_suffix, s)
             u0 = _snapshot()
-            res = [run_episode(e, Q[e.qid], pol, seed=i, llm=LLM, call_cap=CALL_CAP)
+            res = [run_episode(e, Q[e.qid], pol, seed=i, llm=LLM, call_cap=CALL_CAP, score_edits=True)
                    for i, e in enumerate(eps)]
             usages.append(_usage_delta(u0))
             sums.append(summarize(res))

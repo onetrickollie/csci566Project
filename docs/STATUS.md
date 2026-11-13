@@ -1,5 +1,7 @@
 # Project status
 
+**Handoff update:** H1/H2/H3/H5 are implemented and evaluated in [review/HANDOFF_RESULTS.md](review/HANDOFF_RESULTS.md). H4 (live validation) is explicitly assigned to teammates. Exact feasibility labels pass on regenerated data; remaining upstream name-resolution discrepancies and multi-component model failures are documented. Canonical data/models/results were preserved.
+
 Last updated: 2026-11-13. Task IDs refer to the task board in [ENGINEERING_PLAN.md](ENGINEERING_PLAN.md).
 
 **Review status:** the review of `ff4562a` found 20 issues ([SUPERVISOR_REVIEW.md](SUPERVISOR_REVIEW.md)).

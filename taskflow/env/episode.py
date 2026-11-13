@@ -105,13 +105,16 @@ class TurnResult:
     preservation: float | None
     edit_rate: float
     used_global: bool
-    unnecessary_global: bool
+    unnecessary_global: bool | None
     llm_calls: int
     tool_calls: int
     tokens: int
     tracker_ok: bool
     measured_llm_calls: int | None = None  # real calls when an LLM backend is active
     measured_tokens: int | None = None
+    minimum_edits: int | None = None
+    excess_edits: int | None = None
+    edit_optimal_preservation: float | None = None
 
 
 @dataclass
@@ -133,7 +136,7 @@ def _local_fix_exists(env: TurnEnv) -> bool:
 
 def run_episode(ep: Episode, q: Query, policy, seed: int = 0, expert=None, beta: float = 0.0,
                 record: bool = False, inject: dict | None = None, encoder=None,
-                llm=None, call_cap: int | None = None) -> EpisodeResult:
+                llm=None, call_cap: int | None = None, score_edits: bool = False) -> EpisodeResult:
     """Roll out ``policy`` on an episode.
 
     expert/beta: DAgger mixing. With probability beta the expert's action is
@@ -163,7 +166,7 @@ def run_episode(ep: Episode, q: Query, policy, seed: int = 0, expert=None, beta:
         tracker_ok = env.diff is not None and env.c.to_dict() == truth_diff.apply(belief).to_dict()
         start_report = verify(q, truth_applied, plan)
         needed_slots = start_report.slots()
-        local_possible = _local_fix_exists(env) if turn.feasible else False
+        local_possible = _local_fix_exists(env) if turn.feasible and llm is None else False
         while not env.done:
             state = encoder(env) if (record and encoder) else None
             label = expert.act(env) if (expert is not None and (record or beta > 0)) else None
@@ -201,15 +204,23 @@ def run_episode(ep: Episode, q: Query, policy, seed: int = 0, expert=None, beta:
         if turn.feasible and unaffected:
             preservation = sum(plan.get(s) == env.start_plan.get(s) for s in unaffected) / len(unaffected)
         edit_rate = sum(plan.get(s) != env.start_plan.get(s) for s in ALL_SLOTS) / len(ALL_SLOTS)
+        # An independent scoring oracle, evaluated only after policy execution.
+        efficiency = {}
+        if score_edits and turn.feasible and success:
+            from taskflow.eval.exact import revision_efficiency
+
+            efficiency = revision_efficiency(q, truth_after, env.start_plan, plan)
         res.turns.append(TurnResult(
             turn=ti, op=truth_diff.op, target_type=truth_diff.target_type, feasible=turn.feasible,
             terminal=env.terminal, actions=list(env.history), success=success,
             new_satisfied=new_ok, retention=retention, preservation=preservation, edit_rate=edit_rate,
-            used_global=env.global_done, unnecessary_global=env.global_done and local_possible,
+            used_global=env.global_done,
+            unnecessary_global=(env.global_done and local_possible) if llm is None else None,
             llm_calls=env.llm_calls, tool_calls=env.tool_calls, tokens=env.tokens,
             tracker_ok=tracker_ok,
             measured_llm_calls=(llm.usage.requests - u0[0]) if llm is not None else None,
-            measured_tokens=(llm.usage.tokens - u0[1]) if llm is not None else None))
+            measured_tokens=(llm.usage.tokens - u0[1]) if llm is not None else None,
+            **efficiency))
         if env.terminal == "ASK_CLARIFICATION" and not turn.feasible:
             belief = env.before
         else:

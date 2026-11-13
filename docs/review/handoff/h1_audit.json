@@ -1,0 +1,398 @@
+{
+  "manifest": {
+    "git_sha": "1aaeecd",
+    "git_dirty": true,
+    "config": {
+      "seed": 0,
+      "splits": [
+        "train",
+        "val",
+        "test"
+      ],
+      "upstream_sha": "e52c87f4ac348a3410c46dc3553c519db5ec5e23",
+      "audit_code": "fabffded9b14",
+      "raw_data": "88fedfeee135"
+    },
+    "config_hash": "46f75bb306",
+    "fingerprints": {
+      "source": "883e3d07447a",
+      "prompts": "f9352f57f9ee",
+      "tasks": "3753a97fdb1e"
+    }
+  },
+  "scope": "All 13 slots required. Upstream function adapter uses query slices, not full database/CLI; no leaderboard claim.",
+  "counts": {
+    "train": {
+      "turns": 1710,
+      "labeled_infeasible": 317,
+      "checked_passing_plans": 1393,
+      "upstream_rejections": 3,
+      "cost_disagreements": 7,
+      "failed_oracle_turns": 0,
+      "is_valid_information_in_sandbox": 3,
+      "false_infeasible": 0,
+      "false_feasible": 0
+    },
+    "val": {
+      "turns": 558,
+      "labeled_infeasible": 92,
+      "checked_passing_plans": 466,
+      "upstream_rejections": 4,
+      "cost_disagreements": 6,
+      "failed_oracle_turns": 0,
+      "is_valid_information_in_sandbox": 4,
+      "false_infeasible": 0,
+      "false_feasible": 0
+    },
+    "test": {
+      "turns": 689,
+      "labeled_infeasible": 129,
+      "checked_passing_plans": 560,
+      "upstream_rejections": 0,
+      "cost_disagreements": 3,
+      "failed_oracle_turns": 0,
+      "false_infeasible": 0,
+      "false_feasible": 0
+    }
+  },
+  "label_disagreements": [],
+  "upstream_disagreements": [
+    {
+      "split": "train",
+      "qid": "test-0005",
+      "constraints": {
+        "budget": 6500,
+        "people": 3,
+        "room_type": null,
+        "house_rules": [],
+        "cuisines": [],
+        "transport": null,
+        "min_rating": 3.5,
+        "priority": null
+      },
+      "local_cost": 5555.0,
+      "cost": 947.0,
+      "failures": {
+        "is_valid_information_in_sandbox": [
+          false,
+          "The accommodation in day 1 is invalid in the sandbox."
+        ]
+      }
+    },
+    {
+      "split": "train",
+      "qid": "test-0005",
+      "constraints": {
+        "budget": 6500,
+        "people": 3,
+        "room_type": null,
+        "house_rules": [],
+        "cuisines": [
+          "Italian"
+        ],
+        "transport": null,
+        "min_rating": null,
+        "priority": null
+      },
+      "local_cost": 5159.0,
+      "cost": 551.0,
+      "failures": {
+        "is_valid_information_in_sandbox": [
+          false,
+          "The accommodation in day 1 is invalid in the sandbox."
+        ]
+      }
+    },
+    {
+      "split": "train",
+      "qid": "test-0005",
+      "constraints": {
+        "budget": 6500,
+        "people": 3,
+        "room_type": null,
+        "house_rules": [],
+        "cuisines": [],
+        "transport": null,
+        "min_rating": null,
+        "priority": "quality"
+      },
+      "local_cost": 5126.0,
+      "cost": 518.0,
+      "failures": {
+        "is_valid_information_in_sandbox": [
+          false,
+          "The accommodation in day 1 is invalid in the sandbox."
+        ]
+      }
+    },
+    {
+      "split": "train",
+      "qid": "test-0061",
+      "constraints": {
+        "budget": 1800,
+        "people": 1,
+        "room_type": "entire room",
+        "house_rules": [],
+        "cuisines": [],
+        "transport": null,
+        "min_rating": 4.0,
+        "priority": null
+      },
+      "local_cost": 1540.0,
+      "cost": 1555.0,
+      "failures": {}
+    },
+    {
+      "split": "train",
+      "qid": "test-0093",
+      "constraints": {
+        "budget": 3400,
+        "people": 1,
+        "room_type": null,
+        "house_rules": [
+          "parties"
+        ],
+        "cuisines": [],
+        "transport": null,
+        "min_rating": 4.0,
+        "priority": null
+      },
+      "local_cost": 2663.0,
+      "cost": 2678.0,
+      "failures": {}
+    },
+    {
+      "split": "train",
+      "qid": "test-0093",
+      "constraints": {
+        "budget": 3400,
+        "people": 1,
+        "room_type": null,
+        "house_rules": [
+          "parties"
+        ],
+        "cuisines": [],
+        "transport": null,
+        "min_rating": 4.0,
+        "priority": null
+      },
+      "local_cost": 2663.0,
+      "cost": 2678.0,
+      "failures": {}
+    },
+    {
+      "split": "train",
+      "qid": "test-0385",
+      "constraints": {
+        "budget": 2000,
+        "people": 1,
+        "room_type": "entire room",
+        "house_rules": [],
+        "cuisines": [],
+        "transport": null,
+        "min_rating": 4.0,
+        "priority": null
+      },
+      "local_cost": 1629.0,
+      "cost": 1644.0,
+      "failures": {}
+    },
+    {
+      "split": "val",
+      "qid": "test-0440",
+      "constraints": {
+        "budget": 2500,
+        "people": 1,
+        "room_type": null,
+        "house_rules": [],
+        "cuisines": [],
+        "transport": null,
+        "min_rating": 4.0,
+        "priority": null
+      },
+      "local_cost": 2128.0,
+      "cost": 2143.0,
+      "failures": {}
+    },
+    {
+      "split": "val",
+      "qid": "test-0440",
+      "constraints": {
+        "budget": 2500,
+        "people": 1,
+        "room_type": null,
+        "house_rules": [],
+        "cuisines": [],
+        "transport": null,
+        "min_rating": null,
+        "priority": null
+      },
+      "local_cost": 2128.0,
+      "cost": 2143.0,
+      "failures": {}
+    },
+    {
+      "split": "val",
+      "qid": "validation-0069",
+      "constraints": {
+        "budget": 6600.0,
+        "people": 8,
+        "room_type": null,
+        "house_rules": [
+          "children under 10"
+        ],
+        "cuisines": [
+          "Chinese",
+          "American"
+        ],
+        "transport": null,
+        "min_rating": null,
+        "priority": null
+      },
+      "local_cost": 5432.0,
+      "cost": 3896.0,
+      "failures": {
+        "is_valid_information_in_sandbox": [
+          false,
+          "The accommodation in day 1 is invalid in the sandbox."
+        ]
+      }
+    },
+    {
+      "split": "val",
+      "qid": "validation-0069",
+      "constraints": {
+        "budget": 6600.0,
+        "people": 8,
+        "room_type": null,
+        "house_rules": [
+          "visitors"
+        ],
+        "cuisines": [
+          "Chinese",
+          "American"
+        ],
+        "transport": null,
+        "min_rating": null,
+        "priority": null
+      },
+      "local_cost": 5432.0,
+      "cost": 3896.0,
+      "failures": {
+        "is_valid_information_in_sandbox": [
+          false,
+          "The accommodation in day 1 is invalid in the sandbox."
+        ]
+      }
+    },
+    {
+      "split": "val",
+      "qid": "validation-0069",
+      "constraints": {
+        "budget": 6600.0,
+        "people": 8,
+        "room_type": "not shared room",
+        "house_rules": [
+          "visitors"
+        ],
+        "cuisines": [
+          "Chinese",
+          "American"
+        ],
+        "transport": null,
+        "min_rating": null,
+        "priority": null
+      },
+      "local_cost": 5432.0,
+      "cost": 3896.0,
+      "failures": {
+        "is_valid_information_in_sandbox": [
+          false,
+          "The accommodation in day 1 is invalid in the sandbox."
+        ]
+      }
+    },
+    {
+      "split": "val",
+      "qid": "validation-0069",
+      "constraints": {
+        "budget": 6600.0,
+        "people": 8,
+        "room_type": "not shared room",
+        "house_rules": [
+          "visitors"
+        ],
+        "cuisines": [
+          "Chinese",
+          "American"
+        ],
+        "transport": "no self-driving",
+        "min_rating": null,
+        "priority": null
+      },
+      "local_cost": 5432.0,
+      "cost": 3896.0,
+      "failures": {
+        "is_valid_information_in_sandbox": [
+          false,
+          "The accommodation in day 1 is invalid in the sandbox."
+        ]
+      }
+    },
+    {
+      "split": "test",
+      "qid": "validation-0008",
+      "constraints": {
+        "budget": 2100.0,
+        "people": 1,
+        "room_type": null,
+        "house_rules": [
+          "children under 10"
+        ],
+        "cuisines": [],
+        "transport": null,
+        "min_rating": 4.0,
+        "priority": "cost"
+      },
+      "local_cost": 1564.0,
+      "cost": 1579.0,
+      "failures": {}
+    },
+    {
+      "split": "test",
+      "qid": "validation-0008",
+      "constraints": {
+        "budget": 2100.0,
+        "people": 1,
+        "room_type": "entire room",
+        "house_rules": [
+          "children under 10"
+        ],
+        "cuisines": [],
+        "transport": null,
+        "min_rating": 4.0,
+        "priority": "cost"
+      },
+      "local_cost": 1680.0,
+      "cost": 1695.0,
+      "failures": {}
+    },
+    {
+      "split": "test",
+      "qid": "validation-0008",
+      "constraints": {
+        "budget": 2100.0,
+        "people": 1,
+        "room_type": null,
+        "house_rules": [],
+        "cuisines": [],
+        "transport": "no flight",
+        "min_rating": 4.0,
+        "priority": null
+      },
+      "local_cost": 1564.0,
+      "cost": 1579.0,
+      "failures": {}
+    }
+  ]
+}

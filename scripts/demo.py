@@ -53,6 +53,8 @@ LLM = None
 
 def get_policy(name: str):
     base = baseline_policies(LLM)
+    if name == "oracle" and LLM is not None:
+        sys.exit("oracle supports offline deterministic agents only; use llm_coordinator with an LLM backend")
     if name == "llm_coordinator" and LLM is None:
         sys.exit("llm_coordinator needs an LLM backend: pass --llm fake|openai|anthropic")
     return base[name] if name in base else learned_policy(name, 0)
@@ -154,7 +156,9 @@ def scripted(args, Q):
 
     print(f"\n{B}Same episode, all coordinators{R}")
     names = ["always_global", "static_rules", args.policy if args.policy not in
-             ("always_global", "static_rules", "oracle") else "bc_aug_dagger3", "oracle"]
+             ("always_global", "static_rules", "oracle") else "bc_aug_dagger3"]
+    if LLM is None:
+        names.append("oracle")
     if LLM and "llm_coordinator" not in names:
         names.insert(2, "llm_coordinator")
     print(f"   {'coordinator':<16}{'turns ok':>9}{'LLM calls':>11}{'unaffected kept':>17}"

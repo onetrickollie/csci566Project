@@ -26,6 +26,10 @@ def summarize(results) -> dict:
         "constraint_retention_rate": _mean([t.retention for t in feas]),
         "unaffected_preserved": _mean([t.preservation for t in feas]),
         "edit_rate": _mean([t.edit_rate for t in feas]),
+        "minimum_edits_per_turn": _mean([t.minimum_edits for t in feas]),
+        "excess_edits_per_turn": _mean([t.excess_edits for t in feas]),
+        "edit_optimal_preservation": _mean([t.edit_optimal_preservation for t in feas]),
+        "edit_scored_turns": sum(t.minimum_edits is not None for t in feas),
         "global_replan_rate": _mean([t.used_global for t in turns]),
         "unnecessary_global_rate": _mean([t.unnecessary_global for t in turns]),
         "clarification_recall": _mean([t.terminal == "ASK_CLARIFICATION" for t in infeas]),
@@ -54,6 +58,10 @@ def breakdown(results, key: str) -> dict:
     for k, ts in sorted(groups.items()):
         out[k] = {"turns": len(ts), "revision_success_rate": _mean([t.success for t in ts]),
                   "unaffected_preserved": _mean([t.preservation for t in ts if t.feasible]),
+                  "edit_scored_turns": sum(t.minimum_edits is not None for t in ts),
+                  "minimum_edits": _mean([t.minimum_edits for t in ts]),
+                  "excess_edits": _mean([t.excess_edits for t in ts]),
+                  "edit_optimal_preservation": _mean([t.edit_optimal_preservation for t in ts]),
                   "llm_calls_per_turn": _mean([t.llm_calls for t in ts])}
     return out
 

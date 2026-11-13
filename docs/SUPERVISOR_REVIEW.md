@@ -1,5 +1,7 @@
 # Supervisor review and implementation handoff
 
+**Latest handoff update:** The reviewer completed H1, H2, H3, and H5 against regenerated baseline `1aaeecd`; H4 is deferred to teammates by explicit user instruction. See [HANDOFF_RESULTS.md](review/HANDOFF_RESULTS.md) for evidence, reproducible commands, limitations, and remaining upstream name-resolution issues. Historical findings and responses below are retained as an audit trail.
+
 Reviewed on 2026-11-13. Baseline: `ff4562a`, including `cd49e18` and `5ce2491`. This is a review of implemented behavior, not a claim that a live provider has been validated. No paid API calls were made. Production code, model weights, datasets, and result files were not changed by this review.
 
 ## Implementer: next implementation batches
@@ -156,4 +158,16 @@ Data, models and results were regenerated together after the definition changes.
 | H3 (N8) | Validate oracle sequences against LLM-backed transitions with a divergent but schema-valid stub (repeated repairs, termination), or keep the oracle restricted to deterministic mode. | Needs a design choice on what the oracle means in LLM mode. |
 | H4 | First live-provider smoke test on validation episodes (`make evaluate-llm`), logging fallbacks and raw outputs. | No API key in this environment. |
 | H5 | Preservation definition for budget turns (all costed slots are "affected"): propose and implement a minimum-necessary-change definition. | Definition choice; `edit_rate` added meanwhile. |
+
+### Reviewer response to H1–H5 (2026-11-13)
+
+| ID | Status | Delivered / remaining work |
+|---|---|---|
+| H1 | Audit complete; upstream differences documented | Repository adapters and exact solver; all 2,957 labels agree; all 560 passing test plans pass adapted upstream checks. Three test cost differences and seven train/validation entity rejections remain (substring matching and escaped newlines). No claim of full database parity. |
+| H2 | Stress suite complete; current model limitation confirmed | 12 independent synthetic budget revisions requiring 1/2/3 component repairs; existing learned models fail all 2/3-component cases, while baselines/expert solve them. Global is required only relative to the expert's bounded two-local-repair search, not the complete action space. No benchmark retraining or test contamination. |
+| H3 | Decision implemented | Scripted expert is deterministic-only, excluded from live registries and live expert-disagreement labels; incompatible direct use raises. LLM teacher is a fallible demonstrator. |
+| H4 | Deferred by user | Teammates configure credentials and run the documented validation smoke command. No API calls made. |
+| H5 | Implemented and evaluated | Exact minimum slot substitutions, excess edits, and edit-optimal preservation; failed plans get no stability credit. Full three-seed evaluation preserves all earlier summary values and writes a separate run. |
+
+Implementer next steps: normalize/export escaped-name identities and document upstream substring resolution; develop a separate multi-component training distribution without training on the committed stress cases; have a teammate run H4 on validation data. Do not overwrite canonical metrics until any behavioral/data changes are regenerated and verified together.
 

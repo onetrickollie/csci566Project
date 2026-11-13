@@ -1,4 +1,8 @@
-"""Privileged scripted expert.
+"""Privileged scripted expert, restricted to deterministic transitions.
+
+LLM agents can choose different valid repairs than the simulated planners.
+Consequently this expert is neither executed nor used for disagreement
+labels in LLM mode. Use LLMCoordinator as a fallible teacher there.
 
 It sees the full verifier report and may simulate candidate repairs on a
 copy of the environment, so it can label *any* state, including states the
@@ -57,6 +61,8 @@ class Oracle:
         return self._feasible[key]
 
     def act(self, env) -> str:
+        if getattr(env, "llm", None) is not None:
+            raise ValueError("Oracle supports deterministic transitions only; use LLMCoordinator for live agents")
         if env.report is None:
             return "VERIFY"
         if env.report.passed:

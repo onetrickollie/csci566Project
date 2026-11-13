@@ -1,0 +1,2 @@
+# Optional, only for upstream_adapter.py (the core exact solver needs no new dependencies).
+pandas==3.1.1

@@ -16,10 +16,10 @@ LABEL = {"always_global": "Always-Global", "always_global_det": "Always-Global (
          "llm_coordinator": "LLM coordinator", "bc": "BC",
          "bc_aug": "BC + augmentation", "bc_dagger1": "BC + DAgger (1)", "bc_dagger2": "BC + DAgger (2)",
          "bc_dagger3": "BC + DAgger (3)", "bc_aug_dagger3": "BC + aug + DAgger (3)",
-         "oracle": "Privileged oracle (upper bound)"}
+         "oracle": "Deterministic scripted expert"}
 MAIN = [("final_pass_rate", "Final pass"), ("revision_success_rate", "Revision success"),
         ("new_constraint_satisfaction", "New constr. sat."), ("constraint_retention_rate", "Retention"),
-        ("unaffected_preserved", "Unaffected preserved"), ("edit_rate", "Slots edited"),
+        ("unaffected_preserved", "Legacy unaffected preserved"), ("edit_rate", "Slots edited"),
         ("unnecessary_global_rate", "Unneeded global"),
         ("llm_calls_per_turn", "LLM calls/turn"), ("tool_calls_per_turn", "Tool calls/turn"),
         ("est_tokens_per_turn", "Est. tokens/turn")]
@@ -47,8 +47,6 @@ def write_report(out: dict, d: Path) -> None:
     m = out["manifest"]
     cfg = m["config"]
     llm_mode = cfg.get("llm", "offline") != "offline"
-    if llm_mode:
-        LABEL["oracle"] = "Oracle (simulates deterministic planners; not an upper bound here)"
     lines = [f"# Results ({cfg.get('split', 'test')} split)", ""]
     if out.get("degraded"):
         u = out.get("llm_usage_total", {})
@@ -70,6 +68,24 @@ def write_report(out: dict, d: Path) -> None:
     for n in names:
         sm = S[n]["summary"]
         lines.append(f"| {LABEL[n]} | " + " | ".join(_fmt(sm.get(k), k) for k, _ in MAIN_COLS) + " |")
+
+    if any(S[n]['summary'].get('minimum_edits_per_turn') for n in names):
+        lines += ['', '## Minimum necessary changes', '',
+                  'Exact minimum slot edits over complete feasible plans. Scored only on successful feasible turns; '
+                  'read alongside revision success and the scored-turn count. Budget turns include all costed slots. '
+                  'Optimal preservation = 1 − excess edits / (13 − minimum edits); undefined when all 13 must change. '
+                  'The legacy unaffected-slot metric above is retained for comparison.', '',
+                  '| System | Scored turns (mean) | Minimum edits | Excess edits | Optimal preservation % |',
+                  '|---|---|---|---|---|']
+        for n in names:
+            sm = S[n]['summary']
+            count = sm.get('edit_scored_turns', {}).get('mean', 0)
+            lines.append(f"| {LABEL[n]} | {count:g} | " +
+                         ' | '.join(_fmt(sm.get(k), k) for k in
+                                    ('minimum_edits_per_turn', 'excess_edits_per_turn', 'edit_optimal_preservation')) + ' |')
+    if llm_mode:
+        lines += ['', 'The scripted expert and expert-disagreement labels are disabled for LLM transitions. '
+                  'An LLM teacher is a fallible demonstrator, not an optimality oracle.', '']
 
     lines += ["", "## Clarification behaviour", "",
               "| System | Recall on infeasible updates | Precision | Timeouts | Budget exhausted |",
