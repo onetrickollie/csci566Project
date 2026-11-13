@@ -189,7 +189,8 @@ def ensure_downloaded(raw_dir: Path = RAW_DIR) -> None:
 
 
 def load_queries(raw_dir: Path = RAW_DIR) -> list[Query]:
-    """All 3-day single-city queries from the three public files."""
+    """All 3-day single-city queries from the three public files (downloaded on first use)."""
+    ensure_downloaded(raw_dir)
     out: list[Query] = []
     for f in SPLIT_FILES:
         split = f.split(".")[0]
