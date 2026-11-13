@@ -1,7 +1,7 @@
 {
  "manifest": {
-  "git_sha": "e7c95ad",
-  "git_dirty": true,
+  "git_sha": "36d3395",
+  "git_dirty": false,
   "config": {
    "seeds": [
     0
@@ -289,12 +289,12 @@
    "recovery": {},
    "llm_usage": {
     "requests": 314,
-    "calls": 6,
-    "cache_hits": 308,
+    "calls": 0,
+    "cache_hits": 314,
     "errors": 0,
     "tokens": 73869,
-    "billed_input_tokens": 2157,
-    "billed_output_tokens": 52,
+    "billed_input_tokens": 0,
+    "billed_output_tokens": 0,
     "fallbacks": {},
     "fallback_rate": 0.0,
     "degraded": false
@@ -2785,14 +2785,14 @@
  "recovery_episodes": 0,
  "llm_usage_total": {
   "requests": 1814,
-  "calls": 6,
-  "cache_hits": 1808,
+  "calls": 0,
+  "cache_hits": 1814,
   "input_tokens": 438994,
   "output_tokens": 17213,
-  "billed_input_tokens": 2157,
-  "billed_output_tokens": 52,
+  "billed_input_tokens": 0,
+  "billed_output_tokens": 0,
   "errors": 0,
-  "seconds": 0.0004284381866455078,
+  "seconds": 0.0,
   "fallbacks": {},
   "fallback_reasons": {},
   "tokens": 456207,

@@ -2,7 +2,7 @@
 
 Config: `{'seeds': [0], 'split': 'val', 'limit': 30, 'skip_recovery': True, 'model_suffix': '', 'call_cap': None, 'llm': {'provider': 'fake', 'model': 'fake', 'endpoint': 'local://fake', 'temperature': 0.0}, 'models': '9d45f25e9c1c'}`
 
-git `e7c95ad` (uncommitted changes) · fingerprints `{'source': '09a45a79ca24', 'prompts': 'f9352f57f9ee', 'tasks': 'c6a92573e38a'}`
+git `36d3395` · fingerprints `{'source': '09a45a79ca24', 'prompts': 'f9352f57f9ee', 'tasks': 'c6a92573e38a'}`
 
 Rates are percentages. Learned systems: mean ± std over training seeds. LLM calls/tool calls/est. tokens come from the simulated cost model (see README); measured columns come from the live client.
 
@@ -58,7 +58,7 @@ The scripted expert and expert-disagreement labels are disabled for LLM transiti
 
 | System | Requests | Billed calls | Cache hits | Errors | Fallbacks | Fallback rate | Degraded |
 |---|---|---|---|---|---|---|---|
-| Always-Global | 314 | 6 | 308 | 0 | 0 | 0.0% | no |
+| Always-Global | 314 | 0 | 314 | 0 | 0 | 0.0% | no |
 | Always-Global (deterministic control) | 314 | 0 | 314 | 0 | 0 | 0.0% | no |
 | Static rules | 121 | 0 | 121 | 0 | 0 | 0.0% | no |
 | LLM coordinator | 432 | 0 | 432 | 0 | 0 | 0.0% | no |

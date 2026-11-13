@@ -1,7 +1,7 @@
 {
   "manifest": {
-    "git_sha": "e7c95ad",
-    "git_dirty": true,
+    "git_sha": "36d3395",
+    "git_dirty": false,
     "config": {
       "seed": 0,
       "seeds": [

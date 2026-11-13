@@ -185,4 +185,5 @@ Open for the next review:
 - The multi-component family only contains budget cuts.
 - The stress suite uses one fixed synthetic layout, so passing it isn't evidence of general multi-component skill.
 - H1's upstream audit has not been re-run after the name fix.
+- `results/runs/handoff-offline` and `results/runs/handoff-fake-val` are the reviewer's runs at `1aaeecd`, made with the models from before retraining. They are kept as an audit trail; current numbers are in `results/` and the other `results/runs/*` folders (all recorded at a clean commit).
 
