@@ -1,0 +1,122 @@
+{
+ "manifest": {
+  "git_sha": "113ba67",
+  "config": {
+   "seeds": [
+    0,
+    1,
+    2
+   ],
+   "epochs": 40,
+   "inject_rate": 0.7
+  },
+  "config_hash": "e2d27aec80"
+ },
+ "runs": {
+  "0": {
+   "bc": {
+    "n": 4513,
+    "train_acc": 0.9982273578643799
+   },
+   "bc_aug": {
+    "n": 9618,
+    "train_acc": 0.9983364343643188
+   },
+   "bc_dagger1": {
+    "iter": 1,
+    "added": 4517,
+    "n": 9030,
+    "train_acc": 0.9986711144447327
+   },
+   "bc_dagger2": {
+    "iter": 2,
+    "added": 4517,
+    "n": 13547,
+    "train_acc": 0.998671293258667
+   },
+   "bc_dagger3": {
+    "iter": 3,
+    "added": 4515,
+    "n": 18062,
+    "train_acc": 0.9951279163360596
+   },
+   "bc_aug_dagger3": {
+    "iter": 3,
+    "added": 4516,
+    "n": 23177,
+    "train_acc": 0.9984898567199707
+   },
+   "seconds": 27.8
+  },
+  "1": {
+   "bc": {
+    "n": 4513,
+    "train_acc": 0.998005747795105
+   },
+   "bc_aug": {
+    "n": 9596,
+    "train_acc": 0.997603178024292
+   },
+   "bc_dagger1": {
+    "iter": 1,
+    "added": 4515,
+    "n": 9028,
+    "train_acc": 0.9987815618515015
+   },
+   "bc_dagger2": {
+    "iter": 2,
+    "added": 4515,
+    "n": 13543,
+    "train_acc": 0.9988924264907837
+   },
+   "bc_dagger3": {
+    "iter": 3,
+    "added": 4517,
+    "n": 18060,
+    "train_acc": 0.9995570182800293
+   },
+   "bc_aug_dagger3": {
+    "iter": 3,
+    "added": 4520,
+    "n": 23145,
+    "train_acc": 0.999092698097229
+   },
+   "seconds": 27.6
+  },
+  "2": {
+   "bc": {
+    "n": 4513,
+    "train_acc": 0.998892068862915
+   },
+   "bc_aug": {
+    "n": 9573,
+    "train_acc": 0.9956126809120178
+   },
+   "bc_dagger1": {
+    "iter": 1,
+    "added": 4518,
+    "n": 9031,
+    "train_acc": 0.9975639581680298
+   },
+   "bc_dagger2": {
+    "iter": 2,
+    "added": 4522,
+    "n": 13553,
+    "train_acc": 0.9991145730018616
+   },
+   "bc_dagger3": {
+    "iter": 3,
+    "added": 4515,
+    "n": 18068,
+    "train_acc": 0.9986717104911804
+   },
+   "bc_aug_dagger3": {
+    "iter": 3,
+    "added": 4467,
+    "n": 23083,
+    "train_acc": 0.9986570477485657
+   },
+   "seconds": 27.4
+  }
+ }
+}

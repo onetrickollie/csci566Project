@@ -1,0 +1,2225 @@
+{
+ "manifest": {
+  "git_sha": "113ba67",
+  "config": {
+   "seeds": [
+    0,
+    1,
+    2
+   ],
+   "split": "test"
+  },
+  "config_hash": "453218d19b"
+ },
+ "systems": {
+  "always_global": {
+   "summary": {
+    "episodes": {
+     "mean": 296,
+     "std": 0.0
+    },
+    "turns": {
+     "mean": 751,
+     "std": 0.0
+    },
+    "final_pass_rate": {
+     "mean": 0.9966216216216216,
+     "std": 0.0
+    },
+    "revision_success_rate": {
+     "mean": 0.9986684420772304,
+     "std": 0.0
+    },
+    "new_constraint_satisfaction": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "constraint_retention_rate": {
+     "mean": 0.9991816693944353,
+     "std": 0.0
+    },
+    "unaffected_preserved": {
+     "mean": 0.32956647163377933,
+     "std": 0.0
+    },
+    "global_replan_rate": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "unnecessary_global_rate": {
+     "mean": 0.4793608521970706,
+     "std": 0.0
+    },
+    "clarification_recall": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "clarification_precision": {
+     "mean": 0.9921875,
+     "std": 0.0
+    },
+    "timeout_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "llm_calls_per_turn": {
+     "mean": 4.170439414114514,
+     "std": 0.0
+    },
+    "tool_calls_per_turn": {
+     "mean": 3.0,
+     "std": 0.0
+    },
+    "est_tokens_per_turn": {
+     "mean": 6051.131824234354,
+     "std": 0.0
+    },
+    "steps_per_turn": {
+     "mean": 3.0,
+     "std": 0.0
+    },
+    "tracker_accuracy": {
+     "mean": 1.0,
+     "std": 0.0
+    }
+   },
+   "by_op": {
+    "add": {
+     "turns": 481,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.35484124928569366,
+     "llm_calls_per_turn": 4.101871101871102
+    },
+    "delete": {
+     "turns": 62,
+     "revision_success_rate": 0.9838709677419355,
+     "unaffected_preserved": 0.250620347394541,
+     "llm_calls_per_turn": 4.016129032258065
+    },
+    "replace": {
+     "turns": 130,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.29323376154362063,
+     "llm_calls_per_turn": 4.453846153846154
+    },
+    "reprioritize": {
+     "turns": 78,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.27118644067796616,
+     "llm_calls_per_turn": 4.243589743589744
+    }
+   },
+   "by_type": {
+    "budget": {
+     "turns": 94,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.257396449704142,
+     "llm_calls_per_turn": 4.585106382978723
+    },
+    "cuisine": {
+     "turns": 154,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.3905494505494505,
+     "llm_calls_per_turn": 4.025974025974026
+    },
+    "house_rule": {
+     "turns": 82,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.32437653670530375,
+     "llm_calls_per_turn": 4.109756097560975
+    },
+    "min_rating": {
+     "turns": 189,
+     "revision_success_rate": 0.9947089947089947,
+     "unaffected_preserved": 0.3539740210131272,
+     "llm_calls_per_turn": 4.058201058201059
+    },
+    "priority": {
+     "turns": 78,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.27118644067796616,
+     "llm_calls_per_turn": 4.243589743589744
+    },
+    "room_type": {
+     "turns": 82,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.2878874856486797,
+     "llm_calls_per_turn": 4.182926829268292
+    },
+    "transport": {
+     "turns": 72,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.2578824684087842,
+     "llm_calls_per_turn": 4.208333333333333
+    }
+   },
+   "by_turn": {
+    "held-out (4th turn)": {
+     "turns": 86,
+     "revision_success_rate": 0.9883720930232558,
+     "unaffected_preserved": 0.3148017475482264,
+     "llm_calls_per_turn": 4.186046511627907
+    },
+    "turn 1": {
+     "turns": 296,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.35100589548263966,
+     "llm_calls_per_turn": 4.128378378378378
+    },
+    "turn 2": {
+     "turns": 216,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.31754071187210714,
+     "llm_calls_per_turn": 4.203703703703703
+    },
+    "turn 3": {
+     "turns": 153,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.3099352093254532,
+     "llm_calls_per_turn": 4.196078431372549
+    }
+   },
+   "by_chain": {
+    "L=1": {
+     "episodes": 80,
+     "final_pass_rate": 1.0
+    },
+    "L=2": {
+     "episodes": 63,
+     "final_pass_rate": 1.0
+    },
+    "L=3": {
+     "episodes": 67,
+     "final_pass_rate": 1.0
+    },
+    "L=4 (held-out)": {
+     "episodes": 86,
+     "final_pass_rate": 0.9883720930232558
+    }
+   },
+   "recovery": {
+    "REPLAN_LOCAL_ACCOMMODATION": {
+     "turn_success": 1.0,
+     "unaffected_preserved": 0.3628856499780413,
+     "llm_calls": 5.0
+    },
+    "REPLAN_LOCAL_TRANSPORT": {
+     "turn_success": 1.0,
+     "unaffected_preserved": 0.3628856499780413,
+     "llm_calls": 5.0
+    },
+    "REPLAN_LOCAL_MEALS": {
+     "turn_success": 1.0,
+     "unaffected_preserved": 0.3628856499780413,
+     "llm_calls": 5.0
+    },
+    "REPLAN_GLOBAL": {
+     "turn_success": 1.0,
+     "unaffected_preserved": 0.3628856499780413,
+     "llm_calls": 4.0
+    }
+   }
+  },
+  "static_rules": {
+   "summary": {
+    "episodes": {
+     "mean": 296,
+     "std": 0.0
+    },
+    "turns": {
+     "mean": 751,
+     "std": 0.0
+    },
+    "final_pass_rate": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "revision_success_rate": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "new_constraint_satisfaction": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "constraint_retention_rate": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "unaffected_preserved": {
+     "mean": 0.9508071211196211,
+     "std": 0.0
+    },
+    "global_replan_rate": {
+     "mean": 0.19840213049267644,
+     "std": 0.0
+    },
+    "unnecessary_global_rate": {
+     "mean": 0.02929427430093209,
+     "std": 0.0
+    },
+    "clarification_recall": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "clarification_precision": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "timeout_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "llm_calls_per_turn": {
+     "mean": 1.6324900133155793,
+     "std": 0.0
+    },
+    "tool_calls_per_turn": {
+     "mean": 1.1571238348868176,
+     "std": 0.0
+    },
+    "est_tokens_per_turn": {
+     "mean": 2470.572569906791,
+     "std": 0.0
+    },
+    "steps_per_turn": {
+     "mean": 3.2982689747003993,
+     "std": 0.0
+    },
+    "tracker_accuracy": {
+     "mean": 1.0,
+     "std": 0.0
+    }
+   },
+   "by_op": {
+    "add": {
+     "turns": 481,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9335732490246379,
+     "llm_calls_per_turn": 1.365904365904366
+    },
+    "delete": {
+     "turns": 62,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.0
+    },
+    "replace": {
+     "turns": 130,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.971830985915493,
+     "llm_calls_per_turn": 3.276923076923077
+    },
+    "reprioritize": {
+     "turns": 78,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 1.8333333333333333
+    }
+   },
+   "by_type": {
+    "budget": {
+     "turns": 94,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9487179487179487,
+     "llm_calls_per_turn": 4.0
+    },
+    "cuisine": {
+     "turns": 154,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.8246753246753247
+    },
+    "house_rule": {
+     "turns": 82,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9931506849315068,
+     "llm_calls_per_turn": 0.9390243902439024
+    },
+    "min_rating": {
+     "turns": 189,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.8526358960716502,
+     "llm_calls_per_turn": 1.306878306878307
+    },
+    "priority": {
+     "turns": 78,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 1.8333333333333333
+    },
+    "room_type": {
+     "turns": 82,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 1.3780487804878048
+    },
+    "transport": {
+     "turns": 72,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9681020733652314,
+     "llm_calls_per_turn": 1.9861111111111112
+    }
+   },
+   "by_turn": {
+    "held-out (4th turn)": {
+     "turns": 86,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9694800113814198,
+     "llm_calls_per_turn": 1.7674418604651163
+    },
+    "turn 1": {
+     "turns": 296,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9394100193518798,
+     "llm_calls_per_turn": 1.472972972972973
+    },
+    "turn 2": {
+     "turns": 216,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9573687455954899,
+     "llm_calls_per_turn": 1.7361111111111112
+    },
+    "turn 3": {
+     "turns": 153,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9547589718321425,
+     "llm_calls_per_turn": 1.7189542483660132
+    }
+   },
+   "by_chain": {
+    "L=1": {
+     "episodes": 80,
+     "final_pass_rate": 1.0
+    },
+    "L=2": {
+     "episodes": 63,
+     "final_pass_rate": 1.0
+    },
+    "L=3": {
+     "episodes": 67,
+     "final_pass_rate": 1.0
+    },
+    "L=4 (held-out)": {
+     "episodes": 86,
+     "final_pass_rate": 1.0
+    }
+   },
+   "recovery": {
+    "REPLAN_LOCAL_ACCOMMODATION": {
+     "turn_success": 1.0,
+     "unaffected_preserved": 0.8736020923520924,
+     "llm_calls": 2.217391304347826
+    },
+    "REPLAN_LOCAL_TRANSPORT": {
+     "turn_success": 1.0,
+     "unaffected_preserved": 0.8545803532216576,
+     "llm_calls": 2.3152173913043477
+    },
+    "REPLAN_LOCAL_MEALS": {
+     "turn_success": 1.0,
+     "unaffected_preserved": 0.664321985381768,
+     "llm_calls": 3.467391304347826
+    },
+    "REPLAN_GLOBAL": {
+     "turn_success": 1.0,
+     "unaffected_preserved": 0.36466705094422486,
+     "llm_calls": 5.0
+    }
+   }
+  },
+  "oracle": {
+   "summary": {
+    "episodes": {
+     "mean": 296,
+     "std": 0.0
+    },
+    "turns": {
+     "mean": 751,
+     "std": 0.0
+    },
+    "final_pass_rate": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "revision_success_rate": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "new_constraint_satisfaction": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "constraint_retention_rate": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "unaffected_preserved": {
+     "mean": 0.9597591644466644,
+     "std": 0.0
+    },
+    "global_replan_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "unnecessary_global_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "clarification_recall": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "clarification_precision": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "timeout_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "llm_calls_per_turn": {
+     "mean": 0.6897470039946738,
+     "std": 0.0
+    },
+    "tool_calls_per_turn": {
+     "mean": 0.5845539280958721,
+     "std": 0.0
+    },
+    "est_tokens_per_turn": {
+     "mean": 1065.5126498002662,
+     "std": 0.0
+    },
+    "steps_per_turn": {
+     "mean": 2.625832223701731,
+     "std": 0.0
+    },
+    "tracker_accuracy": {
+     "mean": 1.0,
+     "std": 0.0
+    }
+   },
+   "by_op": {
+    "add": {
+     "turns": 481,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9418743486451819,
+     "llm_calls_per_turn": 0.7713097713097713
+    },
+    "delete": {
+     "turns": 62,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.0
+    },
+    "replace": {
+     "turns": 130,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.8538461538461538
+    },
+    "reprioritize": {
+     "turns": 78,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.46153846153846156
+    }
+   },
+   "by_type": {
+    "budget": {
+     "turns": 94,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.8617021276595744
+    },
+    "cuisine": {
+     "turns": 154,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.7012987012987013
+    },
+    "house_rule": {
+     "turns": 82,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9931506849315068,
+     "llm_calls_per_turn": 0.35365853658536583
+    },
+    "min_rating": {
+     "turns": 189,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.8675911146581538,
+     "llm_calls_per_turn": 0.9153439153439153
+    },
+    "priority": {
+     "turns": 78,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.46153846153846156
+    },
+    "room_type": {
+     "turns": 82,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.4634146341463415
+    },
+    "transport": {
+     "turns": 72,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9840510366826156,
+     "llm_calls_per_turn": 0.7361111111111112
+    }
+   },
+   "by_turn": {
+    "held-out (4th turn)": {
+     "turns": 86,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9835645184236733,
+     "llm_calls_per_turn": 0.5930232558139535
+    },
+    "turn 1": {
+     "turns": 296,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.944241137845789,
+     "llm_calls_per_turn": 0.7702702702702703
+    },
+    "turn 2": {
+     "turns": 216,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9650986610288936,
+     "llm_calls_per_turn": 0.6620370370370371
+    },
+    "turn 3": {
+     "turns": 153,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9711012564671102,
+     "llm_calls_per_turn": 0.6274509803921569
+    }
+   },
+   "by_chain": {
+    "L=1": {
+     "episodes": 80,
+     "final_pass_rate": 1.0
+    },
+    "L=2": {
+     "episodes": 63,
+     "final_pass_rate": 1.0
+    },
+    "L=3": {
+     "episodes": 67,
+     "final_pass_rate": 1.0
+    },
+    "L=4 (held-out)": {
+     "episodes": 86,
+     "final_pass_rate": 1.0
+    }
+   },
+   "recovery": {
+    "REPLAN_LOCAL_ACCOMMODATION": {
+     "turn_success": 1.0,
+     "unaffected_preserved": 0.9218163780663781,
+     "llm_calls": 1.940217391304348
+    },
+    "REPLAN_LOCAL_TRANSPORT": {
+     "turn_success": 1.0,
+     "unaffected_preserved": 0.9218163780663781,
+     "llm_calls": 2.032608695652174
+    },
+    "REPLAN_LOCAL_MEALS": {
+     "turn_success": 1.0,
+     "unaffected_preserved": 0.9218163780663781,
+     "llm_calls": 1.809782608695652
+    },
+    "REPLAN_GLOBAL": {
+     "turn_success": 1.0,
+     "unaffected_preserved": 0.3628856499780413,
+     "llm_calls": 4.0
+    }
+   }
+  },
+  "bc": {
+   "summary": {
+    "episodes": {
+     "mean": 296.0,
+     "std": 0.0
+    },
+    "turns": {
+     "mean": 751.0,
+     "std": 0.0
+    },
+    "final_pass_rate": {
+     "mean": 0.9707207207207208,
+     "std": 0.003185165681020504
+    },
+    "revision_success_rate": {
+     "mean": 0.9844651575676875,
+     "std": 0.0012554048489774301
+    },
+    "new_constraint_satisfaction": {
+     "mean": 0.9857651245551602,
+     "std": 0.0029056817826609827
+    },
+    "constraint_retention_rate": {
+     "mean": 0.9989088925259139,
+     "std": 0.0007715294939296604
+    },
+    "unaffected_preserved": {
+     "mean": 0.9614345723720724,
+     "std": 1.1102230246251565e-16
+    },
+    "global_replan_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "unnecessary_global_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "clarification_recall": {
+     "mean": 0.984251968503937,
+     "std": 0.0
+    },
+    "clarification_precision": {
+     "mean": 0.9401685775524785,
+     "std": 0.01731969348798585
+    },
+    "timeout_rate": {
+     "mean": 0.004882379050155349,
+     "std": 0.002263213277227157
+    },
+    "llm_calls_per_turn": {
+     "mean": 0.7106080781180647,
+     "std": 0.009052853108908639
+    },
+    "tool_calls_per_turn": {
+     "mean": 0.5872170439414114,
+     "std": 0.0018831072734661976
+    },
+    "est_tokens_per_turn": {
+     "mean": 1088.2822902796272,
+     "std": 17.552337739849882
+    },
+    "steps_per_turn": {
+     "mean": 2.6471371504660453,
+     "std": 0.02036891949504452
+    },
+    "tracker_accuracy": {
+     "mean": 1.0,
+     "std": 0.0
+    }
+   },
+   "by_op": {
+    "add": {
+     "turns": 481,
+     "revision_success_rate": 0.9833679833679834,
+     "unaffected_preserved": 0.9442943823152157,
+     "llm_calls_per_turn": 0.7713097713097713
+    },
+    "delete": {
+     "turns": 62,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.0
+    },
+    "replace": {
+     "turns": 130,
+     "revision_success_rate": 0.9769230769230769,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.9153846153846154
+    },
+    "reprioritize": {
+     "turns": 78,
+     "revision_success_rate": 0.9743589743589743,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.47435897435897434
+    }
+   },
+   "by_type": {
+    "budget": {
+     "turns": 94,
+     "revision_success_rate": 0.9680851063829787,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.9468085106382979
+    },
+    "cuisine": {
+     "turns": 154,
+     "revision_success_rate": 0.987012987012987,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.7077922077922078
+    },
+    "house_rule": {
+     "turns": 82,
+     "revision_success_rate": 0.975609756097561,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.35365853658536583
+    },
+    "min_rating": {
+     "turns": 189,
+     "revision_success_rate": 0.9947089947089947,
+     "unaffected_preserved": 0.8675911146581538,
+     "llm_calls_per_turn": 0.9153439153439153
+    },
+    "priority": {
+     "turns": 78,
+     "revision_success_rate": 0.9743589743589743,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.47435897435897434
+    },
+    "room_type": {
+     "turns": 82,
+     "revision_success_rate": 0.9878048780487805,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.4634146341463415
+    },
+    "transport": {
+     "turns": 72,
+     "revision_success_rate": 0.9722222222222222,
+     "unaffected_preserved": 0.9936204146730463,
+     "llm_calls_per_turn": 0.7222222222222222
+    }
+   },
+   "by_turn": {
+    "held-out (4th turn)": {
+     "turns": 86,
+     "revision_success_rate": 0.9186046511627907,
+     "unaffected_preserved": 0.9912469768103571,
+     "llm_calls_per_turn": 0.6046511627906976
+    },
+    "turn 1": {
+     "turns": 296,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.944241137845789,
+     "llm_calls_per_turn": 0.7702702702702703
+    },
+    "turn 2": {
+     "turns": 216,
+     "revision_success_rate": 0.9953703703703703,
+     "unaffected_preserved": 0.9650986610288936,
+     "llm_calls_per_turn": 0.6620370370370371
+    },
+    "turn 3": {
+     "turns": 153,
+     "revision_success_rate": 0.9673202614379085,
+     "unaffected_preserved": 0.9751662971175167,
+     "llm_calls_per_turn": 0.6797385620915033
+    }
+   },
+   "by_chain": {
+    "L=1": {
+     "episodes": 80,
+     "final_pass_rate": 1.0
+    },
+    "L=2": {
+     "episodes": 63,
+     "final_pass_rate": 0.9841269841269841
+    },
+    "L=3": {
+     "episodes": 67,
+     "final_pass_rate": 0.9701492537313433
+    },
+    "L=4 (held-out)": {
+     "episodes": 86,
+     "final_pass_rate": 0.9186046511627907
+    }
+   },
+   "recovery": {
+    "REPLAN_LOCAL_ACCOMMODATION": {
+     "turn_success": {
+      "mean": 0.8623188405797101,
+      "std": 0.16817605746775616
+     },
+     "unaffected_preserved": {
+      "mean": 0.941761167576385,
+      "std": 0.02820619182372843
+     },
+     "llm_calls": {
+      "mean": 1.9239130434782608,
+      "std": 0.007685943273766802
+     }
+    },
+    "REPLAN_LOCAL_TRANSPORT": {
+     "turn_success": {
+      "mean": 0.9800724637681159,
+      "std": 0.028181792003811695
+     },
+     "unaffected_preserved": {
+      "mean": 0.9218163780663781,
+      "std": 0.0
+     },
+     "llm_calls": {
+      "mean": 2.085144927536232,
+      "std": 0.05618863195387982
+     }
+    },
+    "REPLAN_LOCAL_MEALS": {
+     "turn_success": {
+      "mean": 1.0,
+      "std": 0.0
+     },
+     "unaffected_preserved": {
+      "mean": 0.9218163780663781,
+      "std": 0.0
+     },
+     "llm_calls": {
+      "mean": 1.809782608695652,
+      "std": 0.0
+     }
+    },
+    "REPLAN_GLOBAL": {
+     "turn_success": {
+      "mean": 1.0,
+      "std": 0.0
+     },
+     "unaffected_preserved": {
+      "mean": 0.3628856499780413,
+      "std": 0.0
+     },
+     "llm_calls": {
+      "mean": 4.0,
+      "std": 0.0
+     }
+    }
+   },
+   "error_vs_step": {
+    "by_step": {
+     "0": 0.02174877940523746,
+     "1": 0.03079182198124929,
+     "2": 0.013057534520064112,
+     "3": 0.004783830487326852,
+     "4": 0.10111026358165946,
+     "5": 0.09100877192982455,
+     "6": 0.3833333333333333,
+     "7": 0.3333333333333333,
+     "8": 0.6666666666666666,
+     "9": 0.3333333333333333
+    },
+    "by_turn": {
+     "0": 0.0,
+     "1": 0.013861476519303676,
+     "2": 0.05538698693227009,
+     "3": 0.08933362818811735
+    }
+   }
+  },
+  "bc_aug": {
+   "summary": {
+    "episodes": {
+     "mean": 296.0,
+     "std": 0.0
+    },
+    "turns": {
+     "mean": 751.0,
+     "std": 0.0
+    },
+    "final_pass_rate": {
+     "mean": 0.9898648648648649,
+     "std": 0.0027584343950260736
+    },
+    "revision_success_rate": {
+     "mean": 0.9933422103861518,
+     "std": 0.001883107273466145
+    },
+    "new_constraint_satisfaction": {
+     "mean": 0.994661921708185,
+     "std": 0.002905681782660937
+    },
+    "constraint_retention_rate": {
+     "mean": 0.9992725950172758,
+     "std": 0.0006804250566964631
+    },
+    "unaffected_preserved": {
+     "mean": 0.9605847277722277,
+     "std": 3.433890740025996e-05
+    },
+    "global_replan_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "unnecessary_global_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "clarification_recall": {
+     "mean": 0.9921259842519685,
+     "std": 0.006429106936438776
+    },
+    "clarification_precision": {
+     "mean": 0.9869586614173228,
+     "std": 0.007351239134009448
+    },
+    "timeout_rate": {
+     "mean": 0.004438526409232135,
+     "std": 0.0006277024244887241
+    },
+    "llm_calls_per_turn": {
+     "mean": 0.7088326675543719,
+     "std": 0.0012554048489774301
+    },
+    "tool_calls_per_turn": {
+     "mean": 0.6009764758100311,
+     "std": 0.002736091434961828
+    },
+    "est_tokens_per_turn": {
+     "mean": 1099.6449178872615,
+     "std": 0.45264265544543864
+    },
+    "steps_per_turn": {
+     "mean": 2.6728806036395913,
+     "std": 0.0012554048489775349
+    },
+    "tracker_accuracy": {
+     "mean": 1.0,
+     "std": 0.0
+    }
+   },
+   "by_op": {
+    "add": {
+     "turns": 481,
+     "revision_success_rate": 0.9937629937629938,
+     "unaffected_preserved": 0.9430317560525894,
+     "llm_calls_per_turn": 0.7733887733887734
+    },
+    "delete": {
+     "turns": 62,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.0
+    },
+    "replace": {
+     "turns": 130,
+     "revision_success_rate": 0.9846153846153847,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.9153846153846154
+    },
+    "reprioritize": {
+     "turns": 78,
+     "revision_success_rate": 0.9743589743589743,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.5384615384615384
+    }
+   },
+   "by_type": {
+    "budget": {
+     "turns": 94,
+     "revision_success_rate": 0.9787234042553191,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.9468085106382979
+    },
+    "cuisine": {
+     "turns": 154,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.7077922077922078
+    },
+    "house_rule": {
+     "turns": 82,
+     "revision_success_rate": 0.975609756097561,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.35365853658536583
+    },
+    "min_rating": {
+     "turns": 189,
+     "revision_success_rate": 0.9947089947089947,
+     "unaffected_preserved": 0.8675911146581538,
+     "llm_calls_per_turn": 0.9153439153439153
+    },
+    "priority": {
+     "turns": 78,
+     "revision_success_rate": 0.9743589743589743,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.5384615384615384
+    },
+    "room_type": {
+     "turns": 82,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.4634146341463415
+    },
+    "transport": {
+     "turns": 72,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9840510366826156,
+     "llm_calls_per_turn": 0.7361111111111112
+    }
+   },
+   "by_turn": {
+    "held-out (4th turn)": {
+     "turns": 86,
+     "revision_success_rate": 0.9651162790697675,
+     "unaffected_preserved": 0.9835645184236733,
+     "llm_calls_per_turn": 0.686046511627907
+    },
+    "turn 1": {
+     "turns": 296,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.944241137845789,
+     "llm_calls_per_turn": 0.7702702702702703
+    },
+    "turn 2": {
+     "turns": 216,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9650986610288936,
+     "llm_calls_per_turn": 0.6620370370370371
+    },
+    "turn 3": {
+     "turns": 153,
+     "revision_success_rate": 0.9738562091503268,
+     "unaffected_preserved": 0.9751662971175167,
+     "llm_calls_per_turn": 0.673202614379085
+    }
+   },
+   "by_chain": {
+    "L=1": {
+     "episodes": 80,
+     "final_pass_rate": 1.0
+    },
+    "L=2": {
+     "episodes": 63,
+     "final_pass_rate": 1.0
+    },
+    "L=3": {
+     "episodes": 67,
+     "final_pass_rate": 0.9850746268656716
+    },
+    "L=4 (held-out)": {
+     "episodes": 86,
+     "final_pass_rate": 0.9651162790697675
+    }
+   },
+   "recovery": {
+    "REPLAN_LOCAL_ACCOMMODATION": {
+     "turn_success": {
+      "mean": 1.0,
+      "std": 0.0
+     },
+     "unaffected_preserved": {
+      "mean": 0.9218163780663781,
+      "std": 0.0
+     },
+     "llm_calls": {
+      "mean": 1.940217391304348,
+      "std": 0.0
+     }
+    },
+    "REPLAN_LOCAL_TRANSPORT": {
+     "turn_success": {
+      "mean": 1.0,
+      "std": 0.0
+     },
+     "unaffected_preserved": {
+      "mean": 0.9218163780663781,
+      "std": 0.0
+     },
+     "llm_calls": {
+      "mean": 2.032608695652174,
+      "std": 0.0
+     }
+    },
+    "REPLAN_LOCAL_MEALS": {
+     "turn_success": {
+      "mean": 1.0,
+      "std": 0.0
+     },
+     "unaffected_preserved": {
+      "mean": 0.9218163780663781,
+      "std": 0.0
+     },
+     "llm_calls": {
+      "mean": 1.809782608695652,
+      "std": 0.0
+     }
+    },
+    "REPLAN_GLOBAL": {
+     "turn_success": {
+      "mean": 1.0,
+      "std": 0.0
+     },
+     "unaffected_preserved": {
+      "mean": 0.3628856499780413,
+      "std": 0.0
+     },
+     "llm_calls": {
+      "mean": 4.0,
+      "std": 0.0
+     }
+    }
+   },
+   "error_vs_step": {
+    "by_step": {
+     "0": 0.023968042609853527,
+     "1": 0.013225626470659583,
+     "2": 0.008599979186456141,
+     "3": 0.0047321964224702655,
+     "4": 0.14032967032967034,
+     "5": 0.0196078431372549,
+     "6": 0.5238095238095238,
+     "7": 0.2333333333333333,
+     "8": 0.7166666666666667,
+     "9": 0.25
+    },
+    "by_turn": {
+     "0": 0.0,
+     "1": 0.013186267555681655,
+     "2": 0.043151304846685286,
+     "3": 0.07776299843577815
+    }
+   }
+  },
+  "bc_dagger1": {
+   "summary": {
+    "episodes": {
+     "mean": 296.0,
+     "std": 0.0
+    },
+    "turns": {
+     "mean": 751.0,
+     "std": 0.0
+    },
+    "final_pass_rate": {
+     "mean": 0.9752252252252251,
+     "std": 0.0015925828405101998
+    },
+    "revision_success_rate": {
+     "mean": 0.9862405681313803,
+     "std": 0.0006277024244887151
+    },
+    "new_constraint_satisfaction": {
+     "mean": 0.9875444839857651,
+     "std": 0.0025163942390979996
+    },
+    "constraint_retention_rate": {
+     "mean": 0.9990907437715949,
+     "std": 0.0009272630502987002
+    },
+    "unaffected_preserved": {
+     "mean": 0.960720702908203,
+     "std": 0.00022663678884184135
+    },
+    "global_replan_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "unnecessary_global_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "clarification_recall": {
+     "mean": 0.984251968503937,
+     "std": 0.0
+    },
+    "clarification_precision": {
+     "mean": 0.9520088474133269,
+     "std": 0.014841780047027265
+    },
+    "timeout_rate": {
+     "mean": 0.005326231691078562,
+     "std": 0.002174424982497273
+    },
+    "llm_calls_per_turn": {
+     "mean": 0.7141588992454505,
+     "std": 0.00816013151835343
+    },
+    "tool_calls_per_turn": {
+     "mean": 0.5898801597869507,
+     "std": 0.0010872124912486212
+    },
+    "est_tokens_per_turn": {
+     "mean": 1097.3368841544607,
+     "std": 15.058187372529499
+    },
+    "steps_per_turn": {
+     "mean": 2.6604527296937417,
+     "std": 0.01630818736872959
+    },
+    "tracker_accuracy": {
+     "mean": 1.0,
+     "std": 0.0
+    }
+   },
+   "by_op": {
+    "add": {
+     "turns": 481,
+     "revision_success_rate": 0.9833679833679834,
+     "unaffected_preserved": 0.9437262004970338,
+     "llm_calls_per_turn": 0.7754677754677755
+    },
+    "delete": {
+     "turns": 62,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.0
+    },
+    "replace": {
+     "turns": 130,
+     "revision_success_rate": 0.9769230769230769,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.9153846153846154
+    },
+    "reprioritize": {
+     "turns": 78,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.47435897435897434
+    }
+   },
+   "by_type": {
+    "budget": {
+     "turns": 94,
+     "revision_success_rate": 0.9680851063829787,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.9468085106382979
+    },
+    "cuisine": {
+     "turns": 154,
+     "revision_success_rate": 0.987012987012987,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.7077922077922078
+    },
+    "house_rule": {
+     "turns": 82,
+     "revision_success_rate": 0.975609756097561,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.35365853658536583
+    },
+    "min_rating": {
+     "turns": 189,
+     "revision_success_rate": 0.9894179894179894,
+     "unaffected_preserved": 0.869267092311785,
+     "llm_calls_per_turn": 0.9153439153439153
+    },
+    "priority": {
+     "turns": 78,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.47435897435897434
+    },
+    "room_type": {
+     "turns": 82,
+     "revision_success_rate": 0.9878048780487805,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.4634146341463415
+    },
+    "transport": {
+     "turns": 72,
+     "revision_success_rate": 0.9861111111111112,
+     "unaffected_preserved": 0.9840510366826156,
+     "llm_calls_per_turn": 0.75
+    }
+   },
+   "by_turn": {
+    "held-out (4th turn)": {
+     "turns": 86,
+     "revision_success_rate": 0.9534883720930233,
+     "unaffected_preserved": 0.9835645184236733,
+     "llm_calls_per_turn": 0.6162790697674418
+    },
+    "turn 1": {
+     "turns": 296,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.944241137845789,
+     "llm_calls_per_turn": 0.7702702702702703
+    },
+    "turn 2": {
+     "turns": 216,
+     "revision_success_rate": 0.9953703703703703,
+     "unaffected_preserved": 0.9650986610288936,
+     "llm_calls_per_turn": 0.6620370370370371
+    },
+    "turn 3": {
+     "turns": 153,
+     "revision_success_rate": 0.9607843137254902,
+     "unaffected_preserved": 0.9776053215077606,
+     "llm_calls_per_turn": 0.6862745098039216
+    }
+   },
+   "by_chain": {
+    "L=1": {
+     "episodes": 80,
+     "final_pass_rate": 1.0
+    },
+    "L=2": {
+     "episodes": 63,
+     "final_pass_rate": 0.9841269841269841
+    },
+    "L=3": {
+     "episodes": 67,
+     "final_pass_rate": 0.9552238805970149
+    },
+    "L=4 (held-out)": {
+     "episodes": 86,
+     "final_pass_rate": 0.9534883720930233
+    }
+   },
+   "recovery": {
+    "REPLAN_LOCAL_ACCOMMODATION": {
+     "turn_success": {
+      "mean": 0.9130434782608695,
+      "std": 0.11537451687022214
+     },
+     "unaffected_preserved": {
+      "mean": 0.9306372472133342,
+      "std": 0.012474592779543743
+     },
+     "llm_calls": {
+      "mean": 2.036231884057971,
+      "std": 0.1396455966710273
+     }
+    },
+    "REPLAN_LOCAL_TRANSPORT": {
+     "turn_success": {
+      "mean": 0.9764492753623188,
+      "std": 0.01793386763878924
+     },
+     "unaffected_preserved": {
+      "mean": 0.9226718531066357,
+      "std": 0.001209824404204055
+     },
+     "llm_calls": {
+      "mean": 2.1213768115942027,
+      "std": 0.08138071538121809
+     }
+    },
+    "REPLAN_LOCAL_MEALS": {
+     "turn_success": {
+      "mean": 1.0,
+      "std": 0.0
+     },
+     "unaffected_preserved": {
+      "mean": 0.9218163780663781,
+      "std": 0.0
+     },
+     "llm_calls": {
+      "mean": 1.809782608695652,
+      "std": 0.0
+     }
+    },
+    "REPLAN_GLOBAL": {
+     "turn_success": {
+      "mean": 1.0,
+      "std": 0.0
+     },
+     "unaffected_preserved": {
+      "mean": 0.3628856499780413,
+      "std": 0.0
+     },
+     "llm_calls": {
+      "mean": 4.0,
+      "std": 0.0
+     }
+    }
+   },
+   "error_vs_step": {
+    "by_step": {
+     "0": 0.020861074123391037,
+     "1": 0.027127389283192704,
+     "2": 0.00952165970334575,
+     "3": 0.006683087027914615,
+     "4": 0.08959156785243742,
+     "5": 0.1037037037037037,
+     "6": 0.3185185185185185,
+     "7": 0.38888888888888884,
+     "8": 0.611111111111111,
+     "9": 0.38888888888888884
+    },
+    "by_turn": {
+     "0": 0.0,
+     "1": 0.012005785463220037,
+     "2": 0.056953349928224185,
+     "3": 0.0779618306387291
+    }
+   }
+  },
+  "bc_dagger2": {
+   "summary": {
+    "episodes": {
+     "mean": 296.0,
+     "std": 0.0
+    },
+    "turns": {
+     "mean": 751.0,
+     "std": 0.0
+    },
+    "final_pass_rate": {
+     "mean": 0.9842342342342342,
+     "std": 0.003185165681020504
+    },
+    "revision_success_rate": {
+     "mean": 0.9902352418996894,
+     "std": 0.0016607445125494896
+    },
+    "new_constraint_satisfaction": {
+     "mean": 0.9940688018979834,
+     "std": 0.0033551923187973677
+    },
+    "constraint_retention_rate": {
+     "mean": 0.9985451900345518,
+     "std": 0.000680425056696473
+    },
+    "unaffected_preserved": {
+     "mean": 0.9605264527139526,
+     "std": 0.0004348450156473149
+    },
+    "global_replan_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "unnecessary_global_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "clarification_recall": {
+     "mean": 0.984251968503937,
+     "std": 0.0
+    },
+    "clarification_precision": {
+     "mean": 0.9718652296777298,
+     "std": 0.01870669845003219
+    },
+    "timeout_rate": {
+     "mean": 0.004882379050155349,
+     "std": 0.0016607445125494634
+    },
+    "llm_calls_per_turn": {
+     "mean": 0.7119396360408344,
+     "std": 0.006370483841281559
+    },
+    "tool_calls_per_turn": {
+     "mean": 0.5907678650687972,
+     "std": 0.0012554048489774301
+    },
+    "est_tokens_per_turn": {
+     "mean": 1098.624056813138,
+     "std": 13.66359822379695
+    },
+    "steps_per_turn": {
+     "mean": 2.664891256102974,
+     "std": 0.016464480240560478
+    },
+    "tracker_accuracy": {
+     "mean": 1.0,
+     "std": 0.0
+    }
+   },
+   "by_op": {
+    "add": {
+     "turns": 481,
+     "revision_success_rate": 0.9896049896049897,
+     "unaffected_preserved": 0.9421900052108385,
+     "llm_calls_per_turn": 0.7920997920997921
+    },
+    "delete": {
+     "turns": 62,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.0
+    },
+    "replace": {
+     "turns": 130,
+     "revision_success_rate": 0.9846153846153847,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.9153846153846154
+    },
+    "reprioritize": {
+     "turns": 78,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.47435897435897434
+    }
+   },
+   "by_type": {
+    "budget": {
+     "turns": 94,
+     "revision_success_rate": 0.9787234042553191,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.9468085106382979
+    },
+    "cuisine": {
+     "turns": 154,
+     "revision_success_rate": 0.9935064935064936,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.7077922077922078
+    },
+    "house_rule": {
+     "turns": 82,
+     "revision_success_rate": 0.975609756097561,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.45121951219512196
+    },
+    "min_rating": {
+     "turns": 189,
+     "revision_success_rate": 0.9947089947089947,
+     "unaffected_preserved": 0.8675911146581538,
+     "llm_calls_per_turn": 0.9153439153439153
+    },
+    "priority": {
+     "turns": 78,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.47435897435897434
+    },
+    "room_type": {
+     "turns": 82,
+     "revision_success_rate": 0.9878048780487805,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.4634146341463415
+    },
+    "transport": {
+     "turns": 72,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.977671451355662,
+     "llm_calls_per_turn": 0.75
+    }
+   },
+   "by_turn": {
+    "held-out (4th turn)": {
+     "turns": 86,
+     "revision_success_rate": 0.9651162790697675,
+     "unaffected_preserved": 0.9835645184236733,
+     "llm_calls_per_turn": 0.6627906976744186
+    },
+    "turn 1": {
+     "turns": 296,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.944241137845789,
+     "llm_calls_per_turn": 0.7702702702702703
+    },
+    "turn 2": {
+     "turns": 216,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9650986610288936,
+     "llm_calls_per_turn": 0.6620370370370371
+    },
+    "turn 3": {
+     "turns": 153,
+     "revision_success_rate": 0.9738562091503268,
+     "unaffected_preserved": 0.9722099039172211,
+     "llm_calls_per_turn": 0.7124183006535948
+    }
+   },
+   "by_chain": {
+    "L=1": {
+     "episodes": 80,
+     "final_pass_rate": 1.0
+    },
+    "L=2": {
+     "episodes": 63,
+     "final_pass_rate": 1.0
+    },
+    "L=3": {
+     "episodes": 67,
+     "final_pass_rate": 0.9850746268656716
+    },
+    "L=4 (held-out)": {
+     "episodes": 86,
+     "final_pass_rate": 0.9651162790697675
+    }
+   },
+   "recovery": {
+    "REPLAN_LOCAL_ACCOMMODATION": {
+     "turn_success": {
+      "mean": 0.9673913043478262,
+      "std": 0.027712062573873816
+     },
+     "unaffected_preserved": {
+      "mean": 0.9244216884162536,
+      "std": 0.002079992224340117
+     },
+     "llm_calls": {
+      "mean": 2.1086956521739126,
+      "std": 0.16430670062859742
+     }
+    },
+    "REPLAN_LOCAL_TRANSPORT": {
+     "turn_success": {
+      "mean": 0.8278985507246377,
+      "std": 0.1261629372933344
+     },
+     "unaffected_preserved": {
+      "mean": 0.9336643479306522,
+      "std": 0.009298125434017966
+     },
+     "llm_calls": {
+      "mean": 2.2989130434782608,
+      "std": 0.3766112204145742
+     }
+    },
+    "REPLAN_LOCAL_MEALS": {
+     "turn_success": {
+      "mean": 0.7844202898550724,
+      "std": 0.24596352805010513
+     },
+     "unaffected_preserved": {
+      "mean": 0.948509355982182,
+      "std": 0.032608510081913435
+     },
+     "llm_calls": {
+      "mean": 1.8043478260869563,
+      "std": 0.007685943273766802
+     }
+    },
+    "REPLAN_GLOBAL": {
+     "turn_success": {
+      "mean": 1.0,
+      "std": 0.0
+     },
+     "unaffected_preserved": {
+      "mean": 0.3628856499780413,
+      "std": 0.0
+     },
+     "llm_calls": {
+      "mean": 4.0,
+      "std": 0.0
+     }
+    }
+   },
+   "error_vs_step": {
+    "by_step": {
+     "0": 0.018197958277851752,
+     "1": 0.018358658324232908,
+     "2": 0.00947032366744555,
+     "3": 0.004740244323577656,
+     "4": 0.08730158730158728,
+     "5": 0.08771929824561403,
+     "6": 0.3,
+     "7": 0.3666666666666667,
+     "8": 0.6333333333333333,
+     "9": 0.3666666666666667
+    },
+    "by_turn": {
+     "0": 0.0,
+     "1": 0.010096263641135458,
+     "2": 0.05132246860806839,
+     "3": 0.057748919104039544
+    }
+   }
+  },
+  "bc_dagger3": {
+   "summary": {
+    "episodes": {
+     "mean": 296.0,
+     "std": 0.0
+    },
+    "turns": {
+     "mean": 751.0,
+     "std": 0.0
+    },
+    "final_pass_rate": {
+     "mean": 0.981981981981982,
+     "std": 0.008867125984247538
+    },
+    "revision_success_rate": {
+     "mean": 0.9893475366178429,
+     "std": 0.004739049379507891
+    },
+    "new_constraint_satisfaction": {
+     "mean": 0.9922894424673784,
+     "std": 0.007166693934516368
+    },
+    "constraint_retention_rate": {
+     "mean": 0.9986361156573923,
+     "std": 0.00038576474696480406
+    },
+    "unaffected_preserved": {
+     "mean": 0.960802045177045,
+     "std": 0.0003112789283509617
+    },
+    "global_replan_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "unnecessary_global_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "clarification_recall": {
+     "mean": 0.984251968503937,
+     "std": 0.0
+    },
+    "clarification_precision": {
+     "mean": 0.9651443692087508,
+     "std": 0.03270167517605516
+    },
+    "timeout_rate": {
+     "mean": 0.004438526409232135,
+     "std": 0.0012554048489774481
+    },
+    "llm_calls_per_turn": {
+     "mean": 0.7106080781180647,
+     "std": 0.0045264265544543375
+    },
+    "tool_calls_per_turn": {
+     "mean": 0.5916555703506435,
+     "std": 0.002736091434961828
+    },
+    "est_tokens_per_turn": {
+     "mean": 1095.3839325343986,
+     "std": 14.025181603134081
+    },
+    "steps_per_turn": {
+     "mean": 2.6613404349755885,
+     "std": 0.018904162839810796
+    },
+    "tracker_accuracy": {
+     "mean": 1.0,
+     "std": 0.0
+    }
+   },
+   "by_op": {
+    "add": {
+     "turns": 481,
+     "revision_success_rate": 0.9812889812889813,
+     "unaffected_preserved": 0.9440155523488857,
+     "llm_calls_per_turn": 0.7733887733887734
+    },
+    "delete": {
+     "turns": 62,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.0
+    },
+    "replace": {
+     "turns": 130,
+     "revision_success_rate": 0.9692307692307692,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.9230769230769231
+    },
+    "reprioritize": {
+     "turns": 78,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.47435897435897434
+    }
+   },
+   "by_type": {
+    "budget": {
+     "turns": 94,
+     "revision_success_rate": 0.9680851063829787,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.9468085106382979
+    },
+    "cuisine": {
+     "turns": 154,
+     "revision_success_rate": 0.9935064935064936,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.7077922077922078
+    },
+    "house_rule": {
+     "turns": 82,
+     "revision_success_rate": 0.975609756097561,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.35365853658536583
+    },
+    "min_rating": {
+     "turns": 189,
+     "revision_success_rate": 0.9735449735449735,
+     "unaffected_preserved": 0.8699654163341313,
+     "llm_calls_per_turn": 0.9153439153439153
+    },
+    "priority": {
+     "turns": 78,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.47435897435897434
+    },
+    "room_type": {
+     "turns": 82,
+     "revision_success_rate": 0.975609756097561,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.47560975609756095
+    },
+    "transport": {
+     "turns": 72,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9840510366826156,
+     "llm_calls_per_turn": 0.7361111111111112
+    }
+   },
+   "by_turn": {
+    "held-out (4th turn)": {
+     "turns": 86,
+     "revision_success_rate": 0.9651162790697675,
+     "unaffected_preserved": 0.9835645184236733,
+     "llm_calls_per_turn": 0.6162790697674418
+    },
+    "turn 1": {
+     "turns": 296,
+     "revision_success_rate": 0.9898648648648649,
+     "unaffected_preserved": 0.94472563396982,
+     "llm_calls_per_turn": 0.7702702702702703
+    },
+    "turn 2": {
+     "turns": 216,
+     "revision_success_rate": 0.9907407407407407,
+     "unaffected_preserved": 0.9650986610288936,
+     "llm_calls_per_turn": 0.6666666666666666
+    },
+    "turn 3": {
+     "turns": 153,
+     "revision_success_rate": 0.9673202614379085,
+     "unaffected_preserved": 0.9776053215077606,
+     "llm_calls_per_turn": 0.6797385620915033
+    }
+   },
+   "by_chain": {
+    "L=1": {
+     "episodes": 80,
+     "final_pass_rate": 0.9875
+    },
+    "L=2": {
+     "episodes": 63,
+     "final_pass_rate": 0.9523809523809523
+    },
+    "L=3": {
+     "episodes": 67,
+     "final_pass_rate": 0.9701492537313433
+    },
+    "L=4 (held-out)": {
+     "episodes": 86,
+     "final_pass_rate": 0.9651162790697675
+    }
+   },
+   "recovery": {
+    "REPLAN_LOCAL_ACCOMMODATION": {
+     "turn_success": {
+      "mean": 0.9547101449275363,
+      "std": 0.03721492497132997
+     },
+     "unaffected_preserved": {
+      "mean": 0.9244102515841647,
+      "std": 0.0029968445956979404
+     },
+     "llm_calls": {
+      "mean": 2.0778985507246377,
+      "std": 0.2036090046119873
+     }
+    },
+    "REPLAN_LOCAL_TRANSPORT": {
+     "turn_success": {
+      "mean": 0.9057971014492754,
+      "std": 0.10286282294622016
+     },
+     "unaffected_preserved": {
+      "mean": 0.9291757507790116,
+      "std": 0.009253704830469837
+     },
+     "llm_calls": {
+      "mean": 2.052536231884058,
+      "std": 0.02818179200381175
+     }
+    },
+    "REPLAN_LOCAL_MEALS": {
+     "turn_success": {
+      "mean": 0.7065217391304347,
+      "std": 0.2022342905013103
+     },
+     "unaffected_preserved": {
+      "mean": 0.9574465540498149,
+      "std": 0.030678762582924898
+     },
+     "llm_calls": {
+      "mean": 1.8025362318840579,
+      "std": 0.010247924365022369
+     }
+    },
+    "REPLAN_GLOBAL": {
+     "turn_success": {
+      "mean": 1.0,
+      "std": 0.0
+     },
+     "unaffected_preserved": {
+      "mean": 0.3628856499780413,
+      "std": 0.0
+     },
+     "llm_calls": {
+      "mean": 4.0,
+      "std": 0.0
+     }
+    }
+   },
+   "error_vs_step": {
+    "by_step": {
+     "0": 0.01775410563692854,
+     "1": 0.019060528311629635,
+     "2": 0.00948868760010229,
+     "3": 0.0047568710359408035,
+     "4": 0.08977072310405643,
+     "5": 0.07212475633528265,
+     "6": 0.3119047619047619,
+     "7": 0.3333333333333333,
+     "8": 0.6666666666666666,
+     "9": 0.3333333333333333
+    },
+    "by_turn": {
+     "0": 0.00117096018735363,
+     "1": 0.011955956962204937,
+     "2": 0.05034451537908354,
+     "3": 0.04664527328951843
+    }
+   }
+  },
+  "bc_aug_dagger3": {
+   "summary": {
+    "episodes": {
+     "mean": 296.0,
+     "std": 0.0
+    },
+    "turns": {
+     "mean": 751.0,
+     "std": 0.0
+    },
+    "final_pass_rate": {
+     "mean": 0.9921171171171171,
+     "std": 0.006370331362040956
+    },
+    "revision_success_rate": {
+     "mean": 0.9946737683089214,
+     "std": 0.001883107273466145
+    },
+    "new_constraint_satisfaction": {
+     "mean": 0.99644128113879,
+     "std": 0.002905681782660937
+    },
+    "constraint_retention_rate": {
+     "mean": 0.9994544462629569,
+     "std": 0.0007715294939296604
+    },
+    "unaffected_preserved": {
+     "mean": 0.9602933524808526,
+     "std": 0.0003777279814030689
+    },
+    "global_replan_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "unnecessary_global_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "clarification_recall": {
+     "mean": 0.9895013123359581,
+     "std": 0.0037118466204018176
+    },
+    "clarification_precision": {
+     "mean": 0.9869791666666666,
+     "std": 0.009743899444723805
+    },
+    "timeout_rate": {
+     "mean": 0.004438526409232135,
+     "std": 0.0006277024244887241
+    },
+    "llm_calls_per_turn": {
+     "mean": 0.7079449622725255,
+     "std": 0.002736091434961828
+    },
+    "tool_calls_per_turn": {
+     "mean": 0.5934309809143364,
+     "std": 0.0016607445125494797
+    },
+    "est_tokens_per_turn": {
+     "mean": 1095.8277851753219,
+     "std": 5.175786180753236
+    },
+    "steps_per_turn": {
+     "mean": 2.664891256102974,
+     "std": 0.007865088835627773
+    },
+    "tracker_accuracy": {
+     "mean": 1.0,
+     "std": 0.0
+    }
+   },
+   "by_op": {
+    "add": {
+     "turns": 481,
+     "revision_success_rate": 0.997920997920998,
+     "unaffected_preserved": 0.9418743486451819,
+     "llm_calls_per_turn": 0.7713097713097713
+    },
+    "delete": {
+     "turns": 62,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.0
+    },
+    "replace": {
+     "turns": 130,
+     "revision_success_rate": 0.9846153846153847,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.9153846153846154
+    },
+    "reprioritize": {
+     "turns": 78,
+     "revision_success_rate": 0.9615384615384616,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.5641025641025641
+    }
+   },
+   "by_type": {
+    "budget": {
+     "turns": 94,
+     "revision_success_rate": 0.9787234042553191,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.9468085106382979
+    },
+    "cuisine": {
+     "turns": 154,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.7012987012987013
+    },
+    "house_rule": {
+     "turns": 82,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9931506849315068,
+     "llm_calls_per_turn": 0.35365853658536583
+    },
+    "min_rating": {
+     "turns": 189,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.8675911146581538,
+     "llm_calls_per_turn": 0.9153439153439153
+    },
+    "priority": {
+     "turns": 78,
+     "revision_success_rate": 0.9615384615384616,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.5641025641025641
+    },
+    "room_type": {
+     "turns": 82,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.4634146341463415
+    },
+    "transport": {
+     "turns": 72,
+     "revision_success_rate": 0.9861111111111112,
+     "unaffected_preserved": 0.9840510366826156,
+     "llm_calls_per_turn": 0.7361111111111112
+    }
+   },
+   "by_turn": {
+    "held-out (4th turn)": {
+     "turns": 86,
+     "revision_success_rate": 0.9651162790697675,
+     "unaffected_preserved": 0.9835645184236733,
+     "llm_calls_per_turn": 0.686046511627907
+    },
+    "turn 1": {
+     "turns": 296,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.944241137845789,
+     "llm_calls_per_turn": 0.7702702702702703
+    },
+    "turn 2": {
+     "turns": 216,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9650986610288936,
+     "llm_calls_per_turn": 0.6620370370370371
+    },
+    "turn 3": {
+     "turns": 153,
+     "revision_success_rate": 0.9803921568627451,
+     "unaffected_preserved": 0.9711012564671102,
+     "llm_calls_per_turn": 0.6797385620915033
+    }
+   },
+   "by_chain": {
+    "L=1": {
+     "episodes": 80,
+     "final_pass_rate": 1.0
+    },
+    "L=2": {
+     "episodes": 63,
+     "final_pass_rate": 1.0
+    },
+    "L=3": {
+     "episodes": 67,
+     "final_pass_rate": 0.9701492537313433
+    },
+    "L=4 (held-out)": {
+     "episodes": 86,
+     "final_pass_rate": 0.9651162790697675
+    }
+   },
+   "recovery": {
+    "REPLAN_LOCAL_ACCOMMODATION": {
+     "turn_success": {
+      "mean": 1.0,
+      "std": 0.0
+     },
+     "unaffected_preserved": {
+      "mean": 0.9218163780663781,
+      "std": 0.0
+     },
+     "llm_calls": {
+      "mean": 1.940217391304348,
+      "std": 0.0
+     }
+    },
+    "REPLAN_LOCAL_TRANSPORT": {
+     "turn_success": {
+      "mean": 1.0,
+      "std": 0.0
+     },
+     "unaffected_preserved": {
+      "mean": 0.9218163780663781,
+      "std": 0.0
+     },
+     "llm_calls": {
+      "mean": 2.032608695652174,
+      "std": 0.0
+     }
+    },
+    "REPLAN_LOCAL_MEALS": {
+     "turn_success": {
+      "mean": 0.9692028985507246,
+      "std": 0.0435536785513453
+     },
+     "unaffected_preserved": {
+      "mean": 0.9236279722692765,
+      "std": 0.002561981091255618
+     },
+     "llm_calls": {
+      "mean": 1.809782608695652,
+      "std": 0.0
+     }
+    },
+    "REPLAN_GLOBAL": {
+     "turn_success": {
+      "mean": 1.0,
+      "std": 0.0
+     },
+     "unaffected_preserved": {
+      "mean": 0.3628856499780413,
+      "std": 0.0
+     },
+     "llm_calls": {
+      "mean": 4.0,
+      "std": 0.0
+     }
+    }
+   },
+   "error_vs_step": {
+    "by_step": {
+     "0": 0.01775410563692854,
+     "1": 0.015454216786491247,
+     "2": 0.007725367502972573,
+     "3": 0.005695354161208984,
+     "4": 0.0935746352413019,
+     "5": 0.09720072239422084,
+     "6": 0.4142857142857143,
+     "7": 0.27777777777777773,
+     "8": 0.5833333333333333,
+     "9": 0.1111111111111111
+    },
+    "by_turn": {
+     "0": 0.0,
+     "1": 0.011298281770232352,
+     "2": 0.04071024533263765,
+     "3": 0.06046456944431508
+    }
+   }
+  }
+ },
+ "recovery_episodes": 184
+}
