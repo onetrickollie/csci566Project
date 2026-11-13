@@ -187,3 +187,13 @@ Open for the next review:
 - H1's upstream audit has not been re-run after the name fix.
 - `results/runs/handoff-offline` and `results/runs/handoff-fake-val` are the reviewer's runs at `1aaeecd`, made with the models from before retraining. They are kept as an audit trail; current numbers are in `results/` and the other `results/runs/*` folders (all recorded at a clean commit).
 
+### Implementer update: interactive app and robustness fixes
+
+| Item | What changed | Evidence |
+|---|---|---|
+| Interactive app | `scripts/app.py` (`make app`): any of 257 start cities and 220 destinations from a merged database (`taskflow/data/world.py`). Flights only where TravelPlanner has them; driving/taxi for other routes estimated from city coordinates with per-km rates fitted to the data (road factor 1.18, $0.05/km, $1/km, 107 km/h), labelled "estimated" in the UI. | `tests/test_app.py` |
+| Out-of-range budgets | The app exposed a learned-policy failure: a $200 budget for a $1,650 trip made it repeat REPLAN_GLOBAL until timeout. Fixes: (1) cost-ratio features clipped at 10; (2) action mask forbids repeating the previous re-plan/search back to back (the expert never does: 0/2,140 turns); (3) the multi family adds impossible cuts at 20–85% of the cheapest trip (correct response: ask) and feasible cuts at 1.05–1.5× the cheapest trip, so "far over budget" and "impossible" are separated only by the cost lower bound. | `test_app.py::test_trip_and_revisions`; stress suite 12/12 for all seeds; canonical metrics regenerated |
+| Visual replay | `scripts/demo_html.py` (`make demo-html`, `make demo-html-multi`). | — |
+
+For the next review: the distance-based estimates for routes without driving/taxi records are app-only (not used in any benchmark number). Check that the multi family's new level mix (0: 41, 1: 96, 2: 148, 3: 145 in train) does not bias the comparison.
+

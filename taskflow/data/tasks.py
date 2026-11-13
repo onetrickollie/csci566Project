@@ -310,7 +310,7 @@ SLOTS_MEALS = ["d1_dinner", "d2_breakfast", "d2_lunch", "d2_dinner", "d3_breakfa
 def make_multi_episode(q: Query, base: Constraints, split: str, idx: int, rng: random.Random,
                        tset: str) -> Episode | None:
     """One-turn episode: an expensive approved itinerary, then a budget cut that
-    needs 1, 2, or 3+ component repairs (3+ = beyond the oracle's two-repair
+    is impossible (level 0: ask) or needs 1, 2, or 3+ component repairs (3+ = beyond the oracle's two-repair
     search, so it falls back to a global rebuild). Built from real TravelPlanner
     trips of the given split only; the fixed synthetic stress cases in
     taskflow/data/challenges.py are never used for training.
@@ -334,9 +334,14 @@ def make_multi_episode(q: Query, base: Constraints, split: str, idx: int, rng: r
     c.budget = float(round(total * 1.05 / 50 + 0.5) * 50)
     if not verify(q, c, plan).passed:
         return None
-    by_level: dict[int, list[float]] = {1: [], 2: [], 3: []}
-    for f in [x / 100 for x in range(90, 20, -5)]:
-        target = float(round(total * f / 50) * 50)
+    by_level: dict[int, list[float]] = {0: [], 1: [], 2: [], 3: []}
+    floor = min_cost(q, c)
+    # Fractions of the approved plan's cost, plus cuts just above the cheapest
+    # possible trip: feasible cases where the approved plan is far over budget,
+    # so "far over budget" alone never means "impossible".
+    targets = [total * x / 100 for x in range(90, 20, -5)] + [floor * f for f in (1.05, 1.15, 1.3, 1.5)]
+    for t in sorted(set(round(t / 50) * 50 for t in targets), reverse=True):
+        target = float(t)
         if target <= 0:
             continue
         new_c = c.copy()
@@ -347,17 +352,28 @@ def make_multi_episode(q: Query, base: Constraints, split: str, idx: int, rng: r
                       random.Random(0))
         fix = minimal_fix(env)
         by_level[len(fix) if fix else 3].append(target)
-    levels = [lv for lv in (1, 2, 3) if by_level[lv]]
+    # Level 0: a cut far below the cheapest possible trip (20-85% of it), where the
+    # right response is to ask. Covers budgets well outside the v0 range.
+    deep = float(round(floor * rng.uniform(0.2, 0.85) / 50) * 50)
+    if deep > 0:
+        new_c = c.copy()
+        new_c.budget = deep
+        if not is_feasible(q, new_c):
+            by_level[0] = [deep]
+    levels = [lv for lv in (0, 1, 2, 3) if by_level.get(lv)]
     if not levels:
         return None
-    level = rng.choice(levels)
+    # Favour the harder feasible levels; impossible cuts stay a minority.
+    weights = [{0: 1, 1: 2, 2: 3, 3: 4}[lv] for lv in levels]
+    level = rng.choices(levels, weights=weights)[0]
     target = rng.choice(by_level[level])
     d = ConstraintDiff("replace", "budget", c.budget, target, template_set=tset)
     d.nl = render(d, rng, tset)
-    after = d.apply(c)
+    feasible = level != 0
+    after = d.apply(c) if feasible else c
     return Episode(episode_id=f"{q.qid}-m{idx}-L{level}", qid=q.qid, split=f"{split}_multi",
                    base=c.to_dict(), initial_plan=plan,
-                   turns=[Turn(diff=d.to_dict(), feasible=True, constraints_after=after.to_dict())])
+                   turns=[Turn(diff=d.to_dict(), feasible=feasible, constraints_after=after.to_dict())])
 
 
 def save(ds: dict, out_dir: Path, manifest: dict) -> None:

@@ -34,7 +34,7 @@ Last updated: 2026-11-13. Task IDs refer to the task board in [ENGINEERING_PLAN.
 | Learning (T16–T18) | MLP coordinator; BC, trajectory augmentation, DAgger with oracle or LLM teacher | `taskflow/learning/`, `scripts/train.py` | `models/training_log.json` |
 | Evaluation (T19–T21) | Proposal metrics, breakdowns, forced-mistake recovery, error vs step, figures; offline and LLM modes | `scripts/evaluate.py`, `taskflow/eval/` | `results/REPORT.md` |
 | LLM client (T06) | Offline / fake / OpenAI-compatible / Anthropic; disk cache; retries; usage counters; `.env` support | `taskflow/llm/` | `tests/test_llm.py` |
-| Demo | Scripted and interactive, offline or with any backend | `scripts/demo.py` | run it |
+| Demo | Scripted and interactive (terminal), visual replay (`demo_html.py`), and an interactive web app with any start city and destination (`app.py`) | `scripts/` | `tests/test_app.py` |
 
 ## Implemented but caveated (`done*` / `partial`)
 

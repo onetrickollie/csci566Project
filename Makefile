@@ -1,12 +1,13 @@
 PY := .venv/bin/python
 
-.PHONY: help setup demo demo-html demo-html-multi demo-interactive demo-llm demo-fake test pipeline dataset train evaluate evaluate-llm evaluate-capped evaluate-multi snapshot clean-cache
+.PHONY: help setup app demo demo-html demo-html-multi demo-interactive demo-llm demo-fake test pipeline dataset train evaluate evaluate-llm evaluate-capped evaluate-multi snapshot clean-cache
 
 help:
 	@echo "make setup             create .venv and install requirements"
 	@echo "make demo              scripted multi-turn demo (offline)"
 	@echo "make demo-interactive  type your own updates"
-	@echo "make demo-html         visual demo in the browser (all coordinators side by side)"
+	@echo "make app               interactive web app: type any start city + destination, then revise"
+	@echo "make demo-html         visual replay of a test episode (all coordinators side by side)"
 	@echo "make demo-html-multi   visual demo of a budget cut that needs several repairs"
 	@echo "make demo-fake         exercise every LLM code path offline"
 	@echo "make demo-llm          demo with the provider configured in .env"
@@ -29,6 +30,9 @@ demo:
 
 demo-interactive:
 	$(PY) scripts/demo.py --interactive
+
+app:
+	$(PY) scripts/app.py
 
 demo-html:
 	$(PY) scripts/demo_html.py

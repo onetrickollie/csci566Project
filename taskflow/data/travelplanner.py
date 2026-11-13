@@ -48,6 +48,8 @@ class Ground:
     dest: str
     cost: float
     duration: str
+    distance_km: float | None = None
+    estimated: bool = False  # True when derived from city coordinates (interactive app only)
 
 
 @dataclass
@@ -75,6 +77,8 @@ class Accommodation:
 class Attraction:
     name: str
     city: str
+    lat: float | None = None
+    lon: float | None = None
 
 
 @dataclass
@@ -154,7 +158,8 @@ def parse_reference_information(ref: list[dict]) -> CityDB:
             continue
         if desc.startswith("Attractions in"):
             for r in _split_table(content, ATTR_COLS):
-                db.attractions.append(Attraction(name=r[0], city=r[6]))
+                db.attractions.append(Attraction(name=r[0], city=r[6], lat=_num(r[1], None),
+                                                 lon=_num(r[2], None)))
         elif desc.startswith("Restaurants in"):
             for r in _split_table(content, REST_COLS):
                 db.restaurants.append(Restaurant(
@@ -180,11 +185,12 @@ def parse_reference_information(ref: list[dict]) -> CityDB:
             ]
         elif desc.startswith(("Self-driving from", "Taxi from")):
             m = re.match(r"(self-driving|taxi), from (.+) to (.+), duration: (.+?), "
-                         r"distance: .+?, cost: ([\d,.]+)", content.strip())
+                         r"distance: (.+?), cost: ([\d,.]+)", content.strip())
             if not m:
                 continue
             g = Ground(mode=m.group(1), origin=m.group(2), dest=m.group(3),
-                       duration=m.group(4), cost=_num(m.group(5)))
+                       duration=m.group(4), cost=_num(m.group(6)),
+                       distance_km=_num(m.group(5).replace("km", "").strip(), None))
             db.ground[(g.mode, g.origin, g.dest)] = g
     # pandas to_string() shows embedded newlines as a literal backslash-n;
     # upstream structured records keep the real newline, so restore it.

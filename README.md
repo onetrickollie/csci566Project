@@ -8,7 +8,8 @@ A user revises a 3-day itinerary over several turns: they add, delete, or replac
 
 | If you want to... | Read / run |
 |---|---|
-| See it work (2 minutes, no key) | `make setup demo-html` (opens in your browser), `make demo`, `make demo-interactive` |
+| Try it yourself (no key) | `make setup app`: type a start city and destination, get an itinerary, then revise it in plain language |
+| Watch a recorded test episode | `make demo-html` (browser), `make demo` (terminal) |
 | Know what's done and what's left | [docs/STATUS.md](docs/STATUS.md) |
 | Understand the code | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) |
 | Plug in an API key | [docs/LLM_SETUP.md](docs/LLM_SETUP.md) |
@@ -22,7 +23,8 @@ A user revises a 3-day itinerary over several turns: they add, delete, or replac
 
 ```bash
 make setup                 # .venv + requirements + .env from .env.example
-make demo-html             # visual: one episode, every coordinator side by side, in your browser
+make app                   # interactive web app at http://localhost:8566 (see below)
+make demo-html             # visual: one test episode, every coordinator side by side, in your browser
 make demo-html-multi       # visual: a budget cut that needs several components repaired
 make demo                  # the same comparison in the terminal
 make demo-interactive      # type your own updates
@@ -34,6 +36,17 @@ Without `make`, use the Python commands directly: `python3 -m venv .venv && .ven
 
 - **First run:** downloads the public TravelPlanner files (~37 MB) into `data/raw/`.
 - **No retraining needed for the demo:** trained models (`models/`) and the generated task set (`data/tasks/v0/`) are committed.
+
+### The interactive app (`make app`)
+
+1. **Plan a trip.** Type a start city and a destination; typos get "did you mean" suggestions. Pick a start date in March 2022, the number of travelers, a budget and any requirements (room type, house rule, cuisines, transport). The app builds a 3-day itinerary.
+2. **Change your mind.** Type a change, or click a suggestion. Four coordinators handle it, each on its own copy of the trip, and their answers appear side by side: always-regenerate, static rules, the learned coordinator, and the scripted expert (or the LLM coordinator when an API key is set). Each card shows the actions taken, the changed slots, cost, validity, and running totals.
+
+What the data supports:
+- **Cities:** 257 start cities and 220 destinations (every city in TravelPlanner).
+- **Flights:** only where the TravelPlanner data has them, which is March 2022 and the routes its queries used. The app shows which start dates have flights for your route.
+- **Driving and taxi:** for other routes they are **estimated** from the distance between the cities, using the per-km rates in the data, and labelled as estimated in the app.
+- **Typing:** offline, the tracker understands phrasings like the suggestions. With an LLM backend it understands free-form messages.
 
 ### With an API key
 
@@ -78,12 +91,12 @@ All numbers come from committed `metrics.json` files (offline runs). Each manife
 | System | Final pass | Revision success | Excess edits / turn | Edit-optimal preservation | LLM calls / turn |
 |---|---|---|---|---|---|
 | Always-Global (sampled regeneration) | 100.0 | 100.0 | 8.22 | 30.0 | 4.19 |
-| Always-Global (deterministic control) | 100.0 | 100.0 | 1.53 | 86.9 | 4.19 |
+| Always-Global (deterministic control) | 100.0 | 100.0 | 1.52 | 86.9 | 4.19 |
 | Static rules | 100.0 | 100.0 | 1.21 | 89.0 | 0.95 |
-| BC | 99.3 | 99.6 ± 0.1 | 1.16 | 89.6 | 0.73 |
+| BC | 99.4 ± 0.2 | 99.6 ± 0.2 | 1.16 | 89.6 | 0.72 |
 | BC + augmentation | 99.9 ± 0.2 | 100.0 ± 0.1 | 1.16 | 89.7 | 0.72 |
-| BC + DAgger (3 iters) | 99.9 ± 0.2 | 99.9 ± 0.1 | 1.16 | 89.7 | 0.72 |
-| BC + aug + DAgger (3) | 99.5 ± 0.3 | 99.6 ± 0.3 | 1.16 | 89.6 | 0.72 |
+| BC + DAgger (3 iters) | 99.9 ± 0.2 | 99.9 ± 0.2 | 1.16 | 89.6 | 0.72 |
+| BC + aug + DAgger (3) | 99.8 ± 0.2 | 99.7 ± 0.2 | 1.16 | 89.6 | 0.72 |
 | Scripted expert (deterministic) | 100.0 | 100.0 | 1.16 | 89.7 | 0.71 |
 
 **Excess edits** are the slots changed beyond the exact minimum any valid repair needs. **Edit-optimal preservation** is 1 − excess / (13 − minimum). Both are computed by an exact solver after the run (`taskflow/eval/exact.py`), and failed turns get no credit.
@@ -92,24 +105,24 @@ All numbers come from committed `metrics.json` files (offline runs). Each manife
 
 | Cap | Static rules | BC | BC + aug | BC + DAgger (3) | BC + aug + DAgger (3) | Expert |
 |---|---|---|---|---|---|---|
-| 1 call | 72.4 | 97.9 | 97.9 | 98.0 | 97.9 | 98.5 |
-| 2 calls | 98.1 | 99.6 | 99.9 | 99.9 | 99.6 | 100.0 |
+| 1 call | 72.4 | 98.0 | 97.8 | 98.0 | 97.9 | 98.5 |
+| 2 calls | 98.1 | 99.6 | 99.9 | 99.9 | 99.7 | 100.0 |
 
 ### Multi-component budget cuts (`make evaluate-multi`)
 
-Each episode starts from an expensive itinerary the user already approved, then cuts the budget so that 1, 2, or 3+ components must change. Episodes come from each split's own trips.
+Each episode starts from an expensive itinerary the user already approved, then cuts the budget. The cut is impossible (ask), or needs 1, 2, or 3+ components to change. Episodes come from each split's own trips.
 
 **Real-trip family** (`test_multi`: 138 episodes from test trips): every system succeeds.
 
 | System | Excess edits / turn | Global rebuild rate | LLM calls / turn |
 |---|---|---|---|
-| Always-Global (deterministic) | 5.94 | 100% | 4.00 |
-| Static rules | 5.88 | 67% | 3.70 |
-| BC + aug + DAgger (3) | 1.91 | 23% | 2.06 |
-| Scripted expert | 1.75 | 20% | 1.99 |
+| Always-Global (deterministic) | 4.71 | 100% | 4.08 |
+| Static rules | 5.94 | 75% | 4.09 |
+| BC + aug + DAgger (3) | 1.74 | 32% | 2.35 |
+| Scripted expert | 1.64 | 31% | 2.33 |
 
 **Fixed synthetic stress suite** (12 cases, never trained on; `results/runs/challenges/`):
-- The retrained BC+aug+DAgger(3) solves 12/12 cases with every seed.
+- BC+aug+DAgger(3) solves 12/12 cases with every seed.
 - Before the multi-component family was added, it solved 4/0/0 cases at the 1/2/3-component levels.
 
 ### What the numbers say
@@ -117,18 +130,18 @@ Each episode starts from an expensive itinerary the user already approved, then 
 1. **Partial vs. global replanning.**
    - Regenerating on every update costs about 5.8× the LLM calls of the learned coordinator.
    - In 49% of turns it rebuilds even though a local repair would have worked.
-   - How much of the plan it disturbs depends on how unstable regeneration is: 8.2 unnecessary slot changes per turn with sampled regeneration (our stand-in for an LLM rebuilding from scratch), 1.5 with deterministic regeneration. The real figure needs a real LLM.
+   - How much it disturbs the plan depends on how unstable regeneration is: 8.2 unnecessary slot changes per turn with sampled regeneration (our stand-in for an LLM rebuilding from scratch), 1.5 with deterministic regeneration. The real figure needs a real LLM.
 2. **When to go global.**
-   - On multi-component cuts, the learned coordinator rebuilds globally in about 23% of turns, close to the expert's 20%.
-   - Static rules rebuild in 67% of turns, because their script only knows how to repair the accommodation.
-   - So the learned coordinator changes about a third as many unneeded slots (1.9 vs 5.9) at roughly half the LLM calls.
+   - On multi-component cuts, the learned coordinator rebuilds globally in 32% of turns, matching the expert's 31%.
+   - Static rules rebuild in 75% of turns, because their script only knows how to repair the accommodation.
+   - The learned coordinator makes about 3.4× fewer unneeded slot changes than static rules (1.7 vs 5.9) with about 40% fewer LLM calls.
 3. **Compounding error and recovery.**
-   - Forced-mistake recovery (cases where the forced action left the plan broken): BC recovers 88–96%, BC+DAgger(3) 98–100%, and augmentation, with or without DAgger, 100%.
-   - Over a whole episode the gap is small on this benchmark: BC handles 98.6% of held-out 4th turns, seed 0.
+   - Forced-mistake recovery (cases where the forced action left the plan broken): BC recovers 84–93%, BC+DAgger(3) 91–99.5%, BC+augmentation 98–100%, and BC+aug+DAgger(3) 99–100%.
+   - Over a whole episode the gap is small: BC handles 97.1% of held-out 4th turns, seed 0.
 4. **Against the proposal's rejection criterion.**
    - **Without a call cap:** static rules reach 100% and the learned coordinators 99.6–100%, with about 24% fewer LLM calls.
    - **With 1 call per turn:** the learned coordinators reach about 98%, static rules 72.4%.
-   - **On multi-component cuts:** equal success, fewer edits and fewer calls.
+   - **On multi-component cuts:** equal success, far fewer edits and calls.
    - **Verdict:** offline, the hypothesis holds under a tight budget and on multi-component cuts. It still needs confirming with real LLM agents.
 
 ## Deviations from the plan (read before citing numbers)

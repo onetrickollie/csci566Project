@@ -57,7 +57,9 @@ taskflow/eval/metrics.py → results/metrics.json → results/REPORT.md + figure
 | `taskflow/learning/imitation.py` | BC, augmentation, DAgger | `collect`, `train`, `dagger`, `LearnedPolicy` |
 | `taskflow/llm/` | LLM client, prompts, fake backend | `get_client`, `LLMClient`, `prompts.py`, `fake.py` |
 | `taskflow/eval/` | Metrics and report rendering | `summarize`, `breakdown`, `write_report` |
-| `scripts/` | Command-line entry points | `build_dataset`, `train`, `evaluate`, `demo`, `make_snapshot` |
+| `taskflow/data/world.py` | Merged database of every TravelPlanner city for the app; distance-based driving/taxi estimates for routes without records | `build_world`, `World.trip_query`, `World.resolve` |
+| `scripts/app.py` | Interactive web app (stdlib HTTP server, localhost only) | `api_trip`, `api_update` |
+| `scripts/` | Command-line entry points | `build_dataset`, `train`, `evaluate`, `evaluate_challenges`, `demo`, `demo_html`, `app`, `make_snapshot` |
 
 ## Core types
 

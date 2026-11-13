@@ -36,6 +36,8 @@ def test_multi_initial_plans_valid_and_solved(Q):
         assert verify(q, Constraints.from_dict(e.base), e.initial_plan).passed
         r = run_episode(e, q, Oracle(), seed=i)
         assert r.turns[0].success, e.episode_id
+        if e.episode_id.endswith("-L0"):
+            assert r.turns[0].terminal == "ASK_CLARIFICATION"
 
 
 def test_retrained_model_solves_synthetic_stress_suite():

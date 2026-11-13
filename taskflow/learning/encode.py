@@ -19,6 +19,7 @@ KINDS = ["budget", "room_type", "house_rule", "cuisine", "transport_rule", "min_
          "priority_cost", "priority_quality", "invalid_entity", "transport_conflict",
          "min_nights", "duplicate_restaurant", "duplicate_attraction", "incomplete"]
 MAX_STEPS = 10
+RATIO_CLIP = 10.0
 
 
 def _onehot(i: int, n: int) -> list[float]:
@@ -91,10 +92,14 @@ def encode(env) -> np.ndarray:
     B, cost, total = ev["effective_budget"], ev["plan_cost"], ev["plan_total"]
     min_t, min_a, min_m, lb = (ev["cheapest_transport"], ev["cheapest_accommodation"],
                                ev["cheapest_meals"], ev["cost_lower_bound"])
-    f += [total / B, cost["transport"] / B, cost["accommodation"] / B, cost["meals"] / B]
-    f += [(cost["transport"] - (min_t or 0)) / B, (cost["accommodation"] - (min_a or 0)) / B,
-          (cost["meals"] - min_m) / B]
-    f += [lb / B, 1.0 if lb > B else 0.0, 1.0 if total > B else 0.0]
+    # Ratios are clipped so a budget far outside the training range (e.g. a user
+    # typing $200 for a $1,650 trip) maps to "far too expensive", not to an
+    # unseen magnitude the network extrapolates on.
+    ratios = [total / B, cost["transport"] / B, cost["accommodation"] / B, cost["meals"] / B,
+              (cost["transport"] - (min_t or 0)) / B, (cost["accommodation"] - (min_a or 0)) / B,
+              (cost["meals"] - min_m) / B, lb / B]
+    f += [float(np.clip(r, -RATIO_CLIP, RATIO_CLIP)) for r in ratios]
+    f += [1.0 if lb > B else 0.0, 1.0 if total > B else 0.0]
     f += [1.0 if ev["accommodation_candidates"] == 0 else 0.0, 1.0 if min_t is None else 0.0,
           1.0 if ev["uncovered_cuisines"] else 0.0,
           1.0 if env.cache.get("dining") and ev["restaurant_candidates"] < 6 else 0.0]
@@ -102,7 +107,11 @@ def encode(env) -> np.ndarray:
 
 
 def action_mask(env) -> np.ndarray:
+    """Structurally pointless actions: KEEP_PLAN after a change, and repeating the
+    previous re-plan/search back to back (nothing new has been learned since)."""
     m = np.ones(len(ACTIONS), dtype=bool)
     if env.changed:
         m[ACTIONS.index("KEEP_PLAN")] = False
+    if env.history and (env.history[-1].startswith("REPLAN_") or env.history[-1].startswith("SEARCH_")):
+        m[ACTIONS.index(env.history[-1])] = False
     return m

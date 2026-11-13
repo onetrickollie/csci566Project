@@ -1,8 +1,8 @@
 # Results (test split)
 
-Config: `{'seeds': [0, 1, 2], 'split': 'test', 'limit': None, 'skip_recovery': False, 'model_suffix': '', 'call_cap': 1, 'llm': 'offline', 'models': '3e2281036607'}`
+Config: `{'seeds': [0, 1, 2], 'split': 'test', 'limit': None, 'skip_recovery': False, 'model_suffix': '', 'call_cap': 1, 'llm': 'offline', 'models': 'f7a33da8563c'}`
 
-git `36d3395` · fingerprints `{'source': '09a45a79ca24', 'prompts': 'f9352f57f9ee', 'tasks': 'c6a92573e38a'}`
+git `d660d4e` (uncommitted changes) · fingerprints `{'source': 'bc8ce14085cc', 'prompts': 'f9352f57f9ee', 'tasks': '31cf06aeb6b9'}`
 
 Rates are percentages. Learned systems: mean ± std over training seeds. LLM calls/tool calls/est. tokens come from the simulated cost model (see README).
 
@@ -13,12 +13,12 @@ Matched budget: at most 1 cost-model LLM calls per turn; a turn that would excee
 | Always-Global | 17.4 | 19.4 | 35.4 | 83.7 | 100.0 | 0.0 | 0.0 | 0.00 | 0.00 | 0 |
 | Always-Global (deterministic control) | 17.4 | 19.4 | 35.4 | 83.7 | 100.0 | 0.0 | 0.0 | 0.00 | 0.00 | 0 |
 | Static rules | 65.6 | 72.4 | 98.4 | 94.8 | 96.5 | 18.3 | 0.0 | 0.76 | 0.71 | 1,398 |
-| BC | 96.7 ± 0.3 | 97.9 ± 0.3 | 100.0 | 98.9 ± 0.1 | 96.3 | 18.5 | 0.0 | 0.70 ± 0.00 | 0.63 ± 0.00 | 1,088 |
-| BC + augmentation | 97.0 ± 0.2 | 97.9 ± 0.2 | 99.9 ± 0.1 | 99.0 ± 0.0 | 96.3 | 18.4 ± 0.0 | 0.0 | 0.70 ± 0.00 | 0.63 ± 0.00 | 1,089 |
-| BC + DAgger (1) | 97.2 ± 0.2 | 98.2 ± 0.1 | 100.0 | 99.0 ± 0.0 | 96.3 ± 0.0 | 18.5 ± 0.0 | 0.0 | 0.70 ± 0.00 | 0.63 ± 0.01 | 1,085 |
-| BC + DAgger (2) | 97.1 ± 0.3 | 98.1 ± 0.2 | 99.9 ± 0.1 | 99.0 ± 0.0 | 96.3 | 18.4 ± 0.0 | 0.0 | 0.70 ± 0.00 | 0.63 ± 0.00 | 1,085 |
-| BC + DAgger (3) | 97.0 ± 0.2 | 98.0 ± 0.1 | 100.0 | 99.0 ± 0.0 | 96.3 | 18.5 | 0.0 | 0.70 ± 0.00 | 0.63 ± 0.00 | 1,087 |
-| BC + aug + DAgger (3) | 96.7 ± 0.5 | 97.9 ± 0.3 | 99.7 ± 0.2 | 99.0 ± 0.1 | 96.3 ± 0.0 | 18.4 ± 0.0 | 0.0 | 0.70 ± 0.00 | 0.64 ± 0.01 | 1,089 |
+| BC | 97.0 ± 0.2 | 98.0 ± 0.1 | 100.0 | 98.9 ± 0.0 | 96.3 | 18.5 | 0.0 | 0.70 ± 0.00 | 0.63 ± 0.00 | 1,086 |
+| BC + augmentation | 96.9 ± 0.2 | 97.8 ± 0.1 | 99.9 ± 0.1 | 99.0 ± 0.1 | 96.3 | 18.4 ± 0.0 | 0.0 | 0.70 ± 0.00 | 0.63 ± 0.00 | 1,091 |
+| BC + DAgger (1) | 97.0 ± 0.2 | 98.1 ± 0.1 | 99.9 ± 0.1 | 99.0 ± 0.0 | 96.3 ± 0.0 | 18.4 ± 0.0 | 0.0 | 0.70 ± 0.00 | 0.63 ± 0.00 | 1,083 |
+| BC + DAgger (2) | 96.9 ± 0.2 | 98.0 ± 0.2 | 100.0 | 99.0 ± 0.0 | 96.3 ± 0.0 | 18.5 | 0.0 | 0.70 ± 0.00 | 0.63 ± 0.00 | 1,089 |
+| BC + DAgger (3) | 97.0 ± 0.2 | 98.0 ± 0.1 | 99.9 ± 0.1 | 98.9 ± 0.0 | 96.3 ± 0.1 | 18.5 ± 0.1 | 0.0 | 0.71 ± 0.00 | 0.63 ± 0.00 | 1,087 |
+| BC + aug + DAgger (3) | 96.7 ± 0.3 | 97.9 ± 0.2 | 99.8 ± 0.2 | 98.9 ± 0.1 | 96.3 ± 0.0 | 18.5 ± 0.0 | 0.0 | 0.71 ± 0.00 | 0.63 ± 0.00 | 1,089 |
 | Deterministic scripted expert | 97.8 | 98.5 | 99.6 | 99.1 | 96.4 | 18.3 | 0.0 | 0.70 | 0.63 | 1,082 |
 
 ## Minimum necessary changes
@@ -30,12 +30,12 @@ Exact minimum slot edits over complete feasible plans. Scored only on successful
 | Always-Global | 134 | 0.00 | 0.00 | 100.0 |
 | Always-Global (deterministic control) | 134 | 0.00 | 0.00 | 100.0 |
 | Static rules | 499 | 1.23 | 1.17 | 89.6 |
-| BC | 549 | 1.21 ± 0.00 | 1.15 ± 0.00 | 89.8 ± 0.0 |
-| BC + augmentation | 549.333 | 1.21 ± 0.00 | 1.15 ± 0.00 | 89.8 ± 0.0 |
-| BC + DAgger (1) | 549.667 | 1.20 ± 0.00 | 1.15 ± 0.00 | 89.8 ± 0.0 |
+| BC | 548.667 | 1.21 ± 0.00 | 1.15 ± 0.00 | 89.8 ± 0.0 |
+| BC + augmentation | 548.667 | 1.21 ± 0.00 | 1.15 ± 0.00 | 89.8 ± 0.0 |
+| BC + DAgger (1) | 548.667 | 1.20 ± 0.00 | 1.15 ± 0.00 | 89.8 ± 0.0 |
 | BC + DAgger (2) | 549 | 1.21 ± 0.00 | 1.15 ± 0.00 | 89.8 ± 0.0 |
-| BC + DAgger (3) | 549.333 | 1.21 ± 0.00 | 1.15 ± 0.00 | 89.8 ± 0.0 |
-| BC + aug + DAgger (3) | 548 | 1.21 ± 0.00 | 1.15 ± 0.00 | 89.7 ± 0.0 |
+| BC + DAgger (3) | 548.333 | 1.21 ± 0.00 | 1.16 ± 0.01 | 89.7 ± 0.0 |
+| BC + aug + DAgger (3) | 547.667 | 1.21 ± 0.00 | 1.15 ± 0.00 | 89.7 ± 0.0 |
 | Deterministic scripted expert | 550 | 1.20 | 1.15 | 89.8 |
 
 ## Clarification behaviour
@@ -45,12 +45,12 @@ Exact minimum slot edits over complete feasible plans. Scored only on successful
 | Always-Global | 0.0 | – | 0.0 | 100.0 |
 | Always-Global (deterministic control) | 0.0 | – | 0.0 | 100.0 |
 | Static rules | 0.0 | 0.0 | 0.0 | 29.5 |
-| BC | 97.4 ± 1.0 | 99.5 ± 0.4 | 0.0 | 2.0 ± 0.2 |
-| BC + augmentation | 96.9 ± 1.1 | 100.0 | 0.0 | 2.1 ± 0.2 |
-| BC + DAgger (1) | 98.4 | 99.7 ± 0.4 | 0.0 | 1.7 ± 0.1 |
-| BC + DAgger (2) | 98.4 ± 0.6 | 99.2 ± 0.6 | 0.0 | 1.7 ± 0.1 |
-| BC + DAgger (3) | 97.7 ± 0.6 | 99.5 ± 0.4 | 0.0 | 1.8 ± 0.1 |
-| BC + aug + DAgger (3) | 97.9 ± 0.4 | 99.2 ± 0.6 | 0.0 ± 0.1 | 1.7 ± 0.1 |
+| BC | 98.2 ± 0.4 | 99.7 ± 0.4 | 0.0 | 1.9 ± 0.1 |
+| BC + augmentation | 96.9 ± 0.6 | 99.5 ± 0.4 | 0.0 | 2.0 ± 0.1 |
+| BC + DAgger (1) | 98.7 ± 0.4 | 99.2 ± 0.6 | 0.0 | 1.7 ± 0.1 |
+| BC + DAgger (2) | 97.7 ± 0.6 | 100.0 | 0.0 | 2.0 ± 0.2 |
+| BC + DAgger (3) | 98.4 | 99.2 | 0.0 | 1.7 ± 0.1 |
+| BC + aug + DAgger (3) | 98.2 ± 0.4 | 99.5 ± 0.7 | 0.0 | 1.9 ± 0.1 |
 | Deterministic scripted expert | 100.0 | 100.0 | 0.0 | 1.5 |
 
 ## Recovery from a forced mistake (164 episodes whose first update needs a repair)
@@ -79,12 +79,12 @@ Revision success % / unaffected preserved %. Learned systems: training seed 0.
 | Always-Global | 15.0 / 100 | 67.3 / 100 | 7.8 / 100 | 32.9 / 100 |
 | Always-Global (deterministic control) | 15.0 / 100 | 67.3 / 100 | 7.8 / 100 | 32.9 / 100 |
 | Static rules | 76.7 / 95 | 75.5 / 100 | 58.8 / 100 | 61.4 / 100 |
-| BC | 97.6 / 95 | 100.0 / 100 | 99.0 / 100 | 98.6 / 100 |
-| BC + augmentation | 96.8 / 95 | 98.0 / 100 | 100.0 / 100 | 98.6 / 100 |
-| BC + DAgger (1) | 97.6 / 95 | 100.0 / 100 | 100.0 / 100 | 98.6 / 100 |
+| BC | 97.4 / 95 | 98.0 / 100 | 100.0 / 100 | 100.0 / 100 |
+| BC + augmentation | 97.0 / 95 | 98.0 / 100 | 100.0 / 100 | 98.6 / 100 |
+| BC + DAgger (1) | 97.4 / 95 | 98.0 / 100 | 100.0 / 100 | 100.0 / 100 |
 | BC + DAgger (2) | 97.2 / 95 | 98.0 / 100 | 99.0 / 100 | 100.0 / 100 |
 | BC + DAgger (3) | 97.4 / 95 | 98.0 / 100 | 100.0 / 100 | 100.0 / 100 |
-| BC + aug + DAgger (3) | 97.4 / 95 | 95.9 / 99 | 99.0 / 100 | 98.6 / 100 |
+| BC + aug + DAgger (3) | 97.4 / 95 | 95.9 / 99 | 98.0 / 100 | 100.0 / 100 |
 | Deterministic scripted expert | 97.9 / 95 | 100.0 / 100 | 100.0 / 100 | 100.0 / 100 |
 
 ## By turn position (4th turn only exists in test)
@@ -96,12 +96,12 @@ Revision success % / unaffected preserved %. Learned systems: training seed 0.
 | Always-Global | 14.5 / 100 | 23.9 / 100 | 18.1 / 100 | 14.9 / 100 |
 | Always-Global (deterministic control) | 14.5 / 100 | 23.9 / 100 | 18.1 / 100 | 14.9 / 100 |
 | Static rules | 52.2 / 98 | 83.0 / 96 | 72.4 / 96 | 61.2 / 98 |
-| BC | 95.7 / 97 | 99.6 / 96 | 96.7 / 96 | 98.5 / 97 |
-| BC + augmentation | 94.2 / 97 | 99.6 / 96 | 96.7 / 96 | 96.3 / 97 |
-| BC + DAgger (1) | 95.7 / 97 | 99.6 / 96 | 97.1 / 96 | 98.5 / 97 |
-| BC + DAgger (2) | 92.8 / 97 | 99.6 / 96 | 96.7 / 96 | 98.5 / 97 |
+| BC | 94.2 / 97 | 99.6 / 96 | 96.7 / 96 | 99.3 / 97 |
+| BC + augmentation | 94.2 / 97 | 99.6 / 96 | 96.7 / 96 | 97.0 / 97 |
+| BC + DAgger (1) | 94.2 / 97 | 99.6 / 96 | 96.7 / 96 | 99.3 / 97 |
+| BC + DAgger (2) | 94.2 / 97 | 99.6 / 96 | 96.2 / 96 | 98.5 / 97 |
 | BC + DAgger (3) | 94.2 / 97 | 99.6 / 96 | 96.7 / 96 | 99.3 / 97 |
-| BC + aug + DAgger (3) | 92.8 / 96 | 99.6 / 96 | 96.7 / 96 | 97.8 / 97 |
+| BC + aug + DAgger (3) | 92.8 / 96 | 99.3 / 96 | 96.7 / 96 | 98.5 / 97 |
 | Deterministic scripted expert | 97.1 / 98 | 99.6 / 96 | 97.1 / 96 | 99.3 / 97 |
 
 ## Figures

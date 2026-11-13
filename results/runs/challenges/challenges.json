@@ -1,7 +1,7 @@
 {
   "manifest": {
-    "git_sha": "36d3395",
-    "git_dirty": false,
+    "git_sha": "d660d4e",
+    "git_dirty": true,
     "config": {
       "seed": 0,
       "seeds": [
@@ -13,9 +13,9 @@
     },
     "config_hash": "fce76727e3",
     "fingerprints": {
-      "source": "09a45a79ca24",
+      "source": "bc8ce14085cc",
       "prompts": "f9352f57f9ee",
-      "tasks": "c6a92573e38a"
+      "tasks": "31cf06aeb6b9"
     }
   },
   "scope": "Independent stress test; existing weights; no retraining. Global required only within <=2-local search.",
@@ -778,14 +778,16 @@
       "min_components": 1,
       "success": true,
       "actions": [
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
         "REPLAN_LOCAL_TRANSPORT",
         "VERIFY",
         "STOP"
       ],
       "terminal": "STOP",
       "minimum_edits": 2,
-      "excess_edits": 0,
-      "edit_optimal_preservation": 1.0
+      "excess_edits": 1,
+      "edit_optimal_preservation": 0.9090909090909091
     },
     {
       "system": "bc_aug_dagger3_s0",
@@ -793,14 +795,16 @@
       "min_components": 1,
       "success": true,
       "actions": [
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
         "REPLAN_LOCAL_TRANSPORT",
         "VERIFY",
         "STOP"
       ],
       "terminal": "STOP",
       "minimum_edits": 2,
-      "excess_edits": 0,
-      "edit_optimal_preservation": 1.0
+      "excess_edits": 1,
+      "edit_optimal_preservation": 0.9090909090909091
     },
     {
       "system": "bc_aug_dagger3_s0",
@@ -808,14 +812,16 @@
       "min_components": 1,
       "success": true,
       "actions": [
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
         "REPLAN_LOCAL_TRANSPORT",
         "VERIFY",
         "STOP"
       ],
       "terminal": "STOP",
       "minimum_edits": 2,
-      "excess_edits": 0,
-      "edit_optimal_preservation": 1.0
+      "excess_edits": 1,
+      "edit_optimal_preservation": 0.9090909090909091
     },
     {
       "system": "bc_aug_dagger3_s0",
@@ -823,14 +829,16 @@
       "min_components": 1,
       "success": true,
       "actions": [
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
         "REPLAN_LOCAL_TRANSPORT",
         "VERIFY",
         "STOP"
       ],
       "terminal": "STOP",
       "minimum_edits": 2,
-      "excess_edits": 0,
-      "edit_optimal_preservation": 1.0
+      "excess_edits": 1,
+      "edit_optimal_preservation": 0.9090909090909091
     },
     {
       "system": "bc_aug_dagger3_s0",
@@ -966,14 +974,16 @@
       "min_components": 1,
       "success": true,
       "actions": [
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
         "REPLAN_LOCAL_TRANSPORT",
         "VERIFY",
         "STOP"
       ],
       "terminal": "STOP",
       "minimum_edits": 2,
-      "excess_edits": 0,
-      "edit_optimal_preservation": 1.0
+      "excess_edits": 1,
+      "edit_optimal_preservation": 0.9090909090909091
     },
     {
       "system": "bc_aug_dagger3_s1",
@@ -981,14 +991,16 @@
       "min_components": 1,
       "success": true,
       "actions": [
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
         "REPLAN_LOCAL_TRANSPORT",
         "VERIFY",
         "STOP"
       ],
       "terminal": "STOP",
       "minimum_edits": 2,
-      "excess_edits": 0,
-      "edit_optimal_preservation": 1.0
+      "excess_edits": 1,
+      "edit_optimal_preservation": 0.9090909090909091
     },
     {
       "system": "bc_aug_dagger3_s1",
@@ -996,14 +1008,16 @@
       "min_components": 1,
       "success": true,
       "actions": [
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
         "REPLAN_LOCAL_TRANSPORT",
         "VERIFY",
         "STOP"
       ],
       "terminal": "STOP",
       "minimum_edits": 2,
-      "excess_edits": 0,
-      "edit_optimal_preservation": 1.0
+      "excess_edits": 1,
+      "edit_optimal_preservation": 0.9090909090909091
     },
     {
       "system": "bc_aug_dagger3_s1",
@@ -1011,14 +1025,16 @@
       "min_components": 1,
       "success": true,
       "actions": [
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
         "REPLAN_LOCAL_TRANSPORT",
         "VERIFY",
         "STOP"
       ],
       "terminal": "STOP",
       "minimum_edits": 2,
-      "excess_edits": 0,
-      "edit_optimal_preservation": 1.0
+      "excess_edits": 1,
+      "edit_optimal_preservation": 0.9090909090909091
     },
     {
       "system": "bc_aug_dagger3_s1",
