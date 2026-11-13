@@ -1,6 +1,8 @@
 # TaskFlow-Travel — Team Handoff
 
-Everything a teammate needs to pick this project up and keep going: what the project is, what has been built and verified, how to run it, what's left (with owners and "done" criteria), and the rules we follow so results stay trustworthy.
+Everything a teammate needs to pick this project up and keep going: what the project is, what has been built and verified, how to run it, what's left (with owners and "done" criteria), the limitations, and the rules we follow so results stay trustworthy.
+
+This file is meant to be self-contained. If you hand the project to a coding assistant, give it this file (or the one-file bundle from `make snapshot`, which includes this file plus all docs and source) and start with the briefing in **Section 13**.
 
 Last updated: 2026-11-13 · Repo: https://github.com/onetrickollie/taskflow-travel · Website: https://onetrickollie.github.io/taskflow-travel/ · Course: CSCI 566
 
@@ -55,6 +57,52 @@ A user has a valid 3-day itinerary and keeps changing their mind: lower the budg
 The research question from the proposal is whether a small coordinator **learned by imitation** (behavior cloning + trajectory augmentation + DAgger) handles these revisions better than hand-written rules or full regeneration. "Better" means the same success, fewer unnecessary changes to the plan, and fewer LLM calls. The instructor's feedback asked us to handle compounding errors (DAgger / augmentation) and to release the dataset and verifier.
 
 Data comes from the public **TravelPlanner** benchmark (osunlp/TravelPlanner, CC BY 4.0).
+
+### 2.1 What's real data and what's simulated
+
+| Part | Real or simulated | Details |
+|---|---|---|
+| **Trip prices and options** | **Real** (TravelPlanner database) | Flights (price, times), hotels (price, room type, house rules, occupancy, minimum nights, rating), restaurants (price, cuisines, rating), attractions. Budgets, the verifier's budget check, "cheapest possible plan" and excess-edit scoring all use these numbers. |
+| Driving/taxi on routes with no record (app only) | Estimated | Straight-line distance between cities × 1.18 road factor, $0.05/km driving, $1/km taxi, 107 km/h, all fitted to the real records. Labelled "estimated" in the app. Never used in benchmark data. |
+| **Handling a change** ("Could we also try some Mexican food?") | **Algorithms, no LLM** | The rule-based tracker turns the text into `add cuisine: Mexican`. The coordinator picks actions. A deterministic search picks the cheapest valid restaurants and the verifier checks the result. The output is a real plan with real prices. |
+| The learned coordinator | Real model | A small neural network (MLP) trained on our data, run for real at every step. It isn't an LLM, so it isn't counted as an LLM call. |
+| **LLM calls and tokens** | **Simulated** | No LLM runs offline. Each action is charged a fixed price from `ACTION_COST` in `taskflow/env/state.py`, and the reports add these up. The table below lists the prices. |
+
+| Action | LLM calls | Tool calls | Tokens (assumed) |
+|---|---|---|---|
+| `REPLAN_LOCAL_*` (one component) | 1 | 0 | 1,500 |
+| `REPLAN_GLOBAL` (rebuild everything) | 4 | 3 | 6,000 |
+| `SEARCH_*` | 0 | 1 | 400 |
+| `ASK_CLARIFICATION` | 1 | 0 | 300 |
+| `VERIFY`, `KEEP_PLAN`, `STOP` | 0 | 0 | 0 |
+
+So "0.72 LLM calls per turn" means "if an LLM performed these actions, at these assumed prices". The comparison between coordinators is meaningful, because rebuilding really is more work than swapping a hotel. Absolute costs and ratios need measuring with a real API (task H4). With a backend configured, reports add **Measured** columns next to the simulated ones.
+
+### 2.2 Using your own LLM API
+
+**Connecting is easy:** about five minutes, no code changes.
+
+```bash
+cp .env.example .env
+```
+
+```
+TASKFLOW_LLM_PROVIDER=openai        # or: anthropic
+TASKFLOW_LLM_MODEL=<model id exactly as your provider names it>
+OPENAI_API_KEY=<key>                # or ANTHROPIC_API_KEY
+# TASKFLOW_LLM_BASE_URL=https://openrouter.ai/api/v1    # any OpenAI-compatible endpoint
+# TASKFLOW_LLM_BASE_URL=http://localhost:11434/v1       # local Ollama, no key, free
+```
+
+- **Supported providers:** Anthropic, and anything with an OpenAI-compatible API (OpenAI, OpenRouter, Groq, Together, vLLM, Ollama).
+- **What switches over automatically:** the tracker (it then understands free-form text), the four component agents (they choose from validated shortlists) and `llm_coordinator`. The learned coordinator still runs locally.
+- **Safety nets:**
+  - A bad key, model id or endpoint stops the run (HTTP 400/401/403/404).
+  - Any invalid reply falls back to the deterministic component, is counted per component and reason, and marks the run **DEGRADED**.
+  - Replies are cached in `cache/llm/` (git-ignored), so re-runs cost nothing.
+- **Cost warning:** the LLM coordinator makes about 6 requests per user message, and a full evaluation runs hundreds of messages across about 10 systems. Start with one episode (H4, step 3).
+
+**Making it work well takes work:** nothing has been run against a real model yet, and the prompts in `taskflow/llm/prompts.py` are first drafts. Full guide: `docs/LLM_SETUP.md`.
 
 ---
 
@@ -155,13 +203,26 @@ On pull requests it only tests and builds.
 
 - **If the tests fail, the site isn't updated.** Check the repo's **Actions** tab.
 - **To add a page:** list the Markdown file in `PAGES` in `scripts/build_site.py`. Links between `.md` files become links between pages automatically.
-- **The interactive app can't run on Pages** (it needs a Python server). The site shows recorded replays instead. Hosting the app would need a service that runs Python, such as Render, Railway or a Hugging Face Space.
+- **The interactive app can't run on Pages** (it needs a Python server). The site currently only re-publishes the docs and shows recorded replays. The goal of letting anyone use the service from the website is task **Host the app online** (Section 6, P0).
 
 ## 6. What's left
 
 Ordered by priority. Each item says who should own it (sub-teams from the engineering plan), what to do, and when it counts as done.
 
 ### P0 — needed for the final report
+
+**Host the interactive app online (agents + eval)**
+- **Why:** today `make app` runs only on your own computer. The goal is that anyone can open the website and use the service: type a start city and destination, then revise the trip.
+- **Why it isn't online yet:** GitHub Pages only serves static files, and the app is a Python server (`scripts/app.py`) that needs torch, the trained models and the TravelPlanner data.
+- **Recommended path:** deploy `scripts/app.py` unchanged in behavior to a host that runs Python, such as a Hugging Face Space (Docker SDK), Render or Railway. Then link it from the website home page: edit `index` in `scripts/build_site.py` and add a "Try it" card.
+- **Code changes it needs:**
+  1. **Host and port:** the server binds to `127.0.0.1` (`scripts/app.py`, the `ThreadingHTTPServer(("127.0.0.1", a.port), ...)` line). Add `--host` (default `127.0.0.1`), use `0.0.0.0` in the container, and read the port from `$PORT` (Render/Railway) or use 7860 (Hugging Face Spaces).
+  2. **Container:** a `Dockerfile` that installs `requirements.txt` with CPU-only torch (`--extra-index-url https://download.pytorch.org/whl/cpu`, as in `.github/workflows/site.yml`). Let the image download TravelPlanner data at build time, so the first visitor doesn't wait. `scripts/app.py` builds the city database at startup in about 1 second.
+  3. **Sessions:** they live in an in-memory dict (`SESSIONS`) with no limit or expiry, and every request is serialized by one global `LOCK`. Add a cap and expiry, e.g. the 500 most recent sessions or 1 hour idle. Expect one worker process; sessions are lost on restart, which is fine for a demo.
+  4. **Abuse protection:** basic per-IP rate limiting, and a request size limit.
+  5. **If an LLM backend is used online:** put the key in the host's secret settings, never in the repo. Set a spending limit at the provider, because a public page means strangers spend your money. Consider offline mode for the public demo and LLM mode behind a password.
+- **Harder alternative, only if hosting is a problem:** a fully static version. Export the MLP to ONNX and run it in the browser, and port the planners and verifier to JavaScript (or run the Python in the browser with Pyodide). That's a large rewrite.
+- **Done when:** the website has a "Try it" link that works on a phone for someone who never cloned the repo, survives 20 concurrent users, and a test covers the host/port options.
 
 **H4. First real-LLM run (agents team)**
 - **Why:** every LLM component has only been tested offline with a stand-in backend. All cost numbers are simulated.
@@ -212,7 +273,7 @@ Ordered by priority. Each item says who should own it (sub-teams from the engine
 
 | Task | Owner | Notes |
 |---|---|---|
-| CI | eval | Done: `.github/workflows/site.yml` runs the tests on every push and pull request. Next: add a lint step. |
+| CI | eval | Done: `.github/workflows/site.yml` runs the tests on every push and pull request. Next: add a lint step, and bump the GitHub Actions versions (the build logs warn that Node.js 20 is deprecated; harmless for now). |
 | Dataset release (T22) | bench | Dataset card + datasheet for `data/tasks/v0`, citing TravelPlanner (CC BY 4.0). Check FlexTravelBench's license before using it. |
 | LLM paraphrases (T10) | bench | Paraphrase test updates with an LLM; keep a paraphrase only if the tracker recovers the structured diff. Template set B was written alongside the tracker, so current "unseen phrasing" results are weak evidence. |
 | Multi-city trips | bench + agents | 5- and 7-day TravelPlanner queries; per-day slots; city order. |
@@ -271,6 +332,14 @@ results/       canonical REPORT.md, metrics.json, figures; runs/ for every other
 ## 9. Key concepts
 
 - **Slots:** a plan has 13: 2 transport legs, 1 stay, 6 meals, 4 attractions.
+- **Actions (12):**
+  - `KEEP_PLAN`, `ASK_CLARIFICATION`;
+  - `SEARCH_TRANSPORTATION`, `SEARCH_ACCOMMODATION`, `SEARCH_ACTIVITY_DINING`;
+  - `REPLAN_LOCAL_TRANSPORT`, `REPLAN_LOCAL_ACCOMMODATION`, `REPLAN_LOCAL_MEALS`, `REPLAN_LOCAL_ATTRACTIONS`, `REPLAN_GLOBAL`;
+  - `VERIFY`, `STOP`.
+
+  A turn ends on `KEEP_PLAN`, `STOP` or `ASK_CLARIFICATION`, or after 10 steps (timeout).
+- **Update types:** `add`, `delete`, `replace` or `reprioritize`, applied to budget, room type, house rule, cuisine, transport rule, restaurant rating floor or priority (cost/quality).
 - **Feasible:** the current plan already satisfies the update, or the planners can build a plan that does. Verified against an exact solver.
 - **Revision success:** the turn ends with a valid plan, or with a clarification question when the update truly can't be met.
 - **Excess edits:** slots changed beyond the exact minimum any valid repair needs (`taskflow/eval/exact.py`).
@@ -283,16 +352,52 @@ results/       canonical REPORT.md, metrics.json, figures; runs/ for every other
 
 ## 10. Known limitations
 
-- **Offline only so far.** The LLM paths have only been tested with the fake backend.
-- **Scope:** 3-day single-city trips; March 2022 data. Test-file queries have hidden constraints, so their starting budgets and requirements were sampled.
-- **Feasibility is relative to our planners.** It's checked by an exact solver under the all-13-slots rule, which is stricter than upstream TravelPlanner.
-- **Always-regenerate's instability is simulated.** Its preservation number depends on that choice: 30% sampled vs 87% deterministic.
-- **The expert defines the difficulty levels** it then demonstrates, so results measure imitation of its decision boundary.
-- **App:**
-  - Flights exist only for routes and dates in the data.
-  - Other routes use distance-based driving estimates (contiguous US, at most 12 hours each way).
-  - The offline tracker only understands phrasings like the suggestion buttons.
-- **TravelPlanner quirks:** some hotel names were reused from other cities in the source data.
+Read these before presenting or extending the results.
+
+**About the results**
+- **All results are offline.**
+  - The component agents are deterministic searches, and the tracker is rule-based.
+  - LLM calls and tokens come from the assumed price table in Section 2.1, not measurements.
+  - The LLM paths (tracker, agents, coordinator, teacher) have only been tested with the fake backend and adversarial stubs, never a real model.
+- **The learned coordinator's advantage is narrow.**
+  - **Clear win** under a tight call budget: 97.6% vs 79.7% at 1 call per turn.
+  - **Modest wins** on edit efficiency for multi-component cuts (0.82 vs 1.03 excess edits) and on calls without a cap (0.72 vs 0.84).
+  - **No win** on success against the cost-aware rules without a cap (99.6% vs 100%).
+- **Always-regenerate's instability is simulated.** Global rebuilds sample among near-best options. Its stability numbers depend on that choice: 30% vs 87% edit-optimal preservation, sampled vs deterministic.
+- **The expert labels its own benchmark.** Difficulty levels in the multi-component family are chosen with the same scripted expert that provides training labels, so results measure imitation of its decision boundary. The expert searches repairs of up to three components and isn't an optimality bound: its local search is bounded and its planners are greedy.
+- **Weak held-out checks:**
+  - The 12-case synthetic stress suite has been inspected repeatedly; treat it as a regression check, not an untouched holdout.
+  - "Unseen phrasing" (template set B) was written alongside the rule-based tracker, so it shows template compatibility, not robustness to real paraphrases.
+- **Narrow multi-component family:** one-turn budget cuts only, all starting from an expensive approved itinerary. Non-budget combinations and multi-turn sequences are untested.
+- **Recovery is mixed:** forced-mistake recovery varies by mistake type for DAgger alone (83–100%). Augmentation is the reliable mitigation.
+- **Missing pieces:** the single-agent LLM baseline promised in the proposal isn't built, and neither are "add a traveler" or date changes.
+
+**About the data**
+- **Scope:** 3-day, single-city trips; dates in March 2022.
+- **Sampled constraints on the test file:** TravelPlanner hides the test queries' constraints, so starting budgets (1.2–1.7× the cheapest plan) and requirements for those trips were sampled.
+- **Feasibility is relative to our planners and our completeness rule.** A valid plan fills all 13 slots, which is stricter than upstream TravelPlanner; all labels are confirmed by an exact solver.
+- **Upstream compatibility is partial.** Plans pass the upstream TravelPlanner check functions run on per-query slices, not the official CLI or full database. Upstream matches names by substring ("Pizza Hut" vs "Pizza Hut Delivery"), which causes a few small cost differences.
+- **TravelPlanner quirks:** many hotel names were copied from listings in other cities (e.g. "Brooklyn studio" in Detroit). Some names contained escaped newlines, which we restored.
+- **No leaderboard comparison:** splits are re-drawn, so numbers aren't comparable with the official TravelPlanner leaderboard.
+
+**About the app** (`scripts/app.py`)
+- **Local only.** It runs at `localhost` and isn't hosted anywhere (see the P0 hosting task). The website is static and only shows docs and recorded replays.
+- **Sparse flights:** flights exist only for the routes and dates TravelPlanner's queries used, so most typed city pairs have none.
+- **Driving and taxi rules:** for routes with no record, they're estimated from distance, only between two contiguous-US cities, and only if each leg is at most 12 hours. Long or overseas pairs are refused, with a list of reachable destinations.
+- **Offline phrasing:** the offline tracker understands phrasings close to the suggestion buttons ("Could we also try some Mexican food?" works; "I'm craving tacos" doesn't). One change per message.
+- **Server limits:** a single process, in-memory sessions with no expiry, one global lock, no authentication, no rate limiting. Fine on a laptop, not for public hosting as-is.
+- **One coordinator config:** the app's learned coordinator is the seed-0 BC+aug+DAgger(3) model.
+- **Scoring check:** when a coordinator asks for clarification, the app's "was it possible?" badge comes from a separate scoring-only check that the coordinators never see.
+
+**About the learned policy**
+- **Action mask:** the policy may not repeat its previous re-plan or search back to back. That's harmless with deterministic planners, but should be revisited with LLM agents, whose retries aren't deterministic.
+- **Clipped inputs:** cost-ratio features are clipped at 10× the budget, so a budget far outside the training range looks like "far too expensive".
+- **LLM-teacher training** (`--teacher llm`) collects states in the deterministic environment; only the labels come from the LLM.
+
+**About the engineering**
+- **Python versions:** developed and CI-tested on Python 3.14. The code should work on 3.11+, but only 3.14 has been verified.
+- **Dependencies:** pinned in `requirements.txt` (torch, numpy, matplotlib, pytest). Website builds also need `requirements-site.txt` (markdown).
+- **CI:** the GitHub Actions build warns that Node.js 20 is deprecated for the actions used; harmless for now.
 
 ---
 
@@ -328,3 +433,44 @@ Assign names here when the team meets:
 | agents | |
 | learning | |
 | eval | |
+
+---
+
+## 13. Briefing for a coding assistant
+
+Paste this together with this file (or the `make snapshot` bundle):
+
+```text
+You are joining an existing Python project, TaskFlow-Travel (CSCI 566). Read HANDOFF.md fully first; it is
+the source of truth for scope, status, rules and limitations. Then read README.md and docs/ARCHITECTURE.md.
+
+Project: multi-turn travel replanning on TravelPlanner data. A coordinator decides, after each user change,
+whether to keep the plan, ask, search, repair one component, or rebuild. A small MLP coordinator is trained by
+behavior cloning + trajectory augmentation + DAgger and compared with rule-based baselines.
+
+Setup and checks:
+  make setup && make test          # must pass (94 tests, offline)
+  make app                         # local interactive app at http://localhost:8566
+
+Hard rules:
+  1. Every behavior change ships with a test; run `make test` before proposing a commit.
+  2. If you change task generation, features, the expert, or the planners, regenerate data, models and
+     results together: make dataset train evaluate evaluate-capped evaluate-multi. Never hand-edit
+     anything under results/, models/ or data/tasks/.
+  3. Develop and tune on validation splits (val, val_multi). Use test splits only for final numbers.
+  4. Only `make evaluate` writes results/; every other evaluation goes to results/runs/<run>/.
+  5. Numbers in docs must come from the committed metrics.json files.
+  6. Never commit .env, API keys, or cache/ (raw LLM replies).
+  7. App-only code (taskflow/data/world.py) must never feed benchmark data.
+  8. The scripted expert (taskflow/coordinators/oracle.py) is deterministic-only.
+  9. Do not add AI-tool names, "generated by" notes, co-author trailers, or assistant config files
+     to the repository.
+
+Distinguish clearly in anything you write: trip prices are real TravelPlanner data; LLM calls/tokens are
+simulated from ACTION_COST in taskflow/env/state.py until a real LLM backend is configured.
+
+Your task: <pick one item from HANDOFF.md Section 6, e.g. "Host the interactive app online" or "H4">.
+Before coding, restate the task's "Done when" criteria, list the files you expect to change, and flag any
+conflict with the rules or limitations above.
+```
+
