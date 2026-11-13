@@ -129,7 +129,8 @@ def main():
     if a.episode:
         ep = next(e for e in eps if e.episode_id == a.episode)
     else:
-        pool = ([e for e in eps if e.episode_id.endswith("-L3")] if a.split.endswith("_multi") else
+        # Multi family: a two-component cut, where local repair and a full rebuild differ most.
+        pool = ([e for e in eps if e.episode_id.endswith("-L2")] if a.split.endswith("_multi") else
                 [e for e in eps if len(e.turns) >= 3 and all(t.feasible for t in e.turns[:2])]) or eps
         ep = random.Random(a.seed).choice(pool)
     q = Q[ep.qid]
