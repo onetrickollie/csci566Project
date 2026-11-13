@@ -34,7 +34,9 @@ def test_challenges_require_the_claimed_component_count():
         assert exact is not None and verify(case.query, env.c, exact.plan).passed
         oracle = Oracle()
         if case.min_components == 3:
-            assert fix is None and oracle.act(env) == 'REPLAN_GLOBAL'
+            # The expert searches up to three component repairs, so it repairs
+            # locally instead of rebuilding.
+            assert fix is not None and len(fix) == 3 and oracle.act(env) != 'REPLAN_GLOBAL'
         while not env.done:
             env.step(oracle.act(env))
         assert verify(case.query, env.c, env.plan).passed

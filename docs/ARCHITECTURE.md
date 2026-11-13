@@ -96,8 +96,9 @@ taskflow/eval/metrics.py → results/metrics.json → results/REPORT.md + figure
 
 | Coordinator | Information | Behaviour |
 |---|---|---|
-| `oracle` | Privileged: simulates repairs, knows feasibility | VERIFY if stale → KEEP/STOP if valid → if infeasible, refresh searches then ASK → smallest local repair (search first if stale) → global |
+| `oracle` | Privileged: simulates repairs, knows feasibility | VERIFY if stale → KEEP/STOP if valid → if infeasible, refresh searches then ASK → smallest local repair of up to three components (search first if stale) → global |
 | `static_rules` | Update type + verifier | Fixed script per update type, then VERIFY, one global fallback, then ASK |
+| `static_cost_aware` | Same + candidate evidence | Over budget: ask if even the cheapest options can't fit, else repair components in order of possible savings, then one global fallback |
 | `always_global` | — | REPLAN_GLOBAL every turn |
 | `llm_coordinator` | Same state as the learned policy, as JSON | LLM picks each action; invalid reply → static-rule action |
 | learned (`bc`, `bc_aug`, `bc_dagger{1,2,3}`, `bc_aug_dagger3`) | Non-privileged features | MLP argmax with action mask |

@@ -197,3 +197,37 @@ Open for the next review:
 
 For the next review: the distance-based estimates for routes without driving/taxi records are app-only (not used in any benchmark number). Check that the multi family's new level mix (0: 41, 1: 96, 2: 148, 3: 145 in train) does not bias the comparison.
 
+
+
+### Supervisor re-review of latest progress (2026-11-13)
+
+Reviewed production source `025b2bb` and subsequent result-only commit `cf78ea1`. Full findings, line references, fixes and reproducible evidence: [LATEST_PROGRESS_REVIEW.md](review/LATEST_PROGRESS_REVIEW.md).
+
+**Verified:** 72 tests; all six datasets reproduce byte-for-byte; all 18 retrained model state dictionaries reproduce exactly; full main, multi, cap-1 and cap-2 system results reproduce exactly. All 3,667 labels agree with exact feasibility; all 3,054 passing expert plans pass adapted upstream checks. The escaped-name issue is closed. All learned seeds pass 12/12 fixed stress cases. Fresh-cache fake validation has no errors/fallbacks. H4 remains with teammates.
+
+**Implementer follow-up:**
+1. **R1/P1:** reject impossible estimated routes and transport times (LA→Honolulu currently returns valid self-driving; round-trip travel exceeds the entire three-day trip).
+2. **R2/P2:** do not score every ASK as success or assert the revision is impossible; unnecessary ASK on a feasible budget increase is currently counted as handled.
+3. **R3/P2:** recovery helpers must honor `initial_plan`; currently select 33 rather than 127 broken feasible multi test turns. Published multi metrics skip recovery and are unaffected.
+4. **R4/P2:** reject NaN/infinite budgets at the API boundary.
+5. **R5/P3:** resolve ground-transport display by direction, not mode alone.
+6. **R6/P3:** synchronize STATUS/README with completed checks and qualify global necessity as bounded-expert behavior.
+
+No production source/data/models/canonical results were changed by this review. The audit CLI now accepts the three multi splits. Evidence and review utilities are under `docs/review/latest/`. Before broader claims, add level-wise reporting, a cost-aware static repair baseline, and new frozen non-budget/multi-turn cases; do not tune against the already-inspected fixed stress suite.
+
+### Implementer response to the latest review (R1–R6)
+
+| ID | Status | What changed | Regression test |
+|---|---|---|---|
+| R1 | fixed | App-only realism rules in `taskflow/data/world.py`: distance estimates only between two contiguous-US cities, and any driving/taxi leg longer than 12 h (recorded or estimated) is dropped. Unreachable routes return the reason and destinations that do work from the start city. Benchmark data unaffected. | `tests/test_app.py::test_r1_*` (Los Angeles→Honolulu, New York→Seattle, Chicago→Seattle refused; ocean crossing never estimated) |
+| R2 | fixed | An ask is a pending clarification: the previous plan and requirements stay. It counts as handled only if an independent scoring-only check (`verify` on the old plan, or `is_feasible`) shows the change couldn't be met; the UI says which. | `test_r2_unnecessary_ask_is_not_counted_as_handled` (always-ask stub on a $3,000→$4,000 increase), `test_r2_necessary_ask_counts_and_keeps_plan` |
+| R3 | fixed | `initial_state()` in `scripts/evaluate.py` shares run_episode's start, including `initial_plan` and caches, for both recovery helpers. | `tests/test_multi.py::test_r3_recovery_selection_uses_initial_plan` (127/127) |
+| R4 | fixed | Finite positive budget, real ISO date in range, 1–8 travelers, and enum validation for room type, house rules, cuisines and transport. | `test_r4_*` (NaN, ±Infinity, negative, zero, text; bad date/enums) |
+| R5 | fixed | `transport_label(q, key, slot)` resolves the record by direction. | `test_r5_return_leg_uses_its_own_record` (Abilene↔Amarillo $22/$23) |
+| R6 | fixed | STATUS/README describe the verified checks (exact labels, adapted upstream checks rather than the official CLI), the expert's scope, the stress suite as a regression check, and the action mask as a learned-policy restriction to revisit with LLM agents. | — |
+| Baseline | added | `static_cost_aware` (`taskflow/coordinators/baselines.py`). It beat the old expert and learned coordinator on multi-component edits (1.03 vs 1.74 excess), which exposed the expert's two-repair search limit. | `test_cost_aware_static_baseline_solves_multi` |
+| Expert | changed | `minimal_fix` now searches up to three components. v0 data unchanged byte for byte; multi labels unchanged; models retrained. Learned (BC+aug+DAgger3) on `test_multi`: 0.82 excess edits vs cost-aware 1.03 and expert 0.78, 2.02 vs 2.01 LLM calls. | `tests/test_handoff.py` updated (3-component cases now repaired locally) |
+| Levels | added | `by_level` breakdown in evaluation and report. | `results/runs/test-multi/REPORT.md` |
+
+Still open: non-budget multi-component updates and multi-turn sequences with a new frozen test set; H4 (teammates).
+

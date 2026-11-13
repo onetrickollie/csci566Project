@@ -9,10 +9,10 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
 
-ORDER = ["always_global", "always_global_det", "static_rules", "llm_coordinator", "bc", "bc_aug", "bc_dagger1", "bc_dagger2", "bc_dagger3",
+ORDER = ["always_global", "always_global_det", "static_rules", "static_cost_aware", "llm_coordinator", "bc", "bc_aug", "bc_dagger1", "bc_dagger2", "bc_dagger3",
          "bc_aug_dagger3", "oracle"]
 LABEL = {"always_global": "Always-Global", "always_global_det": "Always-Global (deterministic control)",
-         "static_rules": "Static rules",
+         "static_rules": "Static rules", "static_cost_aware": "Static rules (cost-aware)",
          "llm_coordinator": "LLM coordinator", "bc": "BC",
          "bc_aug": "BC + augmentation", "bc_dagger1": "BC + DAgger (1)", "bc_dagger2": "BC + DAgger (2)",
          "bc_dagger3": "BC + DAgger (3)", "bc_aug_dagger3": "BC + aug + DAgger (3)",
@@ -129,6 +129,23 @@ def write_report(out: dict, d: Path) -> None:
                 hard = f"{100 * hs:.1f} (n={nr:.0f})" if hs is not None else f"– (n={nr:.0f})"
                 cells.append(f"{100 * ts:.1f} / {hard}, {c:.2f}")
             lines.append(f"| {LABEL[n]} | " + " | ".join(cells) + " |")
+
+    if any(len(S[n].get("by_level", {})) > 1 or "v0" not in S[n].get("by_level", {"v0": 1}) for n in names):
+        cats = sorted({c for n in names for c in S[n].get("by_level", {})})
+        lines += ["", "## By difficulty level (multi-component family)", "",
+                  "Revision success % / excess edits per turn / global rebuild %. Learned systems: training seed 0.", "",
+                  "| System | " + " | ".join(cats) + " |", "|---|" + "---|" * len(cats)]
+        for n in names:
+            row = []
+            for c in cats:
+                v = S[n].get("by_level", {}).get(c)
+                if not v:
+                    row.append("–")
+                    continue
+                ex = v.get("excess_edits_per_turn")
+                row.append(f"{100 * v['revision_success_rate']:.1f} / " + (f"{ex:.2f}" if ex is not None else "–")
+                           + f" / {100 * v['global_replan_rate']:.0f}")
+            lines.append(f"| {LABEL[n]} | " + " | ".join(row) + " |")
 
     for key, title in (("by_op", "By update type"), ("by_turn", "By turn position (4th turn only exists in test)")):
         cats = sorted({c for n in names for c in S[n][key]})

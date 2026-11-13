@@ -59,3 +59,23 @@ def test_retrained_model_solves_synthetic_stress_suite():
         while not env.done:
             env.step(pol.act(env))
         assert env.terminal == "STOP" and verify(case.query, env.c, env.plan).passed, case.name
+
+
+def test_r3_recovery_selection_uses_initial_plan(Q):
+    sys_path = __import__("sys").path
+    from pathlib import Path
+
+    sys_path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
+    import evaluate
+
+    eps = load(TASKS_DIR, "test_multi")
+    selected = sum(evaluate.needs_repair_first_turn(e, Q) for e in eps)
+    assert selected == sum(e.turns[0].feasible for e in eps)  # every feasible cut breaks the approved plan
+
+
+def test_cost_aware_static_baseline_solves_multi(Q):
+    from taskflow.coordinators.baselines import StaticRulesCostAware
+
+    for i, e in enumerate(load(TASKS_DIR, "val_multi")):
+        r = run_episode(e, Q[e.qid], StaticRulesCostAware(), seed=i)
+        assert r.turns[0].success, (e.episode_id, r.turns[0].actions)

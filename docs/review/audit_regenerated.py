@@ -20,7 +20,8 @@ from upstream_adapter import UpstreamAdapter, UPSTREAM_SHA
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--upstream', type=Path, required=True)
-    ap.add_argument('--splits', nargs='+', choices=['train', 'val', 'test'], default=['train', 'val', 'test'])
+    ap.add_argument('--splits', nargs='+', choices=['train', 'val', 'test', 'train_multi', 'val_multi', 'test_multi'],
+                    default=['train', 'val', 'test'])
     ap.add_argument('--seed', type=int, default=0)
     ap.add_argument('--out', type=Path, required=True)
     a = ap.parse_args()

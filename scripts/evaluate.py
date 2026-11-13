@@ -51,10 +51,20 @@ def mean_std(dicts: list[dict]) -> dict:
     return out
 
 
+def initial_state(ep, q):
+    """Same start as run_episode: planner-built plan (fills every cache), or the
+    episode's approved initial plan when it has one."""
+    base = Constraints.from_dict(ep.base)
+    cache = Cache()
+    plan = compose_global(q, base, cache)
+    if ep.initial_plan:
+        plan = dict(ep.initial_plan)
+    return base, cache, plan
+
+
 def needs_repair_first_turn(ep, Q) -> bool:
     q = Q[ep.qid]
-    base = Constraints.from_dict(ep.base)
-    plan = compose_global(q, base, Cache())
+    base, _, plan = initial_state(ep, q)
     t = ep.turns[0]
     return t.feasible and not verify(q, ConstraintDiff.from_dict(t.diff).apply(base), plan).passed
 
@@ -72,9 +82,7 @@ def mistake_needs_recovery(ep, Q, mistake: str) -> bool:
     import random
 
     q = Q[ep.qid]
-    base = Constraints.from_dict(ep.base)
-    cache = Cache()
-    plan = compose_global(q, base, cache)
+    base, cache, plan = initial_state(ep, q)
     env = TurnEnv(q, base, plan, cache, ConstraintDiff.from_dict(ep.turns[0].diff).nl, random.Random(0))
     env.step(mistake)
     return not verify(q, env.c, env.plan).passed
@@ -199,6 +207,7 @@ def main():
                         if isinstance(v, (int, float))},
             "by_op": breakdown(res, "op"), "by_type": breakdown(res, "target_type"),
             "by_turn": breakdown(res, "turn_index"), "by_chain": by_chain_length(res),
+            "by_level": breakdown(res, "level"),
             "recovery": recovery(pol, rec_eps, Q, needs), "llm_usage": usage,
         }
         print(name, json.dumps(summarize(res)))
@@ -226,7 +235,8 @@ def main():
         out["systems"][name] = {
             "summary": mean_std(sums), "by_op": breakdown(first, "op"),
             "by_type": breakdown(first, "target_type"), "by_turn": breakdown(first, "turn_index"),
-            "by_chain": by_chain_length(first), "recovery": rec, "error_vs_step": err,
+            "by_chain": by_chain_length(first), "by_level": breakdown(first, "level"),
+            "recovery": rec, "error_vs_step": err,
             "llm_usage": usages[0],
         }
         print(name, json.dumps({k: round(v["mean"], 4) for k, v in mean_std(sums).items()}))

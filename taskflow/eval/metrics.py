@@ -47,16 +47,28 @@ def summarize(results) -> dict:
     }
 
 
+def _level(episode_id: str) -> str:
+    """Multi-family difficulty from the episode id: L0 impossible, L1-L3 components."""
+    if "-L" not in episode_id:
+        return "v0"
+    lv = episode_id.rsplit("-L", 1)[1]
+    return {"0": "L0 impossible (ask)", "1": "L1 one component", "2": "L2 two components",
+            "3": "L3 three+ components"}.get(lv, lv)
+
+
 def breakdown(results, key: str) -> dict:
     groups = defaultdict(list)
     for r in results:
         for t in r.turns:
             k = {"op": t.op, "target_type": t.target_type,
-                 "turn_index": "held-out (4th turn)" if t.turn >= 3 else f"turn {t.turn + 1}"}[key]
+                 "turn_index": "held-out (4th turn)" if t.turn >= 3 else f"turn {t.turn + 1}",
+                 "level": _level(r.episode_id)}[key]
             groups[k].append(t)
     out = {}
     for k, ts in sorted(groups.items()):
         out[k] = {"turns": len(ts), "revision_success_rate": _mean([t.success for t in ts]),
+                  "excess_edits_per_turn": _mean([t.excess_edits for t in ts if t.excess_edits is not None]),
+                  "global_replan_rate": _mean([t.used_global for t in ts]),
                   "unaffected_preserved": _mean([t.preservation for t in ts if t.feasible]),
                   "edit_scored_turns": sum(t.minimum_edits is not None for t in ts),
                   "minimum_edits": _mean([t.minimum_edits for t in ts]),

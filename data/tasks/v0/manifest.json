@@ -1,5 +1,5 @@
 {
-  "git_sha": "d660d4e",
+  "git_sha": "cf78ea1",
   "git_dirty": true,
   "config": {
     "seed": 0,
@@ -7,9 +7,9 @@
   },
   "config_hash": "21b4556aee",
   "fingerprints": {
-    "source": "bc8ce14085cc",
+    "source": "76eebacf7b66",
     "prompts": "f9352f57f9ee",
-    "tasks": "ff8ebd82d4e4"
+    "tasks": "31cf06aeb6b9"
   },
   "stats": {
     "train": {

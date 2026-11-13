@@ -1,7 +1,7 @@
 {
  "manifest": {
-  "git_sha": "025b2bb",
-  "git_dirty": false,
+  "git_sha": "cf78ea1",
+  "git_dirty": true,
   "config": {
    "seeds": [
     0
@@ -17,11 +17,11 @@
     "endpoint": "local://fake",
     "temperature": 0.0
    },
-   "models": "a6b241c28a2f"
+   "models": "002a69fec837"
   },
-  "config_hash": "83ddb3387d",
+  "config_hash": "e55b48b652",
   "fingerprints": {
-   "source": "bc8ce14085cc",
+   "source": "76eebacf7b66",
    "prompts": "f9352f57f9ee",
    "tasks": "31cf06aeb6b9"
   }
@@ -130,6 +130,8 @@
     "add": {
      "turns": 45,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 2.675675675675676,
+     "global_replan_rate": 1.0,
      "unaffected_preserved": 0.9207243957243957,
      "edit_scored_turns": 37,
      "minimum_edits": 1.837837837837838,
@@ -140,6 +142,8 @@
     "delete": {
      "turns": 3,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 4.0,
+     "global_replan_rate": 1.0,
      "unaffected_preserved": 0.6923076923076924,
      "edit_scored_turns": 3,
      "minimum_edits": 0.0,
@@ -150,6 +154,8 @@
     "replace": {
      "turns": 10,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.5,
+     "global_replan_rate": 1.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 8,
      "minimum_edits": 0.75,
@@ -160,6 +166,8 @@
     "reprioritize": {
      "turns": 5,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 1.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 4,
      "minimum_edits": 0.75,
@@ -172,6 +180,8 @@
     "budget": {
      "turns": 6,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 1.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 4,
      "minimum_edits": 0.5,
@@ -182,6 +192,8 @@
     "cuisine": {
      "turns": 21,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 4.238095238095238,
+     "global_replan_rate": 1.0,
      "unaffected_preserved": 0.9377289377289377,
      "edit_scored_turns": 21,
      "minimum_edits": 0.8095238095238095,
@@ -192,6 +204,8 @@
     "house_rule": {
      "turns": 7,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 1.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 3,
      "minimum_edits": 0.6666666666666666,
@@ -202,6 +216,8 @@
     "min_rating": {
      "turns": 13,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 1.75,
+     "global_replan_rate": 1.0,
      "unaffected_preserved": 0.819669450919451,
      "edit_scored_turns": 12,
      "minimum_edits": 3.8333333333333335,
@@ -212,6 +228,8 @@
     "priority": {
      "turns": 5,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 1.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 4,
      "minimum_edits": 0.75,
@@ -222,6 +240,8 @@
     "room_type": {
      "turns": 6,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 1.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 4,
      "minimum_edits": 0.75,
@@ -232,6 +252,8 @@
     "transport": {
      "turns": 5,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 1.25,
+     "global_replan_rate": 1.0,
      "unaffected_preserved": 0.9038461538461539,
      "edit_scored_turns": 4,
      "minimum_edits": 1.0,
@@ -244,6 +266,8 @@
     "turn 1": {
      "turns": 30,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 2.076923076923077,
+     "global_replan_rate": 1.0,
      "unaffected_preserved": 0.9444855358316897,
      "edit_scored_turns": 26,
      "minimum_edits": 1.6153846153846154,
@@ -254,6 +278,8 @@
     "turn 2": {
      "turns": 21,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 2.3684210526315788,
+     "global_replan_rate": 1.0,
      "unaffected_preserved": 0.9044943360732833,
      "edit_scored_turns": 19,
      "minimum_edits": 1.0526315789473684,
@@ -264,6 +290,8 @@
     "turn 3": {
      "turns": 12,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 2.2857142857142856,
+     "global_replan_rate": 1.0,
      "unaffected_preserved": 0.9145299145299146,
      "edit_scored_turns": 7,
      "minimum_edits": 2.142857142857143,
@@ -284,6 +312,20 @@
     "L=3": {
      "episodes": 12,
      "final_pass_rate": 1.0
+    }
+   },
+   "by_level": {
+    "v0": {
+     "turns": 63,
+     "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 2.2115384615384617,
+     "global_replan_rate": 1.0,
+     "unaffected_preserved": 0.9258408792062638,
+     "edit_scored_turns": 52,
+     "minimum_edits": 1.4807692307692308,
+     "excess_edits": 2.2115384615384617,
+     "edit_optimal_preservation": 0.8125167033820879,
+     "llm_calls_per_turn": 4.174603174603175
     }
    },
    "recovery": {},
@@ -403,6 +445,8 @@
     "add": {
      "turns": 45,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 2.675675675675676,
+     "global_replan_rate": 1.0,
      "unaffected_preserved": 0.9207243957243957,
      "edit_scored_turns": 37,
      "minimum_edits": 1.837837837837838,
@@ -413,6 +457,8 @@
     "delete": {
      "turns": 3,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 4.0,
+     "global_replan_rate": 1.0,
      "unaffected_preserved": 0.6923076923076924,
      "edit_scored_turns": 3,
      "minimum_edits": 0.0,
@@ -423,6 +469,8 @@
     "replace": {
      "turns": 10,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.5,
+     "global_replan_rate": 1.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 8,
      "minimum_edits": 0.75,
@@ -433,6 +481,8 @@
     "reprioritize": {
      "turns": 5,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 1.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 4,
      "minimum_edits": 0.75,
@@ -445,6 +495,8 @@
     "budget": {
      "turns": 6,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 1.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 4,
      "minimum_edits": 0.5,
@@ -455,6 +507,8 @@
     "cuisine": {
      "turns": 21,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 4.238095238095238,
+     "global_replan_rate": 1.0,
      "unaffected_preserved": 0.9377289377289377,
      "edit_scored_turns": 21,
      "minimum_edits": 0.8095238095238095,
@@ -465,6 +519,8 @@
     "house_rule": {
      "turns": 7,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 1.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 3,
      "minimum_edits": 0.6666666666666666,
@@ -475,6 +531,8 @@
     "min_rating": {
      "turns": 13,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 1.75,
+     "global_replan_rate": 1.0,
      "unaffected_preserved": 0.819669450919451,
      "edit_scored_turns": 12,
      "minimum_edits": 3.8333333333333335,
@@ -485,6 +543,8 @@
     "priority": {
      "turns": 5,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 1.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 4,
      "minimum_edits": 0.75,
@@ -495,6 +555,8 @@
     "room_type": {
      "turns": 6,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 1.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 4,
      "minimum_edits": 0.75,
@@ -505,6 +567,8 @@
     "transport": {
      "turns": 5,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 1.25,
+     "global_replan_rate": 1.0,
      "unaffected_preserved": 0.9038461538461539,
      "edit_scored_turns": 4,
      "minimum_edits": 1.0,
@@ -517,6 +581,8 @@
     "turn 1": {
      "turns": 30,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 2.076923076923077,
+     "global_replan_rate": 1.0,
      "unaffected_preserved": 0.9444855358316897,
      "edit_scored_turns": 26,
      "minimum_edits": 1.6153846153846154,
@@ -527,6 +593,8 @@
     "turn 2": {
      "turns": 21,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 2.3684210526315788,
+     "global_replan_rate": 1.0,
      "unaffected_preserved": 0.9044943360732833,
      "edit_scored_turns": 19,
      "minimum_edits": 1.0526315789473684,
@@ -537,6 +605,8 @@
     "turn 3": {
      "turns": 12,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 2.2857142857142856,
+     "global_replan_rate": 1.0,
      "unaffected_preserved": 0.9145299145299146,
      "edit_scored_turns": 7,
      "minimum_edits": 2.142857142857143,
@@ -557,6 +627,20 @@
     "L=3": {
      "episodes": 12,
      "final_pass_rate": 1.0
+    }
+   },
+   "by_level": {
+    "v0": {
+     "turns": 63,
+     "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 2.2115384615384617,
+     "global_replan_rate": 1.0,
+     "unaffected_preserved": 0.9258408792062638,
+     "edit_scored_turns": 52,
+     "minimum_edits": 1.4807692307692308,
+     "excess_edits": 2.2115384615384617,
+     "edit_optimal_preservation": 0.8125167033820879,
+     "llm_calls_per_turn": 4.174603174603175
     }
    },
    "recovery": {},
@@ -676,6 +760,8 @@
     "add": {
      "turns": 45,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 2.2432432432432434,
+     "global_replan_rate": 0.022222222222222223,
      "unaffected_preserved": 0.956067431067431,
      "edit_scored_turns": 37,
      "minimum_edits": 1.837837837837838,
@@ -686,6 +772,8 @@
     "delete": {
      "turns": 3,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 3,
      "minimum_edits": 0.0,
@@ -696,6 +784,8 @@
     "replace": {
      "turns": 10,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.5,
+     "global_replan_rate": 0.1,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 8,
      "minimum_edits": 0.875,
@@ -706,6 +796,8 @@
     "reprioritize": {
      "turns": 5,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 4,
      "minimum_edits": 0.75,
@@ -718,6 +810,8 @@
     "budget": {
      "turns": 6,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.16666666666666666,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 4,
      "minimum_edits": 0.75,
@@ -728,6 +822,8 @@
     "cuisine": {
      "turns": 21,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 3.4761904761904763,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 21,
      "minimum_edits": 0.8095238095238095,
@@ -738,6 +834,8 @@
     "house_rule": {
      "turns": 7,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 3,
      "minimum_edits": 0.6666666666666666,
@@ -748,6 +846,8 @@
     "min_rating": {
      "turns": 13,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 1.1666666666666667,
+     "global_replan_rate": 0.07692307692307693,
      "unaffected_preserved": 0.8645412457912459,
      "edit_scored_turns": 12,
      "minimum_edits": 3.8333333333333335,
@@ -758,6 +858,8 @@
     "priority": {
      "turns": 5,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 4,
      "minimum_edits": 0.75,
@@ -768,6 +870,8 @@
     "room_type": {
      "turns": 6,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 4,
      "minimum_edits": 0.75,
@@ -778,6 +882,8 @@
     "transport": {
      "turns": 5,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 4,
      "minimum_edits": 1.0,
@@ -790,6 +896,8 @@
     "turn 1": {
      "turns": 30,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 1.6538461538461537,
+     "global_replan_rate": 0.03333333333333333,
      "unaffected_preserved": 0.9770299145299146,
      "edit_scored_turns": 26,
      "minimum_edits": 1.6153846153846154,
@@ -800,6 +908,8 @@
     "turn 2": {
      "turns": 21,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 1.5789473684210527,
+     "global_replan_rate": 0.047619047619047616,
      "unaffected_preserved": 0.9692716640085062,
      "edit_scored_turns": 19,
      "minimum_edits": 1.105263157894737,
@@ -810,6 +920,8 @@
     "turn 3": {
      "turns": 12,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 2.0,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 0.9365079365079365,
      "edit_scored_turns": 7,
      "minimum_edits": 2.142857142857143,
@@ -832,6 +944,20 @@
      "final_pass_rate": 1.0
     }
    },
+   "by_level": {
+    "v0": {
+     "turns": 63,
+     "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 1.6730769230769231,
+     "global_replan_rate": 0.031746031746031744,
+     "unaffected_preserved": 0.9687402874902875,
+     "edit_scored_turns": 52,
+     "minimum_edits": 1.5,
+     "excess_edits": 1.6730769230769231,
+     "edit_optimal_preservation": 0.8538135475635475,
+     "llm_calls_per_turn": 1.1111111111111112
+    }
+   },
    "recovery": {},
    "llm_usage": {
     "requests": 121,
@@ -839,6 +965,321 @@
     "cache_hits": 121,
     "errors": 0,
     "tokens": 28992,
+    "billed_input_tokens": 0,
+    "billed_output_tokens": 0,
+    "fallbacks": {},
+    "fallback_rate": 0.0,
+    "degraded": false
+   }
+  },
+  "static_cost_aware": {
+   "summary": {
+    "episodes": {
+     "mean": 30,
+     "std": 0.0
+    },
+    "turns": {
+     "mean": 63,
+     "std": 0.0
+    },
+    "final_pass_rate": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "revision_success_rate": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "new_constraint_satisfaction": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "constraint_retention_rate": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "unaffected_preserved": {
+     "mean": 0.9687402874902875,
+     "std": 0.0
+    },
+    "edit_rate": {
+     "mean": 0.2440828402366864,
+     "std": 0.0
+    },
+    "minimum_edits_per_turn": {
+     "mean": 1.5,
+     "std": 0.0
+    },
+    "excess_edits_per_turn": {
+     "mean": 1.6730769230769231,
+     "std": 0.0
+    },
+    "edit_optimal_preservation": {
+     "mean": 0.8538135475635475,
+     "std": 0.0
+    },
+    "edit_scored_turns": {
+     "mean": 52,
+     "std": 0.0
+    },
+    "global_replan_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "clarification_recall": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "clarification_precision": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "timeout_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "budget_exhausted_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "llm_calls_per_turn": {
+     "mean": 0.9682539682539683,
+     "std": 0.0
+    },
+    "tool_calls_per_turn": {
+     "mean": 0.746031746031746,
+     "std": 0.0
+    },
+    "est_tokens_per_turn": {
+     "mean": 1541.2698412698412,
+     "std": 0.0
+    },
+    "steps_per_turn": {
+     "mean": 3.3333333333333335,
+     "std": 0.0
+    },
+    "tracker_accuracy": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "measured_llm_requests_per_turn": {
+     "mean": 1.7777777777777777,
+     "std": 0.0
+    },
+    "measured_tokens_per_turn": {
+     "mean": 428.1111111111111,
+     "std": 0.0
+    }
+   },
+   "by_op": {
+    "add": {
+     "turns": 45,
+     "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 2.2432432432432434,
+     "global_replan_rate": 0.0,
+     "unaffected_preserved": 0.956067431067431,
+     "edit_scored_turns": 37,
+     "minimum_edits": 1.837837837837838,
+     "excess_edits": 2.2432432432432434,
+     "edit_optimal_preservation": 0.8035577785577785,
+     "llm_calls_per_turn": 1.0666666666666667
+    },
+    "delete": {
+     "turns": 3,
+     "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
+     "unaffected_preserved": 1.0,
+     "edit_scored_turns": 3,
+     "minimum_edits": 0.0,
+     "excess_edits": 0.0,
+     "edit_optimal_preservation": 1.0,
+     "llm_calls_per_turn": 0.0
+    },
+    "replace": {
+     "turns": 10,
+     "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.5,
+     "global_replan_rate": 0.0,
+     "unaffected_preserved": 1.0,
+     "edit_scored_turns": 8,
+     "minimum_edits": 0.875,
+     "excess_edits": 0.5,
+     "edit_optimal_preservation": 0.9583333333333334,
+     "llm_calls_per_turn": 0.8
+    },
+    "reprioritize": {
+     "turns": 5,
+     "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
+     "unaffected_preserved": 1.0,
+     "edit_scored_turns": 4,
+     "minimum_edits": 0.75,
+     "excess_edits": 0.0,
+     "edit_optimal_preservation": 1.0,
+     "llm_calls_per_turn": 1.0
+    }
+   },
+   "by_type": {
+    "budget": {
+     "turns": 6,
+     "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
+     "unaffected_preserved": 1.0,
+     "edit_scored_turns": 4,
+     "minimum_edits": 0.75,
+     "excess_edits": 0.0,
+     "edit_optimal_preservation": 1.0,
+     "llm_calls_per_turn": 0.6666666666666666
+    },
+    "cuisine": {
+     "turns": 21,
+     "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 3.4761904761904763,
+     "global_replan_rate": 0.0,
+     "unaffected_preserved": 1.0,
+     "edit_scored_turns": 21,
+     "minimum_edits": 0.8095238095238095,
+     "excess_edits": 3.4761904761904763,
+     "edit_optimal_preservation": 0.7103174603174603,
+     "llm_calls_per_turn": 0.8095238095238095
+    },
+    "house_rule": {
+     "turns": 7,
+     "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
+     "unaffected_preserved": 1.0,
+     "edit_scored_turns": 3,
+     "minimum_edits": 0.6666666666666666,
+     "excess_edits": 0.0,
+     "edit_optimal_preservation": 1.0,
+     "llm_calls_per_turn": 1.4285714285714286
+    },
+    "min_rating": {
+     "turns": 13,
+     "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 1.1666666666666667,
+     "global_replan_rate": 0.0,
+     "unaffected_preserved": 0.8645412457912459,
+     "edit_scored_turns": 12,
+     "minimum_edits": 3.8333333333333335,
+     "excess_edits": 1.1666666666666667,
+     "edit_optimal_preservation": 0.8734698172198173,
+     "llm_calls_per_turn": 1.0769230769230769
+    },
+    "priority": {
+     "turns": 5,
+     "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
+     "unaffected_preserved": 1.0,
+     "edit_scored_turns": 4,
+     "minimum_edits": 0.75,
+     "excess_edits": 0.0,
+     "edit_optimal_preservation": 1.0,
+     "llm_calls_per_turn": 1.0
+    },
+    "room_type": {
+     "turns": 6,
+     "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
+     "unaffected_preserved": 1.0,
+     "edit_scored_turns": 4,
+     "minimum_edits": 0.75,
+     "excess_edits": 0.0,
+     "edit_optimal_preservation": 1.0,
+     "llm_calls_per_turn": 1.1666666666666667
+    },
+    "transport": {
+     "turns": 5,
+     "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
+     "unaffected_preserved": 1.0,
+     "edit_scored_turns": 4,
+     "minimum_edits": 1.0,
+     "excess_edits": 0.0,
+     "edit_optimal_preservation": 1.0,
+     "llm_calls_per_turn": 0.8
+    }
+   },
+   "by_turn": {
+    "turn 1": {
+     "turns": 30,
+     "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 1.6538461538461537,
+     "global_replan_rate": 0.0,
+     "unaffected_preserved": 0.9770299145299146,
+     "edit_scored_turns": 26,
+     "minimum_edits": 1.6153846153846154,
+     "excess_edits": 1.6538461538461537,
+     "edit_optimal_preservation": 0.8561507936507937,
+     "llm_calls_per_turn": 1.0
+    },
+    "turn 2": {
+     "turns": 21,
+     "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 1.5789473684210527,
+     "global_replan_rate": 0.0,
+     "unaffected_preserved": 0.9692716640085062,
+     "edit_scored_turns": 19,
+     "minimum_edits": 1.105263157894737,
+     "excess_edits": 1.5789473684210527,
+     "edit_optimal_preservation": 0.8640085061137693,
+     "llm_calls_per_turn": 0.7619047619047619
+    },
+    "turn 3": {
+     "turns": 12,
+     "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 2.0,
+     "global_replan_rate": 0.0,
+     "unaffected_preserved": 0.9365079365079365,
+     "edit_scored_turns": 7,
+     "minimum_edits": 2.142857142857143,
+     "excess_edits": 2.0,
+     "edit_optimal_preservation": 0.8174603174603173,
+     "llm_calls_per_turn": 1.25
+    }
+   },
+   "by_chain": {
+    "L=1": {
+     "episodes": 9,
+     "final_pass_rate": 1.0
+    },
+    "L=2": {
+     "episodes": 9,
+     "final_pass_rate": 1.0
+    },
+    "L=3": {
+     "episodes": 12,
+     "final_pass_rate": 1.0
+    }
+   },
+   "by_level": {
+    "v0": {
+     "turns": 63,
+     "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 1.6730769230769231,
+     "global_replan_rate": 0.0,
+     "unaffected_preserved": 0.9687402874902875,
+     "edit_scored_turns": 52,
+     "minimum_edits": 1.5,
+     "excess_edits": 1.6730769230769231,
+     "edit_optimal_preservation": 0.8538135475635475,
+     "llm_calls_per_turn": 0.9682539682539683
+    }
+   },
+   "recovery": {},
+   "llm_usage": {
+    "requests": 112,
+    "calls": 0,
+    "cache_hits": 112,
+    "errors": 0,
+    "tokens": 26971,
     "billed_input_tokens": 0,
     "billed_output_tokens": 0,
     "fallbacks": {},
@@ -949,6 +1390,8 @@
     "add": {
      "turns": 45,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 2.2432432432432434,
+     "global_replan_rate": 0.17777777777777778,
      "unaffected_preserved": 0.956067431067431,
      "edit_scored_turns": 37,
      "minimum_edits": 1.837837837837838,
@@ -959,6 +1402,8 @@
     "delete": {
      "turns": 3,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 3,
      "minimum_edits": 0.0,
@@ -969,6 +1414,8 @@
     "replace": {
      "turns": 10,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.5,
+     "global_replan_rate": 0.3,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 8,
      "minimum_edits": 0.875,
@@ -979,6 +1426,8 @@
     "reprioritize": {
      "turns": 5,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.2,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 4,
      "minimum_edits": 0.75,
@@ -991,6 +1440,8 @@
     "budget": {
      "turns": 6,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.5,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 4,
      "minimum_edits": 0.75,
@@ -1001,6 +1452,8 @@
     "cuisine": {
      "turns": 21,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 3.4761904761904763,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 21,
      "minimum_edits": 0.8095238095238095,
@@ -1011,6 +1464,8 @@
     "house_rule": {
      "turns": 7,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.5714285714285714,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 3,
      "minimum_edits": 0.6666666666666666,
@@ -1021,6 +1476,8 @@
     "min_rating": {
      "turns": 13,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 1.1666666666666667,
+     "global_replan_rate": 0.07692307692307693,
      "unaffected_preserved": 0.8645412457912459,
      "edit_scored_turns": 12,
      "minimum_edits": 3.8333333333333335,
@@ -1031,6 +1488,8 @@
     "priority": {
      "turns": 5,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.2,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 4,
      "minimum_edits": 0.75,
@@ -1041,6 +1500,8 @@
     "room_type": {
      "turns": 6,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.3333333333333333,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 4,
      "minimum_edits": 0.75,
@@ -1051,6 +1512,8 @@
     "transport": {
      "turns": 5,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.2,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 4,
      "minimum_edits": 1.0,
@@ -1063,6 +1526,8 @@
     "turn 1": {
      "turns": 30,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 1.6538461538461537,
+     "global_replan_rate": 0.13333333333333333,
      "unaffected_preserved": 0.9770299145299146,
      "edit_scored_turns": 26,
      "minimum_edits": 1.6153846153846154,
@@ -1073,6 +1538,8 @@
     "turn 2": {
      "turns": 21,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 1.5789473684210527,
+     "global_replan_rate": 0.14285714285714285,
      "unaffected_preserved": 0.9692716640085062,
      "edit_scored_turns": 19,
      "minimum_edits": 1.105263157894737,
@@ -1083,6 +1550,8 @@
     "turn 3": {
      "turns": 12,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 2.0,
+     "global_replan_rate": 0.4166666666666667,
      "unaffected_preserved": 0.9365079365079365,
      "edit_scored_turns": 7,
      "minimum_edits": 2.142857142857143,
@@ -1103,6 +1572,20 @@
     "L=3": {
      "episodes": 12,
      "final_pass_rate": 1.0
+    }
+   },
+   "by_level": {
+    "v0": {
+     "turns": 63,
+     "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 1.6730769230769231,
+     "global_replan_rate": 0.19047619047619047,
+     "unaffected_preserved": 0.9687402874902875,
+     "edit_scored_turns": 52,
+     "minimum_edits": 1.5,
+     "excess_edits": 1.6730769230769231,
+     "edit_optimal_preservation": 0.8538135475635475,
+     "llm_calls_per_turn": 1.9523809523809523
     }
    },
    "recovery": {},
@@ -1182,7 +1665,7 @@
      "std": 0.0
     },
     "timeout_rate": {
-     "mean": 0.0,
+     "mean": 0.015873015873015872,
      "std": 0.0
     },
     "budget_exhausted_rate": {
@@ -1190,19 +1673,19 @@
      "std": 0.0
     },
     "llm_calls_per_turn": {
-     "mean": 0.8253968253968254,
+     "mean": 0.873015873015873,
      "std": 0.0
     },
     "tool_calls_per_turn": {
-     "mean": 0.7301587301587301,
+     "mean": 0.7619047619047619,
      "std": 0.0
     },
     "est_tokens_per_turn": {
-     "mean": 1339.6825396825398,
+     "mean": 1423.8095238095239,
      "std": 0.0
     },
     "steps_per_turn": {
-     "mean": 3.0634920634920637,
+     "mean": 3.1587301587301586,
      "std": 0.0
     },
     "tracker_accuracy": {
@@ -1210,11 +1693,11 @@
      "std": 0.0
     },
     "measured_llm_requests_per_turn": {
-     "mean": 1.6666666666666667,
+     "mean": 1.7142857142857142,
      "std": 0.0
     },
     "measured_tokens_per_turn": {
-     "mean": 409.6825396825397,
+     "mean": 423.015873015873,
      "std": 0.0
     }
    },
@@ -1222,16 +1705,20 @@
     "add": {
      "turns": 45,
      "revision_success_rate": 0.9777777777777777,
+     "excess_edits_per_turn": 2.2432432432432434,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 0.956067431067431,
      "edit_scored_turns": 37,
      "minimum_edits": 1.837837837837838,
      "excess_edits": 2.2432432432432434,
      "edit_optimal_preservation": 0.8035577785577785,
-     "llm_calls_per_turn": 0.8888888888888888
+     "llm_calls_per_turn": 0.9555555555555556
     },
     "delete": {
      "turns": 3,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 3,
      "minimum_edits": 0.0,
@@ -1242,6 +1729,8 @@
     "replace": {
      "turns": 10,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.5,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 8,
      "minimum_edits": 0.875,
@@ -1252,6 +1741,8 @@
     "reprioritize": {
      "turns": 5,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 4,
      "minimum_edits": 0.75,
@@ -1264,6 +1755,8 @@
     "budget": {
      "turns": 6,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 4,
      "minimum_edits": 0.75,
@@ -1274,6 +1767,8 @@
     "cuisine": {
      "turns": 21,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 3.4761904761904763,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 21,
      "minimum_edits": 0.8095238095238095,
@@ -1284,6 +1779,8 @@
     "house_rule": {
      "turns": 7,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 3,
      "minimum_edits": 0.6666666666666666,
@@ -1294,16 +1791,20 @@
     "min_rating": {
      "turns": 13,
      "revision_success_rate": 0.9230769230769231,
+     "excess_edits_per_turn": 1.1666666666666667,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 0.8645412457912459,
      "edit_scored_turns": 12,
      "minimum_edits": 3.8333333333333335,
      "excess_edits": 1.1666666666666667,
      "edit_optimal_preservation": 0.8734698172198173,
-     "llm_calls_per_turn": 1.0
+     "llm_calls_per_turn": 1.2307692307692308
     },
     "priority": {
      "turns": 5,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 4,
      "minimum_edits": 0.75,
@@ -1314,6 +1815,8 @@
     "room_type": {
      "turns": 6,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 4,
      "minimum_edits": 0.75,
@@ -1324,6 +1827,8 @@
     "transport": {
      "turns": 5,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 4,
      "minimum_edits": 1.0,
@@ -1336,6 +1841,8 @@
     "turn 1": {
      "turns": 30,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 1.6538461538461537,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 0.9770299145299146,
      "edit_scored_turns": 26,
      "minimum_edits": 1.6153846153846154,
@@ -1346,6 +1853,8 @@
     "turn 2": {
      "turns": 21,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 1.5789473684210527,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 0.9692716640085062,
      "edit_scored_turns": 19,
      "minimum_edits": 1.105263157894737,
@@ -1356,12 +1865,14 @@
     "turn 3": {
      "turns": 12,
      "revision_success_rate": 0.9166666666666666,
+     "excess_edits_per_turn": 2.0,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 0.9365079365079365,
      "edit_scored_turns": 7,
      "minimum_edits": 2.142857142857143,
      "excess_edits": 2.0,
      "edit_optimal_preservation": 0.8174603174603173,
-     "llm_calls_per_turn": 0.9166666666666666
+     "llm_calls_per_turn": 1.1666666666666667
     }
    },
    "by_chain": {
@@ -1378,17 +1889,31 @@
      "final_pass_rate": 0.9166666666666666
     }
    },
+   "by_level": {
+    "v0": {
+     "turns": 63,
+     "revision_success_rate": 0.9841269841269841,
+     "excess_edits_per_turn": 1.6730769230769231,
+     "global_replan_rate": 0.0,
+     "unaffected_preserved": 0.9687402874902875,
+     "edit_scored_turns": 52,
+     "minimum_edits": 1.5,
+     "excess_edits": 1.6730769230769231,
+     "edit_optimal_preservation": 0.8538135475635475,
+     "llm_calls_per_turn": 0.873015873015873
+    }
+   },
    "recovery": {},
    "error_vs_step": {
     "by_step": {},
     "by_turn": {}
    },
    "llm_usage": {
-    "requests": 105,
+    "requests": 108,
     "calls": 0,
-    "cache_hits": 105,
+    "cache_hits": 108,
     "errors": 0,
-    "tokens": 25810,
+    "tokens": 26650,
     "billed_input_tokens": 0,
     "billed_output_tokens": 0,
     "fallbacks": {},
@@ -1499,6 +2024,8 @@
     "add": {
      "turns": 45,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 2.2432432432432434,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 0.956067431067431,
      "edit_scored_turns": 37,
      "minimum_edits": 1.837837837837838,
@@ -1509,6 +2036,8 @@
     "delete": {
      "turns": 3,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 3,
      "minimum_edits": 0.0,
@@ -1519,6 +2048,8 @@
     "replace": {
      "turns": 10,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.5,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 8,
      "minimum_edits": 0.875,
@@ -1529,6 +2060,8 @@
     "reprioritize": {
      "turns": 5,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 4,
      "minimum_edits": 0.75,
@@ -1541,6 +2074,8 @@
     "budget": {
      "turns": 6,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 4,
      "minimum_edits": 0.75,
@@ -1551,6 +2086,8 @@
     "cuisine": {
      "turns": 21,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 3.4761904761904763,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 21,
      "minimum_edits": 0.8095238095238095,
@@ -1561,6 +2098,8 @@
     "house_rule": {
      "turns": 7,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 3,
      "minimum_edits": 0.6666666666666666,
@@ -1571,6 +2110,8 @@
     "min_rating": {
      "turns": 13,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 1.1666666666666667,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 0.8645412457912459,
      "edit_scored_turns": 12,
      "minimum_edits": 3.8333333333333335,
@@ -1581,6 +2122,8 @@
     "priority": {
      "turns": 5,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 4,
      "minimum_edits": 0.75,
@@ -1591,6 +2134,8 @@
     "room_type": {
      "turns": 6,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 4,
      "minimum_edits": 0.75,
@@ -1601,6 +2146,8 @@
     "transport": {
      "turns": 5,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 4,
      "minimum_edits": 1.0,
@@ -1613,6 +2160,8 @@
     "turn 1": {
      "turns": 30,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 1.6538461538461537,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 0.9770299145299146,
      "edit_scored_turns": 26,
      "minimum_edits": 1.6153846153846154,
@@ -1623,6 +2172,8 @@
     "turn 2": {
      "turns": 21,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 1.5789473684210527,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 0.9692716640085062,
      "edit_scored_turns": 19,
      "minimum_edits": 1.105263157894737,
@@ -1633,6 +2184,8 @@
     "turn 3": {
      "turns": 12,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 2.0,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 0.9365079365079365,
      "edit_scored_turns": 7,
      "minimum_edits": 2.142857142857143,
@@ -1653,6 +2206,20 @@
     "L=3": {
      "episodes": 12,
      "final_pass_rate": 1.0
+    }
+   },
+   "by_level": {
+    "v0": {
+     "turns": 63,
+     "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 1.6730769230769231,
+     "global_replan_rate": 0.0,
+     "unaffected_preserved": 0.9687402874902875,
+     "edit_scored_turns": 52,
+     "minimum_edits": 1.5,
+     "excess_edits": 1.6730769230769231,
+     "edit_optimal_preservation": 0.8538135475635475,
+     "llm_calls_per_turn": 0.8412698412698413
     }
    },
    "recovery": {},
@@ -1776,6 +2343,8 @@
     "add": {
      "turns": 45,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 2.2432432432432434,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 0.956067431067431,
      "edit_scored_turns": 37,
      "minimum_edits": 1.837837837837838,
@@ -1786,6 +2355,8 @@
     "delete": {
      "turns": 3,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 3,
      "minimum_edits": 0.0,
@@ -1796,6 +2367,8 @@
     "replace": {
      "turns": 10,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.5,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 8,
      "minimum_edits": 0.875,
@@ -1806,6 +2379,8 @@
     "reprioritize": {
      "turns": 5,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 4,
      "minimum_edits": 0.75,
@@ -1818,6 +2393,8 @@
     "budget": {
      "turns": 6,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 4,
      "minimum_edits": 0.75,
@@ -1828,6 +2405,8 @@
     "cuisine": {
      "turns": 21,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 3.4761904761904763,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 21,
      "minimum_edits": 0.8095238095238095,
@@ -1838,6 +2417,8 @@
     "house_rule": {
      "turns": 7,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 3,
      "minimum_edits": 0.6666666666666666,
@@ -1848,6 +2429,8 @@
     "min_rating": {
      "turns": 13,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 1.1666666666666667,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 0.8645412457912459,
      "edit_scored_turns": 12,
      "minimum_edits": 3.8333333333333335,
@@ -1858,6 +2441,8 @@
     "priority": {
      "turns": 5,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 4,
      "minimum_edits": 0.75,
@@ -1868,6 +2453,8 @@
     "room_type": {
      "turns": 6,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 4,
      "minimum_edits": 0.75,
@@ -1878,6 +2465,8 @@
     "transport": {
      "turns": 5,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 4,
      "minimum_edits": 1.0,
@@ -1890,6 +2479,8 @@
     "turn 1": {
      "turns": 30,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 1.6538461538461537,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 0.9770299145299146,
      "edit_scored_turns": 26,
      "minimum_edits": 1.6153846153846154,
@@ -1900,6 +2491,8 @@
     "turn 2": {
      "turns": 21,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 1.5789473684210527,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 0.9692716640085062,
      "edit_scored_turns": 19,
      "minimum_edits": 1.105263157894737,
@@ -1910,6 +2503,8 @@
     "turn 3": {
      "turns": 12,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 2.0,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 0.9365079365079365,
      "edit_scored_turns": 7,
      "minimum_edits": 2.142857142857143,
@@ -1930,6 +2525,20 @@
     "L=3": {
      "episodes": 12,
      "final_pass_rate": 1.0
+    }
+   },
+   "by_level": {
+    "v0": {
+     "turns": 63,
+     "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 1.6730769230769231,
+     "global_replan_rate": 0.0,
+     "unaffected_preserved": 0.9687402874902875,
+     "edit_scored_turns": 52,
+     "minimum_edits": 1.5,
+     "excess_edits": 1.6730769230769231,
+     "edit_optimal_preservation": 0.8538135475635475,
+     "llm_calls_per_turn": 0.8412698412698413
     }
    },
    "recovery": {},
@@ -1951,283 +2560,6 @@
    }
   },
   "bc_dagger2": {
-   "summary": {
-    "episodes": {
-     "mean": 30.0,
-     "std": 0.0
-    },
-    "turns": {
-     "mean": 63.0,
-     "std": 0.0
-    },
-    "final_pass_rate": {
-     "mean": 1.0,
-     "std": 0.0
-    },
-    "revision_success_rate": {
-     "mean": 1.0,
-     "std": 0.0
-    },
-    "new_constraint_satisfaction": {
-     "mean": 1.0,
-     "std": 0.0
-    },
-    "constraint_retention_rate": {
-     "mean": 1.0,
-     "std": 0.0
-    },
-    "unaffected_preserved": {
-     "mean": 0.9687402874902875,
-     "std": 0.0
-    },
-    "edit_rate": {
-     "mean": 0.2440828402366864,
-     "std": 0.0
-    },
-    "minimum_edits_per_turn": {
-     "mean": 1.5,
-     "std": 0.0
-    },
-    "excess_edits_per_turn": {
-     "mean": 1.6730769230769231,
-     "std": 0.0
-    },
-    "edit_optimal_preservation": {
-     "mean": 0.8538135475635475,
-     "std": 0.0
-    },
-    "edit_scored_turns": {
-     "mean": 52.0,
-     "std": 0.0
-    },
-    "global_replan_rate": {
-     "mean": 0.0,
-     "std": 0.0
-    },
-    "clarification_recall": {
-     "mean": 1.0,
-     "std": 0.0
-    },
-    "clarification_precision": {
-     "mean": 1.0,
-     "std": 0.0
-    },
-    "timeout_rate": {
-     "mean": 0.0,
-     "std": 0.0
-    },
-    "budget_exhausted_rate": {
-     "mean": 0.0,
-     "std": 0.0
-    },
-    "llm_calls_per_turn": {
-     "mean": 0.8412698412698413,
-     "std": 0.0
-    },
-    "tool_calls_per_turn": {
-     "mean": 0.746031746031746,
-     "std": 0.0
-    },
-    "est_tokens_per_turn": {
-     "mean": 1350.7936507936508,
-     "std": 0.0
-    },
-    "steps_per_turn": {
-     "mean": 3.0793650793650795,
-     "std": 0.0
-    },
-    "tracker_accuracy": {
-     "mean": 1.0,
-     "std": 0.0
-    },
-    "measured_llm_requests_per_turn": {
-     "mean": 1.6666666666666667,
-     "std": 0.0
-    },
-    "measured_tokens_per_turn": {
-     "mean": 409.6825396825397,
-     "std": 0.0
-    }
-   },
-   "by_op": {
-    "add": {
-     "turns": 45,
-     "revision_success_rate": 1.0,
-     "unaffected_preserved": 0.956067431067431,
-     "edit_scored_turns": 37,
-     "minimum_edits": 1.837837837837838,
-     "excess_edits": 2.2432432432432434,
-     "edit_optimal_preservation": 0.8035577785577785,
-     "llm_calls_per_turn": 0.9111111111111111
-    },
-    "delete": {
-     "turns": 3,
-     "revision_success_rate": 1.0,
-     "unaffected_preserved": 1.0,
-     "edit_scored_turns": 3,
-     "minimum_edits": 0.0,
-     "excess_edits": 0.0,
-     "edit_optimal_preservation": 1.0,
-     "llm_calls_per_turn": 0.0
-    },
-    "replace": {
-     "turns": 10,
-     "revision_success_rate": 1.0,
-     "unaffected_preserved": 1.0,
-     "edit_scored_turns": 8,
-     "minimum_edits": 0.875,
-     "excess_edits": 0.5,
-     "edit_optimal_preservation": 0.9583333333333334,
-     "llm_calls_per_turn": 0.8
-    },
-    "reprioritize": {
-     "turns": 5,
-     "revision_success_rate": 1.0,
-     "unaffected_preserved": 1.0,
-     "edit_scored_turns": 4,
-     "minimum_edits": 0.75,
-     "excess_edits": 0.0,
-     "edit_optimal_preservation": 1.0,
-     "llm_calls_per_turn": 0.8
-    }
-   },
-   "by_type": {
-    "budget": {
-     "turns": 6,
-     "revision_success_rate": 1.0,
-     "unaffected_preserved": 1.0,
-     "edit_scored_turns": 4,
-     "minimum_edits": 0.75,
-     "excess_edits": 0.0,
-     "edit_optimal_preservation": 1.0,
-     "llm_calls_per_turn": 0.6666666666666666
-    },
-    "cuisine": {
-     "turns": 21,
-     "revision_success_rate": 1.0,
-     "unaffected_preserved": 1.0,
-     "edit_scored_turns": 21,
-     "minimum_edits": 0.8095238095238095,
-     "excess_edits": 3.4761904761904763,
-     "edit_optimal_preservation": 0.7103174603174603,
-     "llm_calls_per_turn": 0.8095238095238095
-    },
-    "house_rule": {
-     "turns": 7,
-     "revision_success_rate": 1.0,
-     "unaffected_preserved": 1.0,
-     "edit_scored_turns": 3,
-     "minimum_edits": 0.6666666666666666,
-     "excess_edits": 0.0,
-     "edit_optimal_preservation": 1.0,
-     "llm_calls_per_turn": 0.8571428571428571
-    },
-    "min_rating": {
-     "turns": 13,
-     "revision_success_rate": 1.0,
-     "unaffected_preserved": 0.8645412457912459,
-     "edit_scored_turns": 12,
-     "minimum_edits": 3.8333333333333335,
-     "excess_edits": 1.1666666666666667,
-     "edit_optimal_preservation": 0.8734698172198173,
-     "llm_calls_per_turn": 1.0769230769230769
-    },
-    "priority": {
-     "turns": 5,
-     "revision_success_rate": 1.0,
-     "unaffected_preserved": 1.0,
-     "edit_scored_turns": 4,
-     "minimum_edits": 0.75,
-     "excess_edits": 0.0,
-     "edit_optimal_preservation": 1.0,
-     "llm_calls_per_turn": 0.8
-    },
-    "room_type": {
-     "turns": 6,
-     "revision_success_rate": 1.0,
-     "unaffected_preserved": 1.0,
-     "edit_scored_turns": 4,
-     "minimum_edits": 0.75,
-     "excess_edits": 0.0,
-     "edit_optimal_preservation": 1.0,
-     "llm_calls_per_turn": 0.8333333333333334
-    },
-    "transport": {
-     "turns": 5,
-     "revision_success_rate": 1.0,
-     "unaffected_preserved": 1.0,
-     "edit_scored_turns": 4,
-     "minimum_edits": 1.0,
-     "excess_edits": 0.0,
-     "edit_optimal_preservation": 1.0,
-     "llm_calls_per_turn": 0.6
-    }
-   },
-   "by_turn": {
-    "turn 1": {
-     "turns": 30,
-     "revision_success_rate": 1.0,
-     "unaffected_preserved": 0.9770299145299146,
-     "edit_scored_turns": 26,
-     "minimum_edits": 1.6153846153846154,
-     "excess_edits": 1.6538461538461537,
-     "edit_optimal_preservation": 0.8561507936507937,
-     "llm_calls_per_turn": 0.8666666666666667
-    },
-    "turn 2": {
-     "turns": 21,
-     "revision_success_rate": 1.0,
-     "unaffected_preserved": 0.9692716640085062,
-     "edit_scored_turns": 19,
-     "minimum_edits": 1.105263157894737,
-     "excess_edits": 1.5789473684210527,
-     "edit_optimal_preservation": 0.8640085061137693,
-     "llm_calls_per_turn": 0.7142857142857143
-    },
-    "turn 3": {
-     "turns": 12,
-     "revision_success_rate": 1.0,
-     "unaffected_preserved": 0.9365079365079365,
-     "edit_scored_turns": 7,
-     "minimum_edits": 2.142857142857143,
-     "excess_edits": 2.0,
-     "edit_optimal_preservation": 0.8174603174603173,
-     "llm_calls_per_turn": 1.0
-    }
-   },
-   "by_chain": {
-    "L=1": {
-     "episodes": 9,
-     "final_pass_rate": 1.0
-    },
-    "L=2": {
-     "episodes": 9,
-     "final_pass_rate": 1.0
-    },
-    "L=3": {
-     "episodes": 12,
-     "final_pass_rate": 1.0
-    }
-   },
-   "recovery": {},
-   "error_vs_step": {
-    "by_step": {},
-    "by_turn": {}
-   },
-   "llm_usage": {
-    "requests": 105,
-    "calls": 0,
-    "cache_hits": 105,
-    "errors": 0,
-    "tokens": 25810,
-    "billed_input_tokens": 0,
-    "billed_output_tokens": 0,
-    "fallbacks": {},
-    "fallback_rate": 0.0,
-    "degraded": false
-   }
-  },
-  "bc_dagger3": {
    "summary": {
     "episodes": {
      "mean": 30.0,
@@ -2330,6 +2662,8 @@
     "add": {
      "turns": 45,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 2.2432432432432434,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 0.956067431067431,
      "edit_scored_turns": 37,
      "minimum_edits": 1.837837837837838,
@@ -2340,6 +2674,8 @@
     "delete": {
      "turns": 3,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 3,
      "minimum_edits": 0.0,
@@ -2350,6 +2686,8 @@
     "replace": {
      "turns": 10,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.5,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 8,
      "minimum_edits": 0.875,
@@ -2360,6 +2698,8 @@
     "reprioritize": {
      "turns": 5,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 4,
      "minimum_edits": 0.75,
@@ -2372,6 +2712,8 @@
     "budget": {
      "turns": 6,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 4,
      "minimum_edits": 0.75,
@@ -2382,6 +2724,8 @@
     "cuisine": {
      "turns": 21,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 3.4761904761904763,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 21,
      "minimum_edits": 0.8095238095238095,
@@ -2392,6 +2736,8 @@
     "house_rule": {
      "turns": 7,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 3,
      "minimum_edits": 0.6666666666666666,
@@ -2402,6 +2748,8 @@
     "min_rating": {
      "turns": 13,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 1.1666666666666667,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 0.8645412457912459,
      "edit_scored_turns": 12,
      "minimum_edits": 3.8333333333333335,
@@ -2412,6 +2760,8 @@
     "priority": {
      "turns": 5,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 4,
      "minimum_edits": 0.75,
@@ -2422,6 +2772,8 @@
     "room_type": {
      "turns": 6,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 4,
      "minimum_edits": 0.75,
@@ -2432,6 +2784,8 @@
     "transport": {
      "turns": 5,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 4,
      "minimum_edits": 1.0,
@@ -2444,6 +2798,8 @@
     "turn 1": {
      "turns": 30,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 1.6538461538461537,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 0.9770299145299146,
      "edit_scored_turns": 26,
      "minimum_edits": 1.6153846153846154,
@@ -2454,6 +2810,8 @@
     "turn 2": {
      "turns": 21,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 1.5789473684210527,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 0.9692716640085062,
      "edit_scored_turns": 19,
      "minimum_edits": 1.105263157894737,
@@ -2464,6 +2822,8 @@
     "turn 3": {
      "turns": 12,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 2.0,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 0.9365079365079365,
      "edit_scored_turns": 7,
      "minimum_edits": 2.142857142857143,
@@ -2484,6 +2844,339 @@
     "L=3": {
      "episodes": 12,
      "final_pass_rate": 1.0
+    }
+   },
+   "by_level": {
+    "v0": {
+     "turns": 63,
+     "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 1.6730769230769231,
+     "global_replan_rate": 0.0,
+     "unaffected_preserved": 0.9687402874902875,
+     "edit_scored_turns": 52,
+     "minimum_edits": 1.5,
+     "excess_edits": 1.6730769230769231,
+     "edit_optimal_preservation": 0.8538135475635475,
+     "llm_calls_per_turn": 0.8412698412698413
+    }
+   },
+   "recovery": {},
+   "error_vs_step": {
+    "by_step": {},
+    "by_turn": {}
+   },
+   "llm_usage": {
+    "requests": 105,
+    "calls": 0,
+    "cache_hits": 105,
+    "errors": 0,
+    "tokens": 25810,
+    "billed_input_tokens": 0,
+    "billed_output_tokens": 0,
+    "fallbacks": {},
+    "fallback_rate": 0.0,
+    "degraded": false
+   }
+  },
+  "bc_dagger3": {
+   "summary": {
+    "episodes": {
+     "mean": 30.0,
+     "std": 0.0
+    },
+    "turns": {
+     "mean": 63.0,
+     "std": 0.0
+    },
+    "final_pass_rate": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "revision_success_rate": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "new_constraint_satisfaction": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "constraint_retention_rate": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "unaffected_preserved": {
+     "mean": 0.9687402874902875,
+     "std": 0.0
+    },
+    "edit_rate": {
+     "mean": 0.2440828402366864,
+     "std": 0.0
+    },
+    "minimum_edits_per_turn": {
+     "mean": 1.5,
+     "std": 0.0
+    },
+    "excess_edits_per_turn": {
+     "mean": 1.6730769230769231,
+     "std": 0.0
+    },
+    "edit_optimal_preservation": {
+     "mean": 0.8538135475635475,
+     "std": 0.0
+    },
+    "edit_scored_turns": {
+     "mean": 52.0,
+     "std": 0.0
+    },
+    "global_replan_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "clarification_recall": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "clarification_precision": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "timeout_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "budget_exhausted_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "llm_calls_per_turn": {
+     "mean": 0.8412698412698413,
+     "std": 0.0
+    },
+    "tool_calls_per_turn": {
+     "mean": 0.746031746031746,
+     "std": 0.0
+    },
+    "est_tokens_per_turn": {
+     "mean": 1350.7936507936508,
+     "std": 0.0
+    },
+    "steps_per_turn": {
+     "mean": 3.0793650793650795,
+     "std": 0.0
+    },
+    "tracker_accuracy": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "measured_llm_requests_per_turn": {
+     "mean": 1.6666666666666667,
+     "std": 0.0
+    },
+    "measured_tokens_per_turn": {
+     "mean": 409.6825396825397,
+     "std": 0.0
+    }
+   },
+   "by_op": {
+    "add": {
+     "turns": 45,
+     "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 2.2432432432432434,
+     "global_replan_rate": 0.0,
+     "unaffected_preserved": 0.956067431067431,
+     "edit_scored_turns": 37,
+     "minimum_edits": 1.837837837837838,
+     "excess_edits": 2.2432432432432434,
+     "edit_optimal_preservation": 0.8035577785577785,
+     "llm_calls_per_turn": 0.9111111111111111
+    },
+    "delete": {
+     "turns": 3,
+     "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
+     "unaffected_preserved": 1.0,
+     "edit_scored_turns": 3,
+     "minimum_edits": 0.0,
+     "excess_edits": 0.0,
+     "edit_optimal_preservation": 1.0,
+     "llm_calls_per_turn": 0.0
+    },
+    "replace": {
+     "turns": 10,
+     "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.5,
+     "global_replan_rate": 0.0,
+     "unaffected_preserved": 1.0,
+     "edit_scored_turns": 8,
+     "minimum_edits": 0.875,
+     "excess_edits": 0.5,
+     "edit_optimal_preservation": 0.9583333333333334,
+     "llm_calls_per_turn": 0.8
+    },
+    "reprioritize": {
+     "turns": 5,
+     "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
+     "unaffected_preserved": 1.0,
+     "edit_scored_turns": 4,
+     "minimum_edits": 0.75,
+     "excess_edits": 0.0,
+     "edit_optimal_preservation": 1.0,
+     "llm_calls_per_turn": 0.8
+    }
+   },
+   "by_type": {
+    "budget": {
+     "turns": 6,
+     "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
+     "unaffected_preserved": 1.0,
+     "edit_scored_turns": 4,
+     "minimum_edits": 0.75,
+     "excess_edits": 0.0,
+     "edit_optimal_preservation": 1.0,
+     "llm_calls_per_turn": 0.6666666666666666
+    },
+    "cuisine": {
+     "turns": 21,
+     "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 3.4761904761904763,
+     "global_replan_rate": 0.0,
+     "unaffected_preserved": 1.0,
+     "edit_scored_turns": 21,
+     "minimum_edits": 0.8095238095238095,
+     "excess_edits": 3.4761904761904763,
+     "edit_optimal_preservation": 0.7103174603174603,
+     "llm_calls_per_turn": 0.8095238095238095
+    },
+    "house_rule": {
+     "turns": 7,
+     "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
+     "unaffected_preserved": 1.0,
+     "edit_scored_turns": 3,
+     "minimum_edits": 0.6666666666666666,
+     "excess_edits": 0.0,
+     "edit_optimal_preservation": 1.0,
+     "llm_calls_per_turn": 0.8571428571428571
+    },
+    "min_rating": {
+     "turns": 13,
+     "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 1.1666666666666667,
+     "global_replan_rate": 0.0,
+     "unaffected_preserved": 0.8645412457912459,
+     "edit_scored_turns": 12,
+     "minimum_edits": 3.8333333333333335,
+     "excess_edits": 1.1666666666666667,
+     "edit_optimal_preservation": 0.8734698172198173,
+     "llm_calls_per_turn": 1.0769230769230769
+    },
+    "priority": {
+     "turns": 5,
+     "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
+     "unaffected_preserved": 1.0,
+     "edit_scored_turns": 4,
+     "minimum_edits": 0.75,
+     "excess_edits": 0.0,
+     "edit_optimal_preservation": 1.0,
+     "llm_calls_per_turn": 0.8
+    },
+    "room_type": {
+     "turns": 6,
+     "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
+     "unaffected_preserved": 1.0,
+     "edit_scored_turns": 4,
+     "minimum_edits": 0.75,
+     "excess_edits": 0.0,
+     "edit_optimal_preservation": 1.0,
+     "llm_calls_per_turn": 0.8333333333333334
+    },
+    "transport": {
+     "turns": 5,
+     "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
+     "unaffected_preserved": 1.0,
+     "edit_scored_turns": 4,
+     "minimum_edits": 1.0,
+     "excess_edits": 0.0,
+     "edit_optimal_preservation": 1.0,
+     "llm_calls_per_turn": 0.6
+    }
+   },
+   "by_turn": {
+    "turn 1": {
+     "turns": 30,
+     "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 1.6538461538461537,
+     "global_replan_rate": 0.0,
+     "unaffected_preserved": 0.9770299145299146,
+     "edit_scored_turns": 26,
+     "minimum_edits": 1.6153846153846154,
+     "excess_edits": 1.6538461538461537,
+     "edit_optimal_preservation": 0.8561507936507937,
+     "llm_calls_per_turn": 0.8666666666666667
+    },
+    "turn 2": {
+     "turns": 21,
+     "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 1.5789473684210527,
+     "global_replan_rate": 0.0,
+     "unaffected_preserved": 0.9692716640085062,
+     "edit_scored_turns": 19,
+     "minimum_edits": 1.105263157894737,
+     "excess_edits": 1.5789473684210527,
+     "edit_optimal_preservation": 0.8640085061137693,
+     "llm_calls_per_turn": 0.7142857142857143
+    },
+    "turn 3": {
+     "turns": 12,
+     "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 2.0,
+     "global_replan_rate": 0.0,
+     "unaffected_preserved": 0.9365079365079365,
+     "edit_scored_turns": 7,
+     "minimum_edits": 2.142857142857143,
+     "excess_edits": 2.0,
+     "edit_optimal_preservation": 0.8174603174603173,
+     "llm_calls_per_turn": 1.0
+    }
+   },
+   "by_chain": {
+    "L=1": {
+     "episodes": 9,
+     "final_pass_rate": 1.0
+    },
+    "L=2": {
+     "episodes": 9,
+     "final_pass_rate": 1.0
+    },
+    "L=3": {
+     "episodes": 12,
+     "final_pass_rate": 1.0
+    }
+   },
+   "by_level": {
+    "v0": {
+     "turns": 63,
+     "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 1.6730769230769231,
+     "global_replan_rate": 0.0,
+     "unaffected_preserved": 0.9687402874902875,
+     "edit_scored_turns": 52,
+     "minimum_edits": 1.5,
+     "excess_edits": 1.6730769230769231,
+     "edit_optimal_preservation": 0.8538135475635475,
+     "llm_calls_per_turn": 0.8412698412698413
     }
    },
    "recovery": {},
@@ -2575,7 +3268,7 @@
      "std": 0.0
     },
     "llm_calls_per_turn": {
-     "mean": 0.8571428571428571,
+     "mean": 0.8253968253968254,
      "std": 0.0
     },
     "tool_calls_per_turn": {
@@ -2583,11 +3276,11 @@
      "std": 0.0
     },
     "est_tokens_per_turn": {
-     "mean": 1380.952380952381,
+     "mean": 1333.3333333333333,
      "std": 0.0
     },
     "steps_per_turn": {
-     "mean": 3.126984126984127,
+     "mean": 3.0634920634920637,
      "std": 0.0
     },
     "tracker_accuracy": {
@@ -2595,11 +3288,11 @@
      "std": 0.0
     },
     "measured_llm_requests_per_turn": {
-     "mean": 1.6825396825396826,
+     "mean": 1.6507936507936507,
      "std": 0.0
     },
     "measured_tokens_per_turn": {
-     "mean": 414.12698412698415,
+     "mean": 405.23809523809524,
      "std": 0.0
     }
    },
@@ -2607,16 +3300,20 @@
     "add": {
      "turns": 45,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 2.2432432432432434,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 0.956067431067431,
      "edit_scored_turns": 37,
      "minimum_edits": 1.837837837837838,
      "excess_edits": 2.2432432432432434,
      "edit_optimal_preservation": 0.8035577785577785,
-     "llm_calls_per_turn": 0.9333333333333333
+     "llm_calls_per_turn": 0.8888888888888888
     },
     "delete": {
      "turns": 3,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 3,
      "minimum_edits": 0.0,
@@ -2627,6 +3324,8 @@
     "replace": {
      "turns": 10,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.5,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 8,
      "minimum_edits": 0.875,
@@ -2637,6 +3336,8 @@
     "reprioritize": {
      "turns": 5,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 4,
      "minimum_edits": 0.75,
@@ -2649,6 +3350,8 @@
     "budget": {
      "turns": 6,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 4,
      "minimum_edits": 0.75,
@@ -2659,6 +3362,8 @@
     "cuisine": {
      "turns": 21,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 3.4761904761904763,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 21,
      "minimum_edits": 0.8095238095238095,
@@ -2669,6 +3374,8 @@
     "house_rule": {
      "turns": 7,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 3,
      "minimum_edits": 0.6666666666666666,
@@ -2679,16 +3386,20 @@
     "min_rating": {
      "turns": 13,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 1.1666666666666667,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 0.8645412457912459,
      "edit_scored_turns": 12,
      "minimum_edits": 3.8333333333333335,
      "excess_edits": 1.1666666666666667,
      "edit_optimal_preservation": 0.8734698172198173,
-     "llm_calls_per_turn": 1.1538461538461537
+     "llm_calls_per_turn": 1.0
     },
     "priority": {
      "turns": 5,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 4,
      "minimum_edits": 0.75,
@@ -2699,6 +3410,8 @@
     "room_type": {
      "turns": 6,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 4,
      "minimum_edits": 0.75,
@@ -2709,6 +3422,8 @@
     "transport": {
      "turns": 5,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 0.0,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 1.0,
      "edit_scored_turns": 4,
      "minimum_edits": 1.0,
@@ -2721,6 +3436,8 @@
     "turn 1": {
      "turns": 30,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 1.6538461538461537,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 0.9770299145299146,
      "edit_scored_turns": 26,
      "minimum_edits": 1.6153846153846154,
@@ -2731,6 +3448,8 @@
     "turn 2": {
      "turns": 21,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 1.5789473684210527,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 0.9692716640085062,
      "edit_scored_turns": 19,
      "minimum_edits": 1.105263157894737,
@@ -2741,12 +3460,14 @@
     "turn 3": {
      "turns": 12,
      "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 2.0,
+     "global_replan_rate": 0.0,
      "unaffected_preserved": 0.9365079365079365,
      "edit_scored_turns": 7,
      "minimum_edits": 2.142857142857143,
      "excess_edits": 2.0,
      "edit_optimal_preservation": 0.8174603174603173,
-     "llm_calls_per_turn": 1.0833333333333333
+     "llm_calls_per_turn": 0.9166666666666666
     }
    },
    "by_chain": {
@@ -2763,17 +3484,31 @@
      "final_pass_rate": 1.0
     }
    },
+   "by_level": {
+    "v0": {
+     "turns": 63,
+     "revision_success_rate": 1.0,
+     "excess_edits_per_turn": 1.6730769230769231,
+     "global_replan_rate": 0.0,
+     "unaffected_preserved": 0.9687402874902875,
+     "edit_scored_turns": 52,
+     "minimum_edits": 1.5,
+     "excess_edits": 1.6730769230769231,
+     "edit_optimal_preservation": 0.8538135475635475,
+     "llm_calls_per_turn": 0.8253968253968254
+    }
+   },
    "recovery": {},
    "error_vs_step": {
     "by_step": {},
     "by_turn": {}
    },
    "llm_usage": {
-    "requests": 106,
+    "requests": 104,
     "calls": 0,
-    "cache_hits": 106,
+    "cache_hits": 104,
     "errors": 0,
-    "tokens": 26090,
+    "tokens": 25530,
     "billed_input_tokens": 0,
     "billed_output_tokens": 0,
     "fallbacks": {},
@@ -2784,18 +3519,18 @@
  },
  "recovery_episodes": 0,
  "llm_usage_total": {
-  "requests": 1812,
+  "requests": 1925,
   "calls": 0,
-  "cache_hits": 1812,
-  "input_tokens": 438556,
-  "output_tokens": 17193,
+  "cache_hits": 1925,
+  "input_tokens": 464686,
+  "output_tokens": 18314,
   "billed_input_tokens": 0,
   "billed_output_tokens": 0,
   "errors": 0,
   "seconds": 0.0,
   "fallbacks": {},
   "fallback_reasons": {},
-  "tokens": 455749,
+  "tokens": 483000,
   "degraded": false
  },
  "degraded": false

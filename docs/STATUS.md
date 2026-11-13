@@ -1,12 +1,15 @@
 # Project status
 
-**Handoff update:** H1/H2/H3/H5 are implemented and evaluated in [review/HANDOFF_RESULTS.md](review/HANDOFF_RESULTS.md). H4 (live validation) is explicitly assigned to teammates. Exact feasibility labels pass on regenerated data; remaining upstream name-resolution discrepancies and multi-component model failures are documented. Canonical data/models/results were preserved.
-
 Last updated: 2026-11-13. Task IDs refer to the task board in [ENGINEERING_PLAN.md](ENGINEERING_PLAN.md).
 
-**Review status:** the review of `ff4562a` found 20 issues ([SUPERVISOR_REVIEW.md](SUPERVISOR_REVIEW.md)).
-- **Fixed or mitigated:** 16 of them, each with a regression test in `tests/test_review_fixes.py`. Data, models and results were regenerated.
-- **Partly done or open:** 4, handed off as H1–H5 in that file.
+**Review status** (details in [SUPERVISOR_REVIEW.md](SUPERVISOR_REVIEW.md) and [review/LATEST_PROGRESS_REVIEW.md](review/LATEST_PROGRESS_REVIEW.md)):
+- **Independently verified:**
+  - All datasets rebuild byte for byte, and all 18 models retrain to identical weights.
+  - Every evaluation reproduces exactly.
+  - All 3,667 feasibility labels (v0 and multi family) agree with an exact solver.
+  - All 3,054 passing expert plans pass the adapted upstream TravelPlanner checks. These are the upstream check functions run on per-query data slices, not the official CLI or full database. A few substring-name cost differences remain and are documented in `LICENSES.md`.
+- **Fixed in response to the latest review:** R1–R5 (app route realism, how asks are scored, input validation, return-leg display, recovery start plan), each with a regression test.
+- **Open:** H4 (live LLM run), owned by teammates.
 - **For prompt work:** use validation episodes and keep test frozen.
 
 ## TL;DR
@@ -42,9 +45,10 @@ Last updated: 2026-11-13. Task IDs refer to the task board in [ENGINEERING_PLAN.
 |---|---|---|
 | LLM tracker, LLM agents, LLM coordinator/teacher | Only tested with the fake backend. Prompts are first drafts. | Run with a real model on ~30 episodes, read the transcripts in `cache/llm/`, iterate on `taskflow/llm/prompts.py`. |
 | Cost numbers in `results/REPORT.md` | Offline numbers come from the simulated cost model (`ACTION_COST` in `taskflow/env/state.py`). | Re-run `evaluate.py --llm ...`; report the "Measured" columns instead. |
-| Feasibility labels | "Feasible" means the current plan already works or the greedy planner finds one. Under the all-13-slots completeness rule, an exact search found no false "infeasible" labels before the parser fixes. | Re-run the exact search on the regenerated data (handoff H1). |
-| Local vs. global | The v0 tasks never need a global rebuild. The multi-component family (`*_multi.jsonl`, budget cuts from an approved expensive itinerary) does: about 20% of expert turns. The retrained models solve all 12 synthetic stress cases. Both families contain only budget cuts. | Add multi-component updates of other types (e.g. a room-type change plus a budget cut). |
-| Oracle in LLM mode | It simulates deterministic planners, so it isn't an upper bound once LLM agents run. | Handoff H3. |
+| Feasibility labels | "Feasible" means the current plan already works or the greedy planner finds one. All 3,667 labels agree with an exact solver under the all-13-slots completeness rule. | Keep the exact check in the review tooling when the task schema changes. |
+| Local vs. global | The v0 tasks never require a rebuild. In the multi-component family (one-turn budget cuts from an approved expensive itinerary), the expert now searches repairs of up to three components, so no cut needs a global rebuild. Difficulty levels are chosen with the same expert, so results measure imitation of its decision boundary. The cost-aware static baseline is close: the learned coordinator is about 20% better on excess edits with the same success and calls. The 12-case synthetic stress suite has been inspected repeatedly, so it's a regression check, not an untouched holdout. | Add non-budget multi-component updates and multi-turn sequences, developed on train/val, with a frozen new test set. |
+| Scripted expert | Restricted to deterministic planners and refuses to run in LLM mode; not an optimality bound (bounded local search, greedy planners). | — |
+| Action mask | The learned coordinator may not repeat the previous re-plan/search back to back. That's harmless with deterministic planners (the expert never does it), but LLM or sampled re-plans aren't idempotent, so retries could help there. | Revisit during H4. |
 | Held-out phrasing | Template set B and the rule-based tracker were written together, so 100% tracker accuracy proves little. | Paraphrase test updates with an LLM and re-score the tracker (T10). |
 | Always-Global preservation | Sampled regeneration keeps 31% of untouched slots, the deterministic control 93%. The instability is simulated. | Measure with a real LLM regenerating the plan. |
 | Test-split constraints | TravelPlanner hides test constraints, so starting budgets and constraints for those queries are sampled. | Fine for our benchmark; state it in the report. |
@@ -66,6 +70,6 @@ Last updated: 2026-11-13. Task IDs refer to the task board in [ENGINEERING_PLAN.
 
 1. **Everyone:** run `make setup demo test` and read [ARCHITECTURE.md](ARCHITECTURE.md).
 2. **Agents:** get one real provider working (`docs/LLM_SETUP.md`). Run `make demo-llm`, then `make evaluate-llm` (30 *validation* episodes), and fix the prompts. Check the report's fallback table; a DEGRADED run isn't an LLM result.
-3. **Bench:** handoffs H1 (upstream checks on the regenerated data) and H2 (multi-component scenarios).
+3. **Bench:** new multi-component update types (non-budget) and multi-turn sequences, with a frozen new test set.
 4. **Learning:** train with `--teacher llm --limit 100` and compare against the oracle-taught models.
-5. **Eval:** CI, and handoff H5 (preservation definition).
+5. **Eval:** CI; report per-level results against both static baselines (`static_rules`, `static_cost_aware`).

@@ -1,7 +1,7 @@
 {
   "manifest": {
-    "git_sha": "025b2bb",
-    "git_dirty": false,
+    "git_sha": "cf78ea1",
+    "git_dirty": true,
     "config": {
       "seed": 0,
       "seeds": [
@@ -13,7 +13,7 @@
     },
     "config_hash": "fce76727e3",
     "fingerprints": {
-      "source": "bc8ce14085cc",
+      "source": "76eebacf7b66",
       "prompts": "f9352f57f9ee",
       "tasks": "31cf06aeb6b9"
     }
@@ -585,6 +585,210 @@
       "edit_optimal_preservation": 1.0
     },
     {
+      "system": "static_cost_aware",
+      "case": "budget-1-components-0",
+      "min_components": 1,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_TRANSPORT",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 2,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "static_cost_aware",
+      "case": "budget-1-components-1",
+      "min_components": 1,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_TRANSPORT",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 2,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "static_cost_aware",
+      "case": "budget-1-components-2",
+      "min_components": 1,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_TRANSPORT",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 2,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "static_cost_aware",
+      "case": "budget-1-components-3",
+      "min_components": 1,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_TRANSPORT",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 2,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "static_cost_aware",
+      "case": "budget-2-components-0",
+      "min_components": 2,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_TRANSPORT",
+        "VERIFY",
+        "REPLAN_LOCAL_MEALS",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 3,
+      "excess_edits": 5,
+      "edit_optimal_preservation": 0.5
+    },
+    {
+      "system": "static_cost_aware",
+      "case": "budget-2-components-1",
+      "min_components": 2,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_TRANSPORT",
+        "VERIFY",
+        "REPLAN_LOCAL_MEALS",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 3,
+      "excess_edits": 5,
+      "edit_optimal_preservation": 0.5
+    },
+    {
+      "system": "static_cost_aware",
+      "case": "budget-2-components-2",
+      "min_components": 2,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_TRANSPORT",
+        "VERIFY",
+        "REPLAN_LOCAL_MEALS",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 3,
+      "excess_edits": 5,
+      "edit_optimal_preservation": 0.5
+    },
+    {
+      "system": "static_cost_aware",
+      "case": "budget-2-components-3",
+      "min_components": 2,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_TRANSPORT",
+        "VERIFY",
+        "REPLAN_LOCAL_MEALS",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 3,
+      "excess_edits": 5,
+      "edit_optimal_preservation": 0.5
+    },
+    {
+      "system": "static_cost_aware",
+      "case": "budget-3-components-0",
+      "min_components": 3,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_TRANSPORT",
+        "VERIFY",
+        "REPLAN_LOCAL_MEALS",
+        "VERIFY",
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 9,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "static_cost_aware",
+      "case": "budget-3-components-1",
+      "min_components": 3,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_TRANSPORT",
+        "VERIFY",
+        "REPLAN_LOCAL_MEALS",
+        "VERIFY",
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 9,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "static_cost_aware",
+      "case": "budget-3-components-2",
+      "min_components": 3,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_TRANSPORT",
+        "VERIFY",
+        "REPLAN_LOCAL_MEALS",
+        "VERIFY",
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 9,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "static_cost_aware",
+      "case": "budget-3-components-3",
+      "min_components": 3,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_TRANSPORT",
+        "VERIFY",
+        "REPLAN_LOCAL_MEALS",
+        "VERIFY",
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 9,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
       "system": "oracle",
       "case": "budget-1-components-0",
       "min_components": 1,
@@ -718,7 +922,11 @@
       "min_components": 3,
       "success": true,
       "actions": [
-        "REPLAN_GLOBAL",
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
+        "REPLAN_LOCAL_MEALS",
+        "VERIFY",
+        "REPLAN_LOCAL_TRANSPORT",
         "VERIFY",
         "STOP"
       ],
@@ -733,7 +941,11 @@
       "min_components": 3,
       "success": true,
       "actions": [
-        "REPLAN_GLOBAL",
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
+        "REPLAN_LOCAL_MEALS",
+        "VERIFY",
+        "REPLAN_LOCAL_TRANSPORT",
         "VERIFY",
         "STOP"
       ],
@@ -748,7 +960,11 @@
       "min_components": 3,
       "success": true,
       "actions": [
-        "REPLAN_GLOBAL",
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
+        "REPLAN_LOCAL_MEALS",
+        "VERIFY",
+        "REPLAN_LOCAL_TRANSPORT",
         "VERIFY",
         "STOP"
       ],
@@ -763,7 +979,11 @@
       "min_components": 3,
       "success": true,
       "actions": [
-        "REPLAN_GLOBAL",
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
+        "REPLAN_LOCAL_MEALS",
+        "VERIFY",
+        "REPLAN_LOCAL_TRANSPORT",
         "VERIFY",
         "STOP"
       ],
@@ -778,16 +998,14 @@
       "min_components": 1,
       "success": true,
       "actions": [
-        "REPLAN_LOCAL_ACCOMMODATION",
-        "VERIFY",
         "REPLAN_LOCAL_TRANSPORT",
         "VERIFY",
         "STOP"
       ],
       "terminal": "STOP",
       "minimum_edits": 2,
-      "excess_edits": 1,
-      "edit_optimal_preservation": 0.9090909090909091
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
     },
     {
       "system": "bc_aug_dagger3_s0",
@@ -795,16 +1013,14 @@
       "min_components": 1,
       "success": true,
       "actions": [
-        "REPLAN_LOCAL_ACCOMMODATION",
-        "VERIFY",
         "REPLAN_LOCAL_TRANSPORT",
         "VERIFY",
         "STOP"
       ],
       "terminal": "STOP",
       "minimum_edits": 2,
-      "excess_edits": 1,
-      "edit_optimal_preservation": 0.9090909090909091
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
     },
     {
       "system": "bc_aug_dagger3_s0",
@@ -812,16 +1028,14 @@
       "min_components": 1,
       "success": true,
       "actions": [
-        "REPLAN_LOCAL_ACCOMMODATION",
-        "VERIFY",
         "REPLAN_LOCAL_TRANSPORT",
         "VERIFY",
         "STOP"
       ],
       "terminal": "STOP",
       "minimum_edits": 2,
-      "excess_edits": 1,
-      "edit_optimal_preservation": 0.9090909090909091
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
     },
     {
       "system": "bc_aug_dagger3_s0",
@@ -829,16 +1043,14 @@
       "min_components": 1,
       "success": true,
       "actions": [
-        "REPLAN_LOCAL_ACCOMMODATION",
-        "VERIFY",
         "REPLAN_LOCAL_TRANSPORT",
         "VERIFY",
         "STOP"
       ],
       "terminal": "STOP",
       "minimum_edits": 2,
-      "excess_edits": 1,
-      "edit_optimal_preservation": 0.9090909090909091
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
     },
     {
       "system": "bc_aug_dagger3_s0",
@@ -914,7 +1126,11 @@
       "min_components": 3,
       "success": true,
       "actions": [
-        "REPLAN_GLOBAL",
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
+        "REPLAN_LOCAL_MEALS",
+        "VERIFY",
+        "REPLAN_LOCAL_TRANSPORT",
         "VERIFY",
         "STOP"
       ],
@@ -929,7 +1145,11 @@
       "min_components": 3,
       "success": true,
       "actions": [
-        "REPLAN_GLOBAL",
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
+        "REPLAN_LOCAL_MEALS",
+        "VERIFY",
+        "REPLAN_LOCAL_TRANSPORT",
         "VERIFY",
         "STOP"
       ],
@@ -944,7 +1164,11 @@
       "min_components": 3,
       "success": true,
       "actions": [
-        "REPLAN_GLOBAL",
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
+        "REPLAN_LOCAL_MEALS",
+        "VERIFY",
+        "REPLAN_LOCAL_TRANSPORT",
         "VERIFY",
         "STOP"
       ],
@@ -959,7 +1183,11 @@
       "min_components": 3,
       "success": true,
       "actions": [
-        "REPLAN_GLOBAL",
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
+        "REPLAN_LOCAL_MEALS",
+        "VERIFY",
+        "REPLAN_LOCAL_TRANSPORT",
         "VERIFY",
         "STOP"
       ],
@@ -974,16 +1202,14 @@
       "min_components": 1,
       "success": true,
       "actions": [
-        "REPLAN_LOCAL_ACCOMMODATION",
-        "VERIFY",
         "REPLAN_LOCAL_TRANSPORT",
         "VERIFY",
         "STOP"
       ],
       "terminal": "STOP",
       "minimum_edits": 2,
-      "excess_edits": 1,
-      "edit_optimal_preservation": 0.9090909090909091
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
     },
     {
       "system": "bc_aug_dagger3_s1",
@@ -991,16 +1217,14 @@
       "min_components": 1,
       "success": true,
       "actions": [
-        "REPLAN_LOCAL_ACCOMMODATION",
-        "VERIFY",
         "REPLAN_LOCAL_TRANSPORT",
         "VERIFY",
         "STOP"
       ],
       "terminal": "STOP",
       "minimum_edits": 2,
-      "excess_edits": 1,
-      "edit_optimal_preservation": 0.9090909090909091
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
     },
     {
       "system": "bc_aug_dagger3_s1",
@@ -1008,16 +1232,14 @@
       "min_components": 1,
       "success": true,
       "actions": [
-        "REPLAN_LOCAL_ACCOMMODATION",
-        "VERIFY",
         "REPLAN_LOCAL_TRANSPORT",
         "VERIFY",
         "STOP"
       ],
       "terminal": "STOP",
       "minimum_edits": 2,
-      "excess_edits": 1,
-      "edit_optimal_preservation": 0.9090909090909091
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
     },
     {
       "system": "bc_aug_dagger3_s1",
@@ -1025,16 +1247,14 @@
       "min_components": 1,
       "success": true,
       "actions": [
-        "REPLAN_LOCAL_ACCOMMODATION",
-        "VERIFY",
         "REPLAN_LOCAL_TRANSPORT",
         "VERIFY",
         "STOP"
       ],
       "terminal": "STOP",
       "minimum_edits": 2,
-      "excess_edits": 1,
-      "edit_optimal_preservation": 0.9090909090909091
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
     },
     {
       "system": "bc_aug_dagger3_s1",
@@ -1110,7 +1330,11 @@
       "min_components": 3,
       "success": true,
       "actions": [
-        "REPLAN_GLOBAL",
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
+        "REPLAN_LOCAL_MEALS",
+        "VERIFY",
+        "REPLAN_LOCAL_TRANSPORT",
         "VERIFY",
         "STOP"
       ],
@@ -1125,7 +1349,11 @@
       "min_components": 3,
       "success": true,
       "actions": [
-        "REPLAN_GLOBAL",
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
+        "REPLAN_LOCAL_MEALS",
+        "VERIFY",
+        "REPLAN_LOCAL_TRANSPORT",
         "VERIFY",
         "STOP"
       ],
@@ -1140,7 +1368,11 @@
       "min_components": 3,
       "success": true,
       "actions": [
-        "REPLAN_GLOBAL",
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
+        "REPLAN_LOCAL_MEALS",
+        "VERIFY",
+        "REPLAN_LOCAL_TRANSPORT",
         "VERIFY",
         "STOP"
       ],
@@ -1155,7 +1387,11 @@
       "min_components": 3,
       "success": true,
       "actions": [
-        "REPLAN_GLOBAL",
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
+        "REPLAN_LOCAL_MEALS",
+        "VERIFY",
+        "REPLAN_LOCAL_TRANSPORT",
         "VERIFY",
         "STOP"
       ],
@@ -1298,7 +1534,11 @@
       "min_components": 3,
       "success": true,
       "actions": [
-        "REPLAN_GLOBAL",
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
+        "REPLAN_LOCAL_MEALS",
+        "VERIFY",
+        "REPLAN_LOCAL_TRANSPORT",
         "VERIFY",
         "STOP"
       ],
@@ -1313,7 +1553,11 @@
       "min_components": 3,
       "success": true,
       "actions": [
-        "REPLAN_GLOBAL",
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
+        "REPLAN_LOCAL_MEALS",
+        "VERIFY",
+        "REPLAN_LOCAL_TRANSPORT",
         "VERIFY",
         "STOP"
       ],
@@ -1328,7 +1572,11 @@
       "min_components": 3,
       "success": true,
       "actions": [
-        "REPLAN_GLOBAL",
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
+        "REPLAN_LOCAL_MEALS",
+        "VERIFY",
+        "REPLAN_LOCAL_TRANSPORT",
         "VERIFY",
         "STOP"
       ],
@@ -1343,7 +1591,11 @@
       "min_components": 3,
       "success": true,
       "actions": [
-        "REPLAN_GLOBAL",
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
+        "REPLAN_LOCAL_MEALS",
+        "VERIFY",
+        "REPLAN_LOCAL_TRANSPORT",
         "VERIFY",
         "STOP"
       ],

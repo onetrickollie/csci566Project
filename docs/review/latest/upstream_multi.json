@@ -1,0 +1,96 @@
+{
+  "manifest": {
+    "git_sha": "cf78ea1",
+    "git_dirty": true,
+    "config": {
+      "seed": 0,
+      "splits": [
+        "train_multi",
+        "val_multi",
+        "test_multi"
+      ],
+      "upstream_sha": "e52c87f4ac348a3410c46dc3553c519db5ec5e23",
+      "audit_code": "b2d35843024a",
+      "raw_data": "88fedfeee135"
+    },
+    "config_hash": "6a214e0f73",
+    "fingerprints": {
+      "source": "bc8ce14085cc",
+      "prompts": "f9352f57f9ee",
+      "tasks": "31cf06aeb6b9"
+    }
+  },
+  "scope": "All 13 slots required. Upstream function adapter uses query slices, not full database/CLI; no leaderboard claim.",
+  "counts": {
+    "train_multi": {
+      "turns": 430,
+      "labeled_infeasible": 41,
+      "checked_passing_plans": 389,
+      "upstream_rejections": 0,
+      "cost_disagreements": 1,
+      "failed_oracle_turns": 0,
+      "false_infeasible": 0,
+      "false_feasible": 0
+    },
+    "val_multi": {
+      "turns": 142,
+      "labeled_infeasible": 23,
+      "checked_passing_plans": 119,
+      "upstream_rejections": 0,
+      "cost_disagreements": 0,
+      "failed_oracle_turns": 0,
+      "false_infeasible": 0,
+      "false_feasible": 0
+    },
+    "test_multi": {
+      "turns": 138,
+      "labeled_infeasible": 11,
+      "checked_passing_plans": 127,
+      "upstream_rejections": 0,
+      "cost_disagreements": 1,
+      "failed_oracle_turns": 0,
+      "false_infeasible": 0,
+      "false_feasible": 0
+    }
+  },
+  "label_disagreements": [],
+  "upstream_disagreements": [
+    {
+      "split": "train_multi",
+      "qid": "test-0040",
+      "constraints": {
+        "budget": 5850.0,
+        "people": 2,
+        "room_type": null,
+        "house_rules": [],
+        "cuisines": [],
+        "transport": null,
+        "min_rating": null,
+        "priority": null
+      },
+      "local_cost": 5802.0,
+      "cost": 5810.0,
+      "failures": {}
+    },
+    {
+      "split": "test_multi",
+      "qid": "test-0050",
+      "constraints": {
+        "budget": 11300.0,
+        "people": 4,
+        "room_type": null,
+        "house_rules": [],
+        "cuisines": [
+          "Italian",
+          "American"
+        ],
+        "transport": null,
+        "min_rating": null,
+        "priority": null
+      },
+      "local_cost": 11240.0,
+      "cost": 11256.0,
+      "failures": {}
+    }
+  ]
+}

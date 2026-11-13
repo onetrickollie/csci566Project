@@ -91,3 +91,51 @@ class AlwaysGlobal:
 class AlwaysGlobalDeterministic(AlwaysGlobal):
     name = "always_global_det"
     sample_global = False
+
+
+class StaticRulesCostAware(StaticRules):
+    """A stronger hand-written baseline for budget pressure.
+
+    When the plan is over budget (or over the cost-priority limit), it asks at
+    once if the cached candidates show that even the cheapest choices cannot
+    fit; otherwise it re-plans components in order of how much each could
+    save (current cost minus its cheapest cached option), verifying after
+    each, before trying one global rebuild. Other violations follow
+    StaticRules. Uses only observable evidence (``candidate_evidence``).
+    """
+
+    name = "static_cost_aware"
+    COMPONENT_ACTION = {"transport": "REPLAN_LOCAL_TRANSPORT", "accommodation": "REPLAN_LOCAL_ACCOMMODATION",
+                        "meals": "REPLAN_LOCAL_MEALS"}
+    COMPONENT_CACHE = {"transport": "transport", "accommodation": "accommodation", "meals": "dining"}
+
+    def act(self, env) -> str:
+        from taskflow.learning.encode import candidate_evidence
+
+        h = env.history
+        rep = env.report
+        if rep is None:
+            return "VERIFY"
+        if rep.passed:
+            return "STOP" if env.changed else "KEEP_PLAN"
+        if not ({"budget", "priority_cost"} & rep.kinds()) or len(rep.kinds() - {"budget", "priority_cost"}):
+            return super().act(env)
+        if infeasibility_evident(env):
+            return "ASK_CLARIFICATION"
+        ev = candidate_evidence(env)
+        cheapest = {"transport": ev["cheapest_transport"], "accommodation": ev["cheapest_accommodation"],
+                    "meals": ev["cheapest_meals"]}
+        slack = {k: ev["plan_cost"][k] - (cheapest[k] or 0) for k in cheapest}
+        for comp in sorted(slack, key=lambda k: -slack[k]):
+            if slack[comp] <= 0 or self.COMPONENT_ACTION[comp] in h:
+                continue
+            cache = self.COMPONENT_CACHE[comp]
+            if not env.cache.fresh(cache, env.c):
+                return SEARCH_ACTION[cache]
+            return self.COMPONENT_ACTION[comp]
+        for name, action in SEARCH_ACTION.items():
+            if not env.cache.fresh(name, env.c):
+                return action
+        if "REPLAN_GLOBAL" not in h:
+            return "REPLAN_GLOBAL"
+        return "ASK_CLARIFICATION"

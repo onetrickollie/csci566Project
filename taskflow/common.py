@@ -70,11 +70,12 @@ def query_index():
 
 
 def baseline_policies(llm=None) -> dict:
-    from taskflow.coordinators.baselines import AlwaysGlobal, AlwaysGlobalDeterministic, StaticRules
+    from taskflow.coordinators.baselines import (AlwaysGlobal, AlwaysGlobalDeterministic, StaticRules,
+                                                 StaticRulesCostAware)
     from taskflow.coordinators.oracle import Oracle
 
     out = {"always_global": AlwaysGlobal(), "always_global_det": AlwaysGlobalDeterministic(),
-           "static_rules": StaticRules()}
+           "static_rules": StaticRules(), "static_cost_aware": StaticRulesCostAware()}
     if llm is None:
         out["oracle"] = Oracle()
     if llm is not None:

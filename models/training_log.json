@@ -1,6 +1,6 @@
 {
  "manifest": {
-  "git_sha": "d660d4e",
+  "git_sha": "cf78ea1",
   "git_dirty": true,
   "config": {
    "seeds": [
@@ -19,7 +19,7 @@
   },
   "config_hash": "62927836d6",
   "fingerprints": {
-   "source": "bc8ce14085cc",
+   "source": "76eebacf7b66",
    "prompts": "f9352f57f9ee",
    "tasks": "31cf06aeb6b9"
   }
@@ -27,108 +27,108 @@
  "runs": {
   "0": {
    "bc": {
-    "n": 5955,
-    "train_acc": 0.9895885586738586
+    "n": 6535,
+    "train_acc": 0.9909716844558716
    },
    "bc_aug": {
-    "n": 12847,
-    "train_acc": 0.9954074621200562
+    "n": 13841,
+    "train_acc": 0.993280827999115
    },
    "bc_dagger1": {
     "iter": 1,
-    "added": 5994,
-    "n": 11949,
-    "train_acc": 0.9943928122520447
+    "added": 6574,
+    "n": 13109,
+    "train_acc": 0.9943550229072571
    },
    "bc_dagger2": {
     "iter": 2,
-    "added": 5958,
-    "n": 17907,
-    "train_acc": 0.9940246939659119
+    "added": 6582,
+    "n": 19691,
+    "train_acc": 0.9946675896644592
    },
    "bc_dagger3": {
     "iter": 3,
-    "added": 6027,
-    "n": 23934,
-    "train_acc": 0.9952786564826965
+    "added": 6565,
+    "n": 26256,
+    "train_acc": 0.9948583245277405
    },
    "bc_aug_dagger3": {
     "iter": 3,
-    "added": 5979,
-    "n": 30805,
-    "train_acc": 0.9951955676078796
+    "added": 6553,
+    "n": 33518,
+    "train_acc": 0.996509313583374
    },
-   "seconds": 46.2
+   "seconds": 52.8
   },
   "1": {
    "bc": {
-    "n": 5955,
-    "train_acc": 0.9907640814781189
+    "n": 6535,
+    "train_acc": 0.989900529384613
    },
    "bc_aug": {
-    "n": 12808,
-    "train_acc": 0.9874297380447388
+    "n": 13826,
+    "train_acc": 0.9947924017906189
    },
    "bc_dagger1": {
     "iter": 1,
-    "added": 5970,
-    "n": 11925,
-    "train_acc": 0.9937945604324341
+    "added": 6549,
+    "n": 13084,
+    "train_acc": 0.9950320720672607
    },
    "bc_dagger2": {
     "iter": 2,
-    "added": 5976,
-    "n": 17901,
-    "train_acc": 0.992849588394165
+    "added": 6556,
+    "n": 19640,
+    "train_acc": 0.9959775805473328
    },
    "bc_dagger3": {
     "iter": 3,
-    "added": 6014,
-    "n": 23915,
-    "train_acc": 0.9954003691673279
+    "added": 6564,
+    "n": 26204,
+    "train_acc": 0.9963746070861816
    },
    "bc_aug_dagger3": {
     "iter": 3,
-    "added": 5998,
-    "n": 30791,
-    "train_acc": 0.9960052967071533
+    "added": 6557,
+    "n": 33498,
+    "train_acc": 0.9974923729896545
    },
-   "seconds": 44.9
+   "seconds": 50.4
   },
   "2": {
    "bc": {
-    "n": 5955,
-    "train_acc": 0.9912678599357605
+    "n": 6535,
+    "train_acc": 0.9925019145011902
    },
    "bc_aug": {
-    "n": 12810,
-    "train_acc": 0.9925058484077454
+    "n": 13812,
+    "train_acc": 0.9890674948692322
    },
    "bc_dagger1": {
     "iter": 1,
-    "added": 5982,
-    "n": 11937,
-    "train_acc": 0.991538941860199
+    "added": 6564,
+    "n": 13099,
+    "train_acc": 0.9941216707229614
    },
    "bc_dagger2": {
     "iter": 2,
-    "added": 6010,
-    "n": 17947,
-    "train_acc": 0.9942051768302917
+    "added": 6579,
+    "n": 19678,
+    "train_acc": 0.9968492984771729
    },
    "bc_dagger3": {
     "iter": 3,
-    "added": 5999,
-    "n": 23946,
-    "train_acc": 0.9940282106399536
+    "added": 6547,
+    "n": 26225,
+    "train_acc": 0.9962630867958069
    },
    "bc_aug_dagger3": {
     "iter": 3,
-    "added": 6005,
-    "n": 30773,
-    "train_acc": 0.9965229034423828
+    "added": 6562,
+    "n": 33468,
+    "train_acc": 0.9976993203163147
    },
-   "seconds": 44.0
+   "seconds": 51.2
   }
  }
 }

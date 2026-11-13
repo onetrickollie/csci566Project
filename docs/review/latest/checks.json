@@ -1,0 +1,722 @@
+{
+  "manifest": {
+    "git_sha": "cf78ea1",
+    "git_dirty": false,
+    "config": {},
+    "config_hash": "bf21a9e8fb",
+    "fingerprints": {
+      "source": "bc8ce14085cc",
+      "prompts": "f9352f57f9ee",
+      "tasks": "31cf06aeb6b9"
+    }
+  },
+  "multi": {
+    "train_multi": {
+      "episodes": 430,
+      "false_labels": [],
+      "invalid_initial": [],
+      "oracle_failures": [],
+      "levels": {
+        "2": 148,
+        "1": 96,
+        "3": 145,
+        "0": 41
+      }
+    },
+    "val_multi": {
+      "episodes": 142,
+      "false_labels": [],
+      "invalid_initial": [],
+      "oracle_failures": [],
+      "levels": {
+        "3": 45,
+        "1": 28,
+        "0": 23,
+        "2": 46
+      }
+    },
+    "test_multi": {
+      "episodes": 138,
+      "false_labels": [],
+      "invalid_initial": [],
+      "oracle_failures": [],
+      "levels": {
+        "3": 43,
+        "2": 54,
+        "0": 11,
+        "1": 30
+      }
+    }
+  },
+  "recovery_selection": {
+    "actual_broken_feasible": 127,
+    "selected": 33
+  },
+  "world": {
+    "starts": 257,
+    "destinations": 220
+  },
+  "route:Los Angeles->Honolulu": {
+    "session": "5721cbc51804",
+    "title": "Los Angeles \u2192 Honolulu",
+    "dates": [
+      "2022-03-10",
+      "2022-03-11",
+      "2022-03-12"
+    ],
+    "request": "budget $10,000; 2 traveler(s); no flight",
+    "plan": {
+      "rows": [
+        {
+          "label": "Day 1 \u00b7 transport",
+          "value": "Self-driving, ~4,843 km, 45 hours 14 mins, $240 (estimated from distance)",
+          "changed": false
+        },
+        {
+          "label": "Day 1 \u00b7 attraction",
+          "value": "Iolani Palace",
+          "changed": false
+        },
+        {
+          "label": "Day 1 \u00b7 dinner",
+          "value": "Mama's Chinese Kitchen",
+          "changed": false
+        },
+        {
+          "label": "Nights 1\u20132 \u00b7 stay",
+          "value": "Gr8 views in heart of Williamsburg",
+          "changed": false
+        },
+        {
+          "label": "Day 2 \u00b7 breakfast",
+          "value": "Evergreen Sweet House",
+          "changed": false
+        },
+        {
+          "label": "Day 2 \u00b7 attraction",
+          "value": "Bishop Museum",
+          "changed": false
+        },
+        {
+          "label": "Day 2 \u00b7 lunch",
+          "value": "Take Away",
+          "changed": false
+        },
+        {
+          "label": "Day 2 \u00b7 attraction",
+          "value": "Aloha Tower",
+          "changed": false
+        },
+        {
+          "label": "Day 2 \u00b7 dinner",
+          "value": "Taj Sweets",
+          "changed": false
+        },
+        {
+          "label": "Day 3 \u00b7 breakfast",
+          "value": "Bait El Khetyar",
+          "changed": false
+        },
+        {
+          "label": "Day 3 \u00b7 attraction",
+          "value": "Honolulu Zoo",
+          "changed": false
+        },
+        {
+          "label": "Day 3 \u00b7 lunch",
+          "value": "Viva Hyderabad",
+          "changed": false
+        },
+        {
+          "label": "Day 3 \u00b7 transport",
+          "value": "Self-driving, ~4,843 km, 45 hours 14 mins, $240 (estimated from distance)",
+          "changed": false
+        }
+      ],
+      "valid": true,
+      "cost": 1646,
+      "breakdown": {
+        "transport": 480,
+        "accommodation": 902,
+        "meals": 264
+      },
+      "violations": []
+    },
+    "notes": [
+      "No flights in the data for these dates; showing driving/taxi.",
+      "Driving and taxi options are estimated from the distance between the cities."
+    ]
+  },
+  "route:New York->Seattle": {
+    "session": "b1f3aac09daf",
+    "title": "New York \u2192 Seattle",
+    "dates": [
+      "2022-03-10",
+      "2022-03-11",
+      "2022-03-12"
+    ],
+    "request": "budget $10,000; 2 traveler(s); no flight",
+    "plan": {
+      "rows": [
+        {
+          "label": "Day 1 \u00b7 transport",
+          "value": "Self-driving, ~4,553 km, 42 hours 32 mins, $226 (estimated from distance)",
+          "changed": false
+        },
+        {
+          "label": "Day 1 \u00b7 attraction",
+          "value": "Seattle Aquarium",
+          "changed": false
+        },
+        {
+          "label": "Day 1 \u00b7 dinner",
+          "value": "The Golden Dragon",
+          "changed": false
+        },
+        {
+          "label": "Nights 1\u20132 \u00b7 stay",
+          "value": "**Cozy Room In Hip Ultra Location LES/NOLITA**",
+          "changed": false
+        },
+        {
+          "label": "Day 2 \u00b7 breakfast",
+          "value": "The Test",
+          "changed": false
+        },
+        {
+          "label": "Day 2 \u00b7 attraction",
+          "value": "The Seattle Great Wheel",
+          "changed": false
+        },
+        {
+          "label": "Day 2 \u00b7 lunch",
+          "value": "Hot Chimney",
+          "changed": false
+        },
+        {
+          "label": "Day 2 \u00b7 attraction",
+          "value": "Chihuly Garden and Glass",
+          "changed": false
+        },
+        {
+          "label": "Day 2 \u00b7 dinner",
+          "value": "wagamama",
+          "changed": false
+        },
+        {
+          "label": "Day 3 \u00b7 breakfast",
+          "value": "Ting's Red Lantern",
+          "changed": false
+        },
+        {
+          "label": "Day 3 \u00b7 attraction",
+          "value": "Olympic Sculpture Park",
+          "changed": false
+        },
+        {
+          "label": "Day 3 \u00b7 lunch",
+          "value": "Wow! Momo",
+          "changed": false
+        },
+        {
+          "label": "Day 3 \u00b7 transport",
+          "value": "Self-driving, ~4,553 km, 42 hours 32 mins, $226 (estimated from distance)",
+          "changed": false
+        }
+      ],
+      "valid": true,
+      "cost": 1776,
+      "breakdown": {
+        "transport": 452,
+        "accommodation": 1074,
+        "meals": 250
+      },
+      "violations": []
+    },
+    "notes": [
+      "No flights in the data for these dates; showing driving/taxi.",
+      "Driving and taxi options are estimated from the distance between the cities."
+    ]
+  },
+  "feasible_ask": {
+    "parsed": {
+      "source": "rules",
+      "text": "replace budget: 3000.0 \u2192 4000.0"
+    },
+    "results": [
+      {
+        "key": "always_global",
+        "label": "Always regenerate",
+        "actions": [
+          "ASK_CLARIFICATION"
+        ],
+        "terminal": "ASK_CLARIFICATION",
+        "asked": true,
+        "changed": 0,
+        "llm_calls": 1,
+        "tool_calls": 0,
+        "plan": {
+          "rows": [
+            {
+              "label": "Day 1 \u00b7 transport",
+              "value": "Self-driving, ~3,286 km, 30 hours 42 mins, $163 (estimated from distance)",
+              "changed": false
+            },
+            {
+              "label": "Day 1 \u00b7 attraction",
+              "value": "Seattle Aquarium",
+              "changed": false
+            },
+            {
+              "label": "Day 1 \u00b7 dinner",
+              "value": "The Golden Dragon",
+              "changed": false
+            },
+            {
+              "label": "Nights 1\u20132 \u00b7 stay",
+              "value": "**Cozy Room In Hip Ultra Location LES/NOLITA**",
+              "changed": false
+            },
+            {
+              "label": "Day 2 \u00b7 breakfast",
+              "value": "The Test",
+              "changed": false
+            },
+            {
+              "label": "Day 2 \u00b7 attraction",
+              "value": "The Seattle Great Wheel",
+              "changed": false
+            },
+            {
+              "label": "Day 2 \u00b7 lunch",
+              "value": "Hot Chimney",
+              "changed": false
+            },
+            {
+              "label": "Day 2 \u00b7 attraction",
+              "value": "Chihuly Garden and Glass",
+              "changed": false
+            },
+            {
+              "label": "Day 2 \u00b7 dinner",
+              "value": "wagamama",
+              "changed": false
+            },
+            {
+              "label": "Day 3 \u00b7 breakfast",
+              "value": "Ting's Red Lantern",
+              "changed": false
+            },
+            {
+              "label": "Day 3 \u00b7 attraction",
+              "value": "Olympic Sculpture Park",
+              "changed": false
+            },
+            {
+              "label": "Day 3 \u00b7 lunch",
+              "value": "Wow! Momo",
+              "changed": false
+            },
+            {
+              "label": "Day 3 \u00b7 transport",
+              "value": "Self-driving, ~3,286 km, 30 hours 42 mins, $163 (estimated from distance)",
+              "changed": false
+            }
+          ],
+          "valid": true,
+          "cost": 1650,
+          "breakdown": {
+            "transport": 326,
+            "accommodation": 1074,
+            "meals": 250
+          },
+          "violations": []
+        },
+        "request": "budget $3,000; 2 traveler(s)",
+        "totals": {
+          "turns": 1,
+          "ok": 1,
+          "llm_calls": 1,
+          "changed": 0
+        }
+      },
+      {
+        "key": "static_rules",
+        "label": "Static rules",
+        "actions": [
+          "ASK_CLARIFICATION"
+        ],
+        "terminal": "ASK_CLARIFICATION",
+        "asked": true,
+        "changed": 0,
+        "llm_calls": 1,
+        "tool_calls": 0,
+        "plan": {
+          "rows": [
+            {
+              "label": "Day 1 \u00b7 transport",
+              "value": "Self-driving, ~3,286 km, 30 hours 42 mins, $163 (estimated from distance)",
+              "changed": false
+            },
+            {
+              "label": "Day 1 \u00b7 attraction",
+              "value": "Seattle Aquarium",
+              "changed": false
+            },
+            {
+              "label": "Day 1 \u00b7 dinner",
+              "value": "The Golden Dragon",
+              "changed": false
+            },
+            {
+              "label": "Nights 1\u20132 \u00b7 stay",
+              "value": "**Cozy Room In Hip Ultra Location LES/NOLITA**",
+              "changed": false
+            },
+            {
+              "label": "Day 2 \u00b7 breakfast",
+              "value": "The Test",
+              "changed": false
+            },
+            {
+              "label": "Day 2 \u00b7 attraction",
+              "value": "The Seattle Great Wheel",
+              "changed": false
+            },
+            {
+              "label": "Day 2 \u00b7 lunch",
+              "value": "Hot Chimney",
+              "changed": false
+            },
+            {
+              "label": "Day 2 \u00b7 attraction",
+              "value": "Chihuly Garden and Glass",
+              "changed": false
+            },
+            {
+              "label": "Day 2 \u00b7 dinner",
+              "value": "wagamama",
+              "changed": false
+            },
+            {
+              "label": "Day 3 \u00b7 breakfast",
+              "value": "Ting's Red Lantern",
+              "changed": false
+            },
+            {
+              "label": "Day 3 \u00b7 attraction",
+              "value": "Olympic Sculpture Park",
+              "changed": false
+            },
+            {
+              "label": "Day 3 \u00b7 lunch",
+              "value": "Wow! Momo",
+              "changed": false
+            },
+            {
+              "label": "Day 3 \u00b7 transport",
+              "value": "Self-driving, ~3,286 km, 30 hours 42 mins, $163 (estimated from distance)",
+              "changed": false
+            }
+          ],
+          "valid": true,
+          "cost": 1650,
+          "breakdown": {
+            "transport": 326,
+            "accommodation": 1074,
+            "meals": 250
+          },
+          "violations": []
+        },
+        "request": "budget $3,000; 2 traveler(s)",
+        "totals": {
+          "turns": 1,
+          "ok": 1,
+          "llm_calls": 1,
+          "changed": 0
+        }
+      },
+      {
+        "key": "learned",
+        "label": "Learned coordinator",
+        "actions": [
+          "ASK_CLARIFICATION"
+        ],
+        "terminal": "ASK_CLARIFICATION",
+        "asked": true,
+        "changed": 0,
+        "llm_calls": 1,
+        "tool_calls": 0,
+        "plan": {
+          "rows": [
+            {
+              "label": "Day 1 \u00b7 transport",
+              "value": "Self-driving, ~3,286 km, 30 hours 42 mins, $163 (estimated from distance)",
+              "changed": false
+            },
+            {
+              "label": "Day 1 \u00b7 attraction",
+              "value": "Seattle Aquarium",
+              "changed": false
+            },
+            {
+              "label": "Day 1 \u00b7 dinner",
+              "value": "The Golden Dragon",
+              "changed": false
+            },
+            {
+              "label": "Nights 1\u20132 \u00b7 stay",
+              "value": "**Cozy Room In Hip Ultra Location LES/NOLITA**",
+              "changed": false
+            },
+            {
+              "label": "Day 2 \u00b7 breakfast",
+              "value": "The Test",
+              "changed": false
+            },
+            {
+              "label": "Day 2 \u00b7 attraction",
+              "value": "The Seattle Great Wheel",
+              "changed": false
+            },
+            {
+              "label": "Day 2 \u00b7 lunch",
+              "value": "Hot Chimney",
+              "changed": false
+            },
+            {
+              "label": "Day 2 \u00b7 attraction",
+              "value": "Chihuly Garden and Glass",
+              "changed": false
+            },
+            {
+              "label": "Day 2 \u00b7 dinner",
+              "value": "wagamama",
+              "changed": false
+            },
+            {
+              "label": "Day 3 \u00b7 breakfast",
+              "value": "Ting's Red Lantern",
+              "changed": false
+            },
+            {
+              "label": "Day 3 \u00b7 attraction",
+              "value": "Olympic Sculpture Park",
+              "changed": false
+            },
+            {
+              "label": "Day 3 \u00b7 lunch",
+              "value": "Wow! Momo",
+              "changed": false
+            },
+            {
+              "label": "Day 3 \u00b7 transport",
+              "value": "Self-driving, ~3,286 km, 30 hours 42 mins, $163 (estimated from distance)",
+              "changed": false
+            }
+          ],
+          "valid": true,
+          "cost": 1650,
+          "breakdown": {
+            "transport": 326,
+            "accommodation": 1074,
+            "meals": 250
+          },
+          "violations": []
+        },
+        "request": "budget $3,000; 2 traveler(s)",
+        "totals": {
+          "turns": 1,
+          "ok": 1,
+          "llm_calls": 1,
+          "changed": 0
+        }
+      },
+      {
+        "key": "oracle",
+        "label": "Scripted expert",
+        "actions": [
+          "ASK_CLARIFICATION"
+        ],
+        "terminal": "ASK_CLARIFICATION",
+        "asked": true,
+        "changed": 0,
+        "llm_calls": 1,
+        "tool_calls": 0,
+        "plan": {
+          "rows": [
+            {
+              "label": "Day 1 \u00b7 transport",
+              "value": "Self-driving, ~3,286 km, 30 hours 42 mins, $163 (estimated from distance)",
+              "changed": false
+            },
+            {
+              "label": "Day 1 \u00b7 attraction",
+              "value": "Seattle Aquarium",
+              "changed": false
+            },
+            {
+              "label": "Day 1 \u00b7 dinner",
+              "value": "The Golden Dragon",
+              "changed": false
+            },
+            {
+              "label": "Nights 1\u20132 \u00b7 stay",
+              "value": "**Cozy Room In Hip Ultra Location LES/NOLITA**",
+              "changed": false
+            },
+            {
+              "label": "Day 2 \u00b7 breakfast",
+              "value": "The Test",
+              "changed": false
+            },
+            {
+              "label": "Day 2 \u00b7 attraction",
+              "value": "The Seattle Great Wheel",
+              "changed": false
+            },
+            {
+              "label": "Day 2 \u00b7 lunch",
+              "value": "Hot Chimney",
+              "changed": false
+            },
+            {
+              "label": "Day 2 \u00b7 attraction",
+              "value": "Chihuly Garden and Glass",
+              "changed": false
+            },
+            {
+              "label": "Day 2 \u00b7 dinner",
+              "value": "wagamama",
+              "changed": false
+            },
+            {
+              "label": "Day 3 \u00b7 breakfast",
+              "value": "Ting's Red Lantern",
+              "changed": false
+            },
+            {
+              "label": "Day 3 \u00b7 attraction",
+              "value": "Olympic Sculpture Park",
+              "changed": false
+            },
+            {
+              "label": "Day 3 \u00b7 lunch",
+              "value": "Wow! Momo",
+              "changed": false
+            },
+            {
+              "label": "Day 3 \u00b7 transport",
+              "value": "Self-driving, ~3,286 km, 30 hours 42 mins, $163 (estimated from distance)",
+              "changed": false
+            }
+          ],
+          "valid": true,
+          "cost": 1650,
+          "breakdown": {
+            "transport": 326,
+            "accommodation": 1074,
+            "meals": 250
+          },
+          "violations": []
+        },
+        "request": "budget $3,000; 2 traveler(s)",
+        "totals": {
+          "turns": 1,
+          "ok": 1,
+          "llm_calls": 1,
+          "changed": 0
+        }
+      }
+    ]
+  },
+  "budget:NaN": {
+    "accepted": true,
+    "request": "budget $nan; 2 traveler(s)",
+    "error": null
+  },
+  "budget:Infinity": {
+    "accepted": true,
+    "request": "budget $inf; 2 traveler(s)",
+    "error": null
+  },
+  "budget:-1": {
+    "accepted": false,
+    "request": null,
+    "error": "Can't build a valid plan: budget. The cheapest plan that meets the other requirements costs about $1,650."
+  },
+  "direction_display": {
+    "org": "Kansas City",
+    "dest": "Pensacola",
+    "mode": "self-driving",
+    "out_cost": 71.0,
+    "back_cost": 72.0,
+    "rows": [
+      {
+        "label": "Day 1 \u00b7 transport",
+        "value": "Self-driving, ~1,433 km, 14 hours 4 mins, $71",
+        "changed": false
+      },
+      {
+        "label": "Day 1 \u00b7 attraction",
+        "value": "-",
+        "changed": false
+      },
+      {
+        "label": "Day 1 \u00b7 dinner",
+        "value": "-",
+        "changed": false
+      },
+      {
+        "label": "Nights 1\u20132 \u00b7 stay",
+        "value": "-",
+        "changed": false
+      },
+      {
+        "label": "Day 2 \u00b7 breakfast",
+        "value": "-",
+        "changed": false
+      },
+      {
+        "label": "Day 2 \u00b7 attraction",
+        "value": "-",
+        "changed": false
+      },
+      {
+        "label": "Day 2 \u00b7 lunch",
+        "value": "-",
+        "changed": false
+      },
+      {
+        "label": "Day 2 \u00b7 attraction",
+        "value": "-",
+        "changed": false
+      },
+      {
+        "label": "Day 2 \u00b7 dinner",
+        "value": "-",
+        "changed": false
+      },
+      {
+        "label": "Day 3 \u00b7 breakfast",
+        "value": "-",
+        "changed": false
+      },
+      {
+        "label": "Day 3 \u00b7 attraction",
+        "value": "-",
+        "changed": false
+      },
+      {
+        "label": "Day 3 \u00b7 lunch",
+        "value": "-",
+        "changed": false
+      },
+      {
+        "label": "Day 3 \u00b7 transport",
+        "value": "Self-driving, ~1,433 km, 14 hours 4 mins, $71",
+        "changed": false
+      }
+    ]
+  }
+}

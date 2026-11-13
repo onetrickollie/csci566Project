@@ -1,0 +1,4069 @@
+{
+  "manifest": {
+    "git_sha": "cf78ea1",
+    "git_dirty": true,
+    "config": {},
+    "config_hash": "bf21a9e8fb",
+    "fingerprints": {
+      "source": "bc8ce14085cc",
+      "prompts": "f9352f57f9ee",
+      "tasks": "31cf06aeb6b9"
+    }
+  },
+  "tests": {
+    "passed": 72
+  },
+  "data": {
+    "test.jsonl": {
+      "byte_equal": true,
+      "sha256": "2b4f10fedff1f70d660bce827d692f004bd6b8820d96a5e4854d30d4497648d9"
+    },
+    "test_multi.jsonl": {
+      "byte_equal": true,
+      "sha256": "bcc1dc4ae1c95e33eda917f04aa876680096537da2ef9133b1c5bf7267ca614a"
+    },
+    "train.jsonl": {
+      "byte_equal": true,
+      "sha256": "81d6106b9a4ccedfeda31e7a9cb90ef73d76946fadf160588e2684e8be05eae0"
+    },
+    "train_multi.jsonl": {
+      "byte_equal": true,
+      "sha256": "d381f7d2c5305f61ebb1e2164ffc19df330a85d267e83271ff6404eb7a226cd6"
+    },
+    "val.jsonl": {
+      "byte_equal": true,
+      "sha256": "40d798746e9fb751071ba8837fa5d6d4083798b74631ad314e909036f63e8191"
+    },
+    "val_multi.jsonl": {
+      "byte_equal": true,
+      "sha256": "30d3688617ba52b10dc32798a7b87ae60757b32d26601e95f16e84a09e2da2ab"
+    }
+  },
+  "models": {
+    "bc_aug_dagger3_s0.pt": {
+      "tensors_equal": true,
+      "byte_equal": true,
+      "sha256": "14c6664617a16a12f9a4933e6fee9770b2c97bd277c2204bc6e504565ac46923"
+    },
+    "bc_aug_dagger3_s1.pt": {
+      "tensors_equal": true,
+      "byte_equal": true,
+      "sha256": "327e9bb82dc1ad3cbf4e191906334961791b5df4adeb5a596d1042d4a35e2697"
+    },
+    "bc_aug_dagger3_s2.pt": {
+      "tensors_equal": true,
+      "byte_equal": true,
+      "sha256": "61e18e3f80c14363aa7ff7df33cf2d6aba5114a51210fa70c24b65506a6283bc"
+    },
+    "bc_aug_s0.pt": {
+      "tensors_equal": true,
+      "byte_equal": true,
+      "sha256": "9bc41a8cc66e21f2bfe713401b0fcaa6048b4a35ed1cc15342f767b70a0f1f71"
+    },
+    "bc_aug_s1.pt": {
+      "tensors_equal": true,
+      "byte_equal": true,
+      "sha256": "ecc962d975e992caccf0832c8ecdb66a35df1335efddc81949f246e89b49fdc9"
+    },
+    "bc_aug_s2.pt": {
+      "tensors_equal": true,
+      "byte_equal": true,
+      "sha256": "0bcbfea39504e4f96b915927f82b1632b65481e21e7cf7abb1cbc598beb5ec97"
+    },
+    "bc_dagger1_s0.pt": {
+      "tensors_equal": true,
+      "byte_equal": true,
+      "sha256": "b382b6a3b0d0c602cac1c18a9100d2864f37e3f8d5ee1f41ccdd4ac789abe125"
+    },
+    "bc_dagger1_s1.pt": {
+      "tensors_equal": true,
+      "byte_equal": true,
+      "sha256": "f4c07802a1e30045476ee7acce259b9a97c3dc2d7d97bbf84cf92a184fd29fb3"
+    },
+    "bc_dagger1_s2.pt": {
+      "tensors_equal": true,
+      "byte_equal": true,
+      "sha256": "723554717335e21d77b44e389264d7cff192cf1c5c8fd6d7a994131122426178"
+    },
+    "bc_dagger2_s0.pt": {
+      "tensors_equal": true,
+      "byte_equal": true,
+      "sha256": "b70be19fc6904b25a93063b26dca2645af8400786773564ddf7e41e4072436da"
+    },
+    "bc_dagger2_s1.pt": {
+      "tensors_equal": true,
+      "byte_equal": true,
+      "sha256": "65f0bb022df18c7f3578a1f7a2f7413fb1b638fb0eb2cf8cf104866042773017"
+    },
+    "bc_dagger2_s2.pt": {
+      "tensors_equal": true,
+      "byte_equal": true,
+      "sha256": "8cfbd16a3e3bffac74a8cf96429b0af4a55d69a7e32806a771fe07f07231a77e"
+    },
+    "bc_dagger3_s0.pt": {
+      "tensors_equal": true,
+      "byte_equal": true,
+      "sha256": "8fd4fa9aefb1455e2e30580b937d45c63a1ed9e9d089045d973f154dac117b7f"
+    },
+    "bc_dagger3_s1.pt": {
+      "tensors_equal": true,
+      "byte_equal": true,
+      "sha256": "d8ebd17fffdf179d3be32dd8d94b67d4c8df13c622eb2cd8bc41899e64dcc30e"
+    },
+    "bc_dagger3_s2.pt": {
+      "tensors_equal": true,
+      "byte_equal": true,
+      "sha256": "a7579dbf29882be87242465284690700c3ab24743004090b7645f9b3fae64481"
+    },
+    "bc_s0.pt": {
+      "tensors_equal": true,
+      "byte_equal": true,
+      "sha256": "15bb96a9e417200a506efaa2865807db378300b4a7591c3193560f33025c3905"
+    },
+    "bc_s1.pt": {
+      "tensors_equal": true,
+      "byte_equal": true,
+      "sha256": "6083fa93a0d4e37bc0be856e9abf328b31f7bec8ce543e78edbab05b10c30fbd"
+    },
+    "bc_s2.pt": {
+      "tensors_equal": true,
+      "byte_equal": true,
+      "sha256": "e1fff222f905f3def233b2c1d3dbefaf03c0d8184acb3f27e49ad28cf9af9012"
+    }
+  },
+  "evaluations": {
+    "test": {
+      "systems_equal": true,
+      "recovery_episodes_equal": true,
+      "reference": "results/metrics.json",
+      "reference_sha256": "9d5b79c616ac0dbe0c5f60e85150ab19646d37bdf33b21c355003b8d8a2534eb",
+      "reproduced_manifest": {
+        "git_sha": "cf78ea1",
+        "git_dirty": false,
+        "config": {
+          "seeds": [
+            0,
+            1,
+            2
+          ],
+          "split": "test",
+          "limit": null,
+          "skip_recovery": false,
+          "model_suffix": "",
+          "call_cap": null,
+          "llm": "offline",
+          "models": "f7a33da8563c"
+        },
+        "config_hash": "ae4ba89468",
+        "fingerprints": {
+          "source": "bc8ce14085cc",
+          "prompts": "f9352f57f9ee",
+          "tasks": "31cf06aeb6b9"
+        }
+      },
+      "summaries": {
+        "always_global": {
+          "episodes": {
+            "mean": 276,
+            "std": 0.0
+          },
+          "turns": {
+            "mean": 689,
+            "std": 0.0
+          },
+          "final_pass_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "revision_success_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "new_constraint_satisfaction": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "constraint_retention_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "unaffected_preserved": {
+            "mean": 0.3127786201893345,
+            "std": 0.0
+          },
+          "edit_rate": {
+            "mean": 0.7311813186813186,
+            "std": 0.0
+          },
+          "minimum_edits_per_turn": {
+            "mean": 1.2821428571428573,
+            "std": 0.0
+          },
+          "excess_edits_per_turn": {
+            "mean": 8.223214285714286,
+            "std": 0.0
+          },
+          "edit_optimal_preservation": {
+            "mean": 0.3000480620569907,
+            "std": 0.0
+          },
+          "edit_scored_turns": {
+            "mean": 560,
+            "std": 0.0
+          },
+          "global_replan_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "unnecessary_global_rate": {
+            "mean": 0.4847605224963715,
+            "std": 0.0
+          },
+          "clarification_recall": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "clarification_precision": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "timeout_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "budget_exhausted_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "llm_calls_per_turn": {
+            "mean": 4.187227866473149,
+            "std": 0.0
+          },
+          "tool_calls_per_turn": {
+            "mean": 3.0,
+            "std": 0.0
+          },
+          "est_tokens_per_turn": {
+            "mean": 6056.168359941945,
+            "std": 0.0
+          },
+          "steps_per_turn": {
+            "mean": 3.0,
+            "std": 0.0
+          },
+          "tracker_accuracy": {
+            "mean": 1.0,
+            "std": 0.0
+          }
+        },
+        "always_global_det": {
+          "episodes": {
+            "mean": 276,
+            "std": 0.0
+          },
+          "turns": {
+            "mean": 689,
+            "std": 0.0
+          },
+          "final_pass_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "revision_success_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "new_constraint_satisfaction": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "constraint_retention_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "unaffected_preserved": {
+            "mean": 0.930764156478442,
+            "std": 0.0
+          },
+          "edit_rate": {
+            "mean": 0.21236263736263739,
+            "std": 0.0
+          },
+          "minimum_edits_per_turn": {
+            "mean": 1.2357142857142858,
+            "std": 0.0
+          },
+          "excess_edits_per_turn": {
+            "mean": 1.525,
+            "std": 0.0
+          },
+          "edit_optimal_preservation": {
+            "mean": 0.8688545630956345,
+            "std": 0.0
+          },
+          "edit_scored_turns": {
+            "mean": 560,
+            "std": 0.0
+          },
+          "global_replan_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "unnecessary_global_rate": {
+            "mean": 0.5065312046444121,
+            "std": 0.0
+          },
+          "clarification_recall": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "clarification_precision": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "timeout_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "budget_exhausted_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "llm_calls_per_turn": {
+            "mean": 4.187227866473149,
+            "std": 0.0
+          },
+          "tool_calls_per_turn": {
+            "mean": 3.0,
+            "std": 0.0
+          },
+          "est_tokens_per_turn": {
+            "mean": 6056.168359941945,
+            "std": 0.0
+          },
+          "steps_per_turn": {
+            "mean": 3.0,
+            "std": 0.0
+          },
+          "tracker_accuracy": {
+            "mean": 1.0,
+            "std": 0.0
+          }
+        },
+        "static_rules": {
+          "episodes": {
+            "mean": 276,
+            "std": 0.0
+          },
+          "turns": {
+            "mean": 689,
+            "std": 0.0
+          },
+          "final_pass_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "revision_success_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "new_constraint_satisfaction": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "constraint_retention_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "unaffected_preserved": {
+            "mean": 0.9542556947021231,
+            "std": 0.0
+          },
+          "edit_rate": {
+            "mean": 0.18901098901098903,
+            "std": 0.0
+          },
+          "minimum_edits_per_turn": {
+            "mean": 1.2517857142857143,
+            "std": 0.0
+          },
+          "excess_edits_per_turn": {
+            "mean": 1.2053571428571428,
+            "std": 0.0
+          },
+          "edit_optimal_preservation": {
+            "mean": 0.8903554035250464,
+            "std": 0.0
+          },
+          "edit_scored_turns": {
+            "mean": 560,
+            "std": 0.0
+          },
+          "global_replan_rate": {
+            "mean": 0.015965166908563134,
+            "std": 0.0
+          },
+          "unnecessary_global_rate": {
+            "mean": 0.015965166908563134,
+            "std": 0.0
+          },
+          "clarification_recall": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "clarification_precision": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "timeout_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "budget_exhausted_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "llm_calls_per_turn": {
+            "mean": 0.9492017416545718,
+            "std": 0.0
+          },
+          "tool_calls_per_turn": {
+            "mean": 0.7111756168359942,
+            "std": 0.0
+          },
+          "est_tokens_per_turn": {
+            "mean": 1464.4412191582003,
+            "std": 0.0
+          },
+          "steps_per_turn": {
+            "mean": 3.0914368650217705,
+            "std": 0.0
+          },
+          "tracker_accuracy": {
+            "mean": 1.0,
+            "std": 0.0
+          }
+        },
+        "oracle": {
+          "episodes": {
+            "mean": 276,
+            "std": 0.0
+          },
+          "turns": {
+            "mean": 689,
+            "std": 0.0
+          },
+          "final_pass_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "revision_success_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "new_constraint_satisfaction": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "constraint_retention_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "unaffected_preserved": {
+            "mean": 0.9613863121005977,
+            "std": 0.0
+          },
+          "edit_rate": {
+            "mean": 0.18571428571428572,
+            "std": 0.0
+          },
+          "minimum_edits_per_turn": {
+            "mean": 1.2553571428571428,
+            "std": 0.0
+          },
+          "excess_edits_per_turn": {
+            "mean": 1.1589285714285715,
+            "std": 0.0
+          },
+          "edit_optimal_preservation": {
+            "mean": 0.8965458797155225,
+            "std": 0.0
+          },
+          "edit_scored_turns": {
+            "mean": 560,
+            "std": 0.0
+          },
+          "global_replan_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "unnecessary_global_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "clarification_recall": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "clarification_precision": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "timeout_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "budget_exhausted_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "llm_calls_per_turn": {
+            "mean": 0.7126269956458636,
+            "std": 0.0
+          },
+          "tool_calls_per_turn": {
+            "mean": 0.6313497822931785,
+            "std": 0.0
+          },
+          "est_tokens_per_turn": {
+            "mean": 1096.8069666182873,
+            "std": 0.0
+          },
+          "steps_per_turn": {
+            "mean": 2.6821480406386065,
+            "std": 0.0
+          },
+          "tracker_accuracy": {
+            "mean": 1.0,
+            "std": 0.0
+          }
+        },
+        "bc": {
+          "episodes": {
+            "mean": 276.0,
+            "std": 0.0
+          },
+          "turns": {
+            "mean": 689.0,
+            "std": 0.0
+          },
+          "final_pass_rate": {
+            "mean": 0.9939613526570049,
+            "std": 0.0017079873941704122
+          },
+          "revision_success_rate": {
+            "mean": 0.9961296565070151,
+            "std": 0.0018101874149849804
+          },
+          "new_constraint_satisfaction": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "constraint_retention_rate": {
+            "mean": 0.9992929292929292,
+            "std": 0.0006226680811079995
+          },
+          "unaffected_preserved": {
+            "mean": 0.9613863121005976,
+            "std": 1.1102230246251565e-16
+          },
+          "edit_rate": {
+            "mean": 0.18571428571428572,
+            "std": 0.0
+          },
+          "minimum_edits_per_turn": {
+            "mean": 1.2576055453118469,
+            "std": 0.0018369092503280825
+          },
+          "excess_edits_per_turn": {
+            "mean": 1.1610042658711075,
+            "std": 0.001695809535509038
+          },
+          "edit_optimal_preservation": {
+            "mean": 0.8963605886218123,
+            "std": 0.00015137989345609347
+          },
+          "edit_scored_turns": {
+            "mean": 559.0,
+            "std": 0.816496580927726
+          },
+          "global_replan_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "unnecessary_global_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "clarification_recall": {
+            "mean": 0.9870801033591731,
+            "std": 0.0036542986107831977
+          },
+          "clarification_precision": {
+            "mean": 0.9922278746770026,
+            "std": 0.0063294952458776334
+          },
+          "timeout_rate": {
+            "mean": 0.0019351717464925011,
+            "std": 0.000684186532352731
+          },
+          "budget_exhausted_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "llm_calls_per_turn": {
+            "mean": 0.7232704402515724,
+            "std": 0.004789305726469109
+          },
+          "tool_calls_per_turn": {
+            "mean": 0.6289308176100629,
+            "std": 0.0029822999530570533
+          },
+          "est_tokens_per_turn": {
+            "mean": 1112.9656507014997,
+            "std": 7.472682675351271
+          },
+          "steps_per_turn": {
+            "mean": 2.700048379293662,
+            "std": 0.009938383446625043
+          },
+          "tracker_accuracy": {
+            "mean": 1.0,
+            "std": 0.0
+          }
+        },
+        "bc_aug": {
+          "episodes": {
+            "mean": 276.0,
+            "std": 0.0
+          },
+          "turns": {
+            "mean": 689.0,
+            "std": 0.0
+          },
+          "final_pass_rate": {
+            "mean": 0.9987922705314011,
+            "std": 0.0017079873941704122
+          },
+          "revision_success_rate": {
+            "mean": 0.999516207063377,
+            "std": 0.0006841865323527148
+          },
+          "new_constraint_satisfaction": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "constraint_retention_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "unaffected_preserved": {
+            "mean": 0.9613863121005976,
+            "std": 1.1102230246251565e-16
+          },
+          "edit_rate": {
+            "mean": 0.18571428571428572,
+            "std": 0.0
+          },
+          "minimum_edits_per_turn": {
+            "mean": 1.2553571428571428,
+            "std": 0.0
+          },
+          "excess_edits_per_turn": {
+            "mean": 1.1589285714285715,
+            "std": 0.0
+          },
+          "edit_optimal_preservation": {
+            "mean": 0.8965458797155225,
+            "std": 0.0
+          },
+          "edit_scored_turns": {
+            "mean": 560.0,
+            "std": 0.0
+          },
+          "global_replan_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "unnecessary_global_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "clarification_recall": {
+            "mean": 0.9974160206718347,
+            "std": 0.0036542986107831977
+          },
+          "clarification_precision": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "timeout_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "budget_exhausted_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "llm_calls_per_turn": {
+            "mean": 0.7160135462022255,
+            "std": 0.0013683730647054296
+          },
+          "tool_calls_per_turn": {
+            "mean": 0.6308659893565554,
+            "std": 0.00380938939236178
+          },
+          "est_tokens_per_turn": {
+            "mean": 1102.2738268021287,
+            "std": 1.2162365834520497
+          },
+          "steps_per_turn": {
+            "mean": 2.6894049346879534,
+            "std": 0.0031353365739757366
+          },
+          "tracker_accuracy": {
+            "mean": 1.0,
+            "std": 0.0
+          }
+        },
+        "bc_dagger1": {
+          "episodes": {
+            "mean": 276.0,
+            "std": 0.0
+          },
+          "turns": {
+            "mean": 689.0,
+            "std": 0.0
+          },
+          "final_pass_rate": {
+            "mean": 0.9975845410628019,
+            "std": 0.0017079873941704122
+          },
+          "revision_success_rate": {
+            "mean": 0.9990324141267538,
+            "std": 0.0006841865323527148
+          },
+          "new_constraint_satisfaction": {
+            "mean": 0.9986953685583823,
+            "std": 0.0009225137393171135
+          },
+          "constraint_retention_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "unaffected_preserved": {
+            "mean": 0.9616508623651482,
+            "std": 0.00018706528602834352
+          },
+          "edit_rate": {
+            "mean": 0.18516483516483517,
+            "std": 0.0003885202094431566
+          },
+          "minimum_edits_per_turn": {
+            "mean": 1.2520838657466564,
+            "std": 0.002314556441527601
+          },
+          "excess_edits_per_turn": {
+            "mean": 1.1579255047278305,
+            "std": 0.0007092752660765479
+          },
+          "edit_optimal_preservation": {
+            "mean": 0.8966875232479468,
+            "std": 0.00010015710228841012
+          },
+          "edit_scored_turns": {
+            "mean": 559.3333333333334,
+            "std": 0.4714045207910317
+          },
+          "global_replan_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "unnecessary_global_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "clarification_recall": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "clarification_precision": {
+            "mean": 0.9948717948717949,
+            "std": 0.0036261886214694616
+          },
+          "timeout_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "budget_exhausted_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "llm_calls_per_turn": {
+            "mean": 0.7150459603289793,
+            "std": 0.0006841865323527148
+          },
+          "tool_calls_per_turn": {
+            "mean": 0.6279632317368166,
+            "std": 0.0006841865323527148
+          },
+          "est_tokens_per_turn": {
+            "mean": 1097.9196903725206,
+            "std": 1.3836816300023826
+          },
+          "steps_per_turn": {
+            "mean": 2.6816642477019834,
+            "std": 0.00181018741498501
+          },
+          "tracker_accuracy": {
+            "mean": 1.0,
+            "std": 0.0
+          }
+        },
+        "bc_dagger2": {
+          "episodes": {
+            "mean": 276.0,
+            "std": 0.0
+          },
+          "turns": {
+            "mean": 689.0,
+            "std": 0.0
+          },
+          "final_pass_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "revision_success_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "new_constraint_satisfaction": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "constraint_retention_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "unaffected_preserved": {
+            "mean": 0.9613863121005976,
+            "std": 1.1102230246251565e-16
+          },
+          "edit_rate": {
+            "mean": 0.18571428571428572,
+            "std": 0.0
+          },
+          "minimum_edits_per_turn": {
+            "mean": 1.2553571428571428,
+            "std": 0.0
+          },
+          "excess_edits_per_turn": {
+            "mean": 1.1589285714285715,
+            "std": 0.0
+          },
+          "edit_optimal_preservation": {
+            "mean": 0.8965458797155225,
+            "std": 0.0
+          },
+          "edit_scored_turns": {
+            "mean": 560.0,
+            "std": 0.0
+          },
+          "global_replan_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "unnecessary_global_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "clarification_recall": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "clarification_precision": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "timeout_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "budget_exhausted_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "llm_calls_per_turn": {
+            "mean": 0.7169811320754716,
+            "std": 0.0011850458358893148
+          },
+          "tool_calls_per_turn": {
+            "mean": 0.6313497822931785,
+            "std": 0.005430562244954883
+          },
+          "est_tokens_per_turn": {
+            "mean": 1103.3381712626995,
+            "std": 0.5430562244955247
+          },
+          "steps_per_turn": {
+            "mean": 2.690856313497823,
+            "std": 0.0031353365739758055
+          },
+          "tracker_accuracy": {
+            "mean": 1.0,
+            "std": 0.0
+          }
+        },
+        "bc_dagger3": {
+          "episodes": {
+            "mean": 276.0,
+            "std": 0.0
+          },
+          "turns": {
+            "mean": 689.0,
+            "std": 0.0
+          },
+          "final_pass_rate": {
+            "mean": 0.9987922705314011,
+            "std": 0.0017079873941704122
+          },
+          "revision_success_rate": {
+            "mean": 0.9985486211901305,
+            "std": 0.0020525595970581965
+          },
+          "new_constraint_satisfaction": {
+            "mean": 0.9993476842791912,
+            "std": 0.0009225137393171135
+          },
+          "constraint_retention_rate": {
+            "mean": 0.9995959595959595,
+            "std": 0.0005713994191407005
+          },
+          "unaffected_preserved": {
+            "mean": 0.9609325991468848,
+            "std": 0.0006416470125651133
+          },
+          "edit_rate": {
+            "mean": 0.18603479853479854,
+            "std": 0.0004532735776836827
+          },
+          "minimum_edits_per_turn": {
+            "mean": 1.2558155937419853,
+            "std": 0.000648347459025888
+          },
+          "excess_edits_per_turn": {
+            "mean": 1.163403009318629,
+            "std": 0.006327810748115042
+          },
+          "edit_optimal_preservation": {
+            "mean": 0.896176008579349,
+            "std": 0.0005230767771067809
+          },
+          "edit_scored_turns": {
+            "mean": 559.0,
+            "std": 1.4142135623730951
+          },
+          "global_replan_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "unnecessary_global_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "clarification_recall": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "clarification_precision": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "timeout_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "budget_exhausted_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "llm_calls_per_turn": {
+            "mean": 0.7164973391388486,
+            "std": 0.001368373064705482
+          },
+          "tool_calls_per_turn": {
+            "mean": 0.6294146105466859,
+            "std": 0.001368373064705482
+          },
+          "est_tokens_per_turn": {
+            "mean": 1101.8384131591677,
+            "std": 1.8409576768689513
+          },
+          "steps_per_turn": {
+            "mean": 2.6879535558780847,
+            "std": 0.002370091671778539
+          },
+          "tracker_accuracy": {
+            "mean": 1.0,
+            "std": 0.0
+          }
+        },
+        "bc_aug_dagger3": {
+          "episodes": {
+            "mean": 276.0,
+            "std": 0.0
+          },
+          "turns": {
+            "mean": 689.0,
+            "std": 0.0
+          },
+          "final_pass_rate": {
+            "mean": 0.9975845410628019,
+            "std": 0.0017079873941704122
+          },
+          "revision_success_rate": {
+            "mean": 0.9970972423802612,
+            "std": 0.002052559597058197
+          },
+          "new_constraint_satisfaction": {
+            "mean": 0.9986953685583823,
+            "std": 0.0009225137393171135
+          },
+          "constraint_retention_rate": {
+            "mean": 0.9991919191919191,
+            "std": 0.0005713994191407005
+          },
+          "unaffected_preserved": {
+            "mean": 0.9608451865594723,
+            "std": 0.0003826335396030089
+          },
+          "edit_rate": {
+            "mean": 0.185989010989011,
+            "std": 0.0001942601047215783
+          },
+          "minimum_edits_per_turn": {
+            "mean": 1.2562740446268272,
+            "std": 0.000648347459025888
+          },
+          "excess_edits_per_turn": {
+            "mean": 1.163089894844832,
+            "std": 0.002942500006348132
+          },
+          "edit_optimal_preservation": {
+            "mean": 0.8961744107019337,
+            "std": 0.000262668258509286
+          },
+          "edit_scored_turns": {
+            "mean": 558.0,
+            "std": 1.4142135623730951
+          },
+          "global_replan_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "unnecessary_global_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "clarification_recall": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "clarification_precision": {
+            "mean": 0.9924242424242425,
+            "std": 0.010713739108887075
+          },
+          "timeout_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "budget_exhausted_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "llm_calls_per_turn": {
+            "mean": 0.717948717948718,
+            "std": 0.0024668696243796656
+          },
+          "tool_calls_per_turn": {
+            "mean": 0.6303821964199323,
+            "std": 0.0018101874149849706
+          },
+          "est_tokens_per_turn": {
+            "mean": 1102.6608611514273,
+            "std": 1.4817022574855352
+          },
+          "steps_per_turn": {
+            "mean": 2.688921141751331,
+            "std": 0.002466869624379789
+          },
+          "tracker_accuracy": {
+            "mean": 1.0,
+            "std": 0.0
+          }
+        }
+      }
+    },
+    "multi": {
+      "systems_equal": true,
+      "recovery_episodes_equal": true,
+      "reference": "results/runs/test-multi/metrics.json",
+      "reference_sha256": "b11ae68d80e3089a7f5ac6f2630838cdea4296aa652a71634d046f4a958084eb",
+      "reproduced_manifest": {
+        "git_sha": "cf78ea1",
+        "git_dirty": false,
+        "config": {
+          "seeds": [
+            0,
+            1,
+            2
+          ],
+          "split": "test_multi",
+          "limit": null,
+          "skip_recovery": true,
+          "model_suffix": "",
+          "call_cap": null,
+          "llm": "offline",
+          "models": "f7a33da8563c"
+        },
+        "config_hash": "0bfe653143",
+        "fingerprints": {
+          "source": "bc8ce14085cc",
+          "prompts": "f9352f57f9ee",
+          "tasks": "31cf06aeb6b9"
+        }
+      },
+      "summaries": {
+        "always_global": {
+          "episodes": {
+            "mean": 138,
+            "std": 0.0
+          },
+          "turns": {
+            "mean": 138,
+            "std": 0.0
+          },
+          "final_pass_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "revision_success_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "new_constraint_satisfaction": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "constraint_retention_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "unaffected_preserved": {
+            "mean": 0.16535433070866143,
+            "std": 0.0
+          },
+          "edit_rate": {
+            "mean": 0.9327680193821926,
+            "std": 0.0
+          },
+          "minimum_edits_per_turn": {
+            "mean": 4.118110236220472,
+            "std": 0.0
+          },
+          "excess_edits_per_turn": {
+            "mean": 8.007874015748031,
+            "std": 0.0
+          },
+          "edit_optimal_preservation": {
+            "mean": 0.1600132369817409,
+            "std": 0.0
+          },
+          "edit_scored_turns": {
+            "mean": 127,
+            "std": 0.0
+          },
+          "global_replan_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "unnecessary_global_rate": {
+            "mean": 0.6086956521739131,
+            "std": 0.0
+          },
+          "clarification_recall": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "clarification_precision": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "timeout_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "budget_exhausted_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "llm_calls_per_turn": {
+            "mean": 4.079710144927536,
+            "std": 0.0
+          },
+          "tool_calls_per_turn": {
+            "mean": 3.0,
+            "std": 0.0
+          },
+          "est_tokens_per_turn": {
+            "mean": 6023.913043478261,
+            "std": 0.0
+          },
+          "steps_per_turn": {
+            "mean": 3.0,
+            "std": 0.0
+          },
+          "tracker_accuracy": {
+            "mean": 1.0,
+            "std": 0.0
+          }
+        },
+        "always_global_det": {
+          "episodes": {
+            "mean": 138,
+            "std": 0.0
+          },
+          "turns": {
+            "mean": 138,
+            "std": 0.0
+          },
+          "final_pass_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "revision_success_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "new_constraint_satisfaction": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "constraint_retention_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "unaffected_preserved": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "edit_rate": {
+            "mean": 0.6789824348879466,
+            "std": 0.0
+          },
+          "minimum_edits_per_turn": {
+            "mean": 4.118110236220472,
+            "std": 0.0
+          },
+          "excess_edits_per_turn": {
+            "mean": 4.708661417322834,
+            "std": 0.0
+          },
+          "edit_optimal_preservation": {
+            "mean": 0.5308938655395349,
+            "std": 0.0
+          },
+          "edit_scored_turns": {
+            "mean": 127,
+            "std": 0.0
+          },
+          "global_replan_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "unnecessary_global_rate": {
+            "mean": 0.6086956521739131,
+            "std": 0.0
+          },
+          "clarification_recall": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "clarification_precision": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "timeout_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "budget_exhausted_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "llm_calls_per_turn": {
+            "mean": 4.079710144927536,
+            "std": 0.0
+          },
+          "tool_calls_per_turn": {
+            "mean": 3.0,
+            "std": 0.0
+          },
+          "est_tokens_per_turn": {
+            "mean": 6023.913043478261,
+            "std": 0.0
+          },
+          "steps_per_turn": {
+            "mean": 3.0,
+            "std": 0.0
+          },
+          "tracker_accuracy": {
+            "mean": 1.0,
+            "std": 0.0
+          }
+        },
+        "static_rules": {
+          "episodes": {
+            "mean": 138,
+            "std": 0.0
+          },
+          "turns": {
+            "mean": 138,
+            "std": 0.0
+          },
+          "final_pass_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "revision_success_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "new_constraint_satisfaction": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "constraint_retention_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "unaffected_preserved": {
+            "mean": 0.34448818897637795,
+            "std": 0.0
+          },
+          "edit_rate": {
+            "mean": 0.7740763173834039,
+            "std": 0.0
+          },
+          "minimum_edits_per_turn": {
+            "mean": 4.118110236220472,
+            "std": 0.0
+          },
+          "excess_edits_per_turn": {
+            "mean": 5.94488188976378,
+            "std": 0.0
+          },
+          "edit_optimal_preservation": {
+            "mean": 0.33192924748042857,
+            "std": 0.0
+          },
+          "edit_scored_turns": {
+            "mean": 127,
+            "std": 0.0
+          },
+          "global_replan_rate": {
+            "mean": 0.7536231884057971,
+            "std": 0.0
+          },
+          "unnecessary_global_rate": {
+            "mean": 0.4420289855072464,
+            "std": 0.0
+          },
+          "clarification_recall": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "clarification_precision": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "timeout_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "budget_exhausted_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "llm_calls_per_turn": {
+            "mean": 4.094202898550725,
+            "std": 0.0
+          },
+          "tool_calls_per_turn": {
+            "mean": 2.260869565217391,
+            "std": 0.0
+          },
+          "est_tokens_per_turn": {
+            "mean": 6045.652173913043,
+            "std": 0.0
+          },
+          "steps_per_turn": {
+            "mean": 4.507246376811594,
+            "std": 0.0
+          },
+          "tracker_accuracy": {
+            "mean": 1.0,
+            "std": 0.0
+          }
+        },
+        "oracle": {
+          "episodes": {
+            "mean": 138,
+            "std": 0.0
+          },
+          "turns": {
+            "mean": 138,
+            "std": 0.0
+          },
+          "final_pass_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "revision_success_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "new_constraint_satisfaction": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "constraint_retention_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "unaffected_preserved": {
+            "mean": 0.7854330708661418,
+            "std": 0.0
+          },
+          "edit_rate": {
+            "mean": 0.44276196244700194,
+            "std": 0.0
+          },
+          "minimum_edits_per_turn": {
+            "mean": 4.118110236220472,
+            "std": 0.0
+          },
+          "excess_edits_per_turn": {
+            "mean": 1.6377952755905512,
+            "std": 0.0
+          },
+          "edit_optimal_preservation": {
+            "mean": 0.7606963902239493,
+            "std": 0.0
+          },
+          "edit_scored_turns": {
+            "mean": 127,
+            "std": 0.0
+          },
+          "global_replan_rate": {
+            "mean": 0.3115942028985507,
+            "std": 0.0
+          },
+          "unnecessary_global_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "clarification_recall": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "clarification_precision": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "timeout_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "budget_exhausted_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "llm_calls_per_turn": {
+            "mean": 2.3260869565217392,
+            "std": 0.0
+          },
+          "tool_calls_per_turn": {
+            "mean": 0.9347826086956522,
+            "std": 0.0
+          },
+          "est_tokens_per_turn": {
+            "mean": 3393.478260869565,
+            "std": 0.0
+          },
+          "steps_per_turn": {
+            "mean": 3.6231884057971016,
+            "std": 0.0
+          },
+          "tracker_accuracy": {
+            "mean": 1.0,
+            "std": 0.0
+          }
+        },
+        "bc": {
+          "episodes": {
+            "mean": 138.0,
+            "std": 0.0
+          },
+          "turns": {
+            "mean": 138.0,
+            "std": 0.0
+          },
+          "final_pass_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "revision_success_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "new_constraint_satisfaction": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "constraint_retention_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "unaffected_preserved": {
+            "mean": 0.7644356955380577,
+            "std": 0.007423693240803635
+          },
+          "edit_rate": {
+            "mean": 0.46093276801938227,
+            "std": 0.005703390628639447
+          },
+          "minimum_edits_per_turn": {
+            "mean": 4.118110236220472,
+            "std": 0.0
+          },
+          "excess_edits_per_turn": {
+            "mean": 1.874015748031496,
+            "std": 0.07414407817231257
+          },
+          "edit_optimal_preservation": {
+            "mean": 0.73662383111202,
+            "std": 0.0076816250838947315
+          },
+          "edit_scored_turns": {
+            "mean": 127.0,
+            "std": 0.0
+          },
+          "global_replan_rate": {
+            "mean": 0.3381642512077294,
+            "std": 0.006831949576681623
+          },
+          "unnecessary_global_rate": {
+            "mean": 0.03381642512077295,
+            "std": 0.0034159747883408097
+          },
+          "clarification_recall": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "clarification_precision": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "timeout_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "budget_exhausted_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "llm_calls_per_turn": {
+            "mean": 2.4033816425120773,
+            "std": 0.009037819774816323
+          },
+          "tool_calls_per_turn": {
+            "mean": 1.0144927536231885,
+            "std": 0.02049584873004484
+          },
+          "est_tokens_per_turn": {
+            "mean": 3509.420289855072,
+            "std": 13.556729662224443
+          },
+          "steps_per_turn": {
+            "mean": 3.618357487922705,
+            "std": 0.029779777792120623
+          },
+          "tracker_accuracy": {
+            "mean": 1.0,
+            "std": 0.0
+          }
+        },
+        "bc_aug": {
+          "episodes": {
+            "mean": 138.0,
+            "std": 0.0
+          },
+          "turns": {
+            "mean": 138.0,
+            "std": 0.0
+          },
+          "final_pass_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "revision_success_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "new_constraint_satisfaction": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "constraint_retention_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "unaffected_preserved": {
+            "mean": 0.7933070866141732,
+            "std": 0.012858213872877597
+          },
+          "edit_rate": {
+            "mean": 0.44316575812638814,
+            "std": 0.0049783274806936735
+          },
+          "minimum_edits_per_turn": {
+            "mean": 4.118110236220472,
+            "std": 0.0
+          },
+          "excess_edits_per_turn": {
+            "mean": 1.6430446194225723,
+            "std": 0.06471825724901818
+          },
+          "edit_optimal_preservation": {
+            "mean": 0.7623295194161335,
+            "std": 0.007571160679934155
+          },
+          "edit_scored_turns": {
+            "mean": 127.0,
+            "std": 0.0
+          },
+          "global_replan_rate": {
+            "mean": 0.3067632850241546,
+            "std": 0.012316472255055022
+          },
+          "unnecessary_global_rate": {
+            "mean": 0.012077294685990338,
+            "std": 0.009037819774816283
+          },
+          "clarification_recall": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "clarification_precision": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "timeout_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "budget_exhausted_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "llm_calls_per_turn": {
+            "mean": 2.335748792270531,
+            "std": 0.017079873941704123
+          },
+          "tool_calls_per_turn": {
+            "mean": 0.9202898550724639,
+            "std": 0.03694941676516513
+          },
+          "est_tokens_per_turn": {
+            "mean": 3407.9710144927535,
+            "std": 25.61981091255606
+          },
+          "steps_per_turn": {
+            "mean": 3.6714975845410627,
+            "std": 0.041557126893925746
+          },
+          "tracker_accuracy": {
+            "mean": 1.0,
+            "std": 0.0
+          }
+        },
+        "bc_dagger1": {
+          "episodes": {
+            "mean": 138.0,
+            "std": 0.0
+          },
+          "turns": {
+            "mean": 138.0,
+            "std": 0.0
+          },
+          "final_pass_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "revision_success_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "new_constraint_satisfaction": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "constraint_retention_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "unaffected_preserved": {
+            "mean": 0.7749343832020997,
+            "std": 0.0037118466204018176
+          },
+          "edit_rate": {
+            "mean": 0.4510397738744196,
+            "std": 0.004595116768318619
+          },
+          "minimum_edits_per_turn": {
+            "mean": 4.118110236220472,
+            "std": 0.0
+          },
+          "excess_edits_per_turn": {
+            "mean": 1.7454068241469816,
+            "std": 0.05973651798814202
+          },
+          "edit_optimal_preservation": {
+            "mean": 0.7484626921634795,
+            "std": 0.005682433916023204
+          },
+          "edit_scored_turns": {
+            "mean": 127.0,
+            "std": 0.0
+          },
+          "global_replan_rate": {
+            "mean": 0.3285024154589372,
+            "std": 0.0034159747883407985
+          },
+          "unnecessary_global_rate": {
+            "mean": 0.024154589371980676,
+            "std": 0.0034159747883408097
+          },
+          "clarification_recall": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "clarification_precision": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "timeout_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "budget_exhausted_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "llm_calls_per_turn": {
+            "mean": 2.3768115942028984,
+            "std": 0.015653963039632582
+          },
+          "tool_calls_per_turn": {
+            "mean": 0.9855072463768115,
+            "std": 0.01024792436502242
+          },
+          "est_tokens_per_turn": {
+            "mean": 3469.565217391304,
+            "std": 23.480944559448943
+          },
+          "steps_per_turn": {
+            "mean": 3.6231884057971016,
+            "std": 0.042665511431535484
+          },
+          "tracker_accuracy": {
+            "mean": 1.0,
+            "std": 0.0
+          }
+        },
+        "bc_dagger2": {
+          "episodes": {
+            "mean": 138.0,
+            "std": 0.0
+          },
+          "turns": {
+            "mean": 138.0,
+            "std": 0.0
+          },
+          "final_pass_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "revision_success_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "new_constraint_satisfaction": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "constraint_retention_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "unaffected_preserved": {
+            "mean": 0.7854330708661417,
+            "std": 0.006429106936438821
+          },
+          "edit_rate": {
+            "mean": 0.4472037149202504,
+            "std": 0.0030217301730457763
+          },
+          "minimum_edits_per_turn": {
+            "mean": 4.118110236220472,
+            "std": 0.0
+          },
+          "excess_edits_per_turn": {
+            "mean": 1.695538057742782,
+            "std": 0.039282492249595215
+          },
+          "edit_optimal_preservation": {
+            "mean": 0.7560840879738517,
+            "std": 0.004031450617515141
+          },
+          "edit_scored_turns": {
+            "mean": 127.0,
+            "std": 0.0
+          },
+          "global_replan_rate": {
+            "mean": 0.3115942028985507,
+            "std": 0.005916641890780605
+          },
+          "unnecessary_global_rate": {
+            "mean": 0.016908212560386476,
+            "std": 0.003415974788340809
+          },
+          "clarification_recall": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "clarification_precision": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "timeout_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "budget_exhausted_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "llm_calls_per_turn": {
+            "mean": 2.342995169082126,
+            "std": 0.006831949576681649
+          },
+          "tool_calls_per_turn": {
+            "mean": 0.9347826086956522,
+            "std": 0.017749925672341904
+          },
+          "est_tokens_per_turn": {
+            "mean": 3418.8405797101454,
+            "std": 10.247924365022381
+          },
+          "steps_per_turn": {
+            "mean": 3.657004830917874,
+            "std": 0.02463294451010998
+          },
+          "tracker_accuracy": {
+            "mean": 1.0,
+            "std": 0.0
+          }
+        },
+        "bc_dagger3": {
+          "episodes": {
+            "mean": 138.0,
+            "std": 0.0
+          },
+          "turns": {
+            "mean": 138.0,
+            "std": 0.0
+          },
+          "final_pass_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "revision_success_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "new_constraint_satisfaction": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "constraint_retention_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "unaffected_preserved": {
+            "mean": 0.7644356955380577,
+            "std": 0.00982062306239878
+          },
+          "edit_rate": {
+            "mean": 0.4579043004239855,
+            "std": 0.00631394943311603
+          },
+          "minimum_edits_per_turn": {
+            "mean": 4.118110236220472,
+            "std": 0.0
+          },
+          "excess_edits_per_turn": {
+            "mean": 1.8346456692913387,
+            "std": 0.08208134263050866
+          },
+          "edit_optimal_preservation": {
+            "mean": 0.7404216518389747,
+            "std": 0.00799768367809947
+          },
+          "edit_scored_turns": {
+            "mean": 127.0,
+            "std": 0.0
+          },
+          "global_replan_rate": {
+            "mean": 0.3357487922705314,
+            "std": 0.012316472255055047
+          },
+          "unnecessary_global_rate": {
+            "mean": 0.028985507246376812,
+            "std": 0.010247924365022427
+          },
+          "clarification_recall": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "clarification_precision": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "timeout_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "budget_exhausted_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "llm_calls_per_turn": {
+            "mean": 2.379227053140097,
+            "std": 0.022400044675110288
+          },
+          "tool_calls_per_turn": {
+            "mean": 1.0072463768115942,
+            "std": 0.0369494167651651
+          },
+          "est_tokens_per_turn": {
+            "mean": 3473.1884057971015,
+            "std": 33.60006701266572
+          },
+          "steps_per_turn": {
+            "mean": 3.5845410628019323,
+            "std": 0.029779777792120793
+          },
+          "tracker_accuracy": {
+            "mean": 1.0,
+            "std": 0.0
+          }
+        },
+        "bc_aug_dagger3": {
+          "episodes": {
+            "mean": 138.0,
+            "std": 0.0
+          },
+          "turns": {
+            "mean": 138.0,
+            "std": 0.0
+          },
+          "final_pass_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "revision_success_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "new_constraint_satisfaction": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "constraint_retention_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "unaffected_preserved": {
+            "mean": 0.7775590551181102,
+            "std": 0.012858213872877597
+          },
+          "edit_rate": {
+            "mean": 0.45083787603472647,
+            "std": 0.004879081757962675
+          },
+          "minimum_edits_per_turn": {
+            "mean": 4.118110236220472,
+            "std": 0.0
+          },
+          "excess_edits_per_turn": {
+            "mean": 1.742782152230971,
+            "std": 0.06342806285351481
+          },
+          "edit_optimal_preservation": {
+            "mean": 0.75045297368132,
+            "std": 0.008668954663167293
+          },
+          "edit_scored_turns": {
+            "mean": 127.0,
+            "std": 0.0
+          },
+          "global_replan_rate": {
+            "mean": 0.3164251207729469,
+            "std": 0.014889888896060325
+          },
+          "unnecessary_global_rate": {
+            "mean": 0.012077294685990338,
+            "std": 0.006831949576681618
+          },
+          "clarification_recall": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "clarification_precision": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "timeout_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "budget_exhausted_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "llm_calls_per_turn": {
+            "mean": 2.3454106280193234,
+            "std": 0.020778563446962786
+          },
+          "tool_calls_per_turn": {
+            "mean": 0.9492753623188405,
+            "std": 0.04466966668818101
+          },
+          "est_tokens_per_turn": {
+            "mean": 3422.463768115942,
+            "std": 31.16784517044425
+          },
+          "steps_per_turn": {
+            "mean": 3.6328502415458934,
+            "std": 0.04782364703677135
+          },
+          "tracker_accuracy": {
+            "mean": 1.0,
+            "std": 0.0
+          }
+        }
+      }
+    },
+    "cap1": {
+      "systems_equal": true,
+      "recovery_episodes_equal": true,
+      "reference": "results/runs/test-offline-cap1-afda002918/metrics.json",
+      "reference_sha256": "58ef62f8126198235fd950b5a0f833a6f53e74055c687e1c605d8ab02089adb0",
+      "reproduced_manifest": {
+        "git_sha": "cf78ea1",
+        "git_dirty": false,
+        "config": {
+          "seeds": [
+            0,
+            1,
+            2
+          ],
+          "split": "test",
+          "limit": null,
+          "skip_recovery": false,
+          "model_suffix": "",
+          "call_cap": 1,
+          "llm": "offline",
+          "models": "f7a33da8563c"
+        },
+        "config_hash": "afda002918",
+        "fingerprints": {
+          "source": "bc8ce14085cc",
+          "prompts": "f9352f57f9ee",
+          "tasks": "31cf06aeb6b9"
+        }
+      },
+      "summaries": {
+        "always_global": {
+          "episodes": {
+            "mean": 276,
+            "std": 0.0
+          },
+          "turns": {
+            "mean": 689,
+            "std": 0.0
+          },
+          "final_pass_rate": {
+            "mean": 0.17391304347826086,
+            "std": 0.0
+          },
+          "revision_success_rate": {
+            "mean": 0.19448476052249636,
+            "std": 0.0
+          },
+          "new_constraint_satisfaction": {
+            "mean": 0.3542074363992172,
+            "std": 0.0
+          },
+          "constraint_retention_rate": {
+            "mean": 0.8370887445887446,
+            "std": 0.0
+          },
+          "unaffected_preserved": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "edit_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "minimum_edits_per_turn": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "excess_edits_per_turn": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "edit_optimal_preservation": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "edit_scored_turns": {
+            "mean": 134,
+            "std": 0.0
+          },
+          "global_replan_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "unnecessary_global_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "clarification_recall": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "timeout_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "budget_exhausted_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "llm_calls_per_turn": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "tool_calls_per_turn": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "est_tokens_per_turn": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "steps_per_turn": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "tracker_accuracy": {
+            "mean": 1.0,
+            "std": 0.0
+          }
+        },
+        "always_global_det": {
+          "episodes": {
+            "mean": 276,
+            "std": 0.0
+          },
+          "turns": {
+            "mean": 689,
+            "std": 0.0
+          },
+          "final_pass_rate": {
+            "mean": 0.17391304347826086,
+            "std": 0.0
+          },
+          "revision_success_rate": {
+            "mean": 0.19448476052249636,
+            "std": 0.0
+          },
+          "new_constraint_satisfaction": {
+            "mean": 0.3542074363992172,
+            "std": 0.0
+          },
+          "constraint_retention_rate": {
+            "mean": 0.8370887445887446,
+            "std": 0.0
+          },
+          "unaffected_preserved": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "edit_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "minimum_edits_per_turn": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "excess_edits_per_turn": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "edit_optimal_preservation": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "edit_scored_turns": {
+            "mean": 134,
+            "std": 0.0
+          },
+          "global_replan_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "unnecessary_global_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "clarification_recall": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "timeout_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "budget_exhausted_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "llm_calls_per_turn": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "tool_calls_per_turn": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "est_tokens_per_turn": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "steps_per_turn": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "tracker_accuracy": {
+            "mean": 1.0,
+            "std": 0.0
+          }
+        },
+        "static_rules": {
+          "episodes": {
+            "mean": 276,
+            "std": 0.0
+          },
+          "turns": {
+            "mean": 689,
+            "std": 0.0
+          },
+          "final_pass_rate": {
+            "mean": 0.6557971014492754,
+            "std": 0.0
+          },
+          "revision_success_rate": {
+            "mean": 0.7242380261248186,
+            "std": 0.0
+          },
+          "new_constraint_satisfaction": {
+            "mean": 0.9843444227005871,
+            "std": 0.0
+          },
+          "constraint_retention_rate": {
+            "mean": 0.9484545454545454,
+            "std": 0.0
+          },
+          "unaffected_preserved": {
+            "mean": 0.9654924936174936,
+            "std": 0.0
+          },
+          "edit_rate": {
+            "mean": 0.1833791208791209,
+            "std": 0.0
+          },
+          "minimum_edits_per_turn": {
+            "mean": 1.2264529058116231,
+            "std": 0.0
+          },
+          "excess_edits_per_turn": {
+            "mean": 1.1743486973947896,
+            "std": 0.0
+          },
+          "edit_optimal_preservation": {
+            "mean": 0.8956985454981448,
+            "std": 0.0
+          },
+          "edit_scored_turns": {
+            "mean": 499,
+            "std": 0.0
+          },
+          "global_replan_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "unnecessary_global_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "clarification_recall": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "clarification_precision": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "timeout_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "budget_exhausted_rate": {
+            "mean": 0.2946298984034833,
+            "std": 0.0
+          },
+          "llm_calls_per_turn": {
+            "mean": 0.7576197387518142,
+            "std": 0.0
+          },
+          "tool_calls_per_turn": {
+            "mean": 0.7053701015965167,
+            "std": 0.0
+          },
+          "est_tokens_per_turn": {
+            "mean": 1397.677793904209,
+            "std": 0.0
+          },
+          "steps_per_turn": {
+            "mean": 3.18577648766328,
+            "std": 0.0
+          },
+          "tracker_accuracy": {
+            "mean": 1.0,
+            "std": 0.0
+          }
+        },
+        "oracle": {
+          "episodes": {
+            "mean": 276,
+            "std": 0.0
+          },
+          "turns": {
+            "mean": 689,
+            "std": 0.0
+          },
+          "final_pass_rate": {
+            "mean": 0.9782608695652174,
+            "std": 0.0
+          },
+          "revision_success_rate": {
+            "mean": 0.9854862119013063,
+            "std": 0.0
+          },
+          "new_constraint_satisfaction": {
+            "mean": 0.9960861056751468,
+            "std": 0.0
+          },
+          "constraint_retention_rate": {
+            "mean": 0.9914545454545454,
+            "std": 0.0
+          },
+          "unaffected_preserved": {
+            "mean": 0.9635195707070707,
+            "std": 0.0
+          },
+          "edit_rate": {
+            "mean": 0.1833791208791209,
+            "std": 0.0
+          },
+          "minimum_edits_per_turn": {
+            "mean": 1.2036363636363636,
+            "std": 0.0
+          },
+          "excess_edits_per_turn": {
+            "mean": 1.1490909090909092,
+            "std": 0.0
+          },
+          "edit_optimal_preservation": {
+            "mean": 0.8977644628099173,
+            "std": 0.0
+          },
+          "edit_scored_turns": {
+            "mean": 550,
+            "std": 0.0
+          },
+          "global_replan_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "unnecessary_global_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "clarification_recall": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "clarification_precision": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "timeout_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "budget_exhausted_rate": {
+            "mean": 0.01451378809869376,
+            "std": 0.0
+          },
+          "llm_calls_per_turn": {
+            "mean": 0.7024673439767779,
+            "std": 0.0
+          },
+          "tool_calls_per_turn": {
+            "mean": 0.6313497822931785,
+            "std": 0.0
+          },
+          "est_tokens_per_turn": {
+            "mean": 1081.5674891146589,
+            "std": 0.0
+          },
+          "steps_per_turn": {
+            "mean": 2.6618287373004352,
+            "std": 0.0
+          },
+          "tracker_accuracy": {
+            "mean": 1.0,
+            "std": 0.0
+          }
+        },
+        "bc": {
+          "episodes": {
+            "mean": 276.0,
+            "std": 0.0
+          },
+          "turns": {
+            "mean": 689.0,
+            "std": 0.0
+          },
+          "final_pass_rate": {
+            "mean": 0.9698067632850241,
+            "std": 0.0017079873941704122
+          },
+          "revision_success_rate": {
+            "mean": 0.9801644895984518,
+            "std": 0.0013683730647054818
+          },
+          "new_constraint_satisfaction": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "constraint_retention_rate": {
+            "mean": 0.9892727272727272,
+            "std": 0.0004285495643554599
+          },
+          "unaffected_preserved": {
+            "mean": 0.9631948953823954,
+            "std": 0.0
+          },
+          "edit_rate": {
+            "mean": 0.18461538461538463,
+            "std": 0.0
+          },
+          "minimum_edits_per_turn": {
+            "mean": 1.2065622520929449,
+            "std": 0.0010372867481806308
+          },
+          "excess_edits_per_turn": {
+            "mean": 1.151884204415017,
+            "std": 0.0009902797958461914
+          },
+          "edit_optimal_preservation": {
+            "mean": 0.897515941090938,
+            "std": 8.810598543238556e-05
+          },
+          "edit_scored_turns": {
+            "mean": 548.6666666666666,
+            "std": 0.4714045207910317
+          },
+          "global_replan_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "unnecessary_global_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "clarification_recall": {
+            "mean": 0.9819121447028424,
+            "std": 0.0036542986107831977
+          },
+          "clarification_precision": {
+            "mean": 0.9973753280839895,
+            "std": 0.0037118466204018176
+          },
+          "timeout_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "budget_exhausted_rate": {
+            "mean": 0.018867924528301886,
+            "std": 0.0011850458358892977
+          },
+          "llm_calls_per_turn": {
+            "mean": 0.7044025157232704,
+            "std": 0.0006841865323527148
+          },
+          "tool_calls_per_turn": {
+            "mean": 0.6265118529269472,
+            "std": 0.0024668696243796656
+          },
+          "est_tokens_per_turn": {
+            "mean": 1086.0183841315918,
+            "std": 0.789042401078834
+          },
+          "steps_per_turn": {
+            "mean": 2.6666666666666665,
+            "std": 0.001810187414984852
+          },
+          "tracker_accuracy": {
+            "mean": 1.0,
+            "std": 0.0
+          }
+        },
+        "bc_aug": {
+          "episodes": {
+            "mean": 276.0,
+            "std": 0.0
+          },
+          "turns": {
+            "mean": 689.0,
+            "std": 0.0
+          },
+          "final_pass_rate": {
+            "mean": 0.9685990338164251,
+            "std": 0.0017079873941704122
+          },
+          "revision_success_rate": {
+            "mean": 0.9777455249153363,
+            "std": 0.001368373064705482
+          },
+          "new_constraint_satisfaction": {
+            "mean": 0.9986953685583823,
+            "std": 0.0009225137393171135
+          },
+          "constraint_retention_rate": {
+            "mean": 0.9898787878787879,
+            "std": 0.0008570991287109199
+          },
+          "unaffected_preserved": {
+            "mean": 0.9631948953823954,
+            "std": 0.0
+          },
+          "edit_rate": {
+            "mean": 0.18415750915750917,
+            "std": 0.00032376684120263046
+          },
+          "minimum_edits_per_turn": {
+            "mean": 1.2065622520929449,
+            "std": 0.0010372867481806308
+          },
+          "excess_edits_per_turn": {
+            "mean": 1.151884204415017,
+            "std": 0.0009902797958461914
+          },
+          "edit_optimal_preservation": {
+            "mean": 0.897515941090938,
+            "std": 8.810598543238556e-05
+          },
+          "edit_scored_turns": {
+            "mean": 548.6666666666666,
+            "std": 0.4714045207910317
+          },
+          "global_replan_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "unnecessary_global_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "clarification_recall": {
+            "mean": 0.9689922480620154,
+            "std": 0.006329430859904819
+          },
+          "clarification_precision": {
+            "mean": 0.9946878306878307,
+            "std": 0.0037563603759842323
+          },
+          "timeout_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "budget_exhausted_rate": {
+            "mean": 0.020319303338171262,
+            "std": 0.0011850458358892977
+          },
+          "llm_calls_per_turn": {
+            "mean": 0.7039187227866472,
+            "std": 0.0011850458358893148
+          },
+          "tool_calls_per_turn": {
+            "mean": 0.6337687469762942,
+            "std": 0.0029822999530570533
+          },
+          "est_tokens_per_turn": {
+            "mean": 1090.5176584421868,
+            "std": 0.29822999530569677
+          },
+          "steps_per_turn": {
+            "mean": 2.676826318335752,
+            "std": 0.0018101874149848518
+          },
+          "tracker_accuracy": {
+            "mean": 1.0,
+            "std": 0.0
+          }
+        },
+        "bc_dagger1": {
+          "episodes": {
+            "mean": 276.0,
+            "std": 0.0
+          },
+          "turns": {
+            "mean": 689.0,
+            "std": 0.0
+          },
+          "final_pass_rate": {
+            "mean": 0.9698067632850241,
+            "std": 0.0017079873941704122
+          },
+          "revision_success_rate": {
+            "mean": 0.9811320754716982,
+            "std": 0.0011850458358892695
+          },
+          "new_constraint_satisfaction": {
+            "mean": 0.9986953685583823,
+            "std": 0.0009225137393171135
+          },
+          "constraint_retention_rate": {
+            "mean": 0.9897777777777778,
+            "std": 0.0002856997095702717
+          },
+          "unaffected_preserved": {
+            "mean": 0.9634594456469457,
+            "std": 0.00018706528602818653
+          },
+          "edit_rate": {
+            "mean": 0.18406593406593408,
+            "std": 0.0003885202094431566
+          },
+          "minimum_edits_per_turn": {
+            "mean": 1.201700503902251,
+            "std": 0.003052635007345379
+          },
+          "excess_edits_per_turn": {
+            "mean": 1.14945333031967,
+            "std": 0.0014927830554748388
+          },
+          "edit_optimal_preservation": {
+            "mean": 0.8977860382126434,
+            "std": 0.000165426186008682
+          },
+          "edit_scored_turns": {
+            "mean": 548.6666666666666,
+            "std": 0.4714045207910317
+          },
+          "global_replan_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "unnecessary_global_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "clarification_recall": {
+            "mean": 0.9870801033591731,
+            "std": 0.0036542986107831977
+          },
+          "clarification_precision": {
+            "mean": 0.9922480620155039,
+            "std": 0.006329430859904864
+          },
+          "timeout_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "budget_exhausted_rate": {
+            "mean": 0.01741654571843251,
+            "std": 0.0011850458358892977
+          },
+          "llm_calls_per_turn": {
+            "mean": 0.7034349298500242,
+            "std": 0.0006841865323527672
+          },
+          "tool_calls_per_turn": {
+            "mean": 0.6289308176100629,
+            "std": 0.0006841865323527672
+          },
+          "est_tokens_per_turn": {
+            "mean": 1083.2123850991775,
+            "std": 2.311092581034625
+          },
+          "steps_per_turn": {
+            "mean": 2.663280116110305,
+            "std": 0.0035551375076679896
+          },
+          "tracker_accuracy": {
+            "mean": 1.0,
+            "std": 0.0
+          }
+        },
+        "bc_dagger2": {
+          "episodes": {
+            "mean": 276.0,
+            "std": 0.0
+          },
+          "turns": {
+            "mean": 689.0,
+            "std": 0.0
+          },
+          "final_pass_rate": {
+            "mean": 0.9685990338164251,
+            "std": 0.0017079873941704122
+          },
+          "revision_success_rate": {
+            "mean": 0.9796806966618287,
+            "std": 0.002052559597058197
+          },
+          "new_constraint_satisfaction": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "constraint_retention_rate": {
+            "mean": 0.9897777777777778,
+            "std": 0.0002856997095702717
+          },
+          "unaffected_preserved": {
+            "mean": 0.9631407828282829,
+            "std": 7.652670792071691e-05
+          },
+          "edit_rate": {
+            "mean": 0.18461538461538463,
+            "std": 0.0
+          },
+          "minimum_edits_per_turn": {
+            "mean": 1.2052231742658928,
+            "std": 0.0011324736386922186
+          },
+          "excess_edits_per_turn": {
+            "mean": 1.1511865171599525,
+            "std": 0.0017120972942756146
+          },
+          "edit_optimal_preservation": {
+            "mean": 0.8975780148840103,
+            "std": 0.0001523266655555055
+          },
+          "edit_scored_turns": {
+            "mean": 549.0,
+            "std": 0.816496580927726
+          },
+          "global_replan_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "unnecessary_global_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "clarification_recall": {
+            "mean": 0.9767441860465116,
+            "std": 0.006329430859904864
+          },
+          "clarification_precision": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "timeout_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "budget_exhausted_rate": {
+            "mean": 0.01983551040154814,
+            "std": 0.0018101874149849743
+          },
+          "llm_calls_per_turn": {
+            "mean": 0.7034349298500242,
+            "std": 0.0006841865323527672
+          },
+          "tool_calls_per_turn": {
+            "mean": 0.6323173681664248,
+            "std": 0.004933739248759331
+          },
+          "est_tokens_per_turn": {
+            "mean": 1088.6308659893564,
+            "std": 2.311092581034625
+          },
+          "steps_per_turn": {
+            "mean": 2.673923560716014,
+            "std": 0.00416174420272985
+          },
+          "tracker_accuracy": {
+            "mean": 1.0,
+            "std": 0.0
+          }
+        },
+        "bc_dagger3": {
+          "episodes": {
+            "mean": 276.0,
+            "std": 0.0
+          },
+          "turns": {
+            "mean": 689.0,
+            "std": 0.0
+          },
+          "final_pass_rate": {
+            "mean": 0.9698067632850241,
+            "std": 0.0017079873941704122
+          },
+          "revision_success_rate": {
+            "mean": 0.9801644895984518,
+            "std": 0.001368373064705482
+          },
+          "new_constraint_satisfaction": {
+            "mean": 0.9993476842791912,
+            "std": 0.0009225137393171135
+          },
+          "constraint_retention_rate": {
+            "mean": 0.9893737373737373,
+            "std": 0.0002856997095702717
+          },
+          "unaffected_preserved": {
+            "mean": 0.96268706987457,
+            "std": 0.0007181737204858302
+          },
+          "edit_rate": {
+            "mean": 0.184981684981685,
+            "std": 0.0005180269459242219
+          },
+          "minimum_edits_per_turn": {
+            "mean": 1.2072984063873267,
+            "std": 0.002078366135294443
+          },
+          "excess_edits_per_turn": {
+            "mean": 1.1550245363294185,
+            "std": 0.005431379779545878
+          },
+          "edit_optimal_preservation": {
+            "mean": 0.897265910032266,
+            "std": 0.0004417032996209033
+          },
+          "edit_scored_turns": {
+            "mean": 548.3333333333334,
+            "std": 0.9428090415820634
+          },
+          "global_replan_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "unnecessary_global_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "clarification_recall": {
+            "mean": 0.9844961240310077,
+            "std": 0.0
+          },
+          "clarification_precision": {
+            "mean": 0.9921875,
+            "std": 0.0
+          },
+          "timeout_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "budget_exhausted_rate": {
+            "mean": 0.016932752781809387,
+            "std": 0.0006841865323527312
+          },
+          "llm_calls_per_turn": {
+            "mean": 0.7053701015965167,
+            "std": 0.0020525595970581965
+          },
+          "tool_calls_per_turn": {
+            "mean": 0.6308659893565554,
+            "std": 0.0013683730647054296
+          },
+          "est_tokens_per_turn": {
+            "mean": 1087.469762941461,
+            "std": 2.844932835605033
+          },
+          "steps_per_turn": {
+            "mean": 2.6700532172230287,
+            "std": 0.0036203748299700597
+          },
+          "tracker_accuracy": {
+            "mean": 1.0,
+            "std": 0.0
+          }
+        },
+        "bc_aug_dagger3": {
+          "episodes": {
+            "mean": 276.0,
+            "std": 0.0
+          },
+          "turns": {
+            "mean": 689.0,
+            "std": 0.0
+          },
+          "final_pass_rate": {
+            "mean": 0.967391304347826,
+            "std": 0.002958320945390325
+          },
+          "revision_success_rate": {
+            "mean": 0.9787131107885824,
+            "std": 0.0018101874149849804
+          },
+          "new_constraint_satisfaction": {
+            "mean": 0.9980430528375734,
+            "std": 0.0015978406671775462
+          },
+          "constraint_retention_rate": {
+            "mean": 0.9893737373737373,
+            "std": 0.0005713994191405434
+          },
+          "unaffected_preserved": {
+            "mean": 0.9625455447330448,
+            "std": 0.0004591602475237781
+          },
+          "edit_rate": {
+            "mean": 0.18493589743589745,
+            "std": 0.00023347158945022733
+          },
+          "minimum_edits_per_turn": {
+            "mean": 1.2081655780741702,
+            "std": 0.003206493782963956
+          },
+          "excess_edits_per_turn": {
+            "mean": 1.15399770653884,
+            "std": 0.0035755624687850655
+          },
+          "edit_optimal_preservation": {
+            "mean": 0.8973279011166663,
+            "std": 0.00031812065247484534
+          },
+          "edit_scored_turns": {
+            "mean": 547.6666666666666,
+            "std": 1.699673171197595
+          },
+          "global_replan_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "unnecessary_global_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "clarification_recall": {
+            "mean": 0.9819121447028424,
+            "std": 0.0036542986107831977
+          },
+          "clarification_precision": {
+            "mean": 0.9948320413436692,
+            "std": 0.0073085972215663954
+          },
+          "timeout_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "budget_exhausted_rate": {
+            "mean": 0.018867924528301886,
+            "std": 0.0011850458358892977
+          },
+          "llm_calls_per_turn": {
+            "mean": 0.7053701015965167,
+            "std": 0.002052559597058197
+          },
+          "tool_calls_per_turn": {
+            "mean": 0.6313497822931785,
+            "std": 0.003135336573975754
+          },
+          "est_tokens_per_turn": {
+            "mean": 1088.8243831640057,
+            "std": 3.1952316837849084
+          },
+          "steps_per_turn": {
+            "mean": 2.6724721819061443,
+            "std": 0.005845692294917556
+          },
+          "tracker_accuracy": {
+            "mean": 1.0,
+            "std": 0.0
+          }
+        }
+      }
+    },
+    "cap2": {
+      "systems_equal": true,
+      "recovery_episodes_equal": true,
+      "reference": "results/runs/test-offline-cap2-c1087d5e6f/metrics.json",
+      "reference_sha256": "8e261d11121fab138ef875b7ca1bb2a7e5cdd96565a56736cbaa63e9dd8945ae",
+      "reproduced_manifest": {
+        "git_sha": "cf78ea1",
+        "git_dirty": false,
+        "config": {
+          "seeds": [
+            0,
+            1,
+            2
+          ],
+          "split": "test",
+          "limit": null,
+          "skip_recovery": false,
+          "model_suffix": "",
+          "call_cap": 2,
+          "llm": "offline",
+          "models": "f7a33da8563c"
+        },
+        "config_hash": "c1087d5e6f",
+        "fingerprints": {
+          "source": "bc8ce14085cc",
+          "prompts": "f9352f57f9ee",
+          "tasks": "31cf06aeb6b9"
+        }
+      },
+      "summaries": {
+        "always_global": {
+          "episodes": {
+            "mean": 276,
+            "std": 0.0
+          },
+          "turns": {
+            "mean": 689,
+            "std": 0.0
+          },
+          "final_pass_rate": {
+            "mean": 0.17391304347826086,
+            "std": 0.0
+          },
+          "revision_success_rate": {
+            "mean": 0.19448476052249636,
+            "std": 0.0
+          },
+          "new_constraint_satisfaction": {
+            "mean": 0.3542074363992172,
+            "std": 0.0
+          },
+          "constraint_retention_rate": {
+            "mean": 0.8370887445887446,
+            "std": 0.0
+          },
+          "unaffected_preserved": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "edit_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "minimum_edits_per_turn": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "excess_edits_per_turn": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "edit_optimal_preservation": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "edit_scored_turns": {
+            "mean": 134,
+            "std": 0.0
+          },
+          "global_replan_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "unnecessary_global_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "clarification_recall": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "timeout_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "budget_exhausted_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "llm_calls_per_turn": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "tool_calls_per_turn": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "est_tokens_per_turn": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "steps_per_turn": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "tracker_accuracy": {
+            "mean": 1.0,
+            "std": 0.0
+          }
+        },
+        "always_global_det": {
+          "episodes": {
+            "mean": 276,
+            "std": 0.0
+          },
+          "turns": {
+            "mean": 689,
+            "std": 0.0
+          },
+          "final_pass_rate": {
+            "mean": 0.17391304347826086,
+            "std": 0.0
+          },
+          "revision_success_rate": {
+            "mean": 0.19448476052249636,
+            "std": 0.0
+          },
+          "new_constraint_satisfaction": {
+            "mean": 0.3542074363992172,
+            "std": 0.0
+          },
+          "constraint_retention_rate": {
+            "mean": 0.8370887445887446,
+            "std": 0.0
+          },
+          "unaffected_preserved": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "edit_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "minimum_edits_per_turn": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "excess_edits_per_turn": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "edit_optimal_preservation": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "edit_scored_turns": {
+            "mean": 134,
+            "std": 0.0
+          },
+          "global_replan_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "unnecessary_global_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "clarification_recall": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "timeout_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "budget_exhausted_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "llm_calls_per_turn": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "tool_calls_per_turn": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "est_tokens_per_turn": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "steps_per_turn": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "tracker_accuracy": {
+            "mean": 1.0,
+            "std": 0.0
+          }
+        },
+        "static_rules": {
+          "episodes": {
+            "mean": 276,
+            "std": 0.0
+          },
+          "turns": {
+            "mean": 689,
+            "std": 0.0
+          },
+          "final_pass_rate": {
+            "mean": 0.967391304347826,
+            "std": 0.0
+          },
+          "revision_success_rate": {
+            "mean": 0.9811320754716981,
+            "std": 0.0
+          },
+          "new_constraint_satisfaction": {
+            "mean": 0.9941291585127201,
+            "std": 0.0
+          },
+          "constraint_retention_rate": {
+            "mean": 0.990181818181818,
+            "std": 0.0
+          },
+          "unaffected_preserved": {
+            "mean": 0.9631948953823954,
+            "std": 0.0
+          },
+          "edit_rate": {
+            "mean": 0.18282967032967035,
+            "std": 0.0
+          },
+          "minimum_edits_per_turn": {
+            "mean": 1.2029250457038392,
+            "std": 0.0
+          },
+          "excess_edits_per_turn": {
+            "mean": 1.1389396709323583,
+            "std": 0.0
+          },
+          "edit_optimal_preservation": {
+            "mean": 0.8986302697911474,
+            "std": 0.0
+          },
+          "edit_scored_turns": {
+            "mean": 547,
+            "std": 0.0
+          },
+          "global_replan_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "unnecessary_global_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "clarification_recall": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "clarification_precision": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "timeout_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "budget_exhausted_rate": {
+            "mean": 0.018867924528301886,
+            "std": 0.0
+          },
+          "llm_calls_per_turn": {
+            "mean": 0.8896952104499274,
+            "std": 0.0
+          },
+          "tool_calls_per_turn": {
+            "mean": 0.6661828737300436,
+            "std": 0.0
+          },
+          "est_tokens_per_turn": {
+            "mean": 1376.3425253991293,
+            "std": 0.0
+          },
+          "steps_per_turn": {
+            "mean": 3.0711175616835993,
+            "std": 0.0
+          },
+          "tracker_accuracy": {
+            "mean": 1.0,
+            "std": 0.0
+          }
+        },
+        "oracle": {
+          "episodes": {
+            "mean": 276,
+            "std": 0.0
+          },
+          "turns": {
+            "mean": 689,
+            "std": 0.0
+          },
+          "final_pass_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "revision_success_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "new_constraint_satisfaction": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "constraint_retention_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "unaffected_preserved": {
+            "mean": 0.9613863121005977,
+            "std": 0.0
+          },
+          "edit_rate": {
+            "mean": 0.18571428571428572,
+            "std": 0.0
+          },
+          "minimum_edits_per_turn": {
+            "mean": 1.2553571428571428,
+            "std": 0.0
+          },
+          "excess_edits_per_turn": {
+            "mean": 1.1589285714285715,
+            "std": 0.0
+          },
+          "edit_optimal_preservation": {
+            "mean": 0.8965458797155225,
+            "std": 0.0
+          },
+          "edit_scored_turns": {
+            "mean": 560,
+            "std": 0.0
+          },
+          "global_replan_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "unnecessary_global_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "clarification_recall": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "clarification_precision": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "timeout_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "budget_exhausted_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "llm_calls_per_turn": {
+            "mean": 0.7126269956458636,
+            "std": 0.0
+          },
+          "tool_calls_per_turn": {
+            "mean": 0.6313497822931785,
+            "std": 0.0
+          },
+          "est_tokens_per_turn": {
+            "mean": 1096.8069666182873,
+            "std": 0.0
+          },
+          "steps_per_turn": {
+            "mean": 2.6821480406386065,
+            "std": 0.0
+          },
+          "tracker_accuracy": {
+            "mean": 1.0,
+            "std": 0.0
+          }
+        },
+        "bc": {
+          "episodes": {
+            "mean": 276.0,
+            "std": 0.0
+          },
+          "turns": {
+            "mean": 689.0,
+            "std": 0.0
+          },
+          "final_pass_rate": {
+            "mean": 0.9927536231884058,
+            "std": 0.002958320945390325
+          },
+          "revision_success_rate": {
+            "mean": 0.9956458635703918,
+            "std": 0.0023700916717786296
+          },
+          "new_constraint_satisfaction": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "constraint_retention_rate": {
+            "mean": 0.9992929292929292,
+            "std": 0.0006226680811079995
+          },
+          "unaffected_preserved": {
+            "mean": 0.9613863121005976,
+            "std": 1.1102230246251565e-16
+          },
+          "edit_rate": {
+            "mean": 0.18571428571428572,
+            "std": 0.0
+          },
+          "minimum_edits_per_turn": {
+            "mean": 1.2576055453118469,
+            "std": 0.0018369092503280825
+          },
+          "excess_edits_per_turn": {
+            "mean": 1.1610042658711075,
+            "std": 0.001695809535509038
+          },
+          "edit_optimal_preservation": {
+            "mean": 0.8963605886218123,
+            "std": 0.00015137989345609347
+          },
+          "edit_scored_turns": {
+            "mean": 559.0,
+            "std": 0.816496580927726
+          },
+          "global_replan_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "unnecessary_global_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "clarification_recall": {
+            "mean": 0.9844961240310077,
+            "std": 0.006329430859904864
+          },
+          "clarification_precision": {
+            "mean": 0.9947711614173228,
+            "std": 0.003697432509150455
+          },
+          "timeout_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "budget_exhausted_rate": {
+            "mean": 0.002902757619738752,
+            "std": 0.002052559597058193
+          },
+          "llm_calls_per_turn": {
+            "mean": 0.717948717948718,
+            "std": 0.0024668696243796656
+          },
+          "tool_calls_per_turn": {
+            "mean": 0.6284470246734397,
+            "std": 0.002370091671778584
+          },
+          "est_tokens_per_turn": {
+            "mean": 1105.9506531204645,
+            "std": 5.250435145671498
+          },
+          "steps_per_turn": {
+            "mean": 2.6937590711175616,
+            "std": 0.008210238388232788
+          },
+          "tracker_accuracy": {
+            "mean": 1.0,
+            "std": 0.0
+          }
+        },
+        "bc_aug": {
+          "episodes": {
+            "mean": 276.0,
+            "std": 0.0
+          },
+          "turns": {
+            "mean": 689.0,
+            "std": 0.0
+          },
+          "final_pass_rate": {
+            "mean": 0.9975845410628019,
+            "std": 0.0017079873941704122
+          },
+          "revision_success_rate": {
+            "mean": 0.9990324141267538,
+            "std": 0.0006841865323527148
+          },
+          "new_constraint_satisfaction": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "constraint_retention_rate": {
+            "mean": 0.9998787878787878,
+            "std": 0.00017141982574223633
+          },
+          "unaffected_preserved": {
+            "mean": 0.9614404246547102,
+            "std": 7.652670792076925e-05
+          },
+          "edit_rate": {
+            "mean": 0.18566849816849818,
+            "std": 6.47533682405261e-05
+          },
+          "minimum_edits_per_turn": {
+            "mean": 1.254316807223784,
+            "std": 0.0014712567621161421
+          },
+          "excess_edits_per_turn": {
+            "mean": 1.1578307351563166,
+            "std": 0.0015525749454880068
+          },
+          "edit_optimal_preservation": {
+            "mean": 0.8966630805978811,
+            "std": 0.0001657470773537772
+          },
+          "edit_scored_turns": {
+            "mean": 559.6666666666666,
+            "std": 0.4714045207910317
+          },
+          "global_replan_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "unnecessary_global_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "clarification_recall": {
+            "mean": 0.9974160206718347,
+            "std": 0.0036542986107831977
+          },
+          "clarification_precision": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "timeout_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "budget_exhausted_rate": {
+            "mean": 0.0004837929366231253,
+            "std": 0.0006841865323527311
+          },
+          "llm_calls_per_turn": {
+            "mean": 0.7155297532656023,
+            "std": 0.0011850458358892695
+          },
+          "tool_calls_per_turn": {
+            "mean": 0.6308659893565554,
+            "std": 0.00380938939236178
+          },
+          "est_tokens_per_turn": {
+            "mean": 1101.548137397194,
+            "std": 0.38093893923622707
+          },
+          "steps_per_turn": {
+            "mean": 2.6884373488147073,
+            "std": 0.002466869624379586
+          },
+          "tracker_accuracy": {
+            "mean": 1.0,
+            "std": 0.0
+          }
+        },
+        "bc_dagger1": {
+          "episodes": {
+            "mean": 276.0,
+            "std": 0.0
+          },
+          "turns": {
+            "mean": 689.0,
+            "std": 0.0
+          },
+          "final_pass_rate": {
+            "mean": 0.9975845410628019,
+            "std": 0.0017079873941704122
+          },
+          "revision_success_rate": {
+            "mean": 0.9990324141267538,
+            "std": 0.0006841865323527148
+          },
+          "new_constraint_satisfaction": {
+            "mean": 0.9986953685583823,
+            "std": 0.0009225137393171135
+          },
+          "constraint_retention_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "unaffected_preserved": {
+            "mean": 0.9616508623651482,
+            "std": 0.00018706528602834352
+          },
+          "edit_rate": {
+            "mean": 0.18516483516483517,
+            "std": 0.0003885202094431566
+          },
+          "minimum_edits_per_turn": {
+            "mean": 1.2520838657466564,
+            "std": 0.002314556441527601
+          },
+          "excess_edits_per_turn": {
+            "mean": 1.1579255047278305,
+            "std": 0.0007092752660765479
+          },
+          "edit_optimal_preservation": {
+            "mean": 0.8966875232479468,
+            "std": 0.00010015710228841012
+          },
+          "edit_scored_turns": {
+            "mean": 559.3333333333334,
+            "std": 0.4714045207910317
+          },
+          "global_replan_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "unnecessary_global_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "clarification_recall": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "clarification_precision": {
+            "mean": 0.9948717948717949,
+            "std": 0.0036261886214694616
+          },
+          "timeout_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "budget_exhausted_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "llm_calls_per_turn": {
+            "mean": 0.7150459603289793,
+            "std": 0.0006841865323527148
+          },
+          "tool_calls_per_turn": {
+            "mean": 0.6279632317368166,
+            "std": 0.0006841865323527148
+          },
+          "est_tokens_per_turn": {
+            "mean": 1097.9196903725206,
+            "std": 1.3836816300023826
+          },
+          "steps_per_turn": {
+            "mean": 2.6816642477019834,
+            "std": 0.00181018741498501
+          },
+          "tracker_accuracy": {
+            "mean": 1.0,
+            "std": 0.0
+          }
+        },
+        "bc_dagger2": {
+          "episodes": {
+            "mean": 276.0,
+            "std": 0.0
+          },
+          "turns": {
+            "mean": 689.0,
+            "std": 0.0
+          },
+          "final_pass_rate": {
+            "mean": 0.9987922705314011,
+            "std": 0.0017079873941704122
+          },
+          "revision_success_rate": {
+            "mean": 0.9990324141267538,
+            "std": 0.001368373064705482
+          },
+          "new_constraint_satisfaction": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "constraint_retention_rate": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "unaffected_preserved": {
+            "mean": 0.9613863121005976,
+            "std": 1.1102230246251565e-16
+          },
+          "edit_rate": {
+            "mean": 0.18566849816849818,
+            "std": 6.47533682405261e-05
+          },
+          "minimum_edits_per_turn": {
+            "mean": 1.2555094130675526,
+            "std": 0.00021534259670688048
+          },
+          "excess_edits_per_turn": {
+            "mean": 1.1596196439219695,
+            "std": 0.0009773240927464745
+          },
+          "edit_optimal_preservation": {
+            "mean": 0.8964841897213159,
+            "std": 8.724282646969185e-05
+          },
+          "edit_scored_turns": {
+            "mean": 559.6666666666666,
+            "std": 0.4714045207910317
+          },
+          "global_replan_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "unnecessary_global_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "clarification_recall": {
+            "mean": 0.9974160206718347,
+            "std": 0.0036542986107831977
+          },
+          "clarification_precision": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "timeout_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "budget_exhausted_rate": {
+            "mean": 0.0004837929366231253,
+            "std": 0.0006841865323527311
+          },
+          "llm_calls_per_turn": {
+            "mean": 0.7164973391388485,
+            "std": 0.0006841865323527148
+          },
+          "tool_calls_per_turn": {
+            "mean": 0.6313497822931785,
+            "std": 0.005430562244954883
+          },
+          "est_tokens_per_turn": {
+            "mean": 1103.1930333817124,
+            "std": 0.7400608873139464
+          },
+          "steps_per_turn": {
+            "mean": 2.691340106434446,
+            "std": 0.002466869624379644
+          },
+          "tracker_accuracy": {
+            "mean": 1.0,
+            "std": 0.0
+          }
+        },
+        "bc_dagger3": {
+          "episodes": {
+            "mean": 276.0,
+            "std": 0.0
+          },
+          "turns": {
+            "mean": 689.0,
+            "std": 0.0
+          },
+          "final_pass_rate": {
+            "mean": 0.9987922705314011,
+            "std": 0.0017079873941704122
+          },
+          "revision_success_rate": {
+            "mean": 0.9985486211901305,
+            "std": 0.0020525595970581965
+          },
+          "new_constraint_satisfaction": {
+            "mean": 0.9993476842791912,
+            "std": 0.0009225137393171135
+          },
+          "constraint_retention_rate": {
+            "mean": 0.9995959595959595,
+            "std": 0.0005713994191407005
+          },
+          "unaffected_preserved": {
+            "mean": 0.9609325991468848,
+            "std": 0.0006416470125651133
+          },
+          "edit_rate": {
+            "mean": 0.18603479853479854,
+            "std": 0.0004532735776836827
+          },
+          "minimum_edits_per_turn": {
+            "mean": 1.2558155937419853,
+            "std": 0.000648347459025888
+          },
+          "excess_edits_per_turn": {
+            "mean": 1.163403009318629,
+            "std": 0.006327810748115042
+          },
+          "edit_optimal_preservation": {
+            "mean": 0.896176008579349,
+            "std": 0.0005230767771067809
+          },
+          "edit_scored_turns": {
+            "mean": 559.0,
+            "std": 1.4142135623730951
+          },
+          "global_replan_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "unnecessary_global_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "clarification_recall": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "clarification_precision": {
+            "mean": 1.0,
+            "std": 0.0
+          },
+          "timeout_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "budget_exhausted_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "llm_calls_per_turn": {
+            "mean": 0.7164973391388486,
+            "std": 0.001368373064705482
+          },
+          "tool_calls_per_turn": {
+            "mean": 0.6294146105466859,
+            "std": 0.001368373064705482
+          },
+          "est_tokens_per_turn": {
+            "mean": 1101.8384131591677,
+            "std": 1.8409576768689513
+          },
+          "steps_per_turn": {
+            "mean": 2.6879535558780847,
+            "std": 0.002370091671778539
+          },
+          "tracker_accuracy": {
+            "mean": 1.0,
+            "std": 0.0
+          }
+        },
+        "bc_aug_dagger3": {
+          "episodes": {
+            "mean": 276.0,
+            "std": 0.0
+          },
+          "turns": {
+            "mean": 689.0,
+            "std": 0.0
+          },
+          "final_pass_rate": {
+            "mean": 0.9963768115942028,
+            "std": 0.002958320945390325
+          },
+          "revision_success_rate": {
+            "mean": 0.9966134494436382,
+            "std": 0.0024668696243796656
+          },
+          "new_constraint_satisfaction": {
+            "mean": 0.9986953685583823,
+            "std": 0.0009225137393171135
+          },
+          "constraint_retention_rate": {
+            "mean": 0.9991919191919191,
+            "std": 0.0005713994191407005
+          },
+          "unaffected_preserved": {
+            "mean": 0.9608451865594723,
+            "std": 0.0003826335396030089
+          },
+          "edit_rate": {
+            "mean": 0.185989010989011,
+            "std": 0.0001942601047215783
+          },
+          "minimum_edits_per_turn": {
+            "mean": 1.2562740446268272,
+            "std": 0.000648347459025888
+          },
+          "excess_edits_per_turn": {
+            "mean": 1.163089894844832,
+            "std": 0.002942500006348132
+          },
+          "edit_optimal_preservation": {
+            "mean": 0.8961744107019337,
+            "std": 0.000262668258509286
+          },
+          "edit_scored_turns": {
+            "mean": 558.0,
+            "std": 1.4142135623730951
+          },
+          "global_replan_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "unnecessary_global_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "clarification_recall": {
+            "mean": 0.9974160206718347,
+            "std": 0.0036542986107831977
+          },
+          "clarification_precision": {
+            "mean": 0.9923664122137404,
+            "std": 0.010795523376893873
+          },
+          "timeout_rate": {
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "budget_exhausted_rate": {
+            "mean": 0.0004837929366231253,
+            "std": 0.0006841865323527311
+          },
+          "llm_calls_per_turn": {
+            "mean": 0.7174649250120947,
+            "std": 0.0018101874149849804
+          },
+          "tool_calls_per_turn": {
+            "mean": 0.6303821964199323,
+            "std": 0.0018101874149849706
+          },
+          "est_tokens_per_turn": {
+            "mean": 1102.5157232704403,
+            "std": 1.413801567121616
+          },
+          "steps_per_turn": {
+            "mean": 2.688921141751331,
+            "std": 0.002466869624379789
+          },
+          "tracker_accuracy": {
+            "mean": 1.0,
+            "std": 0.0
+          }
+        }
+      }
+    }
+  },
+  "training_log_equal_except_seconds": true,
+  "fake_fresh": {
+    "degraded": false,
+    "usage": {
+      "requests": 161,
+      "calls": 55,
+      "cache_hits": 106,
+      "input_tokens": 40460,
+      "output_tokens": 1673,
+      "billed_input_tokens": 15072,
+      "billed_output_tokens": 531,
+      "errors": 0,
+      "seconds": 0.0017001628875732422,
+      "fallbacks": {},
+      "fallback_reasons": {},
+      "tokens": 42133,
+      "degraded": false
+    },
+    "systems": [
+      "always_global",
+      "always_global_det",
+      "static_rules",
+      "llm_coordinator",
+      "bc",
+      "bc_aug",
+      "bc_dagger1",
+      "bc_dagger2",
+      "bc_dagger3",
+      "bc_aug_dagger3"
+    ]
+  },
+  "challenges": {
+    "always_global": {
+      "passed": 12,
+      "total": 12
+    },
+    "always_global_det": {
+      "passed": 12,
+      "total": 12
+    },
+    "bc_aug_dagger3_s0": {
+      "passed": 12,
+      "total": 12
+    },
+    "bc_aug_dagger3_s1": {
+      "passed": 12,
+      "total": 12
+    },
+    "bc_aug_dagger3_s2": {
+      "passed": 12,
+      "total": 12
+    },
+    "oracle": {
+      "passed": 12,
+      "total": 12
+    },
+    "static_rules": {
+      "passed": 12,
+      "total": 12
+    }
+  }
+}

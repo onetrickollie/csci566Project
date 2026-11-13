@@ -19,6 +19,7 @@ localhost only; no data leaves the machine unless an LLM backend is set.
 
 import argparse
 import json
+import math
 import random
 import sys
 import threading
@@ -29,7 +30,9 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from taskflow.agents.planners import compose_global, min_cost  # noqa: E402
+from datetime import date  # noqa: E402
+
+from taskflow.agents.planners import compose_global, is_feasible, min_cost  # noqa: E402
 from taskflow.common import baseline_policies, learned_policy  # noqa: E402
 from taskflow.data.world import build_world  # noqa: E402
 from taskflow.env.episode import TurnEnv  # noqa: E402
@@ -84,7 +87,8 @@ def describe(c: Constraints) -> str:
     return "; ".join(parts)
 
 
-def transport_label(q, key: str) -> str:
+def transport_label(q, key: str, slot: str) -> str:
+    o, d = (q.org, q.dest) if slot == "transport_out" else (q.dest, q.org)
     if key.startswith("flight:"):
         num = key.split(":", 1)[1]
         for fl in q.db.flights.values():
@@ -92,10 +96,11 @@ def transport_label(q, key: str) -> str:
                 if f.number == num:
                     return f"Flight {num}, {f.origin} → {f.dest}, {f.dep}–{f.arr}, ${f.price:,.0f}/person"
         return key
-    for (mode, o, d), g in q.db.ground.items():
-        if mode == key:
-            est = " (estimated from distance)" if g.estimated else ""
-            return f"{mode.capitalize()}, ~{g.distance_km:,.0f} km, {g.duration}, ${g.cost:,.0f}{est}"
+    g = q.db.ground.get((key, o, d))
+    if g is not None:
+        est = " (estimated from distance)" if g.estimated else ""
+        km = f"~{g.distance_km:,.0f} km, " if g.distance_km else ""
+        return f"{key.capitalize()}, {o} → {d}, {km}{g.duration}, ${g.cost:,.0f}{est}"
     return key
 
 
@@ -103,7 +108,7 @@ def plan_rows(q, plan, prev=None):
     rows = []
     for slot, label in ORDER:
         v = plan.get(slot, "-")
-        shown = transport_label(q, v) if slot.startswith("transport") else str(v).replace("\n", " / ")
+        shown = transport_label(q, v, slot) if slot.startswith("transport") else str(v).replace("\n", " / ")
         rows.append({"label": label, "value": shown,
                      "changed": prev is not None and prev.get(slot) != plan.get(slot)})
     return rows
@@ -128,8 +133,8 @@ def api_route(body):
     org, _ = WORLD.resolve(body.get("org", ""), WORLD.start_cities)
     dest, _ = WORLD.resolve(body.get("dest", ""), WORLD.destinations)
     if not org or not dest or org == dest:
-        return {"flight_dates": []}
-    return {"flight_dates": WORLD.flight_dates(org, dest)}
+        return {"flight_dates": [], "ground": None}
+    return {"flight_dates": WORLD.flight_dates(org, dest), "ground": WORLD.ground_summary(org, dest)}
 
 
 def api_trip(body):
@@ -141,22 +146,52 @@ def api_trip(body):
         return {"error": f"No hotel/restaurant data for “{body.get('dest', '')}”.", "suggest_dest": s2}
     if org == dest:
         return {"error": "Start and destination must differ."}
-    start = body.get("date") or "2022-03-10"
-    if not ("2022-03-01" <= start <= "2022-03-29"):
+    start = str(body.get("date") or "2022-03-10")
+    try:
+        d0 = date.fromisoformat(start)
+    except ValueError:
+        return {"error": f"“{start}” is not a date (use YYYY-MM-DD)."}
+    if not (date(2022, 3, 1) <= d0 <= date(2022, 3, 29)):
         return {"error": "The data covers March 2022: pick a start date between Mar 1 and Mar 29."}
     try:
-        people = max(1, min(8, int(body.get("people", 1))))
+        people = int(body.get("people", 1))
         budget = float(body.get("budget", 0))
     except (TypeError, ValueError):
         return {"error": "Travelers and budget must be numbers."}
-    c = Constraints(budget=budget, people=people,
-                    room_type=body.get("room_type") or None,
-                    house_rules=[h for h in body.get("house_rules", []) if h in HOUSE_RULES],
-                    cuisines=[x for x in body.get("cuisines", []) if x in CUISINES],
-                    transport=body.get("transport") or None)
+    if not 1 <= people <= 8:
+        return {"error": "Travelers must be between 1 and 8."}
+    if not math.isfinite(budget) or budget <= 0:
+        return {"error": "Budget must be a positive number."}
+    room = body.get("room_type") or None
+    transport = body.get("transport") or None
+    rules = body.get("house_rules") or []
+    cuisines = body.get("cuisines") or []
+    if room is not None and room not in ROOM_TYPES:
+        return {"error": f"Unknown room type “{room}”."}
+    if transport is not None and transport not in TRANSPORT_RULES:
+        return {"error": f"Unknown transport rule “{transport}”."}
+    if not isinstance(rules, list) or any(h not in HOUSE_RULES for h in rules):
+        return {"error": "Unknown house rule."}
+    if not isinstance(cuisines, list) or any(x not in CUISINES for x in cuisines):
+        return {"error": "Unknown cuisine."}
+    c = Constraints(budget=budget, people=people, room_type=room, house_rules=list(rules),
+                    cuisines=list(cuisines), transport=transport)
     q = WORLD.trip_query(org, dest, start, people, budget)
     if not q.db.flights and not q.db.ground:
-        return {"error": f"No transport data between {org} and {dest}."}
+        why = WORLD.ground_summary(org, dest)
+        dates = WORLD.flight_dates(org, dest)
+        msg = f"No realistic way to get from {org} to {dest} on these dates: no flights in the data"
+        msg += f" for a {start} start" if dates else ""
+        msg += f", and {why}." if why != "ok" else "."
+        if dates:
+            msg += f" Flights exist for start dates: {', '.join(dates[:8])}."
+        options = WORLD.reachable(org)[:12]
+        out = {"error": msg}
+        if options:
+            out["suggest_routes"] = [f"{d} ({how})" for d, how in options]
+        return out
+    if transport == "no flight" and not q.db.ground:
+        return {"error": f"Only flights connect {org} and {dest} in the data; remove “no flight”."}
     cache = Cache()
     plan = compose_global(q, c, cache)
     rep = verify(q, c, plan)
@@ -207,19 +242,29 @@ def api_update(body):
         while not env.done:
             env.step(st["policy"].act(env))
         asked = env.terminal == "ASK_CLARIFICATION"
+        # An ask is a pending question, not a success and not proof that the
+        # change is impossible. The previous plan and requirements stay in
+        # place. Scoring only (never shown to the coordinators): was the
+        # change actually achievable?
+        achievable = None
         if asked:
+            achievable = verify(q, env.c, env.start_plan).passed or is_feasible(q, env.c)
             new_c, new_plan = env.before, env.start_plan
+            view = plan_view(q, env.before, new_plan, env.start_plan)
+            handled = not achievable
         else:
             new_c, new_plan = env.c, env.plan
-        view = plan_view(q, env.c if not asked else env.before, new_plan, env.start_plan)
+            view = plan_view(q, env.c, new_plan, env.start_plan)
+            handled = view["valid"]
         changed = sum(r["changed"] for r in view["rows"])
         st.update(c=new_c, plan=new_plan)
         st["turns"] += 1
         st["llm_calls"] += env.llm_calls
         st["changed"] += changed
-        st["ok"] += int(asked or view["valid"])
+        st["ok"] += int(handled)
         results.append({"key": key, "label": st["label"], "actions": env.history, "terminal": env.terminal,
-                        "asked": asked, "changed": changed, "llm_calls": env.llm_calls,
+                        "asked": asked, "achievable": achievable, "handled": handled,
+                        "changed": changed, "llm_calls": env.llm_calls,
                         "tool_calls": env.tool_calls, "plan": view,
                         "request": describe(new_c),
                         "totals": {k: st[k] for k in ("turns", "ok", "llm_calls", "changed")}})
@@ -327,13 +372,16 @@ for(const x of c.cuisines)$('#cuis').append(el('label',{},el('input',{type:'chec
 for(const s of c.suggestions){const b=el('button',{type:'button',class:'chip'},s);b.onclick=()=>{$('#msg').value=s;$('#msg').focus()};$('#sugg').append(b)}
 $('#llmnote').textContent=c.llm?('LLM tracker on ('+c.llm+'): free-form messages work.'):'Offline mode: the tracker understands phrasings like the suggestions above. Configure an LLM in .env for free-form messages.'}
 async function routeHint(){const o=$('#org').value,d=$('#dest').value;if(!o||!d){$('#routehint').textContent='';return}
-const r=await post('/api/route',{org:o,dest:d});$('#routehint').textContent=r.flight_dates.length?('Flights in the data for start dates: '+r.flight_dates.map(x=>x.slice(5)).join(', ')):'No flights in the data for this route; driving/taxi will be used.'}
+const r=await post('/api/route',{org:o,dest:d});const parts=[];
+parts.push(r.flight_dates.length?('Flights for start dates '+r.flight_dates.map(x=>x.slice(5)).join(', ')):'No flights in the data for this route');
+if(r.ground)parts.push(r.ground=='ok'?'driving/taxi available':('no driving: '+r.ground));$('#routehint').textContent=parts.join(' · ')+'.'}
 $('#org').onchange=routeHint;$('#dest').onchange=routeHint;
 $('#tripform').onsubmit=async e=>{e.preventDefault();$('#triperr').textContent='Planning…';
 const body={org:$('#org').value,dest:$('#dest').value,date:$('#date').value,people:$('#people').value,budget:$('#budget').value,
 room_type:$('#room').value,house_rules:$('#rule').value?[$('#rule').value]:[],transport:$('#trans').value,
 cuisines:[...document.querySelectorAll('#cuis input:checked')].map(x=>x.value)};
-const r=await post('/api/trip',body);if(r.error){let m=r.error;const s=r.suggest_org||r.suggest_dest;if(s&&s.length)m+=' Did you mean: '+s.join(', ')+'?';$('#triperr').textContent=m;return}
+const r=await post('/api/trip',body);if(r.error){let m=r.error;const s=r.suggest_org||r.suggest_dest;if(s&&s.length)m+=' Did you mean: '+s.join(', ')+'?';
+if(r.suggest_routes&&r.suggest_routes.length)m+=' Trips that work from here: '+r.suggest_routes.join('; ')+'.';$('#triperr').textContent=m;return}
 $('#triperr').textContent='';SID=r.session;TURN=0;$('#turns').innerHTML='';$('#title').textContent=r.title+'  ·  '+r.dates[0]+' to '+r.dates[2];
 $('#initbadge').textContent='valid · $'+r.plan.cost.toLocaleString();$('#reqline').textContent='Request: '+r.request;
 $('#notes').innerHTML='';for(const n of r.notes)$('#notes').append(el('div',{class:'note'},n));
@@ -345,10 +393,10 @@ $('#chaterr').textContent='';$('#msg').value='';TURN++;
 const sec=el('section',{class:'turn'},el('h2',{},'Change '+TURN),el('div',{class:'msg'},'“'+m+'”'),
 el('div',{class:'parsed'},'Understood as: '+r.parsed.text+' ('+r.parsed.source+')'));const g=el('div',{class:'grid'});
 for(const s of r.results){const p=s.plan;let b;
-if(s.asked)b=badge(true,'asked you to reconsider');else if(p.valid)b=badge(true,'valid · $'+p.cost.toLocaleString());else b=badge(false,p.violations.join(', ')||'failed');
+if(s.asked)b=s.achievable?badge(false,'asked, but the change was possible'):badge(true,'asked, change not possible');else if(p.valid)b=badge(true,'valid · $'+p.cost.toLocaleString());else b=badge(false,p.violations.join(', ')||'failed');
 const acts=el('div',{class:'acts'});for(const a of s.actions)acts.append(el('span',{class:'act'},a));
 const card=el('div',{class:'card'},el('h3',{},s.label,b),acts,el('div',{class:'stats'},s.changed+'/13 slots changed · '+s.llm_calls+' LLM calls · '+s.tool_calls+' searches'));
-if(s.asked)card.append(el('div',{class:'note'},'"That change can\'t be met together with your other requirements, so I kept the previous plan."'));
+if(s.asked)card.append(el('div',{class:'note'},'Asked you for clarification, so your previous plan and requirements are kept. '+(s.achievable?'(Scoring check: the change could have been met.)':'(Scoring check: no plan in the data meets it.)')));
 card.append(table(p.rows),el('div',{class:'totals'},'So far: '+s.totals.ok+'/'+s.totals.turns+' changes handled · '+s.totals.llm_calls+' LLM calls · '+s.totals.changed+' slots changed'));g.append(card)}
 sec.append(g);$('#turns').prepend(sec)};
 init();

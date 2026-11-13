@@ -13,7 +13,7 @@ Decision rule:
   stale report            -> VERIFY
   plan valid              -> KEEP_PLAN (nothing changed) / STOP
   update infeasible       -> refresh stale searches, then ASK_CLARIFICATION
-  smallest local repair   -> SEARCH_* if its cache is stale, else REPLAN_LOCAL_*
+  smallest local repair (up to three components) -> SEARCH_* if stale, else REPLAN_LOCAL_*
   no local repair works   -> REPLAN_GLOBAL
 """
 
@@ -32,7 +32,7 @@ def minimal_fix(env) -> list[str] | None:
     for name in ("transport", "accommodation", "dining"):
         if not cache.fresh(name, env.c):
             cache.search(name, env.q, env.c)
-    for size in (1, 2):
+    for size in (1, 2, 3):
         best = None
         for seq in permutations(GROUPS, size):
             p = env.plan

@@ -12,6 +12,13 @@ as the recorded records (both calibrated from the data). Estimated options
 are marked ``estimated=True`` and labelled in the UI. Flights are never
 invented.
 
+Realism rules for the app (``trip_query(realistic=True)``, the default):
+estimates are made only between two cities in the contiguous United States
+(no ocean crossings to Hawaii, Alaska or the islands), and any driving/taxi
+leg, recorded or estimated, longer than ``MAX_LEG_HOURS`` is dropped, since
+the trip is three days. The benchmark keeps TravelPlanner's records as they
+are and does not use this module.
+
 The benchmark (data/tasks) does not use this module.
 """
 
@@ -29,6 +36,26 @@ from taskflow.data.travelplanner import (RAW_DIR, CityDB, Flight, Ground, Query,
                                          parse_reference_information)
 
 csv.field_size_limit(10**9)
+
+MAX_LEG_HOURS = 12.0
+CONTIGUOUS_US = {"lat": (24.0, 49.5), "lon": (-125.0, -66.5)}
+
+
+def duration_hours(text: str) -> float | None:
+    """'16 hours 33 mins' / '45 mins' / '1 hour' -> hours."""
+    import re
+
+    h = re.search(r"(\d+)\s*hour", text)
+    m = re.search(r"(\d+)\s*min", text)
+    if not h and not m:
+        return None
+    return (int(h.group(1)) if h else 0) + (int(m.group(1)) if m else 0) / 60
+
+
+def in_contiguous_us(coord) -> bool:
+    lat, lon = coord
+    return (CONTIGUOUS_US["lat"][0] <= lat <= CONTIGUOUS_US["lat"][1]
+            and CONTIGUOUS_US["lon"][0] <= lon <= CONTIGUOUS_US["lon"][1])
 
 
 def _haversine(a, b) -> float:
@@ -86,19 +113,56 @@ class World:
                     out.append(dt)
         return sorted(set(out))
 
-    def ground_option(self, mode: str, org: str, dest: str) -> Ground | None:
+    def ground_option(self, mode: str, org: str, dest: str, realistic: bool = True) -> Ground | None:
+        """Recorded option for exactly this direction, else the reverse record,
+        else a distance estimate. With ``realistic``, unreachable or overlong
+        legs return None."""
         g = self.ground.get((mode, org, dest)) or self.ground.get((mode, dest, org))
         if g is not None:
+            hours = duration_hours(g.duration)
+            if realistic and hours is not None and hours > MAX_LEG_HOURS:
+                return None
             return Ground(mode, org, dest, g.cost, g.duration, g.distance_km)
         if org in self.coords and dest in self.coords:
+            if realistic and not (in_contiguous_us(self.coords[org]) and in_contiguous_us(self.coords[dest])):
+                return None
             km = _haversine(self.coords[org], self.coords[dest]) * self.road_factor
             hours = km / self.kmh
+            if realistic and hours > MAX_LEG_HOURS:
+                return None
             return Ground(mode, org, dest, round(km * self.rate[mode]),
                           f"{int(hours)} hours {int(round((hours % 1) * 60))} mins", round(km),
                           estimated=True)
         return None
 
-    def trip_query(self, org: str, dest: str, start: str, people: int, budget: float) -> Query:
+    def reachable(self, org: str) -> list[tuple[str, str]]:
+        """Destinations with a realistic round trip from ``org``: (city, how)."""
+        out = []
+        flight_pairs = {(o, d) for (o, d, _) in self.flights}
+        for d in self.destinations:
+            if d == org:
+                continue
+            if (org, d) in flight_pairs and self.flight_dates(org, d):
+                out.append((d, "flights on some dates"))
+            elif self.ground_option("self-driving", org, d) and self.ground_option("self-driving", d, org):
+                g = self.ground_option("self-driving", org, d)
+                out.append((d, f"drive ~{g.duration}"))
+        return out
+
+    def ground_summary(self, org: str, dest: str) -> str:
+        """Why driving is or isn't offered between two cities (for the UI)."""
+        g = self.ground_option("self-driving", org, dest, realistic=False)
+        if g is None:
+            return "no road distance known"
+        if g.estimated and not (in_contiguous_us(self.coords[org]) and in_contiguous_us(self.coords[dest])):
+            return "not reachable by road"
+        hours = duration_hours(g.duration) or 0
+        if hours > MAX_LEG_HOURS:
+            return f"driving takes about {g.duration} each way, too long for a 3-day trip"
+        return "ok"
+
+    def trip_query(self, org: str, dest: str, start: str, people: int, budget: float,
+                   realistic: bool = True) -> Query:
         """A TravelPlanner-style query for a 3-day trip between any two known cities."""
         d0 = date.fromisoformat(start)
         dates = [(d0 + timedelta(days=i)).isoformat() for i in range(3)]
@@ -109,7 +173,7 @@ class World:
             if (o, d, dt) in self.flights:
                 db.flights[(o, d, dt)] = list(self.flights[(o, d, dt)])
             for mode in ("self-driving", "taxi"):
-                g = self.ground_option(mode, o, d)
+                g = self.ground_option(mode, o, d, realistic)
                 if g is not None:
                     db.ground[(mode, o, d)] = g
         text = (f"Plan a 3-day trip from {org} to {dest}, {dates[0]} to {dates[-1]}, "
