@@ -4,6 +4,12 @@
     python scripts/demo.py --episode test-0123-e1
     python scripts/demo.py --interactive         # type your own updates
     python scripts/demo.py --policy static_rules # compare against a baseline
+    python scripts/demo.py --llm fake            # exercise every LLM code path offline
+    python scripts/demo.py --llm openai --policy llm_coordinator   # needs a key, see .env.example
+
+LLM mode: the tracker understands free-form messages, the component agents
+choose from shortlists, and usage is measured. Without a key everything runs
+offline with deterministic components.
 
 Example updates for --interactive:
     Let's change the budget to $1,200.
@@ -42,8 +48,13 @@ ORDER = ["transport_out", "d1_attraction", "d1_dinner", "accommodation", "d2_bre
          "d3_attraction", "d3_lunch", "transport_back"]
 
 
+LLM = None
+
+
 def get_policy(name: str):
-    base = baseline_policies()
+    base = baseline_policies(LLM)
+    if name == "llm_coordinator" and LLM is None:
+        sys.exit("llm_coordinator needs an LLM backend: pass --llm fake|openai|anthropic")
     return base[name] if name in base else learned_policy(name, 0)
 
 
@@ -76,12 +87,14 @@ def show_plan(q, c, plan, prev=None):
 
 
 def run_turn(q, before, plan, cache, nl, policy, rng):
-    env = TurnEnv(q, before, plan, cache, nl, rng)
+    u0 = LLM.usage.snapshot() if LLM else None
+    env = TurnEnv(q, before, plan, cache, nl, rng, LLM)
     if env.diff is None:
-        print("   tracker: could not parse that update; try one of the example phrasings.")
+        print("   tracker: could not parse that update; try one of the example phrasings"
+              + ("" if LLM else " (or run with an LLM backend for free-form messages)") + ".")
         return before, plan, None
     d = env.diff
-    print(f"   {D}tracker -> {d.op} {d.target_type}: {d.old} -> {d.new}{R}")
+    print(f"   {D}tracker ({env.tracker_source}) -> {d.op} {d.target_type}: {d.old} -> {d.new}{R}")
     r0 = env.report
     print(f"   {D}verifier on current plan: "
           f"{'valid' if r0.passed else ', '.join(sorted(r0.kinds()))}{R}")
@@ -99,8 +112,12 @@ def run_turn(q, before, plan, cache, nl, policy, rng):
     if env.terminal == "TIMEOUT":
         print("   (step limit reached)")
     changed = [s for s in ALL_SLOTS if env.plan.get(s) != env.start_plan.get(s)]
-    print(f"   {D}{len(changed)}/{len(ALL_SLOTS)} slots changed · {env.llm_calls} LLM calls · "
-          f"{env.tool_calls} tool calls{R}")
+    measured = ""
+    if LLM:
+        calls, tok = LLM.usage.snapshot()
+        measured = f" · measured: {calls - u0[0]} LLM requests, {tok - u0[1]:,} tokens"
+    print(f"   {D}{len(changed)}/{len(ALL_SLOTS)} slots changed · {env.llm_calls} LLM calls (cost model) · "
+          f"{env.tool_calls} tool calls{measured}{R}")
     show_plan(q, env.c, env.plan, env.start_plan)
     return env.c, env.plan, env
 
@@ -123,7 +140,7 @@ def scripted(args, Q):
     c = Constraints.from_dict(ep.base)
     cache = Cache()
     plan = compose_global(q, c, cache)
-    print(f"{B}Episode {ep.episode_id}{R} · coordinator: {args.policy}")
+    print(f"{B}Episode {ep.episode_id}{R} · coordinator: {args.policy} · LLM: {mode()}")
     header(q, c)
     show_plan(q, c, plan)
     rng = random.Random(0)
@@ -135,14 +152,18 @@ def scripted(args, Q):
     print(f"\n{B}Same episode, all coordinators{R}")
     names = ["always_global", "static_rules", args.policy if args.policy not in
              ("always_global", "static_rules", "oracle") else "bc_aug_dagger3", "oracle"]
-    print(f"   {'coordinator':<16}{'turns ok':>9}{'LLM calls':>11}{'unaffected kept':>17}")
+    if LLM and "llm_coordinator" not in names:
+        names.insert(2, "llm_coordinator")
+    print(f"   {'coordinator':<16}{'turns ok':>9}{'LLM calls':>11}{'unaffected kept':>17}"
+          + (f"{'measured reqs':>15}" if LLM else ""))
     for n in names:
-        r = run_episode(ep, q, get_policy(n), seed=0)
+        r = run_episode(ep, q, get_policy(n), seed=0, llm=LLM)
         ok = sum(t.success for t in r.turns)
         calls = sum(t.llm_calls for t in r.turns)
         pres = [t.preservation for t in r.turns if t.preservation is not None]
         kept = f"{100 * sum(pres) / len(pres):.0f}%" if pres else "-"
-        print(f"   {n:<16}{ok:>5}/{len(r.turns):<3}{calls:>11}{kept:>17}")
+        meas = (f"{sum(t.measured_llm_calls for t in r.turns):>15}" if LLM else "")
+        print(f"   {n:<16}{ok:>5}/{len(r.turns):<3}{calls:>11}{kept:>17}{meas}")
 
 
 def interactive(args, Q):
@@ -154,6 +175,7 @@ def interactive(args, Q):
     cache = Cache()
     plan = compose_global(q, c, cache)
     policy = get_policy(args.policy)
+    print(f"coordinator: {args.policy} · LLM: {mode()}")
     header(q, c)
     show_plan(q, c, plan)
     print(textwrap.dedent(__doc__).split("Example updates for --interactive:")[1])
@@ -169,13 +191,23 @@ def interactive(args, Q):
         print(f"   {D}now: {describe(c)}{R}")
 
 
+def mode() -> str:
+    return LLM.label if LLM else "offline (deterministic components)"
+
+
 def main():
+    global LLM
     ap = argparse.ArgumentParser()
     ap.add_argument("--episode")
     ap.add_argument("--seed", type=int, default=3)
     ap.add_argument("--policy", default="bc_aug_dagger3")
     ap.add_argument("--interactive", action="store_true")
+    ap.add_argument("--llm", default=None,
+                    help="offline | fake | openai | anthropic (default: TASKFLOW_LLM_PROVIDER or offline)")
     a = ap.parse_args()
+    from taskflow.llm.client import get_client
+
+    LLM = get_client(a.llm)
     Q = query_index()
     interactive(a, Q) if a.interactive else scripted(a, Q)
 

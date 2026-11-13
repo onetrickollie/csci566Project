@@ -4,28 +4,46 @@ Imitation-learned coordination for multi-agent travel replanning under evolving 
 
 A user revises a 3-day itinerary over several turns: they add, delete, or replace constraints, or change their priorities. After each update, a coordinator decides what to do: keep the plan, ask for clarification, refresh a search, repair one component (transport / accommodation / meals / attractions), or regenerate everything. The coordinator is a small neural policy trained from an expert by **behavior cloning**, **trajectory augmentation** and **DAgger**. It is compared against static rules, full regeneration on every update, and the privileged expert itself.
 
-- Engineering plan, interfaces, and task board: [docs/ENGINEERING_PLAN.md](docs/ENGINEERING_PLAN.md)
-- Latest results: [results/REPORT.md](results/REPORT.md)
-- Proposal: [docs/TaskFlow_Travel_PreProposal.pdf](docs/TaskFlow_Travel_PreProposal.pdf)
+## Start here
+
+| If you want to... | Read / run |
+|---|---|
+| See it work (2 minutes, no key) | `make setup demo`, then `make demo-interactive` |
+| Know what's done and what's left | [docs/STATUS.md](docs/STATUS.md) |
+| Understand the code | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) |
+| Plug in an API key | [docs/LLM_SETUP.md](docs/LLM_SETUP.md) |
+| Check the parts we're unsure about | [docs/VERIFICATION_CHECKLIST.md](docs/VERIFICATION_CHECKLIST.md) |
+| See interfaces, task IDs, and owners | [docs/ENGINEERING_PLAN.md](docs/ENGINEERING_PLAN.md) |
+| See the latest numbers | [results/REPORT.md](results/REPORT.md) |
+| Share the whole project as one file | `make snapshot` → `project_snapshot.md` (docs + all source, ~170 KB) |
+| Read the proposal | [docs/TaskFlow_Travel_PreProposal.pdf](docs/TaskFlow_Travel_PreProposal.pdf) |
 
 ## Quickstart
 
 ```bash
-python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
-.venv/bin/python scripts/demo.py                  # scripted multi-turn episode
-.venv/bin/python scripts/demo.py --interactive    # type your own updates
+make setup                 # .venv + requirements + .env from .env.example
+make demo                  # scripted 4-turn episode, compares all coordinators
+make demo-interactive      # type your own updates
+make test                  # offline test suite
+make pipeline              # rebuild tasks, retrain (3 seeds), re-evaluate: ~3 min on CPU
 ```
 
-The first run downloads the public TravelPlanner files (~37 MB) into `data/raw/`. Trained models (`models/`) and the generated task set (`data/tasks/v0/`) are committed, so the demo runs without retraining.
+Without `make`, use the Python commands directly: `python3 -m venv .venv && .venv/bin/pip install -r requirements.txt`, then `.venv/bin/python scripts/demo.py`.
 
-Full pipeline (about 3 minutes on a laptop CPU):
+- **First run:** downloads the public TravelPlanner files (~37 MB) into `data/raw/`.
+- **No retraining needed for the demo:** trained models (`models/`) and the generated task set (`data/tasks/v0/`) are committed.
+
+### With an API key
+
+Everything above works offline. To switch on the LLM-backed tracker, component agents and coordinator, and to get measured cost:
 
 ```bash
-.venv/bin/python scripts/build_dataset.py --seed 0     # data/tasks/v0/*.jsonl + manifest
-.venv/bin/python scripts/train.py --seeds 0 1 2        # models/*.pt + training_log.json
-.venv/bin/python scripts/evaluate.py --seeds 0 1 2     # results/metrics.json, REPORT.md, figures
-.venv/bin/python -m pytest -q
+cp .env.example .env       # set TASKFLOW_LLM_PROVIDER, TASKFLOW_LLM_MODEL and a key
+make demo-llm              # LLM coordinator + LLM agents
+make evaluate-llm          # 30 test episodes -> results/llm-<provider>/REPORT.md
 ```
+
+`make demo-fake` runs every LLM code path offline with a stand-in backend. Details are in [docs/LLM_SETUP.md](docs/LLM_SETUP.md).
 
 ## What is in the box
 
@@ -34,10 +52,11 @@ Full pipeline (about 3 minutes on a laptop CPU):
 | TravelPlanner loader | `taskflow/data/travelplanner.py` | Parses each query's database slice (flights, ground transport, hotels, restaurants, attractions). |
 | Verifier | `taskflow/env/verifier.py` | TravelPlanner-style commonsense and hard constraints, plus restaurant rating floor and cost/quality priority. Each violation names the slots that cause it. Accepts all 15 annotated single-city reference plans (`tests/test_verifier.py`). |
 | Evolving-constraint tasks | `taskflow/data/tasks.py` | Split by original query id **before** variants are generated. Four update types. About 75% of feasible updates break the current plan; about 17% are infeasible (correct response: ask). |
-| Constraint tracker | `taskflow/agents/tracker.py` | Natural-language update to a structured diff; 100% on both template sets. |
-| Component planners + composer | `taskflow/agents/planners.py` | Local repair keeps the other components fixed; global regeneration rebuilds from scratch. |
+| Constraint tracker | `taskflow/agents/tracker.py` | Natural-language update to a structured diff. Rule-based offline (100% on both template sets); LLM-based when a provider is set, with schema validation and fallback. |
+| Component planners + composer | `taskflow/agents/planners.py`, `llm_planners.py` | Local repair keeps the other components fixed; global regeneration rebuilds from scratch. With an LLM, agents choose from validated shortlists. |
 | Multi-turn environment | `taskflow/env/episode.py` | Cached searches go stale when a relevant constraint changes; per-action cost accounting. |
-| Coordinators | `taskflow/coordinators/` | `oracle` (privileged expert), `static_rules`, `always_global`. |
+| Coordinators | `taskflow/coordinators/` | `oracle` (privileged expert), `static_rules`, `always_global`, `llm_coordinator` (also the LLM teacher for DAgger). |
+| LLM layer | `taskflow/llm/` | One client for offline / fake / OpenAI-compatible / Anthropic, with disk cache, retries and usage counters. All prompts live in `prompts.py`. |
 | Learned coordinator | `taskflow/learning/` | MLP over a non-privileged observation (`encode.py`), trained with BC / augmentation / DAgger (`imitation.py`). |
 | Evaluation | `scripts/evaluate.py`, `taskflow/eval/` | Proposal metrics, breakdowns, forced-mistake recovery, error vs. step. |
 
@@ -74,9 +93,12 @@ What the numbers say:
 
 ## Deviations from the plan (read before citing numbers)
 
-- **No LLM in the loop yet.** No API key was available, so the sub-agents are deterministic searches, the tracker is rule-based, and update phrasings come from templates. The expert is the privileged scripted oracle; the LLM teacher (T15) and the LLM client (T06) are not built. As a result:
-  - Per-action LLM calls and tokens come from a fixed **cost model** (`ACTION_COST` in `taskflow/env/state.py`), not from measured usage.
-  - The single-LLM-agent baseline is not run yet.
+- **Offline numbers.** The results above were produced offline:
+  - The sub-agents are deterministic searches, the tracker is rule-based, and update phrasings come from templates.
+  - The expert is the privileged scripted oracle.
+  - Per-action LLM calls and tokens come from a fixed **cost model** (`ACTION_COST` in `taskflow/env/state.py`).
+  - The LLM tracker, LLM agents, LLM coordinator and LLM teacher are implemented and tested with the offline `fake` backend, but **not yet run against a real model**.
+  - The single-LLM-agent baseline isn't built yet.
 - **Scope:** 3-day, single-city TravelPlanner queries only, and FlexTravelBench is not used yet.
   - Train and validation queries keep their original constraints.
   - Test-file queries have hidden constraints, so their starting budget and constraints are sampled: budget is 1.2–1.7× the cheapest plan.
@@ -87,8 +109,9 @@ What the numbers say:
 
 ## Next steps
 
-1. Plug an LLM into the planners and the tracker behind the same interfaces, and replace the cost model with measured tokens.
-2. Add the LLM teacher for states where the oracle is not applicable (genuinely ambiguous requests).
-3. Run the single-agent LLM baseline.
-4. Extend to multi-city trips and FlexTravelBench, and paraphrase updates with an LLM (with back-verification).
-5. Package `data/tasks/` and the verifier for release (dataset card and datasheet).
+See [docs/STATUS.md](docs/STATUS.md) for the full list with suggested owners. In short:
+1. Run with a real model and replace the simulated cost with measured cost.
+2. Build the single-agent LLM baseline.
+3. Settle the validity questions in the checklist.
+4. Extend to LLM paraphrases, FlexTravelBench and multi-city trips.
+5. Package the dataset and the verifier for release.

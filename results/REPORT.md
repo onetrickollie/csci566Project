@@ -1,6 +1,6 @@
 # Results (test split)
 
-Config: `{'seeds': [0, 1, 2], 'split': 'test'}` · git `113ba67`
+Config: `{'seeds': [0, 1, 2], 'split': 'test', 'llm': 'offline', 'limit': None}` · git `c8872ce`
 
 Rates are percentages. Learned systems: mean ± std over training seeds. Token counts come from the simulated cost model (see README).
 

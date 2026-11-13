@@ -25,11 +25,13 @@ MAX_STEPS = 10
 
 class TurnEnv:
     def __init__(self, q: Query, before: Constraints, plan: Plan, cache: Cache, nl: str,
-                 rng: random.Random):
+                 rng: random.Random, llm=None):
         self.q, self.before, self.start_plan = q, before, dict(plan)
-        self.plan, self.cache, self.rng = dict(plan), cache, rng
+        self.plan, self.cache, self.rng, self.llm = dict(plan), cache, rng, llm
+        self.tracker_source = None
         try:
-            self.diff: ConstraintDiff | None = tracker.parse(nl, before)
+            self.diff, self.tracker_source = tracker.parse_any(nl, before, llm)
+            self.diff: ConstraintDiff | None
             self.c = self.diff.apply(before)
         except ValueError:
             self.diff, self.c = None, before.copy()
@@ -61,11 +63,11 @@ class TurnEnv:
             self.cache.search(ACTION_CACHE[action], self.q, self.c)
         elif action in ACTION_GROUP:
             g = ACTION_GROUP[action]
-            self.plan = replan_local(self.q, self.c, self.plan, g, self.cache)
+            self.plan = replan_local(self.q, self.c, self.plan, g, self.cache, self.llm)
             self.changed.add(g)
             self.report = None
         elif action == "REPLAN_GLOBAL":
-            self.plan = compose_global(self.q, self.c, self.cache, self.rng)
+            self.plan = compose_global(self.q, self.c, self.cache, self.rng, self.llm)
             self.changed.update(["transport", "accommodation", "meals", "attractions"])
             self.global_done = True
             self.report = None
@@ -97,6 +99,8 @@ class TurnResult:
     tool_calls: int
     tokens: int
     tracker_ok: bool
+    measured_llm_calls: int | None = None  # real calls when an LLM backend is active
+    measured_tokens: int | None = None
 
 
 @dataclass
@@ -117,7 +121,8 @@ def _local_fix_exists(env: TurnEnv) -> bool:
 
 
 def run_episode(ep: Episode, q: Query, policy, seed: int = 0, expert=None, beta: float = 0.0,
-                record: bool = False, inject: dict | None = None, encoder=None) -> EpisodeResult:
+                record: bool = False, inject: dict | None = None, encoder=None,
+                llm=None) -> EpisodeResult:
     """Roll out ``policy`` on an episode.
 
     expert/beta: DAgger mixing. With probability beta the expert's action is
@@ -135,7 +140,8 @@ def run_episode(ep: Episode, q: Query, policy, seed: int = 0, expert=None, beta:
         truth_diff = ConstraintDiff.from_dict(turn.diff)
         truth_after = Constraints.from_dict(turn.constraints_after)
         truth_applied = truth_diff.apply(before)
-        env = TurnEnv(q, before, plan, cache, truth_diff.nl, rng)
+        u0 = llm.usage.snapshot() if llm is not None else None
+        env = TurnEnv(q, before, plan, cache, truth_diff.nl, rng, llm)
         tracker_ok = env.diff is not None and env.c.to_dict() == truth_applied.to_dict()
         start_report = verify(q, truth_applied, plan)
         needed_slots = start_report.slots()
@@ -182,7 +188,9 @@ def run_episode(ep: Episode, q: Query, policy, seed: int = 0, expert=None, beta:
             new_satisfied=new_ok, retention=retention, preservation=preservation,
             used_global=env.global_done, unnecessary_global=env.global_done and local_possible,
             llm_calls=env.llm_calls, tool_calls=env.tool_calls, tokens=env.tokens,
-            tracker_ok=tracker_ok))
+            tracker_ok=tracker_ok,
+            measured_llm_calls=(llm.usage.requests - u0[0]) if llm is not None else None,
+            measured_tokens=(llm.usage.tokens - u0[1]) if llm is not None else None))
         before = truth_after
     res.final_pass = verify(q, before, plan).passed and res.turns[-1].success
     return res

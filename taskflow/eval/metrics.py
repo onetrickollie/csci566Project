@@ -35,6 +35,9 @@ def summarize(results) -> dict:
         "est_tokens_per_turn": _mean([t.tokens for t in turns]),
         "steps_per_turn": _mean([len(t.actions) for t in turns]),
         "tracker_accuracy": _mean([t.tracker_ok for t in turns]),
+        # Only present when an LLM backend was active (None offline).
+        "measured_llm_requests_per_turn": _mean([t.measured_llm_calls for t in turns]),
+        "measured_tokens_per_turn": _mean([t.measured_tokens for t in turns]),
     }
 
 

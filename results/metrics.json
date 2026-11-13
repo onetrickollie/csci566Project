@@ -1,15 +1,17 @@
 {
  "manifest": {
-  "git_sha": "113ba67",
+  "git_sha": "c8872ce",
   "config": {
    "seeds": [
     0,
     1,
     2
    ],
-   "split": "test"
+   "split": "test",
+   "llm": "offline",
+   "limit": null
   },
-  "config_hash": "453218d19b"
+  "config_hash": "00ecfdf30c"
  },
  "systems": {
   "always_global": {

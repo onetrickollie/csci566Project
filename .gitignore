@@ -5,3 +5,5 @@ __pycache__/
 .env
 data/raw/
 cache/
+results/llm-fake/
+project_snapshot.md

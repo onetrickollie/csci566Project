@@ -33,11 +33,16 @@ def query_index():
     return {q.qid: q for q in load_queries()}
 
 
-def baseline_policies() -> dict:
+def baseline_policies(llm=None) -> dict:
     from taskflow.coordinators.baselines import AlwaysGlobal, StaticRules
     from taskflow.coordinators.oracle import Oracle
 
-    return {"always_global": AlwaysGlobal(), "static_rules": StaticRules(), "oracle": Oracle()}
+    out = {"always_global": AlwaysGlobal(), "static_rules": StaticRules(), "oracle": Oracle()}
+    if llm is not None:
+        from taskflow.coordinators.llm_coordinator import LLMCoordinator
+
+        out["llm_coordinator"] = LLMCoordinator(llm)
+    return out
 
 
 LEARNED = ["bc", "bc_aug", "bc_dagger1", "bc_dagger2", "bc_dagger3", "bc_aug_dagger3"]

@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import random
 
+from taskflow.agents import llm_planners
 from taskflow.data.travelplanner import Query
 from taskflow.env.state import SLOTS, Constraints, Plan
 from taskflow.env.tools import Cache, TransportOption, acc_cost
@@ -105,28 +106,49 @@ def plan_attractions(cands: dict, rng=None) -> dict:
     return out
 
 
-def replan_local(q: Query, c: Constraints, plan: Plan, group: str, cache: Cache) -> Plan:
-    """Re-plan one component, keeping all others fixed, using cached candidates."""
+def replan_local(q: Query, c: Constraints, plan: Plan, group: str, cache: Cache, llm=None) -> Plan:
+    """Re-plan one component, keeping all others fixed, using cached candidates.
+
+    With an LLM client the component agent chooses from a shortlist; the
+    deterministic choice is the fallback for any invalid reply.
+    """
     new = dict(plan)
     cost = plan_cost(q, c, plan)
     others = sum(v for k, v in cost.items() if k != group)
     left = effective_budget(c) - others
     if group == "transport":
-        new.update(plan_transport(cache.get("transport"), c, left))
+        pick = plan_transport(cache.get("transport"), c, left)
+        if llm is not None:
+            pick = llm_planners.transport(llm, cache.get("transport"), c, left, pick)
     elif group == "accommodation":
-        new.update(plan_accommodation(cache.get("accommodation"), c, left))
+        pick = plan_accommodation(cache.get("accommodation"), c, left)
+        if llm is not None:
+            pick = llm_planners.accommodation(llm, cache.get("accommodation"), c, left, pick)
     elif group == "meals":
-        new.update(plan_meals(cache.get("dining"), c))
-    elif group == "attractions":
-        new.update(plan_attractions(cache.get("dining")))
+        pick = plan_meals(cache.get("dining"), c)
+        if llm is not None:
+            pick = llm_planners.meals(llm, cache.get("dining"), c, pick)
+    else:
+        pick = plan_attractions(cache.get("dining"))
+        if llm is not None:
+            pick = llm_planners.attractions(llm, cache.get("dining"), c, pick)
+    new.update(pick)
     return new
 
 
-def compose_global(q: Query, c: Constraints, cache: Cache, rng: random.Random | None = None) -> Plan:
-    """Full regeneration. Refreshes every cache in place."""
+def compose_global(q: Query, c: Constraints, cache: Cache, rng: random.Random | None = None,
+                   llm=None) -> Plan:
+    """Full regeneration. Refreshes every cache in place.
+
+    Offline, ``rng`` samples among near-best options to model regeneration
+    instability. With an LLM client every component agent is asked afresh.
+    """
     for name in ("transport", "accommodation", "dining"):
         cache.search(name, q, c)
     det = _compose(q, c, cache, None)
+    if llm is not None:
+        p = _compose(q, c, cache, None, llm)
+        return p if verify(q, c, p).passed else det
     if rng is None:
         return det
     for _ in range(3):
@@ -136,15 +158,25 @@ def compose_global(q: Query, c: Constraints, cache: Cache, rng: random.Random | 
     return det
 
 
-def _compose(q, c, cache, rng) -> Plan:
+def _compose(q, c, cache, rng, llm=None) -> Plan:
     plan: Plan = {}
-    plan.update(plan_meals(cache.get("dining"), c, rng))
-    plan.update(plan_attractions(cache.get("dining"), rng))
-    plan.update(plan_transport(cache.get("transport"), c, effective_budget(c), rng))
+    meals = plan_meals(cache.get("dining"), c, rng)
+    attrs = plan_attractions(cache.get("dining"), rng)
+    tr = plan_transport(cache.get("transport"), c, effective_budget(c), rng)
+    if llm is not None:
+        meals = llm_planners.meals(llm, cache.get("dining"), c, meals)
+        attrs = llm_planners.attractions(llm, cache.get("dining"), c, attrs)
+        tr = llm_planners.transport(llm, cache.get("transport"), c, effective_budget(c), tr)
+    plan.update(meals)
+    plan.update(attrs)
+    plan.update(tr)
     plan["accommodation"] = "-"
     cost = plan_cost(q, c, plan)
     left = effective_budget(c) - cost["transport"] - cost["meals"]
-    plan.update(plan_accommodation(cache.get("accommodation"), c, left, rng))
+    acc = plan_accommodation(cache.get("accommodation"), c, left, rng)
+    if llm is not None:
+        acc = llm_planners.accommodation(llm, cache.get("accommodation"), c, left, acc)
+    plan.update(acc)
     return plan
 
 

@@ -3,6 +3,11 @@
 Writes results/metrics.json, results/REPORT.md and figures in results/.
 
     python scripts/evaluate.py --seeds 0 1 2
+    python scripts/evaluate.py --llm openai --limit 30 --seeds 0   # LLM run on 30 episodes
+
+With --llm, the tracker and component agents call the model, an LLM
+coordinator is added, measured requests/tokens are reported, and results go
+to results/llm-<provider>/ so the offline results are not overwritten.
 """
 
 import argparse
@@ -47,14 +52,19 @@ def needs_repair_first_turn(ep, Q) -> bool:
     return t.feasible and not verify(q, ConstraintDiff.from_dict(t.diff).apply(base), plan).passed
 
 
+LLM = None
+
+
 def recovery(policy, eps, Q) -> dict:
     """Force one mistake at the first step of a turn that needs repair; can the policy recover?"""
     out = {}
+    if not eps:
+        return out
     for mk in MISTAKES:
         succ, pres, calls = [], [], []
         for i, ep in enumerate(eps):
             r = run_episode(ep, Q[ep.qid], policy, seed=10_000 + i,
-                            inject={"turn": 0, "step": 0, "action": mk})
+                            inject={"turn": 0, "step": 0, "action": mk}, llm=LLM)
             t = r.turns[0]
             succ.append(t.success)
             pres.append(t.preservation)
@@ -69,7 +79,7 @@ def error_by_step(policy, eps, Q) -> dict:
     expert = Oracle()
     by_step, by_turn = defaultdict(list), defaultdict(list)
     for i, ep in enumerate(eps):
-        r = run_episode(ep, Q[ep.qid], policy, seed=20_000 + i, expert=expert, record=True)
+        r = run_episode(ep, Q[ep.qid], policy, seed=20_000 + i, expert=expert, record=True, llm=LLM)
         for t in r.trajectory:
             err = t["action"] != t["expert_action"]
             by_step[t["step"]].append(err)
@@ -79,19 +89,29 @@ def error_by_step(policy, eps, Q) -> dict:
 
 
 def main():
+    global LLM
     ap = argparse.ArgumentParser()
     ap.add_argument("--seeds", type=int, nargs="+", default=[0, 1, 2])
     ap.add_argument("--split", default="test")
+    ap.add_argument("--llm", default=None, help="offline | fake | openai | anthropic")
+    ap.add_argument("--limit", type=int, default=None, help="evaluate only the first N episodes")
+    ap.add_argument("--skip-recovery", action="store_true")
+    ap.add_argument("--model-suffix", default="", help='e.g. "_llmteacher" for LLM-teacher models')
     a = ap.parse_args()
-    RESULTS_DIR.mkdir(exist_ok=True)
+    from taskflow.llm.client import get_client
+
+    LLM = get_client(a.llm)
+    out_dir = RESULTS_DIR if LLM is None else RESULTS_DIR / f"llm-{LLM.provider}"
+    out_dir.mkdir(parents=True, exist_ok=True)
     Q = query_index()
-    eps = load(TASKS_DIR, a.split)
-    rec_eps = [e for e in eps if needs_repair_first_turn(e, Q)]
-    out = {"manifest": manifest(seeds=a.seeds, split=a.split), "systems": {},
+    eps = load(TASKS_DIR, a.split)[: a.limit]
+    rec_eps = [] if a.skip_recovery else [e for e in eps if needs_repair_first_turn(e, Q)]
+    out = {"manifest": manifest(seeds=a.seeds, split=a.split, llm=LLM.label if LLM else "offline",
+                                limit=a.limit), "systems": {},
            "recovery_episodes": len(rec_eps)}
 
-    for name, pol in baseline_policies().items():
-        res = [run_episode(e, Q[e.qid], pol, seed=i) for i, e in enumerate(eps)]
+    for name, pol in baseline_policies(LLM).items():
+        res = [run_episode(e, Q[e.qid], pol, seed=i, llm=LLM) for i, e in enumerate(eps)]
         out["systems"][name] = {
             "summary": {k: {"mean": v, "std": 0.0} for k, v in summarize(res).items()
                         if isinstance(v, (int, float))},
@@ -104,13 +124,13 @@ def main():
     for name in LEARNED:
         sums, recs, errs, first = [], [], [], None
         for s in a.seeds:
-            pol = learned_policy(name, s)
-            res = [run_episode(e, Q[e.qid], pol, seed=i) for i, e in enumerate(eps)]
+            pol = learned_policy(name + a.model_suffix, s)
+            res = [run_episode(e, Q[e.qid], pol, seed=i, llm=LLM) for i, e in enumerate(eps)]
             sums.append(summarize(res))
             recs.append(recovery(pol, rec_eps, Q))
             errs.append(error_by_step(pol, eps, Q))
             first = first or res
-        rec = {mk: mean_std([r[mk] for r in recs]) for mk in MISTAKES}
+        rec = {mk: mean_std([r[mk] for r in recs]) for mk in MISTAKES} if recs and recs[0] else {}
         err = {"by_step": {k: float(np.mean([e["by_step"].get(k, np.nan) for e in errs]))
                            for k in errs[0]["by_step"]},
                "by_turn": {k: float(np.mean([e["by_turn"].get(k, np.nan) for e in errs]))
@@ -122,11 +142,13 @@ def main():
         }
         print(name, json.dumps({k: round(v["mean"], 4) for k, v in mean_std(sums).items()}))
 
-    (RESULTS_DIR / "metrics.json").write_text(json.dumps(out, indent=1, default=str))
+    if LLM is not None:
+        out["llm_usage"] = vars(LLM.usage)
+    (out_dir / "metrics.json").write_text(json.dumps(out, indent=1, default=str))
     from taskflow.eval.report import write_report
 
-    write_report(out, RESULTS_DIR)
-    print(f"wrote {RESULTS_DIR / 'REPORT.md'}")
+    write_report(out, out_dir)
+    print(f"wrote {out_dir / 'REPORT.md'}")
 
 
 if __name__ == "__main__":
