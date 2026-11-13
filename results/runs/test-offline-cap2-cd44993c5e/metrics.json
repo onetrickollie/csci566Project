@@ -1,7 +1,7 @@
 {
  "manifest": {
-  "git_sha": "b98e383",
-  "git_dirty": true,
+  "git_sha": "aa219a4",
+  "git_dirty": false,
   "config": {
    "seeds": [
     0,
@@ -18,7 +18,7 @@
   },
   "config_hash": "cd44993c5e",
   "fingerprints": {
-   "source": "fe9eae875cb6",
+   "source": "6ae63bc04fc2",
    "prompts": "f9352f57f9ee",
    "tasks": "3753a97fdb1e"
   }

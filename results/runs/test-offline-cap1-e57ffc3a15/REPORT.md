@@ -2,7 +2,7 @@
 
 Config: `{'seeds': [0, 1, 2], 'split': 'test', 'limit': None, 'skip_recovery': False, 'model_suffix': '', 'call_cap': 1, 'llm': 'offline', 'models': 'b256bcc46c15'}`
 
-git `b98e383` (uncommitted changes) · fingerprints `{'source': 'fe9eae875cb6', 'prompts': 'f9352f57f9ee', 'tasks': '3753a97fdb1e'}`
+git `aa219a4` · fingerprints `{'source': '6ae63bc04fc2', 'prompts': 'f9352f57f9ee', 'tasks': '3753a97fdb1e'}`
 
 Rates are percentages. Learned systems: mean ± std over training seeds. LLM calls/tool calls/est. tokens come from the simulated cost model (see README).
 
