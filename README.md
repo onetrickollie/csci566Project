@@ -4,6 +4,8 @@ Imitation-learned coordination for multi-agent travel replanning under evolving 
 
 A user revises a 3-day itinerary over several turns: they add, delete, or replace constraints, or change their priorities. After each update, a coordinator decides what to do: keep the plan, ask for clarification, refresh a search, repair one component (transport / accommodation / meals / attractions), or regenerate everything. The coordinator is a small neural policy trained from an expert by **behavior cloning**, **trajectory augmentation** and **DAgger**. It is compared against static rules, full regeneration on every update, and the privileged expert itself.
 
+**Website:** https://onetrickollie.github.io/taskflow-travel/ (rebuilt automatically on every push to `main`).
+
 ## Start here
 
 | If you want to... | Read / run |

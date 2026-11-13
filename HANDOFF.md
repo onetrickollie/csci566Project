@@ -2,7 +2,7 @@
 
 Everything a teammate needs to pick this project up and keep going: what the project is, what has been built and verified, how to run it, what's left (with owners and "done" criteria), and the rules we follow so results stay trustworthy.
 
-Last updated: 2026-11-13 · Repo: https://github.com/onetrickollie/taskflow-travel · Course: CSCI 566
+Last updated: 2026-11-13 · Repo: https://github.com/onetrickollie/taskflow-travel · Website: https://onetrickollie.github.io/taskflow-travel/ · Course: CSCI 566
 
 ---
 
@@ -137,10 +137,25 @@ All of this is **offline**. Agents are deterministic and LLM costs come from a c
 | LLM wiring check (no key) | `make demo-fake` | — |
 | LLM run (needs key) | `make demo-llm`, `make evaluate-llm` | `results/runs/val-<provider>-...` |
 | One file with all docs + code | `make snapshot` | `project_snapshot.md` (git-ignored) |
+| Website, local preview | `make site` | `site/index.html` (git-ignored) |
 
 Any `evaluate.py` run without `--canonical` writes to its own `results/runs/<split>-<backend>-...-<hash>/` folder, so runs never overwrite each other.
 
 ---
+
+### The website and CI
+
+`.github/workflows/site.yml` runs on every push to `main`:
+1. Install the requirements (CPU-only torch).
+2. Run the full test suite.
+3. Build the website with `scripts/build_site.py`: docs rendered to HTML, the result reports and figures, the headline table read from the committed `metrics.json`, and episode replays regenerated with the committed models.
+4. Publish it to https://onetrickollie.github.io/taskflow-travel/.
+
+On pull requests it only tests and builds.
+
+- **If the tests fail, the site isn't updated.** Check the repo's **Actions** tab.
+- **To add a page:** list the Markdown file in `PAGES` in `scripts/build_site.py`. Links between `.md` files become links between pages automatically.
+- **The interactive app can't run on Pages** (it needs a Python server). The site shows recorded replays instead. Hosting the app would need a service that runs Python, such as Render, Railway or a Hugging Face Space.
 
 ## 6. What's left
 
@@ -197,7 +212,7 @@ Ordered by priority. Each item says who should own it (sub-teams from the engine
 
 | Task | Owner | Notes |
 |---|---|---|
-| CI | eval | GitHub Actions running `pip install -r requirements.txt && pytest -q`. Offline, no secrets needed. |
+| CI | eval | Done: `.github/workflows/site.yml` runs the tests on every push and pull request. Next: add a lint step. |
 | Dataset release (T22) | bench | Dataset card + datasheet for `data/tasks/v0`, citing TravelPlanner (CC BY 4.0). Check FlexTravelBench's license before using it. |
 | LLM paraphrases (T10) | bench | Paraphrase test updates with an LLM; keep a paraphrase only if the tracker recovers the structured diff. Template set B was written alongside the tracker, so current "unseen phrasing" results are weak evidence. |
 | Multi-city trips | bench + agents | 5- and 7-day TravelPlanner queries; per-day slots; city order. |

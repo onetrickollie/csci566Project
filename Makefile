@@ -1,6 +1,6 @@
 PY := .venv/bin/python
 
-.PHONY: help setup app demo demo-html demo-html-multi demo-interactive demo-llm demo-fake test pipeline dataset train evaluate evaluate-llm evaluate-capped evaluate-multi snapshot clean-cache
+.PHONY: help setup app demo demo-html demo-html-multi demo-interactive demo-llm demo-fake test pipeline dataset train evaluate evaluate-llm evaluate-capped evaluate-multi site snapshot clean-cache
 
 help:
 	@echo "make setup             create .venv and install requirements"
@@ -17,6 +17,7 @@ help:
 	@echo "make evaluate-llm      30 validation episodes with the configured provider -> results/runs/"
 	@echo "make evaluate-capped   matched-budget runs (1 and 2 LLM calls per turn) -> results/runs/"
 	@echo "make evaluate-multi    multi-component test family + fixed synthetic stress suite"
+	@echo "make site              build the website locally into site/ (published automatically on push)"
 	@echo "make snapshot          bundle docs + source into project_snapshot.md"
 
 setup:
@@ -70,6 +71,10 @@ evaluate-llm:
 evaluate-capped:
 	$(PY) scripts/evaluate.py --call-cap 1 --seeds 0 1 2
 	$(PY) scripts/evaluate.py --call-cap 2 --seeds 0 1 2
+
+site:
+	$(PY) -m pip install -q -r requirements-site.txt
+	$(PY) scripts/build_site.py
 
 snapshot:
 	$(PY) scripts/make_snapshot.py
