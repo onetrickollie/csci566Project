@@ -26,6 +26,10 @@ def main():
     stats = {}
     for s, eps in ds["episodes"].items():
         turns = [t for e in eps for t in e.turns]
+        if s.endswith("_multi"):
+            stats[s] = {"episodes": len(eps), "queries": len({e.qid for e in eps}),
+                        "levels": dict(collections.Counter(e.episode_id.rsplit("-L", 1)[1] for e in eps))}
+            continue
         stats[s] = {
             "queries": len({e.qid for e in eps}), "episodes": len(eps), "turns": len(turns),
             "infeasible_turns": sum(not t.feasible for t in turns),

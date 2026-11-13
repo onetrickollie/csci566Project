@@ -35,10 +35,15 @@ def main():
     ap.add_argument("--teacher", choices=["oracle", "llm"], default="oracle")
     ap.add_argument("--llm", default=None, help="backend for --teacher llm: fake | openai | anthropic")
     ap.add_argument("--limit", type=int, default=None, help="use only the first N training episodes")
+    ap.add_argument("--no-multi", action="store_true",
+                    help="train on v0 only (skip the multi-component family train_multi.jsonl)")
     a = ap.parse_args()
     MODELS_DIR.mkdir(exist_ok=True)
     Q = query_index()
-    tr = load(TASKS_DIR, "train")[: a.limit]
+    tr = load(TASKS_DIR, "train")
+    if not a.no_multi and (TASKS_DIR / "train_multi.jsonl").exists():
+        tr += load(TASKS_DIR, "train_multi")
+    tr = tr[: a.limit]
     expert = Oracle()
     suffix = ""
     if a.teacher == "llm":
@@ -52,6 +57,7 @@ def main():
     teacher_id = expert.client.identity() if a.teacher == "llm" else "oracle"
     log = {"manifest": manifest(seeds=a.seeds, epochs=a.epochs, inject_rate=a.inject_rate,
                                 teacher=teacher_id, limit=a.limit, suffix=suffix,
+                                multi=not a.no_multi, train_episodes=len(tr),
                                 collection_env="deterministic planners"), "runs": {}}
     for seed in a.seeds:
         t0 = time.time()

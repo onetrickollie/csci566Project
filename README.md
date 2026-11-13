@@ -8,7 +8,7 @@ A user revises a 3-day itinerary over several turns: they add, delete, or replac
 
 | If you want to... | Read / run |
 |---|---|
-| See it work (2 minutes, no key) | `make setup demo`, then `make demo-interactive` |
+| See it work (2 minutes, no key) | `make setup demo-html` (opens in your browser), `make demo`, `make demo-interactive` |
 | Know what's done and what's left | [docs/STATUS.md](docs/STATUS.md) |
 | Understand the code | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) |
 | Plug in an API key | [docs/LLM_SETUP.md](docs/LLM_SETUP.md) |
@@ -22,7 +22,9 @@ A user revises a 3-day itinerary over several turns: they add, delete, or replac
 
 ```bash
 make setup                 # .venv + requirements + .env from .env.example
-make demo                  # scripted 4-turn episode, compares all coordinators
+make demo-html             # visual: one episode, every coordinator side by side, in your browser
+make demo-html-multi       # visual: a budget cut that needs several components repaired
+make demo                  # the same comparison in the terminal
 make demo-interactive      # type your own updates
 make test                  # offline test suite
 make pipeline              # rebuild tasks, retrain (3 seeds), re-evaluate: ~3 min on CPU
@@ -67,42 +69,67 @@ The test split differs from training in three ways:
 - **Different phrasing templates:** a second handwritten template set. The rule-based tracker was written with both sets in view, so this checks template compatibility, not robustness to real paraphrases (that needs T10).
 - **Longer chains:** 4-turn conversations, while training never goes past 3 turns.
 
-## Results (test split, 276 episodes / 689 turns, 3 training seeds)
+## Results
 
-All numbers come from `results/metrics.json` (offline run; manifest records code, prompt, task and model fingerprints).
+All numbers come from committed `metrics.json` files (offline runs). Each manifest records code, prompt, task and model fingerprints. Models are trained on the v0 train split plus the multi-component train family (`train_multi`), 3 seeds.
 
-| System | Final pass | Revision success | Unaffected slots preserved | Slots edited | LLM calls / turn |
+### Main benchmark (v0 test split: 276 episodes / 689 turns) — `results/REPORT.md`
+
+| System | Final pass | Revision success | Excess edits / turn | Edit-optimal preservation | LLM calls / turn |
 |---|---|---|---|---|---|
-| Always-Global (sampled regeneration) | 100.0 | 100.0 | 31.3 | 73.1 | 4.19 |
-| Always-Global (deterministic control) | 100.0 | 100.0 | 93.1 | 21.2 | 4.19 |
-| Static rules | 100.0 | 100.0 | 95.4 | 18.9 | 0.95 |
-| BC | 97.5 ± 1.5 | 98.6 ± 0.8 | 96.3 | 18.1 | 0.73 |
-| BC + augmentation | 99.9 ± 0.2 | 100.0 ± 0.1 | 96.1 | 18.6 | 0.72 |
-| BC + DAgger (3 iters) | 99.9 ± 0.2 | 100.0 ± 0.1 | 96.1 | 18.6 | 0.72 |
-| BC + aug + DAgger (3) | 99.9 ± 0.2 | 100.0 ± 0.1 | 96.1 | 18.6 | 0.72 |
-| Privileged oracle | 100.0 | 100.0 | 96.1 | 18.6 | 0.71 |
+| Always-Global (sampled regeneration) | 100.0 | 100.0 | 8.22 | 30.0 | 4.19 |
+| Always-Global (deterministic control) | 100.0 | 100.0 | 1.53 | 86.9 | 4.19 |
+| Static rules | 100.0 | 100.0 | 1.21 | 89.0 | 0.95 |
+| BC | 99.3 | 99.6 ± 0.1 | 1.16 | 89.6 | 0.73 |
+| BC + augmentation | 99.9 ± 0.2 | 100.0 ± 0.1 | 1.16 | 89.7 | 0.72 |
+| BC + DAgger (3 iters) | 99.9 ± 0.2 | 99.9 ± 0.1 | 1.16 | 89.7 | 0.72 |
+| BC + aug + DAgger (3) | 99.5 ± 0.3 | 99.6 ± 0.3 | 1.16 | 89.6 | 0.72 |
+| Scripted expert (deterministic) | 100.0 | 100.0 | 1.16 | 89.7 | 0.71 |
 
-**Matched LLM-call budget per turn** (`make evaluate-capped`, `results/runs/test-offline-cap*`): revision success %.
+**Excess edits** are the slots changed beyond the exact minimum any valid repair needs. **Edit-optimal preservation** is 1 − excess / (13 − minimum). Both are computed by an exact solver after the run (`taskflow/eval/exact.py`), and failed turns get no credit.
 
-| Cap | Static rules | BC | BC + aug | BC + DAgger (3) | BC + aug + DAgger (3) | Oracle |
+### Matched LLM-call budget per turn (`make evaluate-capped`, `results/runs/test-offline-cap*`): revision success %
+
+| Cap | Static rules | BC | BC + aug | BC + DAgger (3) | BC + aug + DAgger (3) | Expert |
 |---|---|---|---|---|---|---|
-| 1 call | 72.4 | 96.9 | 98.0 | 98.0 | 97.6 | 98.5 |
-| 2 calls | 98.1 | 98.5 | 100.0 | 100.0 | 99.9 | 100.0 |
+| 1 call | 72.4 | 97.9 | 97.9 | 98.0 | 97.9 | 98.5 |
+| 2 calls | 98.1 | 99.6 | 99.9 | 99.9 | 99.6 | 100.0 |
 
-What the numbers say:
+### Multi-component budget cuts (`make evaluate-multi`)
+
+Each episode starts from an expensive itinerary the user already approved, then cuts the budget so that 1, 2, or 3+ components must change. Episodes come from each split's own trips.
+
+**Real-trip family** (`test_multi`: 138 episodes from test trips): every system succeeds.
+
+| System | Excess edits / turn | Global rebuild rate | LLM calls / turn |
+|---|---|---|---|
+| Always-Global (deterministic) | 5.94 | 100% | 4.00 |
+| Static rules | 5.88 | 67% | 3.70 |
+| BC + aug + DAgger (3) | 1.91 | 23% | 2.06 |
+| Scripted expert | 1.75 | 20% | 1.99 |
+
+**Fixed synthetic stress suite** (12 cases, never trained on; `results/runs/challenges/`):
+- The retrained BC+aug+DAgger(3) solves 12/12 cases with every seed.
+- Before the multi-component family was added, it solved 4/0/0 cases at the 1/2/3-component levels.
+
+### What the numbers say
 
 1. **Partial vs. global replanning.**
-   - Regenerating on every update costs about 4.4× the LLM calls of static rules and 5.8× those of the learned coordinator. In 49% of turns it regenerates even though a local repair would have worked.
-   - How much of the plan regeneration destroys depends on how unstable regeneration is. With sampled regeneration (our stand-in for an LLM rebuilding from scratch) it keeps 31% of the untouched slots. Deterministic regeneration keeps 93%. The real figure needs a real LLM.
-2. **Compounding error.**
-   - Plain BC succeeds on 100% of first turns but only 92.8% of held-out 4th turns (seed 0). Augmentation and DAgger both bring the 4th turn back to 98.6–100%.
-   - In forced-mistake recovery, counting only cases where the forced action actually left the plan broken: BC recovers 83–88%, BC+DAgger(3) 91–99%, and augmentation, with or without DAgger, 100%.
-   - A forced global rebuild always fixes the plan, so it says nothing about recovery.
-3. **Against the proposal's rejection criterion.**
-   - **Without a budget cap:** static rules reach 100% and the learned coordinator 99.9–100%. The learned coordinator uses about 24% fewer LLM calls (0.72 vs 0.95).
-   - **With 1 call per turn:** the learned coordinators reach 96.9–98.1% revision success, while static rules drop to 72.4%.
-   - **Verdict:** offline, the hypothesis holds under a tight budget, not without one. It still needs confirming with real LLM agents.
-4. **Scope of the local/global question.** On this task distribution the oracle never needs a global rebuild (every feasible update is fixed by repairing one or two components). The results show *when to repair locally and when to ask*, not a learned local-vs-global trade-off. Independent multi-component scenarios are open work (`docs/STATUS.md`).
+   - Regenerating on every update costs about 5.8× the LLM calls of the learned coordinator.
+   - In 49% of turns it rebuilds even though a local repair would have worked.
+   - How much of the plan it disturbs depends on how unstable regeneration is: 8.2 unnecessary slot changes per turn with sampled regeneration (our stand-in for an LLM rebuilding from scratch), 1.5 with deterministic regeneration. The real figure needs a real LLM.
+2. **When to go global.**
+   - On multi-component cuts, the learned coordinator rebuilds globally in about 23% of turns, close to the expert's 20%.
+   - Static rules rebuild in 67% of turns, because their script only knows how to repair the accommodation.
+   - So the learned coordinator changes about a third as many unneeded slots (1.9 vs 5.9) at roughly half the LLM calls.
+3. **Compounding error and recovery.**
+   - Forced-mistake recovery (cases where the forced action left the plan broken): BC recovers 88–96%, BC+DAgger(3) 98–100%, and augmentation, with or without DAgger, 100%.
+   - Over a whole episode the gap is small on this benchmark: BC handles 98.6% of held-out 4th turns, seed 0.
+4. **Against the proposal's rejection criterion.**
+   - **Without a call cap:** static rules reach 100% and the learned coordinators 99.6–100%, with about 24% fewer LLM calls.
+   - **With 1 call per turn:** the learned coordinators reach about 98%, static rules 72.4%.
+   - **On multi-component cuts:** equal success, fewer edits and fewer calls.
+   - **Verdict:** offline, the hypothesis holds under a tight budget and on multi-component cuts. It still needs confirming with real LLM agents.
 
 ## Deviations from the plan (read before citing numbers)
 

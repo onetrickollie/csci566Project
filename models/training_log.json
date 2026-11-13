@@ -1,6 +1,6 @@
 {
  "manifest": {
-  "git_sha": "ff4562a",
+  "git_sha": "e7c95ad",
   "git_dirty": true,
   "config": {
    "seeds": [
@@ -13,120 +13,122 @@
    "teacher": "oracle",
    "limit": null,
    "suffix": "",
+   "multi": true,
+   "train_episodes": 1290,
    "collection_env": "deterministic planners"
   },
-  "config_hash": "8f1abfd112",
+  "config_hash": "62927836d6",
   "fingerprints": {
-   "source": "2f5873931dbe",
+   "source": "f5e8c051d7fa",
    "prompts": "f9352f57f9ee",
-   "tasks": "3753a97fdb1e"
+   "tasks": "c6a92573e38a"
   }
  },
  "runs": {
   "0": {
    "bc": {
-    "n": 4451,
-    "train_acc": 0.9952819347381592
+    "n": 6083,
+    "train_acc": 0.9868485927581787
    },
    "bc_aug": {
-    "n": 9479,
-    "train_acc": 0.997468113899231
+    "n": 13061,
+    "train_acc": 0.9923436045646667
    },
    "bc_dagger1": {
     "iter": 1,
-    "added": 4453,
-    "n": 8904,
-    "train_acc": 0.9941599369049072
+    "added": 6147,
+    "n": 12230,
+    "train_acc": 0.989206850528717
    },
    "bc_dagger2": {
     "iter": 2,
-    "added": 4465,
-    "n": 13369,
-    "train_acc": 0.9966340065002441
+    "added": 6094,
+    "n": 18324,
+    "train_acc": 0.9943243861198425
    },
    "bc_dagger3": {
     "iter": 3,
-    "added": 4474,
-    "n": 17843,
-    "train_acc": 0.9973098635673523
+    "added": 6076,
+    "n": 24400,
+    "train_acc": 0.9967622756958008
    },
    "bc_aug_dagger3": {
     "iter": 3,
-    "added": 4459,
-    "n": 22853,
-    "train_acc": 0.9978558421134949
+    "added": 6097,
+    "n": 31342,
+    "train_acc": 0.9951502680778503
    },
-   "seconds": 26.9
+   "seconds": 122.2
   },
   "1": {
    "bc": {
-    "n": 4451,
-    "train_acc": 0.9925859570503235
+    "n": 6083,
+    "train_acc": 0.9916159510612488
    },
    "bc_aug": {
-    "n": 9465,
-    "train_acc": 0.9964078068733215
+    "n": 13056,
+    "train_acc": 0.9950214624404907
    },
    "bc_dagger1": {
     "iter": 1,
-    "added": 4454,
-    "n": 8905,
-    "train_acc": 0.9966310858726501
+    "added": 6116,
+    "n": 12199,
+    "train_acc": 0.9922124743461609
    },
    "bc_dagger2": {
     "iter": 2,
-    "added": 4458,
-    "n": 13363,
-    "train_acc": 0.9961835145950317
+    "added": 6061,
+    "n": 18260,
+    "train_acc": 0.9952355027198792
    },
    "bc_dagger3": {
     "iter": 3,
-    "added": 4471,
-    "n": 17834,
-    "train_acc": 0.9976449608802795
+    "added": 6141,
+    "n": 24401,
+    "train_acc": 0.9960247278213501
    },
    "bc_aug_dagger3": {
     "iter": 3,
-    "added": 4462,
-    "n": 22842,
-    "train_acc": 0.9977235198020935
+    "added": 6086,
+    "n": 31341,
+    "train_acc": 0.9966816902160645
    },
-   "seconds": 26.8
+   "seconds": 66.9
   },
   "2": {
    "bc": {
-    "n": 4451,
-    "train_acc": 0.9966299533843994
+    "n": 6083,
+    "train_acc": 0.9896432757377625
    },
    "bc_aug": {
-    "n": 9475,
-    "train_acc": 0.9964116215705872
+    "n": 13059,
+    "train_acc": 0.9915001392364502
    },
    "bc_dagger1": {
     "iter": 1,
-    "added": 4455,
-    "n": 8906,
-    "train_acc": 0.9967437386512756
+    "added": 6072,
+    "n": 12155,
+    "train_acc": 0.9930070042610168
    },
    "bc_dagger2": {
     "iter": 2,
-    "added": 4455,
-    "n": 13361,
-    "train_acc": 0.9971559047698975
+    "added": 6113,
+    "n": 18268,
+    "train_acc": 0.9937048554420471
    },
    "bc_dagger3": {
     "iter": 3,
-    "added": 4456,
-    "n": 17817,
-    "train_acc": 0.9968007802963257
+    "added": 6129,
+    "n": 24397,
+    "train_acc": 0.9958601593971252
    },
    "bc_aug_dagger3": {
     "iter": 3,
-    "added": 4465,
-    "n": 22856,
-    "train_acc": 0.9978561401367188
+    "added": 6110,
+    "n": 31350,
+    "train_acc": 0.9968101978302002
    },
-   "seconds": 28.7
+   "seconds": 41.4
   }
  }
 }

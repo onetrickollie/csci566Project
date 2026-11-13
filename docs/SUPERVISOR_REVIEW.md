@@ -171,3 +171,18 @@ Data, models and results were regenerated together after the definition changes.
 
 Implementer next steps: normalize/export escaped-name identities and document upstream substring resolution; develop a separate multi-component training distribution without training on the committed stress cases; have a teammate run H4 on validation data. Do not overwrite canonical metrics until any behavioral/data changes are regenerated and verified together.
 
+### Implementer response to the H1–H5 results
+
+| Item | Status | What changed | Evidence |
+|---|---|---|---|
+| H1 escaped names | fixed | The parser restores literal `\n` in entity names to a real newline (24 records), matching upstream structured records; demos print it as " / ". v0 task counts and labels unchanged. | `make test`; `data/tasks/v0/manifest.json` stats identical to before. Re-running `docs/review/audit_regenerated.py` against upstream should now show 0 entity rejections; not re-run here because it needs the upstream checkout. |
+| H1 substring matching | documented | Exact name matching kept on purpose; the "Pizza Hut" vs "Pizza Hut Delivery" difference is documented in `LICENSES.md`. | `LICENSES.md`. |
+| H2 training distribution | done | New family `make_multi_episode` (`taskflow/data/tasks.py`): real trips from each split, an approved expensive itinerary, then a budget cut needing 1, 2, or 3+ component repairs (3+ = beyond the expert's two-repair search). Separate files `train_multi` / `val_multi` / `test_multi` and a separate RNG, so v0 is unchanged. Training uses `train` + `train_multi` (`--no-multi` to disable). The fixed synthetic stress suite is never trained on. | `tests/test_multi.py` (split hygiene, no synthetic ids, expert solves every episode). Stress suite: BC+aug+DAgger(3) now 12/12 for each seed (was 4/0/0, 0/0/0, 4/0/0). `test_multi`: 100% success, 1.91 excess edits vs 5.88 for static rules and 1.75 for the expert; global-rebuild rate 23% vs expert 20%. |
+| Canonical results | regenerated | Models retrained (3 seeds) with the new family; `results/`, capped runs, `results/runs/test-multi`, `results/runs/challenges`, fake validation smoke regenerated. | `make pipeline`. |
+| H4 | open (teammates) | Unchanged. | — |
+
+Open for the next review:
+- The multi-component family only contains budget cuts.
+- The stress suite uses one fixed synthetic layout, so passing it isn't evidence of general multi-component skill.
+- H1's upstream audit has not been re-run after the name fix.
+

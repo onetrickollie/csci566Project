@@ -153,7 +153,9 @@ def run_episode(ep: Episode, q: Query, policy, seed: int = 0, expert=None, beta:
     rng = random.Random(seed)
     base = Constraints.from_dict(ep.base)
     cache = Cache()
-    plan = compose_global(q, base, cache)
+    plan = compose_global(q, base, cache)  # also fills every cache
+    if ep.initial_plan:
+        plan = dict(ep.initial_plan)
     res = EpisodeResult(episode_id=ep.episode_id)
     truth_before, belief = base, base
     for ti, turn in enumerate(ep.turns):

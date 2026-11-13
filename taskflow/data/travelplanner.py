@@ -186,6 +186,11 @@ def parse_reference_information(ref: list[dict]) -> CityDB:
             g = Ground(mode=m.group(1), origin=m.group(2), dest=m.group(3),
                        duration=m.group(4), cost=_num(m.group(5)))
             db.ground[(g.mode, g.origin, g.dest)] = g
+    # pandas to_string() shows embedded newlines as a literal backslash-n;
+    # upstream structured records keep the real newline, so restore it.
+    for attr in ("restaurants", "accommodations", "attractions"):
+        for rec in getattr(db, attr):
+            rec.name = rec.name.replace("\\n", "\n")
     # Plans refer to entities by name, so a name must identify one record.
     # Keep the first record for each name (the upstream evaluator resolves a
     # name to its first matching row) and drop later duplicates.

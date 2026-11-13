@@ -147,7 +147,8 @@ def main():
     global LLM, CALL_CAP
     ap = argparse.ArgumentParser()
     ap.add_argument("--seeds", type=int, nargs="+", default=[0, 1, 2])
-    ap.add_argument("--split", default="test", choices=["train", "val", "test"])
+    ap.add_argument("--split", default="test",
+                    choices=["train", "val", "test", "train_multi", "val_multi", "test_multi"])
     ap.add_argument("--llm", default=None, help="offline | fake | openai | anthropic")
     ap.add_argument("--require-llm", action="store_true", help="refuse to run offline")
     ap.add_argument("--limit", type=int, default=None, help="evaluate only the first N episodes")

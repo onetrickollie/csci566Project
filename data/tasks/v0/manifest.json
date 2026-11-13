@@ -1,5 +1,5 @@
 {
-  "git_sha": "ff4562a",
+  "git_sha": "e7c95ad",
   "git_dirty": true,
   "config": {
     "seed": 0,
@@ -7,9 +7,9 @@
   },
   "config_hash": "21b4556aee",
   "fingerprints": {
-    "source": "2f5873931dbe",
+    "source": "f5e8c051d7fa",
     "prompts": "f9352f57f9ee",
-    "tasks": "97ad675dce25"
+    "tasks": "3753a97fdb1e"
   },
   "stats": {
     "train": {
@@ -89,6 +89,33 @@
         "2": 76,
         "4": 69,
         "1": 66
+      }
+    },
+    "train_multi": {
+      "episodes": 430,
+      "queries": 215,
+      "levels": {
+        "1": 189,
+        "2": 171,
+        "3": 70
+      }
+    },
+    "val_multi": {
+      "episodes": 140,
+      "queries": 70,
+      "levels": {
+        "2": 65,
+        "1": 45,
+        "3": 30
+      }
+    },
+    "test_multi": {
+      "episodes": 138,
+      "queries": 69,
+      "levels": {
+        "3": 28,
+        "2": 53,
+        "1": 57
       }
     }
   },

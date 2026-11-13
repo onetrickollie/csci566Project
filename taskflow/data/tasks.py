@@ -82,6 +82,7 @@ class Episode:
     split: str
     base: dict
     turns: list[Turn] = field(default_factory=list)
+    initial_plan: dict | None = None  # set for "approved itinerary" episodes; else built by the planners
 
     def to_json(self) -> str:
         return json.dumps(asdict(self))
@@ -235,7 +236,8 @@ def make_episode(q: Query, base: Constraints, split: str, idx: int, rng: random.
     return ep
 
 
-def build_dataset(queries: list[Query], seed: int, episodes_per_query: int = 4) -> dict:
+def build_dataset(queries: list[Query], seed: int, episodes_per_query: int = 4,
+                  multi_per_query: int = 2) -> dict:
     rng = random.Random(seed)
     split_of = split_queries([q.qid for q in queries], seed)
     episodes: dict[str, list[Episode]] = {"train": [], "val": [], "test": []}
@@ -251,7 +253,111 @@ def build_dataset(queries: list[Query], seed: int, episodes_per_query: int = 4) 
             L = rng.randint(1, 4) if s == "test" else rng.randint(1, 3)
             tset = "B" if s == "test" else "A"
             episodes[s].append(make_episode(q, base, s, i, rng, L, tset))
+    # Multi-component family: separate files and a separate RNG, so the v0
+    # episodes above are unchanged by its presence.
+    mrng = random.Random(seed + 7919)
+    for s in ("train", "val", "test"):
+        episodes[f"{s}_multi"] = []
+    for q in sorted(queries, key=lambda x: x.qid):
+        if q.qid not in bases:
+            continue
+        s = split_of[q.qid]
+        for i in range(multi_per_query):
+            ep = make_multi_episode(q, Constraints.from_dict(bases[q.qid]), s, i, mrng,
+                                    "B" if s == "test" else "A")
+            if ep is not None:
+                episodes[f"{s}_multi"].append(ep)
     return {"episodes": episodes, "bases": bases, "split_of": split_of}
+
+
+def _luxury_plan(q: Query, c: Constraints, cache) -> dict | None:
+    """The most expensive valid choice per component (an itinerary the user approved)."""
+    from taskflow.agents.planners import plan_attractions
+
+    tr = cache.get("transport")
+    combos = [(o.cost(c.people) + b.cost(c.people), o, b) for o in tr["out"] for b in tr["back"]
+              if not ({o.mode, b.mode} >= {"self-driving"} and len({o.mode, b.mode}) > 1)]
+    accs = cache.get("accommodation")
+    rest = cache.get("dining")["restaurants"]
+    if not combos or not accs or len(rest) < 6:
+        return None
+    _, o, b = max(combos, key=lambda x: (x[0], x[1].key, x[2].key))
+    from taskflow.env.tools import acc_cost
+
+    acc = max(accs, key=lambda a: (acc_cost(a, c.people), a.name))
+    pricey = sorted(rest, key=lambda r: (-r.cost, r.name))
+    chosen = []
+    for cu in c.cuisines:  # cover required cuisines with the priciest option serving them
+        r = next((r for r in pricey if cu in r.cuisines and r not in chosen), None)
+        if r is None:
+            return None
+        if r not in chosen:
+            chosen.append(r)
+    for r in pricey:
+        if len(chosen) >= 6:
+            break
+        if r not in chosen:
+            chosen.append(r)
+    plan = {"transport_out": o.key, "transport_back": b.key, "accommodation": acc.name}
+    plan.update(zip(SLOTS_MEALS, [r.name for r in chosen[:6]]))
+    plan.update(plan_attractions(cache.get("dining")))
+    return plan
+
+
+SLOTS_MEALS = ["d1_dinner", "d2_breakfast", "d2_lunch", "d2_dinner", "d3_breakfast", "d3_lunch"]
+
+
+def make_multi_episode(q: Query, base: Constraints, split: str, idx: int, rng: random.Random,
+                       tset: str) -> Episode | None:
+    """One-turn episode: an expensive approved itinerary, then a budget cut that
+    needs 1, 2, or 3+ component repairs (3+ = beyond the oracle's two-repair
+    search, so it falls back to a global rebuild). Built from real TravelPlanner
+    trips of the given split only; the fixed synthetic stress cases in
+    taskflow/data/challenges.py are never used for training.
+    """
+    from taskflow.coordinators.oracle import minimal_fix
+    from taskflow.env.episode import TurnEnv
+    from taskflow.env.tools import Cache
+    from taskflow.env.verifier import verify
+
+    c = base.copy()
+    c.priority, c.min_rating = None, None
+    cache = Cache()
+    for name in ("transport", "accommodation", "dining"):
+        cache.search(name, q, c)
+    plan = _luxury_plan(q, c, cache)
+    if plan is None:
+        return None
+    total = verify(q, Constraints(budget=1e9, people=c.people, room_type=c.room_type,
+                                  house_rules=c.house_rules, cuisines=c.cuisines,
+                                  transport=c.transport), plan).total_cost
+    c.budget = float(round(total * 1.05 / 50 + 0.5) * 50)
+    if not verify(q, c, plan).passed:
+        return None
+    by_level: dict[int, list[float]] = {1: [], 2: [], 3: []}
+    for f in [x / 100 for x in range(90, 20, -5)]:
+        target = float(round(total * f / 50) * 50)
+        if target <= 0:
+            continue
+        new_c = c.copy()
+        new_c.budget = target
+        if verify(q, new_c, plan).passed or not is_feasible(q, new_c):
+            continue
+        env = TurnEnv(q, c, plan, cache.copy(), f"Let's change the budget to ${target:,.0f}.",
+                      random.Random(0))
+        fix = minimal_fix(env)
+        by_level[len(fix) if fix else 3].append(target)
+    levels = [lv for lv in (1, 2, 3) if by_level[lv]]
+    if not levels:
+        return None
+    level = rng.choice(levels)
+    target = rng.choice(by_level[level])
+    d = ConstraintDiff("replace", "budget", c.budget, target, template_set=tset)
+    d.nl = render(d, rng, tset)
+    after = d.apply(c)
+    return Episode(episode_id=f"{q.qid}-m{idx}-L{level}", qid=q.qid, split=f"{split}_multi",
+                   base=c.to_dict(), initial_plan=plan,
+                   turns=[Turn(diff=d.to_dict(), feasible=True, constraints_after=after.to_dict())])
 
 
 def save(ds: dict, out_dir: Path, manifest: dict) -> None:

@@ -1,0 +1,1340 @@
+{
+  "manifest": {
+    "git_sha": "e7c95ad",
+    "git_dirty": true,
+    "config": {
+      "seed": 0,
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "suite": "synthetic-budget-v1"
+    },
+    "config_hash": "fce76727e3",
+    "fingerprints": {
+      "source": "09a45a79ca24",
+      "prompts": "f9352f57f9ee",
+      "tasks": "c6a92573e38a"
+    }
+  },
+  "scope": "Independent stress test; existing weights; no retraining. Global required only within <=2-local search.",
+  "rows": [
+    {
+      "system": "always_global",
+      "case": "budget-1-components-0",
+      "min_components": 1,
+      "success": true,
+      "actions": [
+        "REPLAN_GLOBAL",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 2,
+      "excess_edits": 9,
+      "edit_optimal_preservation": 0.18181818181818177
+    },
+    {
+      "system": "always_global",
+      "case": "budget-1-components-1",
+      "min_components": 1,
+      "success": true,
+      "actions": [
+        "REPLAN_GLOBAL",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 2,
+      "excess_edits": 9,
+      "edit_optimal_preservation": 0.18181818181818177
+    },
+    {
+      "system": "always_global",
+      "case": "budget-1-components-2",
+      "min_components": 1,
+      "success": true,
+      "actions": [
+        "REPLAN_GLOBAL",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 2,
+      "excess_edits": 9,
+      "edit_optimal_preservation": 0.18181818181818177
+    },
+    {
+      "system": "always_global",
+      "case": "budget-1-components-3",
+      "min_components": 1,
+      "success": true,
+      "actions": [
+        "REPLAN_GLOBAL",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 2,
+      "excess_edits": 9,
+      "edit_optimal_preservation": 0.18181818181818177
+    },
+    {
+      "system": "always_global",
+      "case": "budget-2-components-0",
+      "min_components": 2,
+      "success": true,
+      "actions": [
+        "REPLAN_GLOBAL",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 3,
+      "excess_edits": 9,
+      "edit_optimal_preservation": 0.09999999999999998
+    },
+    {
+      "system": "always_global",
+      "case": "budget-2-components-1",
+      "min_components": 2,
+      "success": true,
+      "actions": [
+        "REPLAN_GLOBAL",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 3,
+      "excess_edits": 9,
+      "edit_optimal_preservation": 0.09999999999999998
+    },
+    {
+      "system": "always_global",
+      "case": "budget-2-components-2",
+      "min_components": 2,
+      "success": true,
+      "actions": [
+        "REPLAN_GLOBAL",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 3,
+      "excess_edits": 9,
+      "edit_optimal_preservation": 0.09999999999999998
+    },
+    {
+      "system": "always_global",
+      "case": "budget-2-components-3",
+      "min_components": 2,
+      "success": true,
+      "actions": [
+        "REPLAN_GLOBAL",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 3,
+      "excess_edits": 9,
+      "edit_optimal_preservation": 0.09999999999999998
+    },
+    {
+      "system": "always_global",
+      "case": "budget-3-components-0",
+      "min_components": 3,
+      "success": true,
+      "actions": [
+        "REPLAN_GLOBAL",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 9,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "always_global",
+      "case": "budget-3-components-1",
+      "min_components": 3,
+      "success": true,
+      "actions": [
+        "REPLAN_GLOBAL",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 9,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "always_global",
+      "case": "budget-3-components-2",
+      "min_components": 3,
+      "success": true,
+      "actions": [
+        "REPLAN_GLOBAL",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 9,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "always_global",
+      "case": "budget-3-components-3",
+      "min_components": 3,
+      "success": true,
+      "actions": [
+        "REPLAN_GLOBAL",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 9,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "always_global_det",
+      "case": "budget-1-components-0",
+      "min_components": 1,
+      "success": true,
+      "actions": [
+        "REPLAN_GLOBAL",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 2,
+      "excess_edits": 6,
+      "edit_optimal_preservation": 0.4545454545454546
+    },
+    {
+      "system": "always_global_det",
+      "case": "budget-1-components-1",
+      "min_components": 1,
+      "success": true,
+      "actions": [
+        "REPLAN_GLOBAL",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 2,
+      "excess_edits": 6,
+      "edit_optimal_preservation": 0.4545454545454546
+    },
+    {
+      "system": "always_global_det",
+      "case": "budget-1-components-2",
+      "min_components": 1,
+      "success": true,
+      "actions": [
+        "REPLAN_GLOBAL",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 2,
+      "excess_edits": 6,
+      "edit_optimal_preservation": 0.4545454545454546
+    },
+    {
+      "system": "always_global_det",
+      "case": "budget-1-components-3",
+      "min_components": 1,
+      "success": true,
+      "actions": [
+        "REPLAN_GLOBAL",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 2,
+      "excess_edits": 6,
+      "edit_optimal_preservation": 0.4545454545454546
+    },
+    {
+      "system": "always_global_det",
+      "case": "budget-2-components-0",
+      "min_components": 2,
+      "success": true,
+      "actions": [
+        "REPLAN_GLOBAL",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 3,
+      "excess_edits": 5,
+      "edit_optimal_preservation": 0.5
+    },
+    {
+      "system": "always_global_det",
+      "case": "budget-2-components-1",
+      "min_components": 2,
+      "success": true,
+      "actions": [
+        "REPLAN_GLOBAL",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 3,
+      "excess_edits": 5,
+      "edit_optimal_preservation": 0.5
+    },
+    {
+      "system": "always_global_det",
+      "case": "budget-2-components-2",
+      "min_components": 2,
+      "success": true,
+      "actions": [
+        "REPLAN_GLOBAL",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 3,
+      "excess_edits": 5,
+      "edit_optimal_preservation": 0.5
+    },
+    {
+      "system": "always_global_det",
+      "case": "budget-2-components-3",
+      "min_components": 2,
+      "success": true,
+      "actions": [
+        "REPLAN_GLOBAL",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 3,
+      "excess_edits": 5,
+      "edit_optimal_preservation": 0.5
+    },
+    {
+      "system": "always_global_det",
+      "case": "budget-3-components-0",
+      "min_components": 3,
+      "success": true,
+      "actions": [
+        "REPLAN_GLOBAL",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 9,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "always_global_det",
+      "case": "budget-3-components-1",
+      "min_components": 3,
+      "success": true,
+      "actions": [
+        "REPLAN_GLOBAL",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 9,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "always_global_det",
+      "case": "budget-3-components-2",
+      "min_components": 3,
+      "success": true,
+      "actions": [
+        "REPLAN_GLOBAL",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 9,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "always_global_det",
+      "case": "budget-3-components-3",
+      "min_components": 3,
+      "success": true,
+      "actions": [
+        "REPLAN_GLOBAL",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 9,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "static_rules",
+      "case": "budget-1-components-0",
+      "min_components": 1,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
+        "REPLAN_GLOBAL",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 2,
+      "excess_edits": 9,
+      "edit_optimal_preservation": 0.18181818181818177
+    },
+    {
+      "system": "static_rules",
+      "case": "budget-1-components-1",
+      "min_components": 1,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
+        "REPLAN_GLOBAL",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 2,
+      "excess_edits": 9,
+      "edit_optimal_preservation": 0.18181818181818177
+    },
+    {
+      "system": "static_rules",
+      "case": "budget-1-components-2",
+      "min_components": 1,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
+        "REPLAN_GLOBAL",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 2,
+      "excess_edits": 9,
+      "edit_optimal_preservation": 0.18181818181818177
+    },
+    {
+      "system": "static_rules",
+      "case": "budget-1-components-3",
+      "min_components": 1,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
+        "REPLAN_GLOBAL",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 2,
+      "excess_edits": 9,
+      "edit_optimal_preservation": 0.18181818181818177
+    },
+    {
+      "system": "static_rules",
+      "case": "budget-2-components-0",
+      "min_components": 2,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
+        "REPLAN_GLOBAL",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 3,
+      "excess_edits": 9,
+      "edit_optimal_preservation": 0.09999999999999998
+    },
+    {
+      "system": "static_rules",
+      "case": "budget-2-components-1",
+      "min_components": 2,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
+        "REPLAN_GLOBAL",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 3,
+      "excess_edits": 9,
+      "edit_optimal_preservation": 0.09999999999999998
+    },
+    {
+      "system": "static_rules",
+      "case": "budget-2-components-2",
+      "min_components": 2,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
+        "REPLAN_GLOBAL",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 3,
+      "excess_edits": 9,
+      "edit_optimal_preservation": 0.09999999999999998
+    },
+    {
+      "system": "static_rules",
+      "case": "budget-2-components-3",
+      "min_components": 2,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
+        "REPLAN_GLOBAL",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 3,
+      "excess_edits": 9,
+      "edit_optimal_preservation": 0.09999999999999998
+    },
+    {
+      "system": "static_rules",
+      "case": "budget-3-components-0",
+      "min_components": 3,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
+        "REPLAN_GLOBAL",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 9,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "static_rules",
+      "case": "budget-3-components-1",
+      "min_components": 3,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
+        "REPLAN_GLOBAL",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 9,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "static_rules",
+      "case": "budget-3-components-2",
+      "min_components": 3,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
+        "REPLAN_GLOBAL",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 9,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "static_rules",
+      "case": "budget-3-components-3",
+      "min_components": 3,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
+        "REPLAN_GLOBAL",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 9,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "oracle",
+      "case": "budget-1-components-0",
+      "min_components": 1,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_TRANSPORT",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 2,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "oracle",
+      "case": "budget-1-components-1",
+      "min_components": 1,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_TRANSPORT",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 2,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "oracle",
+      "case": "budget-1-components-2",
+      "min_components": 1,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_TRANSPORT",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 2,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "oracle",
+      "case": "budget-1-components-3",
+      "min_components": 1,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_TRANSPORT",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 2,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "oracle",
+      "case": "budget-2-components-0",
+      "min_components": 2,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
+        "REPLAN_LOCAL_TRANSPORT",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 3,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "oracle",
+      "case": "budget-2-components-1",
+      "min_components": 2,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
+        "REPLAN_LOCAL_TRANSPORT",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 3,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "oracle",
+      "case": "budget-2-components-2",
+      "min_components": 2,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
+        "REPLAN_LOCAL_TRANSPORT",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 3,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "oracle",
+      "case": "budget-2-components-3",
+      "min_components": 2,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
+        "REPLAN_LOCAL_TRANSPORT",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 3,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "oracle",
+      "case": "budget-3-components-0",
+      "min_components": 3,
+      "success": true,
+      "actions": [
+        "REPLAN_GLOBAL",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 9,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "oracle",
+      "case": "budget-3-components-1",
+      "min_components": 3,
+      "success": true,
+      "actions": [
+        "REPLAN_GLOBAL",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 9,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "oracle",
+      "case": "budget-3-components-2",
+      "min_components": 3,
+      "success": true,
+      "actions": [
+        "REPLAN_GLOBAL",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 9,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "oracle",
+      "case": "budget-3-components-3",
+      "min_components": 3,
+      "success": true,
+      "actions": [
+        "REPLAN_GLOBAL",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 9,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "bc_aug_dagger3_s0",
+      "case": "budget-1-components-0",
+      "min_components": 1,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_TRANSPORT",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 2,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "bc_aug_dagger3_s0",
+      "case": "budget-1-components-1",
+      "min_components": 1,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_TRANSPORT",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 2,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "bc_aug_dagger3_s0",
+      "case": "budget-1-components-2",
+      "min_components": 1,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_TRANSPORT",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 2,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "bc_aug_dagger3_s0",
+      "case": "budget-1-components-3",
+      "min_components": 1,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_TRANSPORT",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 2,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "bc_aug_dagger3_s0",
+      "case": "budget-2-components-0",
+      "min_components": 2,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
+        "REPLAN_LOCAL_TRANSPORT",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 3,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "bc_aug_dagger3_s0",
+      "case": "budget-2-components-1",
+      "min_components": 2,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
+        "REPLAN_LOCAL_TRANSPORT",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 3,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "bc_aug_dagger3_s0",
+      "case": "budget-2-components-2",
+      "min_components": 2,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
+        "REPLAN_LOCAL_TRANSPORT",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 3,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "bc_aug_dagger3_s0",
+      "case": "budget-2-components-3",
+      "min_components": 2,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
+        "REPLAN_LOCAL_TRANSPORT",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 3,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "bc_aug_dagger3_s0",
+      "case": "budget-3-components-0",
+      "min_components": 3,
+      "success": true,
+      "actions": [
+        "REPLAN_GLOBAL",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 9,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "bc_aug_dagger3_s0",
+      "case": "budget-3-components-1",
+      "min_components": 3,
+      "success": true,
+      "actions": [
+        "REPLAN_GLOBAL",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 9,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "bc_aug_dagger3_s0",
+      "case": "budget-3-components-2",
+      "min_components": 3,
+      "success": true,
+      "actions": [
+        "REPLAN_GLOBAL",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 9,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "bc_aug_dagger3_s0",
+      "case": "budget-3-components-3",
+      "min_components": 3,
+      "success": true,
+      "actions": [
+        "REPLAN_GLOBAL",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 9,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "bc_aug_dagger3_s1",
+      "case": "budget-1-components-0",
+      "min_components": 1,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_TRANSPORT",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 2,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "bc_aug_dagger3_s1",
+      "case": "budget-1-components-1",
+      "min_components": 1,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_TRANSPORT",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 2,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "bc_aug_dagger3_s1",
+      "case": "budget-1-components-2",
+      "min_components": 1,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_TRANSPORT",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 2,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "bc_aug_dagger3_s1",
+      "case": "budget-1-components-3",
+      "min_components": 1,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_TRANSPORT",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 2,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "bc_aug_dagger3_s1",
+      "case": "budget-2-components-0",
+      "min_components": 2,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
+        "REPLAN_LOCAL_TRANSPORT",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 3,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "bc_aug_dagger3_s1",
+      "case": "budget-2-components-1",
+      "min_components": 2,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
+        "REPLAN_LOCAL_TRANSPORT",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 3,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "bc_aug_dagger3_s1",
+      "case": "budget-2-components-2",
+      "min_components": 2,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
+        "REPLAN_LOCAL_TRANSPORT",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 3,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "bc_aug_dagger3_s1",
+      "case": "budget-2-components-3",
+      "min_components": 2,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
+        "REPLAN_LOCAL_TRANSPORT",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 3,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "bc_aug_dagger3_s1",
+      "case": "budget-3-components-0",
+      "min_components": 3,
+      "success": true,
+      "actions": [
+        "REPLAN_GLOBAL",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 9,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "bc_aug_dagger3_s1",
+      "case": "budget-3-components-1",
+      "min_components": 3,
+      "success": true,
+      "actions": [
+        "REPLAN_GLOBAL",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 9,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "bc_aug_dagger3_s1",
+      "case": "budget-3-components-2",
+      "min_components": 3,
+      "success": true,
+      "actions": [
+        "REPLAN_GLOBAL",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 9,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "bc_aug_dagger3_s1",
+      "case": "budget-3-components-3",
+      "min_components": 3,
+      "success": true,
+      "actions": [
+        "REPLAN_GLOBAL",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 9,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "bc_aug_dagger3_s2",
+      "case": "budget-1-components-0",
+      "min_components": 1,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_TRANSPORT",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 2,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "bc_aug_dagger3_s2",
+      "case": "budget-1-components-1",
+      "min_components": 1,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_TRANSPORT",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 2,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "bc_aug_dagger3_s2",
+      "case": "budget-1-components-2",
+      "min_components": 1,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_TRANSPORT",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 2,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "bc_aug_dagger3_s2",
+      "case": "budget-1-components-3",
+      "min_components": 1,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_TRANSPORT",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 2,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "bc_aug_dagger3_s2",
+      "case": "budget-2-components-0",
+      "min_components": 2,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
+        "REPLAN_LOCAL_TRANSPORT",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 3,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "bc_aug_dagger3_s2",
+      "case": "budget-2-components-1",
+      "min_components": 2,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
+        "REPLAN_LOCAL_TRANSPORT",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 3,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "bc_aug_dagger3_s2",
+      "case": "budget-2-components-2",
+      "min_components": 2,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
+        "REPLAN_LOCAL_TRANSPORT",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 3,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "bc_aug_dagger3_s2",
+      "case": "budget-2-components-3",
+      "min_components": 2,
+      "success": true,
+      "actions": [
+        "REPLAN_LOCAL_ACCOMMODATION",
+        "VERIFY",
+        "REPLAN_LOCAL_TRANSPORT",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 3,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "bc_aug_dagger3_s2",
+      "case": "budget-3-components-0",
+      "min_components": 3,
+      "success": true,
+      "actions": [
+        "REPLAN_GLOBAL",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 9,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "bc_aug_dagger3_s2",
+      "case": "budget-3-components-1",
+      "min_components": 3,
+      "success": true,
+      "actions": [
+        "REPLAN_GLOBAL",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 9,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "bc_aug_dagger3_s2",
+      "case": "budget-3-components-2",
+      "min_components": 3,
+      "success": true,
+      "actions": [
+        "REPLAN_GLOBAL",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 9,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    },
+    {
+      "system": "bc_aug_dagger3_s2",
+      "case": "budget-3-components-3",
+      "min_components": 3,
+      "success": true,
+      "actions": [
+        "REPLAN_GLOBAL",
+        "VERIFY",
+        "STOP"
+      ],
+      "terminal": "STOP",
+      "minimum_edits": 9,
+      "excess_edits": 0,
+      "edit_optimal_preservation": 1.0
+    }
+  ]
+}

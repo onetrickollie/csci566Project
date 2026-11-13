@@ -80,7 +80,8 @@ def show_plan(q, c, plan, prev=None):
     rep = verify(q, c, plan)
     for s in ORDER:
         mark = f"{B}*{R}" if prev is not None and prev.get(s) != plan.get(s) else " "
-        print(f"   {mark} {SLOT_LABEL[s]:<18} {plan.get(s, '-')}")
+        value = str(plan.get(s, "-")).replace("\n", " / ")
+        print(f"   {mark} {SLOT_LABEL[s]:<18} {value}")
     cost = rep.component_cost
     print(f"     {D}total ${rep.total_cost:,.0f}  (transport ${cost['transport']:,.0f}, stay "
           f"${cost['accommodation']:,.0f}, meals ${cost['meals']:,.0f}){R}")
