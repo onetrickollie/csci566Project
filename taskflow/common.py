@@ -23,8 +23,9 @@ def git_sha() -> str:
 
 def git_dirty() -> bool | None:
     try:
-        out = subprocess.check_output(["git", "status", "--porcelain", "--untracked-files=no"], cwd=ROOT,
-                                      text=True, stderr=subprocess.DEVNULL)
+        # Result files are outputs of the run itself, so they don't count.
+        out = subprocess.check_output(["git", "status", "--porcelain", "--untracked-files=no", "--",
+                                       ".", ":!results"], cwd=ROOT, text=True, stderr=subprocess.DEVNULL)
         return bool(out.strip())
     except Exception:
         return None
