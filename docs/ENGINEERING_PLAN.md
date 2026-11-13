@@ -27,54 +27,62 @@ Base data: TravelPlanner (Xie et al., ICML 2024) and FlexTravelBench / Flex-Trav
 
 ## 3. Repo layout
 
+Actual layout as built (the original plan split some modules further; the mapping is below).
+
 ```
 taskflow-travel/
-  README.md                 # overview, quickstart, results
-  docs/ENGINEERING_PLAN.md  # this file
-  LICENSES.md               # upstream licenses + redistribution notes
-  schemas/                  # JSON Schema exports of the pydantic models (generated)
+  README.md                    # overview, quickstart, results, deviations
+  Makefile                     # setup / demo / test / pipeline / evaluate-llm / snapshot
+  .env.example                 # LLM provider settings (copy to .env, never commit .env)
+  LICENSES.md                  # upstream licenses + redistribution notes
+  requirements.txt
+  docs/
+    STATUS.md                  # done / caveated / not started, suggested owners
+    ARCHITECTURE.md            # data flow, modules, types, extension points
+    LLM_SETUP.md               # plugging in an API key
+    VERIFICATION_CHECKLIST.md  # open questions, ordered by risk, with a findings log
+    ENGINEERING_PLAN.md        # this file
   taskflow/
+    common.py                  # paths, policy registry, manifests
     data/
-      travelplanner.py      # loaders for TravelPlanner queries + local database
-      flexbench.py          # loaders for FlexTravelBench
-      splits.py             # split by ORIGINAL query id, before variant generation
-      perturb.py            # structured update ops: add/delete/replace/priority
-      paraphrase.py         # LLM paraphrase of ops (+ back-verification)
-      feasibility.py        # is a variant satisfiable given the database?
+      travelplanner.py         # download + parse TravelPlanner (T02)
+      tasks.py                 # splits, update chains, feasibility labels, templates (T07-T10)
     env/
-      tools.py              # cached TravelPlanner tools (flights, hotels, restaurants, attractions, distance)
-      state.py              # ConstraintState, Itinerary, ConversationState
-      verifier.py           # deterministic checker -> VerifierReport
-      episode.py            # multi-turn episode runner (gym-like step())
+      state.py                 # Constraints, ConstraintDiff, actions, slots, cost model (T03)
+      tools.py                 # search tools, pricing, per-component cache (T04)
+      verifier.py              # deterministic checker -> Report (T05)
+      episode.py               # TurnEnv + run_episode, measured LLM usage (T11)
     agents/
-      tracker.py            # NL update -> ConstraintDiff
-      transport.py
-      accommodation.py
-      activity_dining.py
-      composer.py
+      tracker.py               # rule-based + LLM tracker with validation
+      planners.py              # component planners + composer (T12)
+      llm_planners.py          # LLM component agents with fallback (T12)
     coordinators/
-      single_agent.py       # baseline 1
-      static_rules.py       # baseline 2
-      always_global.py      # baseline 3 (full regeneration every turn)
-      oracle.py             # privileged scripted expert (sees full VerifierReport)
-      llm_teacher.py        # strong-LLM expert, acts from ANY state
-      learned.py            # small LM / MLP policy wrapper
+      oracle.py                # privileged scripted expert (T14)
+      baselines.py             # static_rules, always_global (T13)
+      llm_coordinator.py       # LLM coordinator; also the LLM teacher (T15)
     learning/
-      encode.py             # state -> model input text/features
-      bc.py                 # behavior cloning trainer
-      dagger.py             # DAgger loop
-      augment.py            # inject-error-then-recover trajectories
-    eval/
-      metrics.py
-      recovery.py           # forced-bad-action perturbation eval
-      report.py             # tables + plots
+      encode.py                # observation features + action mask (T16)
+      imitation.py             # MLP, BC, augmentation, DAgger (T16-T18)
     llm/
-      client.py             # single entry point, logging, cost, cache
-      fake.py
-  scripts/                  # CLI entry points (download, build_dataset, run_eval, train, ...)
-  configs/                  # YAML configs per experiment
-  tests/
+      client.py                # offline/fake/openai/anthropic client, cache, usage (T06)
+      prompts.py               # every prompt
+      fake.py                  # offline stand-in backend for tests
+    eval/
+      metrics.py               # proposal metrics + breakdowns (T19)
+      report.py                # REPORT.md + figures (T21)
+  scripts/
+    build_dataset.py  train.py  evaluate.py (incl. recovery eval, T20)  demo.py  make_snapshot.py
+  tests/                       # test_verifier.py, test_pipeline.py, test_llm.py
+  data/tasks/v0/               # generated episodes + manifest (committed)
+  models/                      # trained coordinators (committed)
+  results/                     # metrics.json, REPORT.md, figures
 ```
+
+Planned → actual: `perturb.py`, `splits.py`, `feasibility.py`, `paraphrase.py` → `data/tasks.py`;
+`transport.py`, `accommodation.py`, `activity_dining.py`, `composer.py` → `agents/planners.py` + `llm_planners.py`;
+`static_rules.py`, `always_global.py` → `coordinators/baselines.py`; `llm_teacher.py` → `coordinators/llm_coordinator.py`;
+`learned.py`, `bc.py`, `dagger.py`, `augment.py` → `learning/imitation.py`; `recovery.py` → `scripts/evaluate.py`.
+Not built yet: `flexbench.py`, `coordinators/single_agent.py`, `schemas/`, `configs/`.
 
 ---
 
