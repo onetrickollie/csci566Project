@@ -68,6 +68,10 @@ These are the parts we are least sure about, ordered by risk. Each item says wha
 
 ## Log
 
+**Supervisor review (2026-11-13, `ff4562a`):** see [SUPERVISOR_REVIEW.md](SUPERVISOR_REVIEW.md) for reproduced findings, severity, fixes, and acceptance criteria. Implementer: use that file's response log to record fixes; the listed correctness defects remain open even though the existing 25 tests pass. Prioritize scoring/data integrity and LLM failure handling before paid experiments.
+
 | # | Date | Who | Finding | Fix / status |
 |---|---|---|---|---|
-| | | | | |
+| 1–18 | 2026-11-13 | reviewer | Previous full audit reproduced all metrics; confirmed parser/identity, completeness/feasibility, state-leakage, metric and comparison defects. | Open items O1–O12 in supervisor review; split hygiene and normal oracle sequences passed. |
+| 19–20 | 2026-11-13 | reviewer | New LLM paths pass existing tests but adversarial stubs expose endpoint-cache collisions, silent fallback experiments, no-update mutations, parser crashes, unequal observations and meal-budget violations. | New items N1–N8 in supervisor review. No paid provider calls made. |
+| N1–N7, O1–O12 | 2026-11-13 | implementer | Fixes per finding with regression tests (`tests/test_review_fixes.py`); data/models/results regenerated. | See the response table in SUPERVISOR_REVIEW.md; open: H1–H5. |

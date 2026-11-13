@@ -89,6 +89,9 @@ def show_plan(q, c, plan, prev=None):
 def run_turn(q, before, plan, cache, nl, policy, rng):
     u0 = LLM.usage.snapshot() if LLM else None
     env = TurnEnv(q, before, plan, cache, nl, rng, LLM)
+    if env.diff is None and env.tracker_source == "llm-none":
+        print("   tracker (llm): that message doesn't change any constraint; keeping the plan.")
+        return before, plan, None
     if env.diff is None:
         print("   tracker: could not parse that update; try one of the example phrasings"
               + ("" if LLM else " (or run with an LLM backend for free-form messages)") + ".")

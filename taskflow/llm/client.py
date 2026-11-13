@@ -52,13 +52,28 @@ class Usage:
     measured cost does not drop to zero on a re-run; ``calls`` and
     ``cache_hits`` split them into billed and free."""
 
-    requests: int = 0
-    calls: int = 0
+    requests: int = 0          # logical requests (cached or not)
+    calls: int = 0             # successful network calls (billed)
     cache_hits: int = 0
-    input_tokens: int = 0
+    input_tokens: int = 0      # logical tokens, cached replays included
     output_tokens: int = 0
-    errors: int = 0
+    billed_input_tokens: int = 0
+    billed_output_tokens: int = 0
+    errors: int = 0            # failed attempts (after retries)
     seconds: float = 0.0
+    fallbacks: dict = field(default_factory=dict)   # component -> count
+    fallback_reasons: dict = field(default_factory=dict)  # "component: reason" -> count
+
+    @property
+    def degraded(self) -> bool:
+        """True if any request failed or any component fell back to rules."""
+        return self.errors > 0 or sum(self.fallbacks.values()) > 0
+
+    def as_dict(self) -> dict:
+        d = {k: v for k, v in vars(self).items()}
+        d["tokens"] = self.tokens
+        d["degraded"] = self.degraded
+        return d
 
     @property
     def tokens(self) -> int:
@@ -69,7 +84,25 @@ class Usage:
 
 
 class LLMError(RuntimeError):
-    pass
+    """Recoverable failure (rate limit after retries, timeout, malformed reply)."""
+
+
+class LLMFatalError(LLMError):
+    """Configuration/authentication failure. Never hidden by fallbacks."""
+
+
+def note_fallback(client, component: str, reason: str) -> None:
+    """Record that ``component`` used its deterministic fallback."""
+    usage = getattr(client, "usage", None)
+    if usage is None or not hasattr(usage, "fallbacks"):
+        return
+    usage.fallbacks[component] = usage.fallbacks.get(component, 0) + 1
+    key = f"{component}: {reason[:80]}"
+    usage.fallback_reasons[key] = usage.fallback_reasons.get(key, 0) + 1
+
+
+DEFAULT_ENDPOINT = {"openai": "https://api.openai.com/v1", "anthropic": "https://api.anthropic.com",
+                    "fake": "local://fake"}
 
 
 @dataclass
@@ -87,10 +120,20 @@ class LLMClient:
     def label(self) -> str:
         return f"{self.provider}:{self.model}"
 
+    @property
+    def endpoint(self) -> str:
+        """Normalized effective endpoint (part of the cache identity, never the key)."""
+        return (self.base_url or DEFAULT_ENDPOINT.get(self.provider, "")).rstrip("/").lower()
+
+    def identity(self) -> dict:
+        return {"provider": self.provider, "model": self.model, "endpoint": self.endpoint,
+                "temperature": self.temperature}
+
     # ------------------------------------------------------------------
     def complete(self, system: str, user: str, max_tokens: int = 600) -> str:
         key = hashlib.sha256(json.dumps(
-            [self.provider, self.model, self.temperature, system, user, max_tokens]).encode()).hexdigest()
+            [self.provider, self.endpoint, self.model, self.temperature, system, user,
+             max_tokens]).encode()).hexdigest()
         path = CACHE_DIR / key[:2] / f"{key}.json"
         self.usage.requests += 1
         if self.use_cache and path.exists():
@@ -109,10 +152,12 @@ class LLMClient:
         self.usage.calls += 1
         self.usage.input_tokens += tin
         self.usage.output_tokens += tout
+        self.usage.billed_input_tokens += tin
+        self.usage.billed_output_tokens += tout
         if self.use_cache:
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text(json.dumps({"text": text, "input_tokens": tin, "output_tokens": tout,
-                                        "model": self.label}))
+                                        "model": self.label, "endpoint": self.endpoint}))
         return text
 
     def complete_json(self, system: str, user: str, max_tokens: int = 600) -> dict:
@@ -126,7 +171,7 @@ class LLMClient:
             text = respond(system, user)
             return text, len((system + user).split()), len(text.split())
         if self.provider == "openai":
-            url = (self.base_url or "https://api.openai.com/v1").rstrip("/") + "/chat/completions"
+            url = (self.base_url or DEFAULT_ENDPOINT["openai"]).rstrip("/") + "/chat/completions"
             body = {"model": self.model, "temperature": self.temperature, "max_tokens": max_tokens,
                     "messages": [{"role": "system", "content": system},
                                  {"role": "user", "content": user}]}
@@ -135,7 +180,7 @@ class LLMClient:
             return (data["choices"][0]["message"]["content"], u.get("prompt_tokens", 0),
                     u.get("completion_tokens", 0))
         if self.provider == "anthropic":
-            url = (self.base_url or "https://api.anthropic.com").rstrip("/") + "/v1/messages"
+            url = (self.base_url or DEFAULT_ENDPOINT["anthropic"]).rstrip("/") + "/v1/messages"
             body = {"model": self.model, "temperature": self.temperature, "max_tokens": max_tokens,
                     "system": system, "messages": [{"role": "user", "content": user}]}
             data = _post(url, body, {"x-api-key": self.api_key, "anthropic-version": "2023-06-01"},
@@ -143,7 +188,7 @@ class LLMClient:
             u = data.get("usage", {})
             text = "".join(b.get("text", "") for b in data.get("content", []) if b.get("type") == "text")
             return text, u.get("input_tokens", 0), u.get("output_tokens", 0)
-        raise LLMError(f"unknown provider {self.provider!r}")
+        raise LLMFatalError(f"unknown provider {self.provider!r}")
 
 
 def _post(url: str, body: dict, headers: dict, timeout: float, retries: int = 3) -> dict:
@@ -156,6 +201,9 @@ def _post(url: str, body: dict, headers: dict, timeout: float, retries: int = 3)
                 return json.loads(r.read())
         except urllib.error.HTTPError as e:
             msg = e.read().decode(errors="replace")[:500]
+            if e.code in (400, 401, 403, 404):
+                # Bad key, bad model id, bad endpoint: retrying or falling back would hide it.
+                raise LLMFatalError(f"HTTP {e.code} from {url}: {msg}") from None
             last = LLMError(f"HTTP {e.code} from {url}: {msg}")
             if e.code not in (429, 500, 502, 503, 529):
                 break
@@ -184,12 +232,12 @@ def get_client(provider: str | None = None) -> LLMClient | None:
         return LLMClient("fake", "fake", temperature=temp)
     model = os.environ.get("TASKFLOW_LLM_MODEL", "")
     if not model:
-        raise LLMError("set TASKFLOW_LLM_MODEL to a model id from your provider")
+        raise LLMFatalError("set TASKFLOW_LLM_MODEL to a model id from your provider")
     key_var = {"openai": "OPENAI_API_KEY", "anthropic": "ANTHROPIC_API_KEY"}.get(provider)
     if key_var is None:
-        raise LLMError(f"unknown TASKFLOW_LLM_PROVIDER={provider!r}")
+        raise LLMFatalError(f"unknown TASKFLOW_LLM_PROVIDER={provider!r}")
     key = os.environ.get(key_var, "")
     if not key and not os.environ.get("TASKFLOW_LLM_BASE_URL"):
-        raise LLMError(f"set {key_var} (or TASKFLOW_LLM_BASE_URL for a local server)")
+        raise LLMFatalError(f"set {key_var} (or TASKFLOW_LLM_BASE_URL for a local server)")
     return LLMClient(provider, model, api_key=key, base_url=os.environ.get("TASKFLOW_LLM_BASE_URL", ""),
                      temperature=temp)

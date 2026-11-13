@@ -1,6 +1,6 @@
 PY := .venv/bin/python
 
-.PHONY: help setup demo demo-interactive demo-llm demo-fake test pipeline dataset train evaluate evaluate-llm snapshot clean-cache
+.PHONY: help setup demo demo-interactive demo-llm demo-fake test pipeline dataset train evaluate evaluate-llm evaluate-capped snapshot clean-cache
 
 help:
 	@echo "make setup             create .venv and install requirements"
@@ -10,7 +10,9 @@ help:
 	@echo "make demo-llm          demo with the provider configured in .env"
 	@echo "make test              run the test suite (offline, no key needed)"
 	@echo "make pipeline          dataset -> train (3 seeds) -> evaluate, ~3 min on CPU"
-	@echo "make evaluate-llm      evaluate 30 test episodes with the configured provider"
+	@echo "make evaluate          full offline test evaluation -> results/ (canonical)"
+	@echo "make evaluate-llm      30 validation episodes with the configured provider -> results/runs/"
+	@echo "make evaluate-capped   matched-budget runs (1 and 2 LLM calls per turn) -> results/runs/"
 	@echo "make snapshot          bundle docs + source into project_snapshot.md"
 
 setup:
@@ -41,12 +43,16 @@ train:
 	$(PY) scripts/train.py --seeds 0 1 2
 
 evaluate:
-	$(PY) scripts/evaluate.py --seeds 0 1 2
+	$(PY) scripts/evaluate.py --canonical --seeds 0 1 2
 
 pipeline: dataset train evaluate
 
 evaluate-llm:
-	$(PY) scripts/evaluate.py --limit 30 --seeds 0 --skip-recovery
+	$(PY) scripts/evaluate.py --require-llm --split val --limit 30 --seeds 0 --skip-recovery
+
+evaluate-capped:
+	$(PY) scripts/evaluate.py --call-cap 1 --seeds 0 1 2
+	$(PY) scripts/evaluate.py --call-cap 2 --seeds 0 1 2
 
 snapshot:
 	$(PY) scripts/make_snapshot.py

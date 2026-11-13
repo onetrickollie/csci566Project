@@ -1,0 +1,2415 @@
+{
+ "manifest": {
+  "git_sha": "ff4562a",
+  "git_dirty": true,
+  "config": {
+   "seeds": [
+    0
+   ],
+   "split": "val",
+   "limit": 30,
+   "skip_recovery": true,
+   "model_suffix": "",
+   "call_cap": null,
+   "llm": {
+    "provider": "fake",
+    "model": "fake",
+    "endpoint": "local://fake",
+    "temperature": 0.0
+   },
+   "models": "d6245b50cd4c"
+  },
+  "config_hash": "058ae6e531",
+  "fingerprints": {
+   "source": "8ca543ea0e48",
+   "prompts": "f9352f57f9ee",
+   "tasks": "3753a97fdb1e"
+  }
+ },
+ "systems": {
+  "always_global": {
+   "summary": {
+    "episodes": {
+     "mean": 30,
+     "std": 0.0
+    },
+    "turns": {
+     "mean": 63,
+     "std": 0.0
+    },
+    "final_pass_rate": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "revision_success_rate": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "new_constraint_satisfaction": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "constraint_retention_rate": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "unaffected_preserved": {
+     "mean": 0.9258408792062638,
+     "std": 0.0
+    },
+    "edit_rate": {
+     "mean": 0.28402366863905326,
+     "std": 0.0
+    },
+    "global_replan_rate": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "unnecessary_global_rate": {
+     "mean": 0.6349206349206349,
+     "std": 0.0
+    },
+    "clarification_recall": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "clarification_precision": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "timeout_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "budget_exhausted_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "llm_calls_per_turn": {
+     "mean": 4.174603174603175,
+     "std": 0.0
+    },
+    "tool_calls_per_turn": {
+     "mean": 3.0,
+     "std": 0.0
+    },
+    "est_tokens_per_turn": {
+     "mean": 6052.380952380952,
+     "std": 0.0
+    },
+    "steps_per_turn": {
+     "mean": 3.0,
+     "std": 0.0
+    },
+    "tracker_accuracy": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "measured_llm_requests_per_turn": {
+     "mean": 4.984126984126984,
+     "std": 0.0
+    },
+    "measured_tokens_per_turn": {
+     "mean": 1172.5238095238096,
+     "std": 0.0
+    }
+   },
+   "by_op": {
+    "add": {
+     "turns": 45,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9207243957243957,
+     "llm_calls_per_turn": 4.177777777777778
+    },
+    "delete": {
+     "turns": 3,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.6923076923076924,
+     "llm_calls_per_turn": 4.0
+    },
+    "replace": {
+     "turns": 10,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 4.2
+    },
+    "reprioritize": {
+     "turns": 5,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 4.2
+    }
+   },
+   "by_type": {
+    "budget": {
+     "turns": 6,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 4.333333333333333
+    },
+    "cuisine": {
+     "turns": 21,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9377289377289377,
+     "llm_calls_per_turn": 4.0
+    },
+    "house_rule": {
+     "turns": 7,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 4.571428571428571
+    },
+    "min_rating": {
+     "turns": 13,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.819669450919451,
+     "llm_calls_per_turn": 4.076923076923077
+    },
+    "priority": {
+     "turns": 5,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 4.2
+    },
+    "room_type": {
+     "turns": 6,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 4.333333333333333
+    },
+    "transport": {
+     "turns": 5,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9038461538461539,
+     "llm_calls_per_turn": 4.2
+    }
+   },
+   "by_turn": {
+    "turn 1": {
+     "turns": 30,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9444855358316897,
+     "llm_calls_per_turn": 4.133333333333334
+    },
+    "turn 2": {
+     "turns": 21,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9044943360732833,
+     "llm_calls_per_turn": 4.095238095238095
+    },
+    "turn 3": {
+     "turns": 12,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9145299145299146,
+     "llm_calls_per_turn": 4.416666666666667
+    }
+   },
+   "by_chain": {
+    "L=1": {
+     "episodes": 9,
+     "final_pass_rate": 1.0
+    },
+    "L=2": {
+     "episodes": 9,
+     "final_pass_rate": 1.0
+    },
+    "L=3": {
+     "episodes": 12,
+     "final_pass_rate": 1.0
+    }
+   },
+   "recovery": {},
+   "llm_usage": {
+    "requests": 314,
+    "calls": 0,
+    "cache_hits": 314,
+    "errors": 0,
+    "tokens": 73869,
+    "billed_input_tokens": 0,
+    "billed_output_tokens": 0,
+    "fallbacks": {},
+    "fallback_rate": 0.0,
+    "degraded": false
+   }
+  },
+  "always_global_det": {
+   "summary": {
+    "episodes": {
+     "mean": 30,
+     "std": 0.0
+    },
+    "turns": {
+     "mean": 63,
+     "std": 0.0
+    },
+    "final_pass_rate": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "revision_success_rate": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "new_constraint_satisfaction": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "constraint_retention_rate": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "unaffected_preserved": {
+     "mean": 0.9258408792062638,
+     "std": 0.0
+    },
+    "edit_rate": {
+     "mean": 0.28402366863905326,
+     "std": 0.0
+    },
+    "global_replan_rate": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "unnecessary_global_rate": {
+     "mean": 0.6349206349206349,
+     "std": 0.0
+    },
+    "clarification_recall": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "clarification_precision": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "timeout_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "budget_exhausted_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "llm_calls_per_turn": {
+     "mean": 4.174603174603175,
+     "std": 0.0
+    },
+    "tool_calls_per_turn": {
+     "mean": 3.0,
+     "std": 0.0
+    },
+    "est_tokens_per_turn": {
+     "mean": 6052.380952380952,
+     "std": 0.0
+    },
+    "steps_per_turn": {
+     "mean": 3.0,
+     "std": 0.0
+    },
+    "tracker_accuracy": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "measured_llm_requests_per_turn": {
+     "mean": 4.984126984126984,
+     "std": 0.0
+    },
+    "measured_tokens_per_turn": {
+     "mean": 1172.5238095238096,
+     "std": 0.0
+    }
+   },
+   "by_op": {
+    "add": {
+     "turns": 45,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9207243957243957,
+     "llm_calls_per_turn": 4.177777777777778
+    },
+    "delete": {
+     "turns": 3,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.6923076923076924,
+     "llm_calls_per_turn": 4.0
+    },
+    "replace": {
+     "turns": 10,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 4.2
+    },
+    "reprioritize": {
+     "turns": 5,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 4.2
+    }
+   },
+   "by_type": {
+    "budget": {
+     "turns": 6,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 4.333333333333333
+    },
+    "cuisine": {
+     "turns": 21,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9377289377289377,
+     "llm_calls_per_turn": 4.0
+    },
+    "house_rule": {
+     "turns": 7,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 4.571428571428571
+    },
+    "min_rating": {
+     "turns": 13,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.819669450919451,
+     "llm_calls_per_turn": 4.076923076923077
+    },
+    "priority": {
+     "turns": 5,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 4.2
+    },
+    "room_type": {
+     "turns": 6,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 4.333333333333333
+    },
+    "transport": {
+     "turns": 5,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9038461538461539,
+     "llm_calls_per_turn": 4.2
+    }
+   },
+   "by_turn": {
+    "turn 1": {
+     "turns": 30,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9444855358316897,
+     "llm_calls_per_turn": 4.133333333333334
+    },
+    "turn 2": {
+     "turns": 21,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9044943360732833,
+     "llm_calls_per_turn": 4.095238095238095
+    },
+    "turn 3": {
+     "turns": 12,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9145299145299146,
+     "llm_calls_per_turn": 4.416666666666667
+    }
+   },
+   "by_chain": {
+    "L=1": {
+     "episodes": 9,
+     "final_pass_rate": 1.0
+    },
+    "L=2": {
+     "episodes": 9,
+     "final_pass_rate": 1.0
+    },
+    "L=3": {
+     "episodes": 12,
+     "final_pass_rate": 1.0
+    }
+   },
+   "recovery": {},
+   "llm_usage": {
+    "requests": 314,
+    "calls": 0,
+    "cache_hits": 314,
+    "errors": 0,
+    "tokens": 73869,
+    "billed_input_tokens": 0,
+    "billed_output_tokens": 0,
+    "fallbacks": {},
+    "fallback_rate": 0.0,
+    "degraded": false
+   }
+  },
+  "static_rules": {
+   "summary": {
+    "episodes": {
+     "mean": 30,
+     "std": 0.0
+    },
+    "turns": {
+     "mean": 63,
+     "std": 0.0
+    },
+    "final_pass_rate": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "revision_success_rate": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "new_constraint_satisfaction": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "constraint_retention_rate": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "unaffected_preserved": {
+     "mean": 0.9687402874902875,
+     "std": 0.0
+    },
+    "edit_rate": {
+     "mean": 0.2440828402366864,
+     "std": 0.0
+    },
+    "global_replan_rate": {
+     "mean": 0.031746031746031744,
+     "std": 0.0
+    },
+    "unnecessary_global_rate": {
+     "mean": 0.031746031746031744,
+     "std": 0.0
+    },
+    "clarification_recall": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "clarification_precision": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "timeout_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "budget_exhausted_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "llm_calls_per_turn": {
+     "mean": 1.1111111111111112,
+     "std": 0.0
+    },
+    "tool_calls_per_turn": {
+     "mean": 0.8888888888888888,
+     "std": 0.0
+    },
+    "est_tokens_per_turn": {
+     "mean": 1774.6031746031747,
+     "std": 0.0
+    },
+    "steps_per_turn": {
+     "mean": 3.4761904761904763,
+     "std": 0.0
+    },
+    "tracker_accuracy": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "measured_llm_requests_per_turn": {
+     "mean": 1.9206349206349207,
+     "std": 0.0
+    },
+    "measured_tokens_per_turn": {
+     "mean": 460.1904761904762,
+     "std": 0.0
+    }
+   },
+   "by_op": {
+    "add": {
+     "turns": 45,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.956067431067431,
+     "llm_calls_per_turn": 1.1333333333333333
+    },
+    "delete": {
+     "turns": 3,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.0
+    },
+    "replace": {
+     "turns": 10,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 1.4
+    },
+    "reprioritize": {
+     "turns": 5,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 1.0
+    }
+   },
+   "by_type": {
+    "budget": {
+     "turns": 6,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 1.6666666666666667
+    },
+    "cuisine": {
+     "turns": 21,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.8095238095238095
+    },
+    "house_rule": {
+     "turns": 7,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 1.4285714285714286
+    },
+    "min_rating": {
+     "turns": 13,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.8645412457912459,
+     "llm_calls_per_turn": 1.3076923076923077
+    },
+    "priority": {
+     "turns": 5,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 1.0
+    },
+    "room_type": {
+     "turns": 6,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 1.1666666666666667
+    },
+    "transport": {
+     "turns": 5,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.8
+    }
+   },
+   "by_turn": {
+    "turn 1": {
+     "turns": 30,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9770299145299146,
+     "llm_calls_per_turn": 1.1
+    },
+    "turn 2": {
+     "turns": 21,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9692716640085062,
+     "llm_calls_per_turn": 1.0
+    },
+    "turn 3": {
+     "turns": 12,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9365079365079365,
+     "llm_calls_per_turn": 1.3333333333333333
+    }
+   },
+   "by_chain": {
+    "L=1": {
+     "episodes": 9,
+     "final_pass_rate": 1.0
+    },
+    "L=2": {
+     "episodes": 9,
+     "final_pass_rate": 1.0
+    },
+    "L=3": {
+     "episodes": 12,
+     "final_pass_rate": 1.0
+    }
+   },
+   "recovery": {},
+   "llm_usage": {
+    "requests": 121,
+    "calls": 0,
+    "cache_hits": 121,
+    "errors": 0,
+    "tokens": 28992,
+    "billed_input_tokens": 0,
+    "billed_output_tokens": 0,
+    "fallbacks": {},
+    "fallback_rate": 0.0,
+    "degraded": false
+   }
+  },
+  "oracle": {
+   "summary": {
+    "episodes": {
+     "mean": 30,
+     "std": 0.0
+    },
+    "turns": {
+     "mean": 63,
+     "std": 0.0
+    },
+    "final_pass_rate": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "revision_success_rate": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "new_constraint_satisfaction": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "constraint_retention_rate": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "unaffected_preserved": {
+     "mean": 0.9687402874902875,
+     "std": 0.0
+    },
+    "edit_rate": {
+     "mean": 0.2440828402366864,
+     "std": 0.0
+    },
+    "global_replan_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "unnecessary_global_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "clarification_recall": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "clarification_precision": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "timeout_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "budget_exhausted_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "llm_calls_per_turn": {
+     "mean": 0.8253968253968254,
+     "std": 0.0
+    },
+    "tool_calls_per_turn": {
+     "mean": 0.746031746031746,
+     "std": 0.0
+    },
+    "est_tokens_per_turn": {
+     "mean": 1326.984126984127,
+     "std": 0.0
+    },
+    "steps_per_turn": {
+     "mean": 3.0476190476190474,
+     "std": 0.0
+    },
+    "tracker_accuracy": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "measured_llm_requests_per_turn": {
+     "mean": 1.6507936507936507,
+     "std": 0.0
+    },
+    "measured_tokens_per_turn": {
+     "mean": 405.23809523809524,
+     "std": 0.0
+    }
+   },
+   "by_op": {
+    "add": {
+     "turns": 45,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.956067431067431,
+     "llm_calls_per_turn": 0.8888888888888888
+    },
+    "delete": {
+     "turns": 3,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.0
+    },
+    "replace": {
+     "turns": 10,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.8
+    },
+    "reprioritize": {
+     "turns": 5,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.8
+    }
+   },
+   "by_type": {
+    "budget": {
+     "turns": 6,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.6666666666666666
+    },
+    "cuisine": {
+     "turns": 21,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.8095238095238095
+    },
+    "house_rule": {
+     "turns": 7,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.8571428571428571
+    },
+    "min_rating": {
+     "turns": 13,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.8645412457912459,
+     "llm_calls_per_turn": 1.0
+    },
+    "priority": {
+     "turns": 5,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.8
+    },
+    "room_type": {
+     "turns": 6,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.8333333333333334
+    },
+    "transport": {
+     "turns": 5,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.6
+    }
+   },
+   "by_turn": {
+    "turn 1": {
+     "turns": 30,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9770299145299146,
+     "llm_calls_per_turn": 0.8666666666666667
+    },
+    "turn 2": {
+     "turns": 21,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9692716640085062,
+     "llm_calls_per_turn": 0.7142857142857143
+    },
+    "turn 3": {
+     "turns": 12,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9365079365079365,
+     "llm_calls_per_turn": 0.9166666666666666
+    }
+   },
+   "by_chain": {
+    "L=1": {
+     "episodes": 9,
+     "final_pass_rate": 1.0
+    },
+    "L=2": {
+     "episodes": 9,
+     "final_pass_rate": 1.0
+    },
+    "L=3": {
+     "episodes": 12,
+     "final_pass_rate": 1.0
+    }
+   },
+   "recovery": {},
+   "llm_usage": {
+    "requests": 104,
+    "calls": 0,
+    "cache_hits": 104,
+    "errors": 0,
+    "tokens": 25530,
+    "billed_input_tokens": 0,
+    "billed_output_tokens": 0,
+    "fallbacks": {},
+    "fallback_rate": 0.0,
+    "degraded": false
+   }
+  },
+  "llm_coordinator": {
+   "summary": {
+    "episodes": {
+     "mean": 30,
+     "std": 0.0
+    },
+    "turns": {
+     "mean": 63,
+     "std": 0.0
+    },
+    "final_pass_rate": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "revision_success_rate": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "new_constraint_satisfaction": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "constraint_retention_rate": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "unaffected_preserved": {
+     "mean": 0.9687402874902875,
+     "std": 0.0
+    },
+    "edit_rate": {
+     "mean": 0.2440828402366864,
+     "std": 0.0
+    },
+    "global_replan_rate": {
+     "mean": 0.19047619047619047,
+     "std": 0.0
+    },
+    "unnecessary_global_rate": {
+     "mean": 0.015873015873015872,
+     "std": 0.0
+    },
+    "clarification_recall": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "clarification_precision": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "timeout_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "budget_exhausted_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "llm_calls_per_turn": {
+     "mean": 1.9523809523809523,
+     "std": 0.0
+    },
+    "tool_calls_per_turn": {
+     "mean": 1.2857142857142858,
+     "std": 0.0
+    },
+    "est_tokens_per_turn": {
+     "mean": 3004.7619047619046,
+     "std": 0.0
+    },
+    "steps_per_turn": {
+     "mean": 4.126984126984127,
+     "std": 0.0
+    },
+    "tracker_accuracy": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "measured_llm_requests_per_turn": {
+     "mean": 6.857142857142857,
+     "std": 0.0
+    },
+    "measured_tokens_per_turn": {
+     "mean": 1966.3333333333333,
+     "std": 0.0
+    }
+   },
+   "by_op": {
+    "add": {
+     "turns": 45,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.956067431067431,
+     "llm_calls_per_turn": 1.9555555555555555
+    },
+    "delete": {
+     "turns": 3,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.0
+    },
+    "replace": {
+     "turns": 10,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 2.5
+    },
+    "reprioritize": {
+     "turns": 5,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 2.0
+    }
+   },
+   "by_type": {
+    "budget": {
+     "turns": 6,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 3.5
+    },
+    "cuisine": {
+     "turns": 21,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.8095238095238095
+    },
+    "house_rule": {
+     "turns": 7,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 4.285714285714286
+    },
+    "min_rating": {
+     "turns": 13,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.8645412457912459,
+     "llm_calls_per_turn": 1.4615384615384615
+    },
+    "priority": {
+     "turns": 5,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 2.0
+    },
+    "room_type": {
+     "turns": 6,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 2.8333333333333335
+    },
+    "transport": {
+     "turns": 5,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 1.8
+    }
+   },
+   "by_turn": {
+    "turn 1": {
+     "turns": 30,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9770299145299146,
+     "llm_calls_per_turn": 1.6666666666666667
+    },
+    "turn 2": {
+     "turns": 21,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9692716640085062,
+     "llm_calls_per_turn": 1.5238095238095237
+    },
+    "turn 3": {
+     "turns": 12,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9365079365079365,
+     "llm_calls_per_turn": 3.4166666666666665
+    }
+   },
+   "by_chain": {
+    "L=1": {
+     "episodes": 9,
+     "final_pass_rate": 1.0
+    },
+    "L=2": {
+     "episodes": 9,
+     "final_pass_rate": 1.0
+    },
+    "L=3": {
+     "episodes": 12,
+     "final_pass_rate": 1.0
+    }
+   },
+   "recovery": {},
+   "llm_usage": {
+    "requests": 432,
+    "calls": 0,
+    "cache_hits": 432,
+    "errors": 0,
+    "tokens": 123879,
+    "billed_input_tokens": 0,
+    "billed_output_tokens": 0,
+    "fallbacks": {},
+    "fallback_rate": 0.0,
+    "degraded": false
+   }
+  },
+  "bc": {
+   "summary": {
+    "episodes": {
+     "mean": 30.0,
+     "std": 0.0
+    },
+    "turns": {
+     "mean": 63.0,
+     "std": 0.0
+    },
+    "final_pass_rate": {
+     "mean": 0.9666666666666667,
+     "std": 0.0
+    },
+    "revision_success_rate": {
+     "mean": 0.9841269841269841,
+     "std": 0.0
+    },
+    "new_constraint_satisfaction": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "constraint_retention_rate": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "unaffected_preserved": {
+     "mean": 0.9687402874902875,
+     "std": 0.0
+    },
+    "edit_rate": {
+     "mean": 0.2440828402366864,
+     "std": 0.0
+    },
+    "global_replan_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "unnecessary_global_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "clarification_recall": {
+     "mean": 0.9090909090909091,
+     "std": 0.0
+    },
+    "clarification_precision": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "timeout_rate": {
+     "mean": 0.015873015873015872,
+     "std": 0.0
+    },
+    "budget_exhausted_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "llm_calls_per_turn": {
+     "mean": 0.8888888888888888,
+     "std": 0.0
+    },
+    "tool_calls_per_turn": {
+     "mean": 0.746031746031746,
+     "std": 0.0
+    },
+    "est_tokens_per_turn": {
+     "mean": 1441.2698412698412,
+     "std": 0.0
+    },
+    "steps_per_turn": {
+     "mean": 3.1746031746031744,
+     "std": 0.0
+    },
+    "tracker_accuracy": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "measured_llm_requests_per_turn": {
+     "mean": 1.7301587301587302,
+     "std": 0.0
+    },
+    "measured_tokens_per_turn": {
+     "mean": 418.57142857142856,
+     "std": 0.0
+    }
+   },
+   "by_op": {
+    "add": {
+     "turns": 45,
+     "revision_success_rate": 0.9777777777777777,
+     "unaffected_preserved": 0.956067431067431,
+     "llm_calls_per_turn": 0.9777777777777777
+    },
+    "delete": {
+     "turns": 3,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.0
+    },
+    "replace": {
+     "turns": 10,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.8
+    },
+    "reprioritize": {
+     "turns": 5,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.8
+    }
+   },
+   "by_type": {
+    "budget": {
+     "turns": 6,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.6666666666666666
+    },
+    "cuisine": {
+     "turns": 21,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.8095238095238095
+    },
+    "house_rule": {
+     "turns": 7,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.8571428571428571
+    },
+    "min_rating": {
+     "turns": 13,
+     "revision_success_rate": 0.9230769230769231,
+     "unaffected_preserved": 0.8645412457912459,
+     "llm_calls_per_turn": 1.3076923076923077
+    },
+    "priority": {
+     "turns": 5,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.8
+    },
+    "room_type": {
+     "turns": 6,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.8333333333333334
+    },
+    "transport": {
+     "turns": 5,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.6
+    }
+   },
+   "by_turn": {
+    "turn 1": {
+     "turns": 30,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9770299145299146,
+     "llm_calls_per_turn": 0.8666666666666667
+    },
+    "turn 2": {
+     "turns": 21,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9692716640085062,
+     "llm_calls_per_turn": 0.7142857142857143
+    },
+    "turn 3": {
+     "turns": 12,
+     "revision_success_rate": 0.9166666666666666,
+     "unaffected_preserved": 0.9365079365079365,
+     "llm_calls_per_turn": 1.25
+    }
+   },
+   "by_chain": {
+    "L=1": {
+     "episodes": 9,
+     "final_pass_rate": 1.0
+    },
+    "L=2": {
+     "episodes": 9,
+     "final_pass_rate": 1.0
+    },
+    "L=3": {
+     "episodes": 12,
+     "final_pass_rate": 0.9166666666666666
+    }
+   },
+   "recovery": {},
+   "error_vs_step": {
+    "by_step": {
+     "0": 0.031746031746031744,
+     "1": 0.02040816326530612,
+     "2": 0.0,
+     "3": 0.02702702702702703,
+     "4": 0.0,
+     "5": 0.5,
+     "6": 0.0,
+     "7": 1.0,
+     "8": 0.0,
+     "9": 1.0
+    },
+    "by_turn": {
+     "0": 0.0,
+     "1": 0.01639344262295082,
+     "2": 0.13953488372093023
+    }
+   },
+   "llm_usage": {
+    "requests": 109,
+    "calls": 0,
+    "cache_hits": 109,
+    "errors": 0,
+    "tokens": 26370,
+    "billed_input_tokens": 0,
+    "billed_output_tokens": 0,
+    "fallbacks": {},
+    "fallback_rate": 0.0,
+    "degraded": false
+   }
+  },
+  "bc_aug": {
+   "summary": {
+    "episodes": {
+     "mean": 30.0,
+     "std": 0.0
+    },
+    "turns": {
+     "mean": 63.0,
+     "std": 0.0
+    },
+    "final_pass_rate": {
+     "mean": 0.9666666666666667,
+     "std": 0.0
+    },
+    "revision_success_rate": {
+     "mean": 0.9841269841269841,
+     "std": 0.0
+    },
+    "new_constraint_satisfaction": {
+     "mean": 0.9795918367346939,
+     "std": 0.0
+    },
+    "constraint_retention_rate": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "unaffected_preserved": {
+     "mean": 0.9687402874902875,
+     "std": 0.0
+    },
+    "edit_rate": {
+     "mean": 0.2411242603550296,
+     "std": 0.0
+    },
+    "global_replan_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "unnecessary_global_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "clarification_recall": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "clarification_precision": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "timeout_rate": {
+     "mean": 0.015873015873015872,
+     "std": 0.0
+    },
+    "budget_exhausted_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "llm_calls_per_turn": {
+     "mean": 0.8888888888888888,
+     "std": 0.0
+    },
+    "tool_calls_per_turn": {
+     "mean": 0.7619047619047619,
+     "std": 0.0
+    },
+    "est_tokens_per_turn": {
+     "mean": 1428.5714285714287,
+     "std": 0.0
+    },
+    "steps_per_turn": {
+     "mean": 3.1746031746031744,
+     "std": 0.0
+    },
+    "tracker_accuracy": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "measured_llm_requests_per_turn": {
+     "mean": 1.7142857142857142,
+     "std": 0.0
+    },
+    "measured_tokens_per_turn": {
+     "mean": 419.77777777777777,
+     "std": 0.0
+    }
+   },
+   "by_op": {
+    "add": {
+     "turns": 45,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.956067431067431,
+     "llm_calls_per_turn": 0.9111111111111111
+    },
+    "delete": {
+     "turns": 3,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.0
+    },
+    "replace": {
+     "turns": 10,
+     "revision_success_rate": 0.9,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 1.1
+    },
+    "reprioritize": {
+     "turns": 5,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.8
+    }
+   },
+   "by_type": {
+    "budget": {
+     "turns": 6,
+     "revision_success_rate": 0.8333333333333334,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 1.1666666666666667
+    },
+    "cuisine": {
+     "turns": 21,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.8095238095238095
+    },
+    "house_rule": {
+     "turns": 7,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.8571428571428571
+    },
+    "min_rating": {
+     "turns": 13,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.8645412457912459,
+     "llm_calls_per_turn": 1.0769230769230769
+    },
+    "priority": {
+     "turns": 5,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.8
+    },
+    "room_type": {
+     "turns": 6,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.8333333333333334
+    },
+    "transport": {
+     "turns": 5,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.6
+    }
+   },
+   "by_turn": {
+    "turn 1": {
+     "turns": 30,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9770299145299146,
+     "llm_calls_per_turn": 0.8666666666666667
+    },
+    "turn 2": {
+     "turns": 21,
+     "revision_success_rate": 0.9523809523809523,
+     "unaffected_preserved": 0.9692716640085062,
+     "llm_calls_per_turn": 0.8571428571428571
+    },
+    "turn 3": {
+     "turns": 12,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9365079365079365,
+     "llm_calls_per_turn": 1.0
+    }
+   },
+   "by_chain": {
+    "L=1": {
+     "episodes": 9,
+     "final_pass_rate": 1.0
+    },
+    "L=2": {
+     "episodes": 9,
+     "final_pass_rate": 0.8888888888888888
+    },
+    "L=3": {
+     "episodes": 12,
+     "final_pass_rate": 1.0
+    }
+   },
+   "recovery": {},
+   "error_vs_step": {
+    "by_step": {
+     "0": 0.015873015873015872,
+     "1": 0.04081632653061224,
+     "2": 0.0,
+     "3": 0.02702702702702703,
+     "4": 0.0,
+     "5": 0.5,
+     "6": 0.0,
+     "7": 1.0,
+     "8": 1.0,
+     "9": 0.0
+    },
+    "by_turn": {
+     "0": 0.0,
+     "1": 0.07575757575757576,
+     "2": 0.05263157894736842
+    }
+   },
+   "llm_usage": {
+    "requests": 108,
+    "calls": 0,
+    "cache_hits": 108,
+    "errors": 0,
+    "tokens": 26446,
+    "billed_input_tokens": 0,
+    "billed_output_tokens": 0,
+    "fallbacks": {},
+    "fallback_rate": 0.0,
+    "degraded": false
+   }
+  },
+  "bc_dagger1": {
+   "summary": {
+    "episodes": {
+     "mean": 30.0,
+     "std": 0.0
+    },
+    "turns": {
+     "mean": 63.0,
+     "std": 0.0
+    },
+    "final_pass_rate": {
+     "mean": 0.9666666666666667,
+     "std": 0.0
+    },
+    "revision_success_rate": {
+     "mean": 0.9841269841269841,
+     "std": 0.0
+    },
+    "new_constraint_satisfaction": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "constraint_retention_rate": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "unaffected_preserved": {
+     "mean": 0.9687402874902875,
+     "std": 0.0
+    },
+    "edit_rate": {
+     "mean": 0.2440828402366864,
+     "std": 0.0
+    },
+    "global_replan_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "unnecessary_global_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "clarification_recall": {
+     "mean": 0.9090909090909091,
+     "std": 0.0
+    },
+    "clarification_precision": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "timeout_rate": {
+     "mean": 0.031746031746031744,
+     "std": 0.0
+    },
+    "budget_exhausted_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "llm_calls_per_turn": {
+     "mean": 0.9047619047619048,
+     "std": 0.0
+    },
+    "tool_calls_per_turn": {
+     "mean": 0.8095238095238095,
+     "std": 0.0
+    },
+    "est_tokens_per_turn": {
+     "mean": 1490.4761904761904,
+     "std": 0.0
+    },
+    "steps_per_turn": {
+     "mean": 3.2698412698412698,
+     "std": 0.0
+    },
+    "tracker_accuracy": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "measured_llm_requests_per_turn": {
+     "mean": 1.746031746031746,
+     "std": 0.0
+    },
+    "measured_tokens_per_turn": {
+     "mean": 424.07936507936506,
+     "std": 0.0
+    }
+   },
+   "by_op": {
+    "add": {
+     "turns": 45,
+     "revision_success_rate": 0.9777777777777777,
+     "unaffected_preserved": 0.956067431067431,
+     "llm_calls_per_turn": 0.9333333333333333
+    },
+    "delete": {
+     "turns": 3,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.0
+    },
+    "replace": {
+     "turns": 10,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 1.1
+    },
+    "reprioritize": {
+     "turns": 5,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.8
+    }
+   },
+   "by_type": {
+    "budget": {
+     "turns": 6,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 1.1666666666666667
+    },
+    "cuisine": {
+     "turns": 21,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.8095238095238095
+    },
+    "house_rule": {
+     "turns": 7,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.8571428571428571
+    },
+    "min_rating": {
+     "turns": 13,
+     "revision_success_rate": 0.9230769230769231,
+     "unaffected_preserved": 0.8645412457912459,
+     "llm_calls_per_turn": 1.1538461538461537
+    },
+    "priority": {
+     "turns": 5,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.8
+    },
+    "room_type": {
+     "turns": 6,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.8333333333333334
+    },
+    "transport": {
+     "turns": 5,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.6
+    }
+   },
+   "by_turn": {
+    "turn 1": {
+     "turns": 30,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9770299145299146,
+     "llm_calls_per_turn": 0.8666666666666667
+    },
+    "turn 2": {
+     "turns": 21,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9692716640085062,
+     "llm_calls_per_turn": 0.8571428571428571
+    },
+    "turn 3": {
+     "turns": 12,
+     "revision_success_rate": 0.9166666666666666,
+     "unaffected_preserved": 0.9365079365079365,
+     "llm_calls_per_turn": 1.0833333333333333
+    }
+   },
+   "by_chain": {
+    "L=1": {
+     "episodes": 9,
+     "final_pass_rate": 1.0
+    },
+    "L=2": {
+     "episodes": 9,
+     "final_pass_rate": 1.0
+    },
+    "L=3": {
+     "episodes": 12,
+     "final_pass_rate": 0.9166666666666666
+    }
+   },
+   "recovery": {},
+   "error_vs_step": {
+    "by_step": {
+     "0": 0.031746031746031744,
+     "1": 0.04081632653061224,
+     "2": 0.0,
+     "3": 0.05405405405405406,
+     "4": 0.25,
+     "5": 0.3333333333333333,
+     "6": 0.5,
+     "7": 1.0,
+     "8": 0.0,
+     "9": 0.5
+    },
+    "by_turn": {
+     "0": 0.0,
+     "1": 0.06060606060606061,
+     "2": 0.18181818181818182
+    }
+   },
+   "llm_usage": {
+    "requests": 110,
+    "calls": 0,
+    "cache_hits": 110,
+    "errors": 0,
+    "tokens": 26717,
+    "billed_input_tokens": 0,
+    "billed_output_tokens": 0,
+    "fallbacks": {},
+    "fallback_rate": 0.0,
+    "degraded": false
+   }
+  },
+  "bc_dagger2": {
+   "summary": {
+    "episodes": {
+     "mean": 30.0,
+     "std": 0.0
+    },
+    "turns": {
+     "mean": 63.0,
+     "std": 0.0
+    },
+    "final_pass_rate": {
+     "mean": 0.9666666666666667,
+     "std": 0.0
+    },
+    "revision_success_rate": {
+     "mean": 0.9841269841269841,
+     "std": 0.0
+    },
+    "new_constraint_satisfaction": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "constraint_retention_rate": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "unaffected_preserved": {
+     "mean": 0.9687402874902875,
+     "std": 0.0
+    },
+    "edit_rate": {
+     "mean": 0.2440828402366864,
+     "std": 0.0
+    },
+    "global_replan_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "unnecessary_global_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "clarification_recall": {
+     "mean": 0.9090909090909091,
+     "std": 0.0
+    },
+    "clarification_precision": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "timeout_rate": {
+     "mean": 0.015873015873015872,
+     "std": 0.0
+    },
+    "budget_exhausted_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "llm_calls_per_turn": {
+     "mean": 0.8571428571428571,
+     "std": 0.0
+    },
+    "tool_calls_per_turn": {
+     "mean": 0.7777777777777778,
+     "std": 0.0
+    },
+    "est_tokens_per_turn": {
+     "mean": 1406.3492063492063,
+     "std": 0.0
+    },
+    "steps_per_turn": {
+     "mean": 3.1587301587301586,
+     "std": 0.0
+    },
+    "tracker_accuracy": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "measured_llm_requests_per_turn": {
+     "mean": 1.6984126984126984,
+     "std": 0.0
+    },
+    "measured_tokens_per_turn": {
+     "mean": 414.12698412698415,
+     "std": 0.0
+    }
+   },
+   "by_op": {
+    "add": {
+     "turns": 45,
+     "revision_success_rate": 0.9777777777777777,
+     "unaffected_preserved": 0.956067431067431,
+     "llm_calls_per_turn": 0.9333333333333333
+    },
+    "delete": {
+     "turns": 3,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.0
+    },
+    "replace": {
+     "turns": 10,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.8
+    },
+    "reprioritize": {
+     "turns": 5,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.8
+    }
+   },
+   "by_type": {
+    "budget": {
+     "turns": 6,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.6666666666666666
+    },
+    "cuisine": {
+     "turns": 21,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.8095238095238095
+    },
+    "house_rule": {
+     "turns": 7,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.8571428571428571
+    },
+    "min_rating": {
+     "turns": 13,
+     "revision_success_rate": 0.9230769230769231,
+     "unaffected_preserved": 0.8645412457912459,
+     "llm_calls_per_turn": 1.1538461538461537
+    },
+    "priority": {
+     "turns": 5,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.8
+    },
+    "room_type": {
+     "turns": 6,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.8333333333333334
+    },
+    "transport": {
+     "turns": 5,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.6
+    }
+   },
+   "by_turn": {
+    "turn 1": {
+     "turns": 30,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9770299145299146,
+     "llm_calls_per_turn": 0.8666666666666667
+    },
+    "turn 2": {
+     "turns": 21,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9692716640085062,
+     "llm_calls_per_turn": 0.7142857142857143
+    },
+    "turn 3": {
+     "turns": 12,
+     "revision_success_rate": 0.9166666666666666,
+     "unaffected_preserved": 0.9365079365079365,
+     "llm_calls_per_turn": 1.0833333333333333
+    }
+   },
+   "by_chain": {
+    "L=1": {
+     "episodes": 9,
+     "final_pass_rate": 1.0
+    },
+    "L=2": {
+     "episodes": 9,
+     "final_pass_rate": 1.0
+    },
+    "L=3": {
+     "episodes": 12,
+     "final_pass_rate": 0.9166666666666666
+    }
+   },
+   "recovery": {},
+   "error_vs_step": {
+    "by_step": {
+     "0": 0.015873015873015872,
+     "1": 0.02040816326530612,
+     "2": 0.0,
+     "3": 0.02702702702702703,
+     "4": 0.5,
+     "5": 0.0,
+     "6": 1.0,
+     "7": 1.0,
+     "8": 0.0,
+     "9": 1.0
+    },
+    "by_turn": {
+     "0": 0.0,
+     "1": 0.0,
+     "2": 0.16279069767441862
+    }
+   },
+   "llm_usage": {
+    "requests": 107,
+    "calls": 0,
+    "cache_hits": 107,
+    "errors": 0,
+    "tokens": 26090,
+    "billed_input_tokens": 0,
+    "billed_output_tokens": 0,
+    "fallbacks": {},
+    "fallback_rate": 0.0,
+    "degraded": false
+   }
+  },
+  "bc_dagger3": {
+   "summary": {
+    "episodes": {
+     "mean": 30.0,
+     "std": 0.0
+    },
+    "turns": {
+     "mean": 63.0,
+     "std": 0.0
+    },
+    "final_pass_rate": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "revision_success_rate": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "new_constraint_satisfaction": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "constraint_retention_rate": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "unaffected_preserved": {
+     "mean": 0.9687402874902875,
+     "std": 0.0
+    },
+    "edit_rate": {
+     "mean": 0.2440828402366864,
+     "std": 0.0
+    },
+    "global_replan_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "unnecessary_global_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "clarification_recall": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "clarification_precision": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "timeout_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "budget_exhausted_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "llm_calls_per_turn": {
+     "mean": 0.873015873015873,
+     "std": 0.0
+    },
+    "tool_calls_per_turn": {
+     "mean": 0.746031746031746,
+     "std": 0.0
+    },
+    "est_tokens_per_turn": {
+     "mean": 1398.4126984126983,
+     "std": 0.0
+    },
+    "steps_per_turn": {
+     "mean": 3.142857142857143,
+     "std": 0.0
+    },
+    "tracker_accuracy": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "measured_llm_requests_per_turn": {
+     "mean": 1.6984126984126984,
+     "std": 0.0
+    },
+    "measured_tokens_per_turn": {
+     "mean": 416.3174603174603,
+     "std": 0.0
+    }
+   },
+   "by_op": {
+    "add": {
+     "turns": 45,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.956067431067431,
+     "llm_calls_per_turn": 0.9111111111111111
+    },
+    "delete": {
+     "turns": 3,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.0
+    },
+    "replace": {
+     "turns": 10,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 1.0
+    },
+    "reprioritize": {
+     "turns": 5,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.8
+    }
+   },
+   "by_type": {
+    "budget": {
+     "turns": 6,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 1.0
+    },
+    "cuisine": {
+     "turns": 21,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.8095238095238095
+    },
+    "house_rule": {
+     "turns": 7,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.8571428571428571
+    },
+    "min_rating": {
+     "turns": 13,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.8645412457912459,
+     "llm_calls_per_turn": 1.0769230769230769
+    },
+    "priority": {
+     "turns": 5,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.8
+    },
+    "room_type": {
+     "turns": 6,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.8333333333333334
+    },
+    "transport": {
+     "turns": 5,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.6
+    }
+   },
+   "by_turn": {
+    "turn 1": {
+     "turns": 30,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9770299145299146,
+     "llm_calls_per_turn": 0.8666666666666667
+    },
+    "turn 2": {
+     "turns": 21,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9692716640085062,
+     "llm_calls_per_turn": 0.8095238095238095
+    },
+    "turn 3": {
+     "turns": 12,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9365079365079365,
+     "llm_calls_per_turn": 1.0
+    }
+   },
+   "by_chain": {
+    "L=1": {
+     "episodes": 9,
+     "final_pass_rate": 1.0
+    },
+    "L=2": {
+     "episodes": 9,
+     "final_pass_rate": 1.0
+    },
+    "L=3": {
+     "episodes": 12,
+     "final_pass_rate": 1.0
+    }
+   },
+   "recovery": {},
+   "error_vs_step": {
+    "by_step": {
+     "0": 0.015873015873015872,
+     "1": 0.04081632653061224,
+     "2": 0.0,
+     "3": 0.02702702702702703,
+     "4": 0.0,
+     "5": 0.0,
+     "6": 0.0,
+     "7": 0.0
+    },
+    "by_turn": {
+     "0": 0.0,
+     "1": 0.03125,
+     "2": 0.05263157894736842
+    }
+   },
+   "llm_usage": {
+    "requests": 107,
+    "calls": 0,
+    "cache_hits": 107,
+    "errors": 0,
+    "tokens": 26228,
+    "billed_input_tokens": 0,
+    "billed_output_tokens": 0,
+    "fallbacks": {},
+    "fallback_rate": 0.0,
+    "degraded": false
+   }
+  },
+  "bc_aug_dagger3": {
+   "summary": {
+    "episodes": {
+     "mean": 30.0,
+     "std": 0.0
+    },
+    "turns": {
+     "mean": 63.0,
+     "std": 0.0
+    },
+    "final_pass_rate": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "revision_success_rate": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "new_constraint_satisfaction": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "constraint_retention_rate": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "unaffected_preserved": {
+     "mean": 0.9687402874902875,
+     "std": 0.0
+    },
+    "edit_rate": {
+     "mean": 0.2440828402366864,
+     "std": 0.0
+    },
+    "global_replan_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "unnecessary_global_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "clarification_recall": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "clarification_precision": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "timeout_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "budget_exhausted_rate": {
+     "mean": 0.0,
+     "std": 0.0
+    },
+    "llm_calls_per_turn": {
+     "mean": 0.8888888888888888,
+     "std": 0.0
+    },
+    "tool_calls_per_turn": {
+     "mean": 0.7619047619047619,
+     "std": 0.0
+    },
+    "est_tokens_per_turn": {
+     "mean": 1428.5714285714287,
+     "std": 0.0
+    },
+    "steps_per_turn": {
+     "mean": 3.1904761904761907,
+     "std": 0.0
+    },
+    "tracker_accuracy": {
+     "mean": 1.0,
+     "std": 0.0
+    },
+    "measured_llm_requests_per_turn": {
+     "mean": 1.7142857142857142,
+     "std": 0.0
+    },
+    "measured_tokens_per_turn": {
+     "mean": 419.63492063492066,
+     "std": 0.0
+    }
+   },
+   "by_op": {
+    "add": {
+     "turns": 45,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.956067431067431,
+     "llm_calls_per_turn": 0.9111111111111111
+    },
+    "delete": {
+     "turns": 3,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.0
+    },
+    "replace": {
+     "turns": 10,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 1.1
+    },
+    "reprioritize": {
+     "turns": 5,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.8
+    }
+   },
+   "by_type": {
+    "budget": {
+     "turns": 6,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 1.1666666666666667
+    },
+    "cuisine": {
+     "turns": 21,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.8095238095238095
+    },
+    "house_rule": {
+     "turns": 7,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.8571428571428571
+    },
+    "min_rating": {
+     "turns": 13,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.8645412457912459,
+     "llm_calls_per_turn": 1.0769230769230769
+    },
+    "priority": {
+     "turns": 5,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.8
+    },
+    "room_type": {
+     "turns": 6,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.8333333333333334
+    },
+    "transport": {
+     "turns": 5,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 1.0,
+     "llm_calls_per_turn": 0.6
+    }
+   },
+   "by_turn": {
+    "turn 1": {
+     "turns": 30,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9770299145299146,
+     "llm_calls_per_turn": 0.8666666666666667
+    },
+    "turn 2": {
+     "turns": 21,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9692716640085062,
+     "llm_calls_per_turn": 0.8571428571428571
+    },
+    "turn 3": {
+     "turns": 12,
+     "revision_success_rate": 1.0,
+     "unaffected_preserved": 0.9365079365079365,
+     "llm_calls_per_turn": 1.0
+    }
+   },
+   "by_chain": {
+    "L=1": {
+     "episodes": 9,
+     "final_pass_rate": 1.0
+    },
+    "L=2": {
+     "episodes": 9,
+     "final_pass_rate": 1.0
+    },
+    "L=3": {
+     "episodes": 12,
+     "final_pass_rate": 1.0
+    }
+   },
+   "recovery": {},
+   "error_vs_step": {
+    "by_step": {
+     "0": 0.031746031746031744,
+     "1": 0.04081632653061224,
+     "2": 0.0,
+     "3": 0.02702702702702703,
+     "4": 0.0,
+     "5": 0.5,
+     "6": 0.0,
+     "7": 0.0,
+     "8": 0.0,
+     "9": 0.0
+    },
+    "by_turn": {
+     "0": 0.0,
+     "1": 0.045454545454545456,
+     "2": 0.07692307692307693
+    }
+   },
+   "llm_usage": {
+    "requests": 108,
+    "calls": 0,
+    "cache_hits": 108,
+    "errors": 0,
+    "tokens": 26437,
+    "billed_input_tokens": 0,
+    "billed_output_tokens": 0,
+    "fallbacks": {},
+    "fallback_rate": 0.0,
+    "degraded": false
+   }
+  }
+ },
+ "recovery_episodes": 0,
+ "llm_usage_total": {
+  "requests": 2583,
+  "calls": 0,
+  "cache_hits": 2583,
+  "input_tokens": 617805,
+  "output_tokens": 24910,
+  "billed_input_tokens": 0,
+  "billed_output_tokens": 0,
+  "errors": 0,
+  "seconds": 0.0,
+  "fallbacks": {},
+  "fallback_reasons": {},
+  "tokens": 642715,
+  "degraded": false
+ },
+ "degraded": false
+}

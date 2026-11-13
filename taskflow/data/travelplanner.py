@@ -86,6 +86,7 @@ class CityDB:
     accommodations: list[Accommodation] = field(default_factory=list)
     flights: dict[tuple[str, str, str], list[Flight]] = field(default_factory=dict)
     ground: dict[tuple[str, str, str], Ground] = field(default_factory=dict)
+    dropped_duplicates: int = 0
 
 
 @dataclass
@@ -105,10 +106,21 @@ class Query:
 
 
 def _split_table(content: str, cols: list[str]) -> list[list[str]]:
+    """Split a pandas ``to_string()`` table into cells by header column ends.
+
+    Some tables carry a left-aligned integer index before the first column,
+    others don't. The index is detected from layout (every data row has a
+    digit in column 0, while right-aligned names are padded with spaces) and
+    removed by width, so names that start with digits stay intact.
+    """
     lines = [ln for ln in content.split("\n") if ln.strip()]
     if not lines:
         return []
     header = lines[0]
+    data = lines[1:]
+    index_w = 0
+    if data and not header[:1].strip() and all(ln[:1].isdigit() for ln in data):
+        index_w = max(len(re.match(r"\d+", ln).group(0)) for ln in data)
     ends, start = [], 0
     for c in cols:
         pos = header.find(c, start)
@@ -117,8 +129,8 @@ def _split_table(content: str, cols: list[str]) -> list[list[str]]:
         ends.append(pos + len(c))
         start = pos + len(c)
     rows = []
-    for ln in lines[1:]:
-        cells, prev = [], 0
+    for ln in data:
+        cells, prev = [], index_w
         for i, e in enumerate(ends):
             cell = ln[prev:] if i == len(ends) - 1 else ln[prev:e]
             cells.append(cell.strip())
@@ -145,9 +157,8 @@ def parse_reference_information(ref: list[dict]) -> CityDB:
                 db.attractions.append(Attraction(name=r[0], city=r[6]))
         elif desc.startswith("Restaurants in"):
             for r in _split_table(content, REST_COLS):
-                name = re.sub(r"^\s*\d+\s+", "", r[0])
                 db.restaurants.append(Restaurant(
-                    name=name, cost=_num(r[1]),
+                    name=r[0], cost=_num(r[1]),
                     cuisines=[c.strip() for c in r[2].split(",") if c.strip()],
                     rating=_num(r[3]), city=r[4]))
         elif desc.startswith("Accommodations in"):
@@ -175,6 +186,18 @@ def parse_reference_information(ref: list[dict]) -> CityDB:
             g = Ground(mode=m.group(1), origin=m.group(2), dest=m.group(3),
                        duration=m.group(4), cost=_num(m.group(5)))
             db.ground[(g.mode, g.origin, g.dest)] = g
+    # Plans refer to entities by name, so a name must identify one record.
+    # Keep the first record for each name (the upstream evaluator resolves a
+    # name to its first matching row) and drop later duplicates.
+    for attr in ("restaurants", "accommodations", "attractions"):
+        seen, kept = set(), []
+        for rec in getattr(db, attr):
+            if rec.name in seen:
+                db.dropped_duplicates += 1
+                continue
+            seen.add(rec.name)
+            kept.append(rec)
+        setattr(db, attr, kept)
     return db
 
 

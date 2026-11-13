@@ -47,7 +47,8 @@ def planner_prompt(component: str, constraints: dict, budget_left: float, candid
 You are the {component} agent of a travel planner. Choose from the candidates only.
 Hard requirements: respect every constraint and keep the cost within budget_left when possible.
 Candidates are listed in a suggested order (cheapest valid options first); you may choose
-differently if it better serves the user's priority.
+differently if it better serves the user's priority. budget_left is the total this component
+may cost for all travelers; -1 means no separate limit (keep it cheap).
 Reply with ONE JSON object and nothing else: {pick}"""
     return system, _user("Choose for this trip:", {"constraints": constraints,
                                                    "budget_left": round(budget_left, 2),

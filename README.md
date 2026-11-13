@@ -40,7 +40,7 @@ Everything above works offline. To switch on the LLM-backed tracker, component a
 ```bash
 cp .env.example .env       # set TASKFLOW_LLM_PROVIDER, TASKFLOW_LLM_MODEL and a key
 make demo-llm              # LLM coordinator + LLM agents
-make evaluate-llm          # 30 test episodes -> results/llm-<provider>/REPORT.md
+make evaluate-llm          # 30 validation episodes -> results/runs/<run>/REPORT.md
 ```
 
 `make demo-fake` runs every LLM code path offline with a stand-in backend. Details are in [docs/LLM_SETUP.md](docs/LLM_SETUP.md).
@@ -49,14 +49,14 @@ make evaluate-llm          # 30 test episodes -> results/llm-<provider>/REPORT.m
 
 | Piece | Where | Notes |
 |---|---|---|
-| TravelPlanner loader | `taskflow/data/travelplanner.py` | Parses each query's database slice (flights, ground transport, hotels, restaurants, attractions). |
-| Verifier | `taskflow/env/verifier.py` | TravelPlanner-style commonsense and hard constraints, plus restaurant rating floor and cost/quality priority. Each violation names the slots that cause it. Accepts all 15 annotated single-city reference plans (`tests/test_verifier.py`). |
-| Evolving-constraint tasks | `taskflow/data/tasks.py` | Split by original query id **before** variants are generated. Four update types. About 75% of feasible updates break the current plan; about 17% are infeasible (correct response: ask). |
-| Constraint tracker | `taskflow/agents/tracker.py` | Natural-language update to a structured diff. Rule-based offline (100% on both template sets); LLM-based when a provider is set, with schema validation and fallback. |
+| TravelPlanner loader | `taskflow/data/travelplanner.py` | Parses each query's database slice (flights, ground transport, hotels, restaurants, attractions). Detects the optional index column from layout, so names that start with digits survive; a name always identifies one record (first occurrence, as upstream resolves it). |
+| Verifier | `taskflow/env/verifier.py` | TravelPlanner-style commonsense and hard constraints, plus restaurant rating floor and cost/quality priority. A valid itinerary fills all 13 slots (stricter than upstream). Each violation names the slots that cause it. Accepts all 15 annotated single-city reference plans when the completeness rule is relaxed (`tests/test_verifier.py`). |
+| Evolving-constraint tasks | `taskflow/data/tasks.py` | Split by original query id **before** variants are generated. Four update types. On the test split, 63% of feasible updates break the plan the reference coordinator holds (generator target 75%), and 19% of turns are infeasible (correct response: ask). |
+| Constraint tracker | `taskflow/agents/tracker.py` | Natural-language update to a structured diff. Rule-based offline; LLM-based when a provider is set, with a strict op/type schema, an explicit "no change" result, and rule fallback only for unusable replies. |
 | Component planners + composer | `taskflow/agents/planners.py`, `llm_planners.py` | Local repair keeps the other components fixed; global regeneration rebuilds from scratch. With an LLM, agents choose from validated shortlists. |
-| Multi-turn environment | `taskflow/env/episode.py` | Cached searches go stale when a relevant constraint changes; per-action cost accounting. |
-| Coordinators | `taskflow/coordinators/` | `oracle` (privileged expert), `static_rules`, `always_global`, `llm_coordinator` (also the LLM teacher for DAgger). |
-| LLM layer | `taskflow/llm/` | One client for offline / fake / OpenAI-compatible / Anthropic, with disk cache, retries and usage counters. All prompts live in `prompts.py`. |
+| Multi-turn environment | `taskflow/env/episode.py` | Cached searches go stale when a relevant constraint changes. The system carries its own constraint belief between turns; ground truth is used only for scoring. Optional per-turn LLM-call cap for matched-budget runs. |
+| Coordinators | `taskflow/coordinators/` | `oracle` (privileged expert), `static_rules` (asks on observable evidence), `always_global` and its deterministic control `always_global_det`, `llm_coordinator` (also the LLM teacher for DAgger). |
+| LLM layer | `taskflow/llm/` | One client for offline / fake / OpenAI-compatible / Anthropic. Endpoint-aware disk cache, retries, usage and per-component fallback counters; bad keys/models/endpoints abort instead of silently falling back. All prompts live in `prompts.py`. |
 | Learned coordinator | `taskflow/learning/` | MLP over a non-privileged observation (`encode.py`), trained with BC / augmentation / DAgger (`imitation.py`). |
 | Evaluation | `scripts/evaluate.py`, `taskflow/eval/` | Proposal metrics, breakdowns, forced-mistake recovery, error vs. step. |
 
@@ -64,32 +64,45 @@ make evaluate-llm          # 30 test episodes -> results/llm-<provider>/REPORT.m
 
 The test split differs from training in three ways:
 - **Unseen trips:** different original queries.
-- **Unseen phrasing:** a different template set for the natural-language updates.
+- **Different phrasing templates:** a second handwritten template set. The rule-based tracker was written with both sets in view, so this checks template compatibility, not robustness to real paraphrases (that needs T10).
 - **Longer chains:** 4-turn conversations, while training never goes past 3 turns.
 
-## Results (test split, 292 episodes / 741 turns, 3 training seeds)
+## Results (test split, 276 episodes / 689 turns, 3 training seeds)
 
-| System | Final pass | Revision success | Unaffected slots preserved | LLM calls / turn |
-|---|---|---|---|---|
-| Always-Global | 99.7 | 99.9 | 33.0 | 4.17 |
-| Static rules | 100.0 | 100.0 | 95.1 | 1.63 |
-| BC | 97.1 ± 0.3 | 98.4 ± 0.1 | 96.1 | 0.71 |
-| BC + augmentation | 99.0 ± 0.3 | 99.3 ± 0.2 | 96.1 | 0.71 |
-| BC + DAgger (3 iters) | 98.2 ± 0.9 | 98.9 ± 0.5 | 96.1 | 0.71 |
-| BC + aug + DAgger (3) | 99.2 ± 0.6 | 99.5 ± 0.2 | 96.0 | 0.71 |
-| Privileged oracle | 100.0 | 100.0 | 96.0 | 0.69 |
+All numbers come from `results/metrics.json` (offline run; manifest records code, prompt, task and model fingerprints).
+
+| System | Final pass | Revision success | Unaffected slots preserved | Slots edited | LLM calls / turn |
+|---|---|---|---|---|---|
+| Always-Global (sampled regeneration) | 100.0 | 100.0 | 31.3 | 73.1 | 4.19 |
+| Always-Global (deterministic control) | 100.0 | 100.0 | 93.1 | 21.2 | 4.19 |
+| Static rules | 100.0 | 100.0 | 95.4 | 18.9 | 0.95 |
+| BC | 97.5 ± 1.5 | 98.6 ± 0.8 | 96.3 | 18.1 | 0.73 |
+| BC + augmentation | 99.9 ± 0.2 | 100.0 ± 0.1 | 96.1 | 18.6 | 0.72 |
+| BC + DAgger (3 iters) | 99.9 ± 0.2 | 100.0 ± 0.1 | 96.1 | 18.6 | 0.72 |
+| BC + aug + DAgger (3) | 99.9 ± 0.2 | 100.0 ± 0.1 | 96.1 | 18.6 | 0.72 |
+| Privileged oracle | 100.0 | 100.0 | 96.1 | 18.6 | 0.71 |
+
+**Matched LLM-call budget per turn** (`make evaluate-capped`, `results/runs/test-offline-cap*`): revision success %.
+
+| Cap | Static rules | BC | BC + aug | BC + DAgger (3) | BC + aug + DAgger (3) | Oracle |
+|---|---|---|---|---|---|---|
+| 1 call | 72.4 | 96.9 | 98.0 | 98.0 | 97.6 | 98.5 |
+| 2 calls | 98.1 | 98.5 | 100.0 | 100.0 | 99.9 | 100.0 |
 
 What the numbers say:
 
-1. **Partial vs. global replanning.** Regenerating on every update keeps only a third of the parts of the itinerary that the update didn't touch, and costs about 6× the LLM calls of a learned coordinator. In 48% of turns it regenerates even though a local repair would have worked.
-2. **Compounding error is real, and both mitigations help.**
-   - Plain BC succeeds on 100% of first turns but only 91.9% of held-out 4th turns (seed 0). Augmentation or DAgger lifts the 4th turn to 96.5%.
-   - When a mistake is forced at the start of a turn, BC recovers 86% of the time after a wrong accommodation repair. With augmentation it recovers 100%.
-   - DAgger alone is noisy on forced mistakes (71–96% recovery for 3 iterations, depending on the mistake), because it only relabels states the policy visits on its own. Augmentation targets mistake states directly. The combination is best overall.
+1. **Partial vs. global replanning.**
+   - Regenerating on every update costs about 4.4× the LLM calls of static rules and 5.8× those of the learned coordinator. In 49% of turns it regenerates even though a local repair would have worked.
+   - How much of the plan regeneration destroys depends on how unstable regeneration is. With sampled regeneration (our stand-in for an LLM rebuilding from scratch) it keeps 31% of the untouched slots. Deterministic regeneration keeps 93%. The real figure needs a real LLM.
+2. **Compounding error.**
+   - Plain BC succeeds on 100% of first turns but only 92.8% of held-out 4th turns (seed 0). Augmentation and DAgger both bring the 4th turn back to 98.6–100%.
+   - In forced-mistake recovery, counting only cases where the forced action actually left the plan broken: BC recovers 83–88%, BC+DAgger(3) 91–99%, and augmentation, with or without DAgger, 100%.
+   - A forced global rebuild always fixes the plan, so it says nothing about recovery.
 3. **Against the proposal's rejection criterion.**
-   - **Efficiency:** the learned coordinator matches the oracle (0.71 vs 0.69 LLM calls per turn) and uses about 2.3× fewer calls than static rules.
-   - **Accuracy:** it does *not* beat static rules. Static rules fall back to full regeneration when their script fails, so they always succeed eventually, and the learned coordinator trails them by 0.5 points of revision success.
-   - **Verdict:** under a matched call budget the hypothesis is not yet established. This is the main open question for the LLM-backed version.
+   - **Without a budget cap:** static rules reach 100% and the learned coordinator 99.9–100%. The learned coordinator uses about 24% fewer LLM calls (0.72 vs 0.95).
+   - **With 1 call per turn:** the learned coordinators reach 96.9–98.1% revision success, while static rules drop to 72.4%.
+   - **Verdict:** offline, the hypothesis holds under a tight budget, not without one. It still needs confirming with real LLM agents.
+4. **Scope of the local/global question.** On this task distribution the oracle never needs a global rebuild (every feasible update is fixed by repairing one or two components). The results show *when to repair locally and when to ask*, not a learned local-vs-global trade-off. Independent multi-component scenarios are open work (`docs/STATUS.md`).
 
 ## Deviations from the plan (read before citing numbers)
 
@@ -97,13 +110,13 @@ What the numbers say:
   - The sub-agents are deterministic searches, the tracker is rule-based, and update phrasings come from templates.
   - The expert is the privileged scripted oracle.
   - Per-action LLM calls and tokens come from a fixed **cost model** (`ACTION_COST` in `taskflow/env/state.py`).
-  - The LLM tracker, LLM agents, LLM coordinator and LLM teacher are implemented and tested with the offline `fake` backend, but **not yet run against a real model**.
+  - The LLM tracker, LLM agents, LLM coordinator and LLM teacher are implemented and tested with the offline `fake` backend and adversarial stubs, but **not yet run against a real model**.
   - The single-LLM-agent baseline isn't built yet.
 - **Scope:** 3-day, single-city TravelPlanner queries only, and FlexTravelBench is not used yet.
   - Train and validation queries keep their original constraints.
   - Test-file queries have hidden constraints, so their starting budget and constraints are sampled: budget is 1.2–1.7× the cheapest plan.
-- **"Feasible" means feasible for our planners:** the current plan already satisfies the update, or the greedy composer can find a plan.
-- **Simulated instability in global regeneration.** Global regeneration samples among near-best options, to mimic the instability of an LLM rebuilding a plan from scratch. The 33% preservation for Always-Global depends on this choice.
+- **"Feasible" means feasible for our planners:** the current plan already satisfies the update, or the greedy composer can find a plan. Under the all-13-slots completeness rule, a review's exact search found no turn wrongly labeled infeasible; this needs re-checking after the parser fixes.
+- **Simulated instability in global regeneration.** Global regeneration samples among near-best options, to mimic the instability of an LLM rebuilding a plan from scratch. The deterministic control (`always_global_det`) shows how much the preservation number depends on that choice: 31% vs. 93%.
 - **No TravelPlanner leaderboard comparison.** Splits are re-drawn, so numbers aren't comparable with the official leaderboard. The verifier is checked against annotated plans, not against the official evaluator script.
 - **Tooling:** dataclasses instead of pydantic, and pip + `requirements.txt` instead of uv. There's no CI.
 

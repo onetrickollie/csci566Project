@@ -21,9 +21,44 @@ def git_sha() -> str:
         return "unknown"
 
 
+def git_dirty() -> bool | None:
+    try:
+        out = subprocess.check_output(["git", "status", "--porcelain", "--untracked-files=no"], cwd=ROOT,
+                                      text=True, stderr=subprocess.DEVNULL)
+        return bool(out.strip())
+    except Exception:
+        return None
+
+
+def fingerprint(paths) -> str:
+    """Content hash of files (or every .py under directories), order-independent."""
+    h = hashlib.sha256()
+    files = []
+    for p in paths:
+        p = Path(p)
+        files += sorted(p.rglob("*.py")) if p.is_dir() else ([p] if p.exists() else [])
+    for f in sorted(set(files)):
+        h.update(str(f.relative_to(ROOT)).encode())
+        h.update(f.read_bytes())
+    return h.hexdigest()[:12]
+
+
 def manifest(**kw) -> dict:
+    """Run identity: config, code/prompt/data fingerprints, and git state.
+
+    ``git_sha`` alone is not enough (uncommitted edits); ``source`` and
+    ``prompts`` fingerprints identify the code that actually ran.
+    """
     cfg = json.dumps(kw, sort_keys=True, default=str)
-    return {"git_sha": git_sha(), "config": kw, "config_hash": hashlib.sha1(cfg.encode()).hexdigest()[:10]}
+    return {
+        "git_sha": git_sha(), "git_dirty": git_dirty(), "config": kw,
+        "config_hash": hashlib.sha1(cfg.encode()).hexdigest()[:10],
+        "fingerprints": {
+            "source": fingerprint([ROOT / "taskflow", ROOT / "scripts"]),
+            "prompts": fingerprint([ROOT / "taskflow" / "llm" / "prompts.py"]),
+            "tasks": fingerprint(sorted(TASKS_DIR.glob("*.jsonl"))),
+        },
+    }
 
 
 def query_index():
@@ -34,10 +69,11 @@ def query_index():
 
 
 def baseline_policies(llm=None) -> dict:
-    from taskflow.coordinators.baselines import AlwaysGlobal, StaticRules
+    from taskflow.coordinators.baselines import AlwaysGlobal, AlwaysGlobalDeterministic, StaticRules
     from taskflow.coordinators.oracle import Oracle
 
-    out = {"always_global": AlwaysGlobal(), "static_rules": StaticRules(), "oracle": Oracle()}
+    out = {"always_global": AlwaysGlobal(), "always_global_det": AlwaysGlobalDeterministic(),
+           "static_rules": StaticRules(), "oracle": Oracle()}
     if llm is not None:
         from taskflow.coordinators.llm_coordinator import LLMCoordinator
 

@@ -51,10 +51,16 @@ Every script also takes `--llm offline|fake|openai|anthropic`, which overrides `
 ```bash
 .venv/bin/python scripts/demo.py --policy llm_coordinator           # LLM coordinator + LLM agents
 .venv/bin/python scripts/demo.py --interactive                      # type anything, e.g. "make it cheaper, we're broke"
-.venv/bin/python scripts/evaluate.py --llm openai --limit 30 --seeds 0 --skip-recovery
+make evaluate-llm      # = evaluate.py --require-llm --split val --limit 30 --seeds 0 --skip-recovery
 ```
 
-- **Where results go:** `results/llm-<provider>/`, so the committed offline results aren't overwritten.
+Develop prompts on the **validation** split. Keep the test split frozen until the final run.
+
+- **Where results go:** `results/runs/<split>-<provider>-<model>-<hash>/`. Different models, endpoints, caps or suffixes never overwrite each other. Only `--canonical` (the full offline test run) writes `results/` itself.
+- **Failures:**
+  - A bad key, model id or endpoint (HTTP 400/401/403/404) **aborts the run**.
+  - Timeouts, rate limits after retries, and invalid replies fall back to the deterministic component. They are counted per component and reason in the report's "LLM usage per system" table.
+  - Any error or fallback marks the run **DEGRADED**.
 - **Caching:** every request is cached under `cache/llm/` (git-ignored). Re-running the same evaluation costs nothing.
 
 **Rough request counts per turn,** measured with the fake backend on 40 test episodes (real models may differ):

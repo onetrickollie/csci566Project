@@ -1,0 +1,70 @@
+{
+  "endpoint_cache_collision": {
+    "a": "https://server-a.invalid/v1",
+    "b": "https://server-b.invalid/v1",
+    "b_usage": {
+      "requests": 1,
+      "calls": 1,
+      "cache_hits": 0,
+      "input_tokens": 10,
+      "output_tokens": 5,
+      "billed_input_tokens": 10,
+      "billed_output_tokens": 5,
+      "errors": 0,
+      "seconds": 0.0,
+      "fallbacks": {},
+      "fallback_reasons": {}
+    }
+  },
+  "house_replace": "rejected: ValueError: op 'replace' not allowed for house_rule",
+  "no_update_overridden": {
+    "source": "llm-none",
+    "diff": null
+  },
+  "parse_What room type do we have?": "ValueError: room type mentioned but no value given: 'What room type do we have?'",
+  "parse_Choose restaurants rated highly.": "ValueError: rating mentioned but no number given: 'Choose restaurants rated highly.'",
+  "observation_mismatch": {
+    "summary_unchanged": false,
+    "features_changed": 3
+  },
+  "meals_prompt_budget": 155.0,
+  "meals_budget": {
+    "budget": 1395.0,
+    "old_cost": 1394.0,
+    "new_cost": 1394.0,
+    "new_valid": true
+  },
+  "all_api_calls_fail": {
+    "usage": {
+      "requests": 10,
+      "calls": 0,
+      "cache_hits": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "billed_input_tokens": 0,
+      "billed_output_tokens": 0,
+      "errors": 10,
+      "seconds": 0.0,
+      "fallbacks": {
+        "tracker": 3,
+        "coordinator": 6,
+        "meals": 1
+      },
+      "fallback_reasons": {
+        "tracker: LLMError: HTTP 401 unauthorized (synthetic)": 3,
+        "coordinator: LLMError: HTTP 401 unauthorized (synthetic)": 6,
+        "meals: LLMError: HTTP 401 unauthorized (synthetic)": 1
+      },
+      "tokens": 0,
+      "degraded": true
+    },
+    "final_pass": true,
+    "measured_requests": [
+      6,
+      2,
+      2
+    ],
+    "coordinator_fallbacks": 6
+  },
+  "auth_failure": "aborted: HTTP 401 unauthorized (synthetic)"
+}

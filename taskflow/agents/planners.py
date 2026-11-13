@@ -127,7 +127,7 @@ def replan_local(q: Query, c: Constraints, plan: Plan, group: str, cache: Cache,
     elif group == "meals":
         pick = plan_meals(cache.get("dining"), c)
         if llm is not None:
-            pick = llm_planners.meals(llm, cache.get("dining"), c, pick)
+            pick = llm_planners.meals(llm, cache.get("dining"), c, pick, budget_left=left)
     else:
         pick = plan_attractions(cache.get("dining"))
         if llm is not None:

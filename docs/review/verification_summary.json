@@ -1,0 +1,824 @@
+{
+  "reviewed_commit": "ff4562a",
+  "tests": "25 passed",
+  "offline_system_metrics_equal": true,
+  "offline_manifest": {
+    "git_sha": "ff4562a",
+    "config": {
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "split": "test",
+      "llm": "offline",
+      "limit": null
+    },
+    "config_hash": "00ecfdf30c"
+  },
+  "recovery_episodes": 184,
+  "fake_manifest": {
+    "git_sha": "ff4562a",
+    "config": {
+      "seeds": [
+        0
+      ],
+      "split": "test",
+      "llm": "fake:fake",
+      "limit": 40
+    },
+    "config_hash": "0dd3a39903"
+  },
+  "fake_system_summaries": {
+    "always_global": {
+      "episodes": {
+        "mean": 40,
+        "std": 0.0
+      },
+      "turns": {
+        "mean": 105,
+        "std": 0.0
+      },
+      "final_pass_rate": {
+        "mean": 0.975,
+        "std": 0.0
+      },
+      "revision_success_rate": {
+        "mean": 0.9904761904761905,
+        "std": 0.0
+      },
+      "new_constraint_satisfaction": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "constraint_retention_rate": {
+        "mean": 0.9942528735632183,
+        "std": 0.0
+      },
+      "unaffected_preserved": {
+        "mean": 0.9131992390325722,
+        "std": 0.0
+      },
+      "global_replan_rate": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "unnecessary_global_rate": {
+        "mean": 0.44761904761904764,
+        "std": 0.0
+      },
+      "clarification_recall": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "clarification_precision": {
+        "mean": 0.9375,
+        "std": 0.0
+      },
+      "timeout_rate": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "llm_calls_per_turn": {
+        "mean": 4.152380952380953,
+        "std": 0.0
+      },
+      "tool_calls_per_turn": {
+        "mean": 3.0,
+        "std": 0.0
+      },
+      "est_tokens_per_turn": {
+        "mean": 6045.714285714285,
+        "std": 0.0
+      },
+      "steps_per_turn": {
+        "mean": 3.0,
+        "std": 0.0
+      },
+      "tracker_accuracy": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "measured_llm_requests_per_turn": {
+        "mean": 4.980952380952381,
+        "std": 0.0
+      },
+      "measured_tokens_per_turn": {
+        "mean": 1055.7428571428572,
+        "std": 0.0
+      }
+    },
+    "static_rules": {
+      "episodes": {
+        "mean": 40,
+        "std": 0.0
+      },
+      "turns": {
+        "mean": 105,
+        "std": 0.0
+      },
+      "final_pass_rate": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "revision_success_rate": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "new_constraint_satisfaction": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "constraint_retention_rate": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "unaffected_preserved": {
+        "mean": 0.9563616321949654,
+        "std": 0.0
+      },
+      "global_replan_rate": {
+        "mean": 0.20952380952380953,
+        "std": 0.0
+      },
+      "unnecessary_global_rate": {
+        "mean": 0.06666666666666667,
+        "std": 0.0
+      },
+      "clarification_recall": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "clarification_precision": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "timeout_rate": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "llm_calls_per_turn": {
+        "mean": 1.5904761904761904,
+        "std": 0.0
+      },
+      "tool_calls_per_turn": {
+        "mean": 1.1333333333333333,
+        "std": 0.0
+      },
+      "est_tokens_per_turn": {
+        "mean": 2416.190476190476,
+        "std": 0.0
+      },
+      "steps_per_turn": {
+        "mean": 3.142857142857143,
+        "std": 0.0
+      },
+      "tracker_accuracy": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "measured_llm_requests_per_turn": {
+        "mean": 2.4095238095238094,
+        "std": 0.0
+      },
+      "measured_tokens_per_turn": {
+        "mean": 494.3619047619048,
+        "std": 0.0
+      }
+    },
+    "oracle": {
+      "episodes": {
+        "mean": 40,
+        "std": 0.0
+      },
+      "turns": {
+        "mean": 105,
+        "std": 0.0
+      },
+      "final_pass_rate": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "revision_success_rate": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "new_constraint_satisfaction": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "constraint_retention_rate": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "unaffected_preserved": {
+        "mean": 0.9563616321949654,
+        "std": 0.0
+      },
+      "global_replan_rate": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "unnecessary_global_rate": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "clarification_recall": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "clarification_precision": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "timeout_rate": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "llm_calls_per_turn": {
+        "mean": 0.6476190476190476,
+        "std": 0.0
+      },
+      "tool_calls_per_turn": {
+        "mean": 0.5523809523809524,
+        "std": 0.0
+      },
+      "est_tokens_per_turn": {
+        "mean": 1020.952380952381,
+        "std": 0.0
+      },
+      "steps_per_turn": {
+        "mean": 2.5619047619047617,
+        "std": 0.0
+      },
+      "tracker_accuracy": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "measured_llm_requests_per_turn": {
+        "mean": 1.5047619047619047,
+        "std": 0.0
+      },
+      "measured_tokens_per_turn": {
+        "mean": 321.37142857142857,
+        "std": 0.0
+      }
+    },
+    "llm_coordinator": {
+      "episodes": {
+        "mean": 40,
+        "std": 0.0
+      },
+      "turns": {
+        "mean": 105,
+        "std": 0.0
+      },
+      "final_pass_rate": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "revision_success_rate": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "new_constraint_satisfaction": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "constraint_retention_rate": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "unaffected_preserved": {
+        "mean": 0.9563616321949654,
+        "std": 0.0
+      },
+      "global_replan_rate": {
+        "mean": 0.18095238095238095,
+        "std": 0.0
+      },
+      "unnecessary_global_rate": {
+        "mean": 0.0380952380952381,
+        "std": 0.0
+      },
+      "clarification_recall": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "clarification_precision": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "timeout_rate": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "llm_calls_per_turn": {
+        "mean": 1.6857142857142857,
+        "std": 0.0
+      },
+      "tool_calls_per_turn": {
+        "mean": 1.0476190476190477,
+        "std": 0.0
+      },
+      "est_tokens_per_turn": {
+        "mean": 2559.0476190476193,
+        "std": 0.0
+      },
+      "steps_per_turn": {
+        "mean": 3.5047619047619047,
+        "std": 0.0
+      },
+      "tracker_accuracy": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "measured_llm_requests_per_turn": {
+        "mean": 5.9904761904761905,
+        "std": 0.0
+      },
+      "measured_tokens_per_turn": {
+        "mean": 1538.5619047619048,
+        "std": 0.0
+      }
+    },
+    "bc": {
+      "episodes": {
+        "mean": 40.0,
+        "std": 0.0
+      },
+      "turns": {
+        "mean": 105.0,
+        "std": 0.0
+      },
+      "final_pass_rate": {
+        "mean": 0.95,
+        "std": 0.0
+      },
+      "revision_success_rate": {
+        "mean": 0.9714285714285714,
+        "std": 0.0
+      },
+      "new_constraint_satisfaction": {
+        "mean": 0.9620253164556962,
+        "std": 0.0
+      },
+      "constraint_retention_rate": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "unaffected_preserved": {
+        "mean": 0.9619171877505209,
+        "std": 0.0
+      },
+      "global_replan_rate": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "unnecessary_global_rate": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "clarification_recall": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "clarification_precision": {
+        "mean": 0.8333333333333334,
+        "std": 0.0
+      },
+      "timeout_rate": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "llm_calls_per_turn": {
+        "mean": 0.6476190476190476,
+        "std": 0.0
+      },
+      "tool_calls_per_turn": {
+        "mean": 0.5714285714285714,
+        "std": 0.0
+      },
+      "est_tokens_per_turn": {
+        "mean": 994.2857142857143,
+        "std": 0.0
+      },
+      "steps_per_turn": {
+        "mean": 2.5238095238095237,
+        "std": 0.0
+      },
+      "tracker_accuracy": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "measured_llm_requests_per_turn": {
+        "mean": 1.4761904761904763,
+        "std": 0.0
+      },
+      "measured_tokens_per_turn": {
+        "mean": 311.5904761904762,
+        "std": 0.0
+      }
+    },
+    "bc_aug": {
+      "episodes": {
+        "mean": 40.0,
+        "std": 0.0
+      },
+      "turns": {
+        "mean": 105.0,
+        "std": 0.0
+      },
+      "final_pass_rate": {
+        "mean": 0.975,
+        "std": 0.0
+      },
+      "revision_success_rate": {
+        "mean": 0.9809523809523809,
+        "std": 0.0
+      },
+      "new_constraint_satisfaction": {
+        "mean": 0.9746835443037974,
+        "std": 0.0
+      },
+      "constraint_retention_rate": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "unaffected_preserved": {
+        "mean": 0.9619171877505209,
+        "std": 0.0
+      },
+      "global_replan_rate": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "unnecessary_global_rate": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "clarification_recall": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "clarification_precision": {
+        "mean": 0.8823529411764706,
+        "std": 0.0
+      },
+      "timeout_rate": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "llm_calls_per_turn": {
+        "mean": 0.6476190476190476,
+        "std": 0.0
+      },
+      "tool_calls_per_turn": {
+        "mean": 0.580952380952381,
+        "std": 0.0
+      },
+      "est_tokens_per_turn": {
+        "mean": 1009.5238095238095,
+        "std": 0.0
+      },
+      "steps_per_turn": {
+        "mean": 2.552380952380952,
+        "std": 0.0
+      },
+      "tracker_accuracy": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "measured_llm_requests_per_turn": {
+        "mean": 1.4857142857142858,
+        "std": 0.0
+      },
+      "measured_tokens_per_turn": {
+        "mean": 315.64761904761906,
+        "std": 0.0
+      }
+    },
+    "bc_dagger1": {
+      "episodes": {
+        "mean": 40.0,
+        "std": 0.0
+      },
+      "turns": {
+        "mean": 105.0,
+        "std": 0.0
+      },
+      "final_pass_rate": {
+        "mean": 0.95,
+        "std": 0.0
+      },
+      "revision_success_rate": {
+        "mean": 0.9714285714285714,
+        "std": 0.0
+      },
+      "new_constraint_satisfaction": {
+        "mean": 0.9620253164556962,
+        "std": 0.0
+      },
+      "constraint_retention_rate": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "unaffected_preserved": {
+        "mean": 0.9619171877505209,
+        "std": 0.0
+      },
+      "global_replan_rate": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "unnecessary_global_rate": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "clarification_recall": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "clarification_precision": {
+        "mean": 0.8333333333333334,
+        "std": 0.0
+      },
+      "timeout_rate": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "llm_calls_per_turn": {
+        "mean": 0.6476190476190476,
+        "std": 0.0
+      },
+      "tool_calls_per_turn": {
+        "mean": 0.5619047619047619,
+        "std": 0.0
+      },
+      "est_tokens_per_turn": {
+        "mean": 990.4761904761905,
+        "std": 0.0
+      },
+      "steps_per_turn": {
+        "mean": 2.5142857142857142,
+        "std": 0.0
+      },
+      "tracker_accuracy": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "measured_llm_requests_per_turn": {
+        "mean": 1.4761904761904763,
+        "std": 0.0
+      },
+      "measured_tokens_per_turn": {
+        "mean": 311.5904761904762,
+        "std": 0.0
+      }
+    },
+    "bc_dagger2": {
+      "episodes": {
+        "mean": 40.0,
+        "std": 0.0
+      },
+      "turns": {
+        "mean": 105.0,
+        "std": 0.0
+      },
+      "final_pass_rate": {
+        "mean": 0.975,
+        "std": 0.0
+      },
+      "revision_success_rate": {
+        "mean": 0.9809523809523809,
+        "std": 0.0
+      },
+      "new_constraint_satisfaction": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "constraint_retention_rate": {
+        "mean": 0.9885057471264368,
+        "std": 0.0
+      },
+      "unaffected_preserved": {
+        "mean": 0.9619171877505209,
+        "std": 0.0
+      },
+      "global_replan_rate": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "unnecessary_global_rate": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "clarification_recall": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "clarification_precision": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "timeout_rate": {
+        "mean": 0.01904761904761905,
+        "std": 0.0
+      },
+      "llm_calls_per_turn": {
+        "mean": 0.7238095238095238,
+        "std": 0.0
+      },
+      "tool_calls_per_turn": {
+        "mean": 0.5619047619047619,
+        "std": 0.0
+      },
+      "est_tokens_per_turn": {
+        "mean": 1139.047619047619,
+        "std": 0.0
+      },
+      "steps_per_turn": {
+        "mean": 2.6857142857142855,
+        "std": 0.0
+      },
+      "tracker_accuracy": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "measured_llm_requests_per_turn": {
+        "mean": 1.5809523809523809,
+        "std": 0.0
+      },
+      "measured_tokens_per_turn": {
+        "mean": 334.0285714285714,
+        "std": 0.0
+      }
+    },
+    "bc_dagger3": {
+      "episodes": {
+        "mean": 40.0,
+        "std": 0.0
+      },
+      "turns": {
+        "mean": 105.0,
+        "std": 0.0
+      },
+      "final_pass_rate": {
+        "mean": 0.95,
+        "std": 0.0
+      },
+      "revision_success_rate": {
+        "mean": 0.9714285714285714,
+        "std": 0.0
+      },
+      "new_constraint_satisfaction": {
+        "mean": 0.9620253164556962,
+        "std": 0.0
+      },
+      "constraint_retention_rate": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "unaffected_preserved": {
+        "mean": 0.9619171877505209,
+        "std": 0.0
+      },
+      "global_replan_rate": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "unnecessary_global_rate": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "clarification_recall": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "clarification_precision": {
+        "mean": 0.8333333333333334,
+        "std": 0.0
+      },
+      "timeout_rate": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "llm_calls_per_turn": {
+        "mean": 0.6476190476190476,
+        "std": 0.0
+      },
+      "tool_calls_per_turn": {
+        "mean": 0.5523809523809524,
+        "std": 0.0
+      },
+      "est_tokens_per_turn": {
+        "mean": 986.6666666666666,
+        "std": 0.0
+      },
+      "steps_per_turn": {
+        "mean": 2.5047619047619047,
+        "std": 0.0
+      },
+      "tracker_accuracy": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "measured_llm_requests_per_turn": {
+        "mean": 1.4761904761904763,
+        "std": 0.0
+      },
+      "measured_tokens_per_turn": {
+        "mean": 311.5904761904762,
+        "std": 0.0
+      }
+    },
+    "bc_aug_dagger3": {
+      "episodes": {
+        "mean": 40.0,
+        "std": 0.0
+      },
+      "turns": {
+        "mean": 105.0,
+        "std": 0.0
+      },
+      "final_pass_rate": {
+        "mean": 0.975,
+        "std": 0.0
+      },
+      "revision_success_rate": {
+        "mean": 0.9904761904761905,
+        "std": 0.0
+      },
+      "new_constraint_satisfaction": {
+        "mean": 0.9873417721518988,
+        "std": 0.0
+      },
+      "constraint_retention_rate": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "unaffected_preserved": {
+        "mean": 0.9563616321949654,
+        "std": 0.0
+      },
+      "global_replan_rate": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "unnecessary_global_rate": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "clarification_recall": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "clarification_precision": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "timeout_rate": {
+        "mean": 0.009523809523809525,
+        "std": 0.0
+      },
+      "llm_calls_per_turn": {
+        "mean": 0.6857142857142857,
+        "std": 0.0
+      },
+      "tool_calls_per_turn": {
+        "mean": 0.5619047619047619,
+        "std": 0.0
+      },
+      "est_tokens_per_turn": {
+        "mean": 1081.904761904762,
+        "std": 0.0
+      },
+      "steps_per_turn": {
+        "mean": 2.6285714285714286,
+        "std": 0.0
+      },
+      "tracker_accuracy": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "measured_llm_requests_per_turn": {
+        "mean": 1.542857142857143,
+        "std": 0.0
+      },
+      "measured_tokens_per_turn": {
+        "mean": 328.81904761904764,
+        "std": 0.0
+      }
+    }
+  },
+  "fake_usage_including_auxiliary_rollouts": {
+    "requests": 3461,
+    "calls": 832,
+    "cache_hits": 2629,
+    "input_tokens": 729393,
+    "output_tokens": 30447,
+    "errors": 0,
+    "seconds": 0.013690948486328125
+  },
+  "paid_api_calls": 0
+}

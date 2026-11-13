@@ -2,12 +2,14 @@
 
 Two uses:
 1. A coordinator baseline: the LLM picks every action from a structured
-   summary of the state (same information the learned policy sees).
+   summary of the state. The candidate evidence comes from the same function
+   the learned policy's encoder uses (``candidate_evidence``).
 2. The LLM teacher for DAgger (task T15): pass it as ``expert`` to
    ``taskflow.learning.imitation.collect`` / ``dagger``; it can label any
    state, including states the student reaches after its own mistakes.
 
-Invalid replies fall back to the static-rule action for that state.
+Invalid replies fall back to the static-rule action for that state and are
+counted per reason on the client. Fatal client errors propagate.
 """
 
 from __future__ import annotations
@@ -16,7 +18,8 @@ from taskflow.agents.planners import effective_budget
 from taskflow.coordinators.baselines import StaticRules
 from taskflow.env.state import ACTIONS, CACHES, SLOT_GROUP
 from taskflow.env.verifier import plan_cost
-from taskflow.learning.encode import action_mask
+from taskflow.learning.encode import action_mask, candidate_evidence
+from taskflow.llm.client import LLMFatalError, note_fallback
 from taskflow.llm.prompts import coordinator_prompt
 
 
@@ -42,7 +45,20 @@ def state_summary(env) -> dict:
         "cost": {"total": round(sum(cost.values()), 2), "effective_budget": round(effective_budget(env.c), 2),
                  **{k: round(v, 2) for k, v in cost.items()}},
         "steps_left": 10 - len(env.history),
+        "candidate_evidence": _rounded(candidate_evidence(env)),
     }
+
+
+def _rounded(d: dict) -> dict:
+    out = {}
+    for k, v in d.items():
+        if isinstance(v, float):
+            out[k] = round(v, 2)
+        elif isinstance(v, dict):
+            out[k] = {kk: round(vv, 2) for kk, vv in v.items()}
+        else:
+            out[k] = v
+    return out
 
 
 class LLMCoordinator:
@@ -56,11 +72,15 @@ class LLMCoordinator:
     def act(self, env) -> str:
         system, user = coordinator_prompt(state_summary(env))
         try:
-            a = self.client.complete_json(system, user, max_tokens=150)["action"]
+            a = self.client.complete_json(system, user, max_tokens=150).get("action")
             mask = action_mask(env)
             if a in ACTIONS and mask[ACTIONS.index(a)]:
                 return a
-        except Exception:
-            pass
+            reason = f"invalid action {a!r}"
+        except LLMFatalError:
+            raise
+        except Exception as e:
+            reason = f"{type(e).__name__}: {e}"
         self.fallbacks += 1
+        note_fallback(self.client, "coordinator", reason)
         return self.fallback.act(env)

@@ -25,16 +25,20 @@ MAX_STEPS = 10
 
 class TurnEnv:
     def __init__(self, q: Query, before: Constraints, plan: Plan, cache: Cache, nl: str,
-                 rng: random.Random, llm=None):
+                 rng: random.Random, llm=None, sample_global: bool = True,
+                 call_cap: int | None = None):
         self.q, self.before, self.start_plan = q, before, dict(plan)
         self.plan, self.cache, self.rng, self.llm = dict(plan), cache, rng, llm
+        self.sample_global, self.call_cap = sample_global, call_cap
         self.tracker_source = None
+        self.diff: ConstraintDiff | None = None
+        self.c = before.copy()
         try:
             self.diff, self.tracker_source = tracker.parse_any(nl, before, llm)
-            self.diff: ConstraintDiff | None
-            self.c = self.diff.apply(before)
         except ValueError:
-            self.diff, self.c = None, before.copy()
+            self.tracker_source = "unparsed"
+        if self.diff is not None:
+            self.c = self.diff.apply(before)
         self.report: Report | None = verify(q, self.c, self.plan)
         self.history: list[str] = []
         self.changed: set[str] = set()
@@ -55,6 +59,11 @@ class TurnEnv:
     def step(self, action: str) -> None:
         assert not self.done
         llm, tools, tok = ACTION_COST[action]
+        if self.call_cap is not None and self.llm_calls + llm > self.call_cap:
+            # Matched-budget evaluation: the turn ends with the plan as it is.
+            self.history.append(action)
+            self.done, self.terminal = True, "BUDGET_EXHAUSTED"
+            return
         self.llm_calls += llm
         self.tool_calls += tools
         self.tokens += tok
@@ -67,7 +76,8 @@ class TurnEnv:
             self.changed.add(g)
             self.report = None
         elif action == "REPLAN_GLOBAL":
-            self.plan = compose_global(self.q, self.c, self.cache, self.rng, self.llm)
+            self.plan = compose_global(self.q, self.c, self.cache,
+                                       self.rng if self.sample_global else None, self.llm)
             self.changed.update(["transport", "accommodation", "meals", "attractions"])
             self.global_done = True
             self.report = None
@@ -93,6 +103,7 @@ class TurnResult:
     new_satisfied: bool | None
     retention: float | None
     preservation: float | None
+    edit_rate: float
     used_global: bool
     unnecessary_global: bool
     llm_calls: int
@@ -122,27 +133,34 @@ def _local_fix_exists(env: TurnEnv) -> bool:
 
 def run_episode(ep: Episode, q: Query, policy, seed: int = 0, expert=None, beta: float = 0.0,
                 record: bool = False, inject: dict | None = None, encoder=None,
-                llm=None) -> EpisodeResult:
+                llm=None, call_cap: int | None = None) -> EpisodeResult:
     """Roll out ``policy`` on an episode.
 
     expert/beta: DAgger mixing. With probability beta the expert's action is
     executed; when ``record`` is set the expert's label is stored for every
     visited state. ``inject`` = {"turn": t, "step": s, "action": a} forces a
     specific action once (used for augmentation and the recovery eval).
+
+    State: the system carries its *own* constraint belief from turn to turn
+    (whatever its tracker produced). Ground truth from the episode file is
+    used only for scoring. After ASK_CLARIFICATION on an infeasible update
+    the simulated user withdraws it, so the belief reverts; after ASK on a
+    feasible update the user insists, so the belief keeps it.
     """
     rng = random.Random(seed)
     base = Constraints.from_dict(ep.base)
     cache = Cache()
     plan = compose_global(q, base, cache)
     res = EpisodeResult(episode_id=ep.episode_id)
-    before = base
+    truth_before, belief = base, base
     for ti, turn in enumerate(ep.turns):
         truth_diff = ConstraintDiff.from_dict(turn.diff)
         truth_after = Constraints.from_dict(turn.constraints_after)
-        truth_applied = truth_diff.apply(before)
+        truth_applied = truth_diff.apply(truth_before)
         u0 = llm.usage.snapshot() if llm is not None else None
-        env = TurnEnv(q, before, plan, cache, truth_diff.nl, rng, llm)
-        tracker_ok = env.diff is not None and env.c.to_dict() == truth_applied.to_dict()
+        env = TurnEnv(q, belief, plan, cache, truth_diff.nl, rng, llm,
+                      sample_global=getattr(policy, "sample_global", True), call_cap=call_cap)
+        tracker_ok = env.diff is not None and env.c.to_dict() == truth_diff.apply(belief).to_dict()
         start_report = verify(q, truth_applied, plan)
         needed_slots = start_report.slots()
         local_possible = _local_fix_exists(env) if turn.feasible else False
@@ -174,25 +192,30 @@ def run_episode(ep: Episode, q: Query, policy, seed: int = 0, expert=None, beta:
         if turn.feasible and truth_diff.op != "delete":
             item = _diff_item(truth_diff, truth_after)
             new_ok = constraint_item_satisfied(item, end_report) if item else None
-        kept = [it for it in before.items() if it in truth_after.items()
-                and it[0] != truth_diff.target_type]
+        # Constraint items active before the update that survive it unchanged.
+        kept = [it for it in truth_before.items() if it in truth_after.items()]
         retention = (sum(constraint_item_satisfied(it, end_report) for it in kept) / len(kept)
                      if kept else None)
         unaffected = [s for s in ALL_SLOTS if s not in needed_slots]
         preservation = None
         if turn.feasible and unaffected:
             preservation = sum(plan.get(s) == env.start_plan.get(s) for s in unaffected) / len(unaffected)
+        edit_rate = sum(plan.get(s) != env.start_plan.get(s) for s in ALL_SLOTS) / len(ALL_SLOTS)
         res.turns.append(TurnResult(
             turn=ti, op=truth_diff.op, target_type=truth_diff.target_type, feasible=turn.feasible,
             terminal=env.terminal, actions=list(env.history), success=success,
-            new_satisfied=new_ok, retention=retention, preservation=preservation,
+            new_satisfied=new_ok, retention=retention, preservation=preservation, edit_rate=edit_rate,
             used_global=env.global_done, unnecessary_global=env.global_done and local_possible,
             llm_calls=env.llm_calls, tool_calls=env.tool_calls, tokens=env.tokens,
             tracker_ok=tracker_ok,
             measured_llm_calls=(llm.usage.requests - u0[0]) if llm is not None else None,
             measured_tokens=(llm.usage.tokens - u0[1]) if llm is not None else None))
-        before = truth_after
-    res.final_pass = verify(q, before, plan).passed and res.turns[-1].success
+        if env.terminal == "ASK_CLARIFICATION" and not turn.feasible:
+            belief = env.before
+        else:
+            belief = env.c
+        truth_before = truth_after
+    res.final_pass = verify(q, truth_before, plan).passed and res.turns[-1].success
     return res
 
 

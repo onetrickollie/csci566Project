@@ -83,7 +83,11 @@ taskflow/eval/metrics.py → results/metrics.json → results/REPORT.md + figure
 - **Stale caches.** Each cache remembers the constraints it was searched under. If a constraint changes, a local re-plan on a stale cache can pick options the new constraint forbids. Searching first is part of what the coordinator must learn.
 - **Stale reports.** Any re-plan makes the verifier report stale until the next `VERIFY`.
 - **Infeasible updates.** If an update can't be satisfied, the correct action is `ASK_CLARIFICATION`. The user then withdraws the update and the plan returns to its start-of-turn state.
-- **Ground truth is used only for scoring.** The coordinator sees only its own state: the tracked constraints, the reports, the caches and the history.
+- **Belief vs. truth.** The system carries its own tracked constraints from turn to turn. Ground truth from the episode file is used only for scoring, so a tracker mistake persists.
+- **Completeness.** A valid itinerary fills all 13 slots, which is stricter than upstream TravelPlanner (`verify(..., require_complete=False)` relaxes it).
+- **Shared evidence.** `learning/encode.candidate_evidence` gives both the learned policy and the LLM coordinator the same facts from the caches: cheapest options, candidate counts and uncovered cuisines. Static rules use the same facts to decide when to ask.
+- **Matched budget.** `run_episode(..., call_cap=N)` ends a turn as `BUDGET_EXHAUSTED` when an action would exceed N cost-model LLM calls.
+- **LLM failures.** `LLMFatalError` (bad key, model or endpoint) always propagates. Other failures fall back to the deterministic component and are counted in `client.usage.fallbacks`.
 - **Determinism.** Offline runs are fully deterministic given the seeds. LLM runs are cached on disk by request hash, so re-runs are free and repeatable.
 
 ## Coordinators

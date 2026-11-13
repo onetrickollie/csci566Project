@@ -2,6 +2,11 @@
 
 Last updated: 2026-11-13. Task IDs refer to the task board in [ENGINEERING_PLAN.md](ENGINEERING_PLAN.md).
 
+**Review status:** the review of `ff4562a` found 20 issues ([SUPERVISOR_REVIEW.md](SUPERVISOR_REVIEW.md)).
+- **Fixed or mitigated:** 16 of them, each with a regression test in `tests/test_review_fixes.py`. Data, models and results were regenerated.
+- **Partly done or open:** 4, handed off as H1–H5 in that file.
+- **For prompt work:** use validation episodes and keep test frozen.
+
 ## TL;DR
 
 - **The whole pipeline runs today without an API key:** data → tasks → planners → coordinators → training → evaluation → demo.
@@ -35,9 +40,11 @@ Last updated: 2026-11-13. Task IDs refer to the task board in [ENGINEERING_PLAN.
 |---|---|---|
 | LLM tracker, LLM agents, LLM coordinator/teacher | Only tested with the fake backend. Prompts are first drafts. | Run with a real model on ~30 episodes, read the transcripts in `cache/llm/`, iterate on `taskflow/llm/prompts.py`. |
 | Cost numbers in `results/REPORT.md` | Offline numbers come from the simulated cost model (`ACTION_COST` in `taskflow/env/state.py`). | Re-run `evaluate.py --llm ...`; report the "Measured" columns instead. |
-| Feasibility labels | "Feasible" means the current plan already works or the greedy planner finds one. The greedy planner can miss plans that exist. | Exhaustive or ILP check on a sample (checklist item 4). |
+| Feasibility labels | "Feasible" means the current plan already works or the greedy planner finds one. Under the all-13-slots completeness rule, an exact search found no false "infeasible" labels before the parser fixes. | Re-run the exact search on the regenerated data (handoff H1). |
+| Local vs. global | On this task distribution the oracle never needs a global rebuild. | Add multi-component scenarios (handoff H2). |
+| Oracle in LLM mode | It simulates deterministic planners, so it isn't an upper bound once LLM agents run. | Handoff H3. |
 | Held-out phrasing | Template set B and the rule-based tracker were written together, so 100% tracker accuracy proves little. | Paraphrase test updates with an LLM and re-score the tracker (T10). |
-| Always-Global preservation (33%) | Offline instability of full regeneration is simulated by sampling. | Measure it with a real LLM regenerating the plan. |
+| Always-Global preservation | Sampled regeneration keeps 31% of untouched slots, the deterministic control 93%. The instability is simulated. | Measure with a real LLM regenerating the plan. |
 | Test-split constraints | TravelPlanner hides test constraints, so starting budgets and constraints for those queries are sampled. | Fine for our benchmark; state it in the report. |
 
 ## Not started
@@ -51,13 +58,12 @@ Last updated: 2026-11-13. Task IDs refer to the task board in [ENGINEERING_PLAN.
 | T03 | JSON Schema export of the interfaces | bench | dataclasses → `schemas/*.json`. |
 | T01 | CI | eval | GitHub Actions: `pip install -r requirements.txt && pytest -q` (offline, no key needed). |
 | T22 | Release package | bench | Dataset card + datasheet for `data/tasks/`, pip-installable harness. |
-| — | Matched-budget comparison | eval | Cap LLM calls per turn (e.g. 1 and 2) and compare static rules vs. learned (proposal's rejection criterion). |
 | — | Final report, slides, recorded demo | everyone | Week 12. |
 
 ## Suggested order for the next week
 
 1. **Everyone:** run `make setup demo test` and read [ARCHITECTURE.md](ARCHITECTURE.md).
-2. **Agents:** get one real provider working (`docs/LLM_SETUP.md`). Run `make demo-llm`, then `evaluate.py --llm <provider> --limit 30 --seeds 0 --skip-recovery`, and fix the prompts.
-3. **Bench:** checklist items 2–4 (parser, verifier against the official evaluator, feasibility labels).
+2. **Agents:** get one real provider working (`docs/LLM_SETUP.md`). Run `make demo-llm`, then `make evaluate-llm` (30 *validation* episodes), and fix the prompts. Check the report's fallback table; a DEGRADED run isn't an LLM result.
+3. **Bench:** handoffs H1 (upstream checks on the regenerated data) and H2 (multi-component scenarios).
 4. **Learning:** train with `--teacher llm --limit 100` and compare against the oracle-taught models.
-5. **Eval:** the matched-budget comparison and CI.
+5. **Eval:** CI, and handoff H5 (preservation definition).

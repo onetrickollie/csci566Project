@@ -1,0 +1,71 @@
+{
+  "endpoint_cache_collision": {
+    "a": "https://server-a.invalid/v1",
+    "b": "https://server-a.invalid/v1",
+    "b_usage": {
+      "requests": 1,
+      "calls": 0,
+      "cache_hits": 1,
+      "input_tokens": 10,
+      "output_tokens": 5,
+      "errors": 0,
+      "seconds": 0.0
+    }
+  },
+  "house_replace": {
+    "before": [
+      "pets"
+    ],
+    "after": [
+      "pets",
+      "visitors"
+    ]
+  },
+  "no_update_overridden": {
+    "source": "rules",
+    "diff": {
+      "op": "add",
+      "target_type": "cuisine",
+      "old": null,
+      "new": "Italian",
+      "nl": "Is Italian food available?",
+      "template_set": "A"
+    }
+  },
+  "parse_What room type do we have?": "IndexError: list index out of range",
+  "parse_Choose restaurants rated highly.": "AttributeError: 'NoneType' object has no attribute 'group'",
+  "observation_mismatch": {
+    "summary_unchanged": true,
+    "features_changed": 3
+  },
+  "meals_prompt_budget": 0.0,
+  "meals_budget": {
+    "budget": 1389.0,
+    "old_cost": 1388.0,
+    "new_cost": 1746.0,
+    "new_valid": false
+  },
+  "all_api_calls_fail": {
+    "usage": {
+      "requests": 10,
+      "calls": 0,
+      "cache_hits": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "errors": 10,
+      "seconds": 0.0
+    },
+    "final_pass": true,
+    "tracker_ok": [
+      true,
+      true,
+      true
+    ],
+    "measured_requests": [
+      6,
+      2,
+      2
+    ],
+    "fallbacks": 6
+  }
+}

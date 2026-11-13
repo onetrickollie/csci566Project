@@ -1,6 +1,7 @@
 {
  "manifest": {
-  "git_sha": "113ba67",
+  "git_sha": "ff4562a",
+  "git_dirty": true,
   "config": {
    "seeds": [
     0,
@@ -8,115 +9,124 @@
     2
    ],
    "epochs": 40,
-   "inject_rate": 0.7
+   "inject_rate": 0.7,
+   "teacher": "oracle",
+   "limit": null,
+   "suffix": "",
+   "collection_env": "deterministic planners"
   },
-  "config_hash": "e2d27aec80"
+  "config_hash": "8f1abfd112",
+  "fingerprints": {
+   "source": "2f5873931dbe",
+   "prompts": "f9352f57f9ee",
+   "tasks": "3753a97fdb1e"
+  }
  },
  "runs": {
   "0": {
    "bc": {
-    "n": 4513,
-    "train_acc": 0.9982273578643799
+    "n": 4451,
+    "train_acc": 0.9952819347381592
    },
    "bc_aug": {
-    "n": 9618,
-    "train_acc": 0.9983364343643188
+    "n": 9479,
+    "train_acc": 0.997468113899231
    },
    "bc_dagger1": {
     "iter": 1,
-    "added": 4517,
-    "n": 9030,
-    "train_acc": 0.9986711144447327
+    "added": 4453,
+    "n": 8904,
+    "train_acc": 0.9941599369049072
    },
    "bc_dagger2": {
     "iter": 2,
-    "added": 4517,
-    "n": 13547,
-    "train_acc": 0.998671293258667
+    "added": 4465,
+    "n": 13369,
+    "train_acc": 0.9966340065002441
    },
    "bc_dagger3": {
     "iter": 3,
-    "added": 4515,
-    "n": 18062,
-    "train_acc": 0.9951279163360596
+    "added": 4474,
+    "n": 17843,
+    "train_acc": 0.9973098635673523
    },
    "bc_aug_dagger3": {
     "iter": 3,
-    "added": 4516,
-    "n": 23177,
-    "train_acc": 0.9984898567199707
+    "added": 4459,
+    "n": 22853,
+    "train_acc": 0.9978558421134949
    },
-   "seconds": 27.8
+   "seconds": 26.9
   },
   "1": {
    "bc": {
-    "n": 4513,
-    "train_acc": 0.998005747795105
+    "n": 4451,
+    "train_acc": 0.9925859570503235
    },
    "bc_aug": {
-    "n": 9596,
-    "train_acc": 0.997603178024292
+    "n": 9465,
+    "train_acc": 0.9964078068733215
    },
    "bc_dagger1": {
     "iter": 1,
-    "added": 4515,
-    "n": 9028,
-    "train_acc": 0.9987815618515015
+    "added": 4454,
+    "n": 8905,
+    "train_acc": 0.9966310858726501
    },
    "bc_dagger2": {
     "iter": 2,
-    "added": 4515,
-    "n": 13543,
-    "train_acc": 0.9988924264907837
+    "added": 4458,
+    "n": 13363,
+    "train_acc": 0.9961835145950317
    },
    "bc_dagger3": {
     "iter": 3,
-    "added": 4517,
-    "n": 18060,
-    "train_acc": 0.9995570182800293
+    "added": 4471,
+    "n": 17834,
+    "train_acc": 0.9976449608802795
    },
    "bc_aug_dagger3": {
     "iter": 3,
-    "added": 4520,
-    "n": 23145,
-    "train_acc": 0.999092698097229
+    "added": 4462,
+    "n": 22842,
+    "train_acc": 0.9977235198020935
    },
-   "seconds": 27.6
+   "seconds": 26.8
   },
   "2": {
    "bc": {
-    "n": 4513,
-    "train_acc": 0.998892068862915
+    "n": 4451,
+    "train_acc": 0.9966299533843994
    },
    "bc_aug": {
-    "n": 9573,
-    "train_acc": 0.9956126809120178
+    "n": 9475,
+    "train_acc": 0.9964116215705872
    },
    "bc_dagger1": {
     "iter": 1,
-    "added": 4518,
-    "n": 9031,
-    "train_acc": 0.9975639581680298
+    "added": 4455,
+    "n": 8906,
+    "train_acc": 0.9967437386512756
    },
    "bc_dagger2": {
     "iter": 2,
-    "added": 4522,
-    "n": 13553,
-    "train_acc": 0.9991145730018616
+    "added": 4455,
+    "n": 13361,
+    "train_acc": 0.9971559047698975
    },
    "bc_dagger3": {
     "iter": 3,
-    "added": 4515,
-    "n": 18068,
-    "train_acc": 0.9986717104911804
+    "added": 4456,
+    "n": 17817,
+    "train_acc": 0.9968007802963257
    },
    "bc_aug_dagger3": {
     "iter": 3,
-    "added": 4467,
-    "n": 23083,
-    "train_acc": 0.9986570477485657
+    "added": 4465,
+    "n": 22856,
+    "train_acc": 0.9978561401367188
    },
-   "seconds": 27.4
+   "seconds": 28.7
   }
  }
 }

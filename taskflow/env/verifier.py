@@ -5,6 +5,11 @@ single-city trips, plus the constraint types added by this project
 (restaurant rating floor and cost/quality priority). Each violation lists
 the plan slots that cause it, which is what the coordinator and the
 preservation metric use.
+
+Completeness: in this benchmark a valid itinerary fills all 13 slots (both
+transport legs, the stay, six meals, four attractions). That is stricter than
+upstream TravelPlanner, whose reference plans may leave travel-day meals
+empty; pass ``require_complete=False`` to check those.
 """
 
 from __future__ import annotations
@@ -71,9 +76,14 @@ def plan_cost(q: Query, c: Constraints, plan: Plan, idx: dict | None = None) -> 
     return out
 
 
-def verify(q: Query, c: Constraints, plan: Plan) -> Report:
+def verify(q: Query, c: Constraints, plan: Plan, require_complete: bool = True) -> Report:
     idx = lookup_index(q.db)
     V: list[Violation] = []
+
+    if require_complete:
+        empty = [s for s in SLOTS["meals"] + SLOTS["attractions"] if plan.get(s, "-") in ("-", "", None)]
+        if empty:
+            V.append(Violation("incomplete", f"{len(empty)} empty slots", empty))
 
     # --- commonsense -----------------------------------------------------
     legs = {}

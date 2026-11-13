@@ -8,6 +8,9 @@ BC+augmentation+DAgger.
 --teacher llm: the LLM coordinator labels states instead (task T15). Every
 visited state costs one LLM request (cached on disk), so start with --limit.
 Models trained with the LLM teacher are saved with an "_llmteacher" suffix.
+Note: during collection the environment's own planners are deterministic
+(no LLM agents); only the labels come from the LLM teacher. Evaluating such a
+model with --llm therefore changes the environment it acts in.
 """
 
 import argparse
@@ -46,8 +49,10 @@ def main():
         if client is None:
             sys.exit("--teacher llm needs an LLM backend (--llm or TASKFLOW_LLM_PROVIDER)")
         expert, suffix = LLMCoordinator(client), "_llmteacher"
+    teacher_id = expert.client.identity() if a.teacher == "llm" else "oracle"
     log = {"manifest": manifest(seeds=a.seeds, epochs=a.epochs, inject_rate=a.inject_rate,
-                                teacher=a.teacher, limit=a.limit), "runs": {}}
+                                teacher=teacher_id, limit=a.limit, suffix=suffix,
+                                collection_env="deterministic planners"), "runs": {}}
     for seed in a.seeds:
         t0 = time.time()
         runs = {}
@@ -72,6 +77,8 @@ def main():
         runs["seconds"] = round(time.time() - t0, 1)
         log["runs"][seed] = runs
         print(f"seed {seed}: {json.dumps(runs)}")
+    if a.teacher == "llm":
+        log["teacher_usage"] = expert.client.usage.as_dict()
     (MODELS_DIR / f"training_log{suffix}.json").write_text(json.dumps(log, indent=1))
 
 

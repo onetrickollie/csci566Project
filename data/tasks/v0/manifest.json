@@ -1,91 +1,97 @@
 {
-  "git_sha": "113ba67",
+  "git_sha": "ff4562a",
+  "git_dirty": true,
   "config": {
     "seed": 0,
     "episodes_per_query": 4
   },
   "config_hash": "21b4556aee",
+  "fingerprints": {
+    "source": "2f5873931dbe",
+    "prompts": "f9352f57f9ee",
+    "tasks": "97ad675dce25"
+  },
   "stats": {
     "train": {
-      "queries": 211,
-      "episodes": 844,
-      "turns": 1672,
-      "infeasible_turns": 276,
+      "queries": 215,
+      "episodes": 860,
+      "turns": 1710,
+      "infeasible_turns": 317,
       "ops": {
-        "add": 1146,
-        "delete": 106,
-        "replace": 280,
-        "reprioritize": 140
+        "add": 1125,
+        "delete": 117,
+        "replace": 315,
+        "reprioritize": 153
       },
       "types": {
-        "min_rating": 505,
-        "room_type": 195,
-        "house_rule": 155,
-        "cuisine": 334,
-        "budget": 178,
-        "transport": 161,
-        "priority": 144
+        "min_rating": 342,
+        "room_type": 192,
+        "house_rule": 202,
+        "cuisine": 447,
+        "priority": 156,
+        "transport": 178,
+        "budget": 193
       },
       "chain_lengths": {
-        "2": 292,
-        "1": 284,
-        "3": 268
+        "2": 276,
+        "1": 297,
+        "3": 287
       }
     },
     "val": {
-      "queries": 67,
-      "episodes": 268,
-      "turns": 548,
-      "infeasible_turns": 100,
+      "queries": 71,
+      "episodes": 284,
+      "turns": 558,
+      "infeasible_turns": 92,
       "ops": {
-        "add": 367,
-        "delete": 34,
-        "replace": 102,
-        "reprioritize": 45
+        "add": 378,
+        "replace": 99,
+        "delete": 41,
+        "reprioritize": 40
       },
       "types": {
-        "min_rating": 154,
-        "cuisine": 102,
-        "budget": 71,
-        "transport": 47,
-        "house_rule": 57,
-        "room_type": 71,
-        "priority": 46
+        "cuisine": 136,
+        "budget": 66,
+        "min_rating": 115,
+        "room_type": 63,
+        "house_rule": 80,
+        "transport": 58,
+        "priority": 40
       },
       "chain_lengths": {
-        "2": 84,
-        "3": 98,
-        "1": 86
+        "3": 89,
+        "2": 96,
+        "1": 99
       }
     },
     "test": {
-      "queries": 74,
-      "episodes": 296,
-      "turns": 751,
-      "infeasible_turns": 127,
+      "queries": 69,
+      "episodes": 276,
+      "turns": 689,
+      "infeasible_turns": 129,
       "ops": {
-        "add": 481,
-        "delete": 62,
-        "reprioritize": 78,
-        "replace": 130
+        "add": 468,
+        "delete": 49,
+        "reprioritize": 70,
+        "replace": 102
       },
       "types": {
-        "cuisine": 154,
-        "house_rule": 82,
-        "transport": 72,
-        "priority": 78,
-        "min_rating": 189,
-        "budget": 94,
-        "room_type": 82
+        "cuisine": 146,
+        "house_rule": 91,
+        "transport": 97,
+        "priority": 73,
+        "min_rating": 146,
+        "budget": 62,
+        "room_type": 74
       },
       "chain_lengths": {
-        "3": 67,
-        "2": 63,
-        "4": 86,
-        "1": 80
+        "3": 65,
+        "2": 76,
+        "4": 69,
+        "1": 66
       }
     }
   },
-  "usable_queries": 352,
+  "usable_queries": 355,
   "source_queries": 383
 }
