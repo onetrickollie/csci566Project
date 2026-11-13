@@ -8,6 +8,7 @@ A user revises a 3-day itinerary over several turns: they add, delete, or replac
 
 | If you want to... | Read / run |
 |---|---|
+| **Join the project and keep working** | [HANDOFF.md](HANDOFF.md): everything done so far, what's left, how to run it, team rules |
 | Try it yourself (no key) | `make setup app`: type a start city and destination, get an itinerary, then revise it in plain language |
 | Watch a recorded test episode | `make demo-html` (browser), `make demo` (terminal) |
 | Know what's done and what's left | [docs/STATUS.md](docs/STATUS.md) |

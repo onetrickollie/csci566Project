@@ -1,5 +1,7 @@
 # Project status
 
+New to the project? Read [../HANDOFF.md](../HANDOFF.md) first.
+
 Last updated: 2026-11-13. Task IDs refer to the task board in [ENGINEERING_PLAN.md](ENGINEERING_PLAN.md).
 
 **Review status** (details in [SUPERVISOR_REVIEW.md](SUPERVISOR_REVIEW.md) and [review/LATEST_PROGRESS_REVIEW.md](review/LATEST_PROGRESS_REVIEW.md)):

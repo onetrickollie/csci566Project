@@ -15,7 +15,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-DOCS = ["README.md", "docs/STATUS.md", "docs/ARCHITECTURE.md", "docs/LLM_SETUP.md",
+DOCS = ["HANDOFF.md", "README.md", "docs/STATUS.md", "docs/ARCHITECTURE.md", "docs/LLM_SETUP.md",
         "docs/VERIFICATION_CHECKLIST.md", "docs/ENGINEERING_PLAN.md", "results/REPORT.md",
         "LICENSES.md", "Makefile", "requirements.txt", ".env.example"]
 CODE_DIRS = ["taskflow", "scripts", "tests"]
